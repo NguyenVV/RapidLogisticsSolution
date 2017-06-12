@@ -1,0 +1,81 @@
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\RapidWarehouse\bin\Debug\RapidWarehouse.exe.config
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\RapidWarehouse\bin\Debug\RapidWarehouse.exe
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\RapidWarehouse\bin\Debug\RapidWarehouse.pdb
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\RapidWarehouse\bin\Debug\vi-VN\RapidWarehouse.resources.dll
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\RapidWarehouse\bin\Debug\BusinessEntities.dll
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\RapidWarehouse\bin\Debug\BusinessServices.dll
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\RapidWarehouse\bin\Debug\DataModel.dll
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\RapidWarehouse\bin\Debug\Resolver.dll
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\RapidWarehouse\bin\Debug\SimpleInjector.dll
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\RapidWarehouse\bin\Debug\AutoMapper.dll
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\RapidWarehouse\bin\Debug\EntityFramework.dll
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\RapidWarehouse\bin\Debug\Microsoft.Practices.Unity.dll
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\RapidWarehouse\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\RapidWarehouse\bin\Debug\BusinessEntities.pdb
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\RapidWarehouse\bin\Debug\BusinessServices.pdb
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\RapidWarehouse\bin\Debug\DataModel.pdb
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\RapidWarehouse\bin\Debug\Resolver.pdb
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\RapidWarehouse\bin\Debug\SimpleInjector.xml
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\RapidWarehouse\bin\Debug\AutoMapper.pdb
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\RapidWarehouse\bin\Debug\AutoMapper.xml
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\RapidWarehouse\bin\Debug\EntityFramework.xml
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\RapidWarehouse\bin\Debug\Microsoft.Practices.Unity.xml
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\RapidWarehouse\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\RapidWarehouse\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\RapidWarehouse\obj\Debug\RapidWarehouse.csprojResolveAssemblyReference.cache
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\RapidWarehouse\obj\Debug\RapidWarehouse.FormNhap.resources
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\RapidWarehouse\obj\Debug\RapidWarehouse.FormXuat.resources
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\RapidWarehouse\obj\Debug\RapidWarehouse.Properties.Resources.resources
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\RapidWarehouse\obj\Debug\RapidWarehouse.FormNhap.vi-VN.resources
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\RapidWarehouse\obj\Debug\RapidWarehouse.csproj.GenerateResource.Cache
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\RapidWarehouse\obj\Debug\vi-VN\RapidWarehouse.resources.dll
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\RapidWarehouse\obj\Debug\RapidWarehouse.exe
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\RapidWarehouse\obj\Debug\RapidWarehouse.pdb
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\bin\Debug\RapidWarehouse.exe.config
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\bin\Debug\RapidWarehouse.exe
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\bin\Debug\RapidWarehouse.pdb
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\bin\Debug\vi-VN\RapidWarehouse.resources.dll
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\bin\Debug\AutoMapper.dll
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\bin\Debug\BusinessEntities.dll
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\bin\Debug\BusinessServices.dll
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\bin\Debug\DataModel.dll
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\bin\Debug\DocX.dll
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\bin\Debug\Resolver.dll
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\bin\Debug\SimpleInjector.dll
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\bin\Debug\System.IO.dll
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\bin\Debug\System.Net.Http.dll
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\bin\Debug\System.Net.Http.Extensions.dll
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\bin\Debug\System.Net.Http.Primitives.dll
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\bin\Debug\System.Net.Http.WebRequest.dll
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\bin\Debug\System.Runtime.dll
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\bin\Debug\System.Threading.Tasks.dll
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\bin\Debug\EntityFramework.dll
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\bin\Debug\Microsoft.Practices.Unity.dll
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\bin\Debug\BusinessEntities.pdb
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\bin\Debug\BusinessServices.pdb
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\bin\Debug\DataModel.pdb
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\bin\Debug\Resolver.pdb
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\bin\Debug\AutoMapper.xml
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\bin\Debug\SimpleInjector.xml
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\bin\Debug\System.IO.xml
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\bin\Debug\System.Net.Http.xml
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\bin\Debug\System.Net.Http.Extensions.xml
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\bin\Debug\System.Net.Http.Primitives.xml
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\bin\Debug\System.Net.Http.WebRequest.xml
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\bin\Debug\System.Runtime.xml
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\bin\Debug\System.Threading.Tasks.xml
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\bin\Debug\EntityFramework.xml
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\bin\Debug\Microsoft.Practices.Unity.xml
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.csproj.App.config
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.csprojResolveAssemblyReference.cache
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.FormNhap.resources
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.FormXuat.resources
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.Properties.Resources.resources
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.FormNhap.vi-VN.resources
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.csproj.GenerateResource.Cache
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\obj\Debug\vi-VN\RapidWarehouse.resources.dll
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.exe
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.pdb

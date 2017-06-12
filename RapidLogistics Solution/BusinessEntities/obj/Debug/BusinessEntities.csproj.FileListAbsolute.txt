@@ -1,0 +1,40 @@
+D:\AkhilMittal\Articles and Blogs\WebAPI\1\sourcecode\WebApi\BusinessEntities\bin\Debug\BusinessEntities.dll
+D:\AkhilMittal\Articles and Blogs\WebAPI\1\sourcecode\WebApi\BusinessEntities\bin\Debug\BusinessEntities.pdb
+D:\AkhilMittal\Articles and Blogs\WebAPI\1\sourcecode\WebApi\BusinessEntities\obj\Debug\BusinessEntities.dll
+D:\AkhilMittal\Articles and Blogs\WebAPI\1\sourcecode\WebApi\BusinessEntities\obj\Debug\BusinessEntities.pdb
+D:\AkhilMittal\Articles and Blogs\WebAPI\2\sourcecode\WebApi\BusinessEntities\bin\Debug\BusinessEntities.dll
+D:\AkhilMittal\Articles and Blogs\WebAPI\2\sourcecode\WebApi\BusinessEntities\bin\Debug\BusinessEntities.pdb
+D:\AkhilMittal\Articles and Blogs\WebAPI\2\sourcecode\WebApi\BusinessEntities\obj\Debug\BusinessEntities.dll
+D:\AkhilMittal\Articles and Blogs\WebAPI\2\sourcecode\WebApi\BusinessEntities\obj\Debug\BusinessEntities.pdb
+D:\AkhilMittal\Articles and Blogs\WebAPI\3\sourcecode\WebApi\BusinessEntities\bin\Debug\BusinessEntities.dll
+D:\AkhilMittal\Articles and Blogs\WebAPI\3\sourcecode\WebApi\BusinessEntities\bin\Debug\BusinessEntities.pdb
+D:\AkhilMittal\Articles and Blogs\WebAPI\3\sourcecode\WebApi\BusinessEntities\obj\Debug\BusinessEntities.dll
+D:\AkhilMittal\Articles and Blogs\WebAPI\3\sourcecode\WebApi\BusinessEntities\obj\Debug\BusinessEntities.pdb
+D:\AkhilMittal\Articles and Blogs\WebAPI\4\sourcecode\WebApi\BusinessEntities\bin\Debug\BusinessEntities.dll
+D:\AkhilMittal\Articles and Blogs\WebAPI\4\sourcecode\WebApi\BusinessEntities\bin\Debug\BusinessEntities.pdb
+D:\AkhilMittal\Articles and Blogs\WebAPI\4\sourcecode\WebApi\BusinessEntities\obj\Debug\BusinessEntities.dll
+D:\AkhilMittal\Articles and Blogs\WebAPI\4\sourcecode\WebApi\BusinessEntities\obj\Debug\BusinessEntities.pdb
+D:\AkhilMittal\Articles and Blogs\WebAPI\5\sourcecode\WebApi\BusinessEntities\bin\Debug\BusinessEntities.dll
+D:\AkhilMittal\Articles and Blogs\WebAPI\5\sourcecode\WebApi\BusinessEntities\bin\Debug\BusinessEntities.pdb
+D:\AkhilMittal\Articles and Blogs\WebAPI\5\sourcecode\WebApi\BusinessEntities\obj\Debug\BusinessEntities.dll
+D:\AkhilMittal\Articles and Blogs\WebAPI\5\sourcecode\WebApi\BusinessEntities\obj\Debug\BusinessEntities.pdb
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\BusinessEntities\bin\Debug\BusinessEntities.dll
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\BusinessEntities\bin\Debug\BusinessEntities.pdb
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\BusinessEntities\obj\Debug\BusinessEntities.dll
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\BusinessEntities\obj\Debug\BusinessEntities.pdb
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\BusinessEntities\obj\Debug\BusinessEntities.csprojResolveAssemblyReference.cache
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\BusinessEntities\bin\Debug\BusinessEntities.dll.config
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\BusinessEntities\bin\Debug\BusinessEntities.dll
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\BusinessEntities\bin\Debug\BusinessEntities.pdb
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\BusinessEntities\bin\Debug\AutoMapper.dll
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\BusinessEntities\bin\Debug\System.IO.dll
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\BusinessEntities\bin\Debug\System.Runtime.dll
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\BusinessEntities\bin\Debug\System.Threading.Tasks.dll
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\BusinessEntities\bin\Debug\AutoMapper.xml
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\BusinessEntities\bin\Debug\System.IO.xml
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\BusinessEntities\bin\Debug\System.Runtime.xml
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\BusinessEntities\bin\Debug\System.Threading.Tasks.xml
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\BusinessEntities\obj\Debug\BusinessEntities.csproj.App.config
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\BusinessEntities\obj\Debug\BusinessEntities.csprojResolveAssemblyReference.cache
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\BusinessEntities\obj\Debug\BusinessEntities.dll
+C:\Users\Nguyen\Desktop\RapidLogistics Solution\BusinessEntities\obj\Debug\BusinessEntities.pdb

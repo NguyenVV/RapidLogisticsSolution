@@ -1,0 +1,15 @@
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\DataModel\bin\Release\DataModel.dll.config
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\DataModel\bin\Release\DataModel.dll
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\DataModel\bin\Release\DataModel.pdb
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\DataModel\bin\Release\EntityFramework.dll
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\DataModel\bin\Release\Resolver.dll
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\DataModel\bin\Release\Microsoft.Practices.Unity.dll
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\DataModel\bin\Release\Microsoft.Practices.ServiceLocation.dll
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\DataModel\bin\Release\Resolver.pdb
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\DataModel\bin\Release\EntityFramework.xml
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\DataModel\bin\Release\Microsoft.Practices.Unity.xml
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\DataModel\bin\Release\Microsoft.Practices.ServiceLocation.pdb
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\DataModel\bin\Release\Microsoft.Practices.ServiceLocation.xml
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\DataModel\obj\Release\DataModel.csprojResolveAssemblyReference.cache
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\DataModel\obj\Release\DataModel.dll
+C:\Users\Nguyen\Desktop\RapidLogisticsAPI\DataModel\obj\Release\DataModel.pdb
