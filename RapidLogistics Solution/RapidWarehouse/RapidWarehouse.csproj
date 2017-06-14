@@ -152,6 +152,10 @@
       <Project>{6cfc3977-2553-4c4e-a212-01f11c3f7543}</Project>
       <Name>Resolver</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Ultilities\Ultilities.csproj">
+      <Project>{b55d9f33-5dd7-4909-8072-0bf189b8b60f}</Project>
+      <Name>Ultilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />

@@ -60,7 +60,7 @@ namespace RapidWarehouse
 
             //listViewShipmentBlocked.Columns.Add("Shipment Id", 500);
             //listViewShipmentBlocked.View = View.Details;
-            
+
             AddDeleteButtonToGridView(grvShipments);
             AddDeleteButtonToGridView(grvShipmentListOut);
             AddDeleteButtonToGridView(grvShipmentsWaitConfirmed);
@@ -190,11 +190,11 @@ namespace RapidWarehouse
 
             if (box != null)
             {
-                var resultBox = MessageBox.Show("Mã BoxId này đã được xác nhận rồi, có "+ shipmentAmount + " shipments, bạn có muốn mở không ?", "BoxId đã được xác nhận", MessageBoxButtons.YesNo);
+                var resultBox = MessageBox.Show("Mã BoxId này đã được xác nhận rồi, có " + shipmentAmount + " shipments, bạn có muốn mở không ?", "BoxId đã được xác nhận", MessageBoxButtons.YesNo);
                 cbbBoxId.Focus();
                 return resultBox == DialogResult.Yes;
             }
-            
+
             var result = MessageBox.Show("Bạn có chắc chắn muốn xử lý BoxId: " + cbbBoxId.Text + " với tổng số ShipmentNo = " + shipmentAmount, "Chọn xử lý", MessageBoxButtons.YesNo);
 
             return result == DialogResult.Yes;
@@ -260,7 +260,7 @@ namespace RapidWarehouse
                             _shipmentServices.Create(shipment);
                         }
                     }
-                    catch (Exception e) { }
+                    catch (Exception e) { Ultilities.FileHelper.WriteLog(Ultilities.ExceptionLevel.Function, "private void SaveBoxInfor()", e); }
                 }
             }
         }
@@ -331,7 +331,7 @@ namespace RapidWarehouse
                                             _shipmentServices.Create(shipment);
                                         }
                                     }
-                                    catch (Exception e) { }
+                                    catch (Exception e) { Ultilities.FileHelper.WriteLog(Ultilities.ExceptionLevel.Function, "private void LuuXacNhanDen()", e); }
                                 }
                             }
                         }
@@ -765,7 +765,7 @@ namespace RapidWarehouse
                     {
                         shipment.Id = _shipmentServices.Create(shipment);
                     }
-                    catch (Exception ex) { }
+                    catch (Exception ex) { Ultilities.FileHelper.WriteLog(Ultilities.ExceptionLevel.Function, "private void txtShipmentIdOut_KeyDown(object sender, KeyEventArgs e)", ex); }
                 }
 
                 if (_shipmentOutServices.IsExist(txtShipmentIdOut.Text))
@@ -930,10 +930,10 @@ namespace RapidWarehouse
                             item.MasterBillIdString = master.MasterAirwayBill;
                             _shipmentOutServices.Create(item);
                         }
-                        catch { }
+                        catch (Exception ex) { Ultilities.FileHelper.WriteLog(Ultilities.ExceptionLevel.Function, "Save shipmentout and delete _shipmentWaitConfirmedServices", ex); }
                     }
                 }
-                catch { }
+                catch (Exception ex) { Ultilities.FileHelper.WriteLog(Ultilities.ExceptionLevel.Function, "private void DeleteRowFromGridview(DataGridView grv, DataGridViewCellEventArgs e, int grvType)", ex); }
 
                 grv.Rows.RemoveAt(e.RowIndex);
             }
@@ -1874,7 +1874,7 @@ namespace RapidWarehouse
             {
                 if (e.KeyData == Keys.Enter || e.KeyData == Keys.Tab)
                 {
-                    if(IsExistsOnTheGridView(grvShipments, txtSearch.Text))
+                    if (IsExistsOnTheGridView(grvShipments, txtSearch.Text))
                     {
                         MessageBox.Show("Tìm thấy shipment vừa nhập đã có trên lưới", "Shipment trùng lặp");
                     }
@@ -1893,7 +1893,7 @@ namespace RapidWarehouse
                 }
             }
         }
-       
+
         private void cbbBoxId_KeyPress(object sender, KeyPressEventArgs e)
         {
 
@@ -1933,7 +1933,7 @@ namespace RapidWarehouse
             {
                 if (e.KeyData == Keys.Enter || e.KeyData == Keys.Tab)
                 {
-                    if(IsExistsOnTheGridView(grvShipmentListOut, txtSearchOut.Text))
+                    if (IsExistsOnTheGridView(grvShipmentListOut, txtSearchOut.Text))
                     {
                         MessageBox.Show("Tìm thấy shipment vừa nhập đã có trên lưới", "Shipment trùng lặp");
                     }
@@ -1986,7 +1986,7 @@ namespace RapidWarehouse
                 grvShipmentsWaitConfirmed.ClearSelection();
                 grvShipmentsWaitConfirmed.Rows[grvShipmentsWaitConfirmed.Rows.Count - 1].Selected = true;
                 grvShipmentsWaitConfirmed.FirstDisplayedScrollingRowIndex = grvShipmentsWaitConfirmed.Rows.Count - 1;
-                
+
                 txtShipmentIdBlock.Text = String.Empty;
             }
         }
@@ -2000,10 +2000,10 @@ namespace RapidWarehouse
         private void LoadAllWaitConfirmedToGridview()
         {
             var listShip = _shipmentWaitConfirmedServices.GetAll();
-            if(listShip!= null && listShip.Count() > 0)
+            if (listShip != null && listShip.Count() > 0)
             {
                 int i = 1;
-                foreach(var item in listShip)
+                foreach (var item in listShip)
                 {
                     grvShipmentsWaitConfirmed.Rows.Add(i, item.ShipmentId);
                     i++;
@@ -2025,7 +2025,7 @@ namespace RapidWarehouse
             return true;
         }
         #endregion
-        
+
         #region Events buttons
         private void cbbMasterBill_Leave(object sender, EventArgs e)
         {

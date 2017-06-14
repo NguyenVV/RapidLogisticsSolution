@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WebApiDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityType Name="Business_profile">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DateCreated" Type="datetime" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Code" Type="varchar" MaxLength="100" />
+    <Property Name="Email" Type="varchar" MaxLength="150" />
+    <Property Name="Phone" Type="varchar" MaxLength="50" />
+    <Property Name="Country" Type="nvarchar" MaxLength="100" />
+    <Property Name="Province" Type="nvarchar" MaxLength="150" />
+    <Property Name="District" Type="nvarchar" MaxLength="150" />
+    <Property Name="Tax" Type="nvarchar" MaxLength="100" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="Company" Type="nvarchar" MaxLength="200" />
+    <Property Name="Branch" Type="nvarchar" MaxLength="150" />
+    <Property Name="SaleId" Type="int" />
+    <Property Name="short_name" Type="nvarchar" MaxLength="100" />
+    <Property Name="type" Type="varchar" MaxLength="2" />
+    <Property Name="contract" Type="nvarchar" MaxLength="100" />
+    <Property Name="RefCode" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="error_log">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DateCreated" Type="datetime" />
+    <Property Name="AppCode" Type="nvarchar" MaxLength="2000" />
+    <Property Name="ErrorCode" Type="nvarchar" MaxLength="2000" />
+    <Property Name="ErrorMessage" Type="float" />
+  </EntityType>
+  <EntityType Name="Manifest">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DateCreated" Type="datetime" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="MasterAirWayBill" Type="varchar" MaxLength="100" />
+    <Property Name="ShipmentNo" Type="varchar" MaxLength="100" />
+    <Property Name="FlightNumber" Type="varchar" MaxLength="50" />
+    <Property Name="FlightDate" Type="datetime" />
+    <Property Name="BoxID" Type="varchar" MaxLength="100" />
+    <Property Name="HSCode" Type="varchar" MaxLength="100" />
+    <Property Name="ContactName" Type="nvarchar" MaxLength="100" />
+    <Property Name="Tel" Type="varchar" MaxLength="200" />
+    <Property Name="Address" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Currency" Type="nvarchar" MaxLength="20" />
+    <Property Name="Content" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Quantity" Type="int" />
+    <Property Name="UnitPrice" Type="float" />
+    <Property Name="TotalValue" Type="float" />
+    <Property Name="Weight" Type="float" />
+    <Property Name="Original" Type="nvarchar" MaxLength="100" />
+    <Property Name="Destination" Type="nvarchar" MaxLength="100" />
+    <Property Name="Country" Type="nvarchar" MaxLength="100" />
+    <Property Name="Company" Type="nvarchar" MaxLength="200" />
+    <Property Name="CreationDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Tokens">
+    <Key>
+      <PropertyRef Name="TokenId" />
+    </Key>
+    <Property Name="TokenId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="AuthToken" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="IssuedOn" Type="datetime" Nullable="false" />
+    <Property Name="ExpiresOn" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="ProfileId" Type="int" />
+  </EntityType>
+  <Association Name="FK__User__ProfileId__6C63F2D5">
+    <End Role="Business_profile" Type="Self.Business_profile" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Business_profile">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="ProfileId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tokens_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Tokens" Type="Self.Tokens" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Tokens">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="WebApiDbModelStoreContainer">
+    <EntitySet Name="Business_profile" EntityType="Self.Business_profile" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="error_log" EntityType="Self.error_log" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Manifest" EntityType="Self.Manifest" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tokens" EntityType="Self.Tokens" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__User__ProfileId__6C63F2D5" Association="Self.FK__User__ProfileId__6C63F2D5">
+      <End Role="Business_profile" EntitySet="Business_profile" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tokens_User" Association="Self.FK_Tokens_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Tokens" EntitySet="Tokens" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
