@@ -532,6 +532,45 @@ namespace RapidWarehouse
             lblNgayXuat.Text = dtpNgayXuat.Value.ToString("dd/MM/yyyy");
         }
 
+        private void LoadShipmentsByBoxIdInXacNhanDen(string boxId, DataGridView shipmentGrid, bool isFromManifest = true)
+        {
+            if (!string.IsNullOrEmpty(boxId))
+            {
+                if (isFromManifest)
+                {
+                    List<ManifestEntity> listShipmentManifest = manifestList.Where(t => t.BoxID == cbbBoxId.Text).GroupBy(t => t.ShipmentNo).Select(p => p.First()).ToList();
+                    if (listShipmentManifest != null && listShipmentManifest.Count > 0)
+                    {
+                        AddShipmentListToGrid(listShipmentManifest, shipmentGrid);
+                    }
+                    else
+                    {
+                        shipmentGrid.Rows.Clear();
+                    }
+                }
+                else
+                {
+                    List<ShipmentEntity> listShipmentDatabase = _shipmentServices.GetByBoxId(_boxInforServices.GetByBoxId(boxId).Id).ToList();
+                    if (listShipmentDatabase != null && listShipmentDatabase.Count > 0)
+                    {
+                        AddShipmentListToGrid(listShipmentDatabase, shipmentGrid);
+                    }
+                    else
+                    {
+                        shipmentGrid.Rows.Clear();
+                    }
+                }
+            }
+            else
+            {
+                shipmentGrid.Rows.Clear();
+            }
+
+            lblBoxId.Text = boxId;
+            lblShipmentScaned.Text = (shipmentGrid.Rows.Count).ToString();
+
+        }
+
         #endregion
 
         #region Xuất kho
@@ -953,8 +992,7 @@ namespace RapidWarehouse
 
         [System.Runtime.InteropServices.DllImport("kernel32.dll")]
         public static extern bool Beep(int freq, int duration);
-
-
+        
         private void AddShipmentListToGrid(List<ShipmentOutEntity> listShipment, DataGridView grv)
         {
             if (grv != null && listShipment != null)
@@ -1014,45 +1052,11 @@ namespace RapidWarehouse
             }
         }
 
-        private void LoadShipmentsByBoxIdInXacNhanDen(string boxId, DataGridView shipmentGrid, bool isFromManifest = true)
+        private void Logout()
         {
-            if (!string.IsNullOrEmpty(boxId))
-            {
-                if (isFromManifest)
-                {
-                    List<ManifestEntity> listShipmentManifest = manifestList.Where(t => t.BoxID == cbbBoxId.Text).GroupBy(t => t.ShipmentNo).Select(p => p.First()).ToList();
-                    if (listShipmentManifest != null && listShipmentManifest.Count > 0)
-                    {
-                        AddShipmentListToGrid(listShipmentManifest, shipmentGrid);
-                    }
-                    else
-                    {
-                        shipmentGrid.Rows.Clear();
-                    }
-                }
-                else
-                {
-                    List<ShipmentEntity> listShipmentDatabase = _shipmentServices.GetByBoxId(_boxInforServices.GetByBoxId(boxId).Id).ToList();
-                    if (listShipmentDatabase != null && listShipmentDatabase.Count > 0)
-                    {
-                        AddShipmentListToGrid(listShipmentDatabase, shipmentGrid);
-                    }
-                    else
-                    {
-                        shipmentGrid.Rows.Clear();
-                    }
-                }
-            }
-            else
-            {
-                shipmentGrid.Rows.Clear();
-            }
-
-            lblBoxId.Text = boxId;
-            lblShipmentScaned.Text = (shipmentGrid.Rows.Count).ToString();
-
+            this.Dispose();
+            Program.Container.GetInstance<FormLogin>().Show();
         }
-
         #endregion
 
         #region Các báo cáo
@@ -2045,6 +2049,21 @@ namespace RapidWarehouse
         private void cbbBoxIdOut_Leave(object sender, EventArgs e)
         {
             cbbBoxIdOut.Text = cbbBoxIdOut.Text.ToUpper();
+        }
+
+        private void FormNhap_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnLogoutXuat_Click(object sender, EventArgs e)
+        {
+            Logout();
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            Logout();
         }
 
         private void timer1_Tick(object sender, EventArgs e)

@@ -240,6 +240,5 @@ C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidLogisitics\
 C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidLogisitics\bin\Microsoft.Owin.Security.Google.xml
 C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidLogisitics\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidLogisitics\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidLogisitics\obj\Debug\RapidLogisitics.csprojResolveAssemblyReference.cache
 C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidLogisitics\obj\Debug\RapidLogisitics.dll
 C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidLogisitics\obj\Debug\RapidLogisitics.pdb

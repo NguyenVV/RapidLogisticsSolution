@@ -10,17 +10,25 @@ namespace RapidWarehouse
     {
         private static Container container;
 
+        public static Container Container
+        {
+            get
+            {
+                return container;
+            }
+        }
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
         static void Main()
         {
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Bootstrap();
-            Application.Run(container.GetInstance<FormNhap>());
+            Application.Run(container.GetInstance<FormLogin>());
+            //Application.Run(container.GetInstance<FormNhap>());
         }
 
         private static void Bootstrap()
@@ -36,6 +44,7 @@ namespace RapidWarehouse
             container.Register<IShipmentOutServices, ShipmentOutServices>();
             container.Register<IManifestServices, ManifestServices>();
             container.Register<IShipmentWaitToConfirmedServices, ShipmentWaitToConfirmedServices>();
+            container.Register<FormLogin>();
             container.Register<FormNhap>();
             //container.Register<FormXuat>();
 

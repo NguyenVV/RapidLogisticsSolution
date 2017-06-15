@@ -418,6 +418,7 @@ C:\Users\Nguyen\Desktop\RapidLogistics Solution\WebApi\bin\DataModel.pdb
 C:\Users\Nguyen\Desktop\RapidLogistics Solution\WebApi\obj\Debug\WebApi.csprojResolveAssemblyReference.cache
 C:\Users\Nguyen\Desktop\RapidLogistics Solution\WebApi\obj\Debug\WebApi.dll
 C:\Users\Nguyen\Desktop\RapidLogistics Solution\WebApi\obj\Debug\WebApi.pdb
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\WebApi\bin\AutoMapper.Net4.dll
 C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\WebApi\bin\WebApi.dll.config
 C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\WebApi\bin\WebApi.dll
 C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\WebApi\bin\WebApi.pdb

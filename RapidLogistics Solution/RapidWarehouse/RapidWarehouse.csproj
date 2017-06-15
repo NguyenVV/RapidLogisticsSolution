@@ -92,11 +92,11 @@
     <Compile Include="FormNhap.Designer.cs">
       <DependentUpon>FormNhap.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormXuat.cs">
+    <Compile Include="FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormXuat.Designer.cs">
-      <DependentUpon>FormXuat.cs</DependentUpon>
+    <Compile Include="FormLogin.Designer.cs">
+      <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -106,8 +106,8 @@
     <EmbeddedResource Include="FormNhap.vi-VN.resx">
       <DependentUpon>FormNhap.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormXuat.resx">
-      <DependentUpon>FormXuat.cs</DependentUpon>
+    <EmbeddedResource Include="FormLogin.resx">
+      <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -107,14 +107,16 @@
             this.label7 = new System.Windows.Forms.Label();
             this.dtpNgayBaoCao = new System.Windows.Forms.DateTimePicker();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.radNotConfirmed = new System.Windows.Forms.RadioButton();
+            this.radConfirmed = new System.Windows.Forms.RadioButton();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.txtShipmentIdBlock = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
             this.grvShipmentsWaitConfirmed = new System.Windows.Forms.DataGridView();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.radConfirmed = new System.Windows.Forms.RadioButton();
-            this.radNotConfirmed = new System.Windows.Forms.RadioButton();
+            this.btnLogout = new System.Windows.Forms.Button();
+            this.btnLogoutXuat = new System.Windows.Forms.Button();
             this.tabNhap.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -143,7 +145,7 @@
             this.tabNhap.Location = new System.Drawing.Point(0, 0);
             this.tabNhap.Name = "tabNhap";
             this.tabNhap.SelectedIndex = 0;
-            this.tabNhap.Size = new System.Drawing.Size(1575, 1543);
+            this.tabNhap.Size = new System.Drawing.Size(1675, 1543);
             this.tabNhap.TabIndex = 0;
             this.tabNhap.SelectedIndexChanged += new System.EventHandler(this.tabNhap_SelectedIndexChanged);
             // 
@@ -162,7 +164,7 @@
             this.tabPage1.Location = new System.Drawing.Point(8, 39);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1559, 1496);
+            this.tabPage1.Size = new System.Drawing.Size(1659, 1496);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "              Xác Nhận Đến              ";
             // 
@@ -416,12 +418,13 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.AutoSize = true;
+            this.groupBox1.Controls.Add(this.btnLogout);
             this.groupBox1.Controls.Add(this.btnExit);
             this.groupBox1.Controls.Add(this.grvShipments);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(17, 647);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1523, 835);
+            this.groupBox1.Size = new System.Drawing.Size(1623, 835);
             this.groupBox1.TabIndex = 27;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Danh sách shipments nhập kho";
@@ -450,7 +453,7 @@
             this.grvShipments.Location = new System.Drawing.Point(11, 55);
             this.grvShipments.Name = "grvShipments";
             this.grvShipments.RowTemplate.Height = 33;
-            this.grvShipments.Size = new System.Drawing.Size(1493, 669);
+            this.grvShipments.Size = new System.Drawing.Size(1593, 669);
             this.grvShipments.TabIndex = 6;
             this.grvShipments.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grvShipments_CellClick);
             // 
@@ -489,7 +492,7 @@
             this.tabPage2.Location = new System.Drawing.Point(8, 39);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1559, 1496);
+            this.tabPage2.Size = new System.Drawing.Size(1659, 1496);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "                Xuất Kho                ";
             // 
@@ -768,12 +771,13 @@
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.AutoSize = true;
+            this.groupBox2.Controls.Add(this.btnLogoutXuat);
             this.groupBox2.Controls.Add(this.btnThoat);
             this.groupBox2.Controls.Add(this.grvShipmentListOut);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(25, 647);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1508, 837);
+            this.groupBox2.Size = new System.Drawing.Size(1608, 837);
             this.groupBox2.TabIndex = 40;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Danh sách shipments xuất kho";
@@ -782,12 +786,13 @@
             // 
             this.btnThoat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnThoat.ForeColor = System.Drawing.Color.Red;
-            this.btnThoat.Location = new System.Drawing.Point(1155, 738);
+            this.btnThoat.Location = new System.Drawing.Point(1124, 738);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(227, 56);
             this.btnThoat.TabIndex = 35;
             this.btnThoat.Text = "Thoát";
             this.btnThoat.UseVisualStyleBackColor = true;
+            this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
             // 
             // grvShipmentListOut
             // 
@@ -801,7 +806,7 @@
             this.grvShipmentListOut.Location = new System.Drawing.Point(11, 52);
             this.grvShipmentListOut.Name = "grvShipmentListOut";
             this.grvShipmentListOut.RowTemplate.Height = 33;
-            this.grvShipmentListOut.Size = new System.Drawing.Size(1482, 669);
+            this.grvShipmentListOut.Size = new System.Drawing.Size(1582, 669);
             this.grvShipmentListOut.TabIndex = 34;
             this.grvShipmentListOut.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grvShipmentListOut_CellClick);
             // 
@@ -1064,6 +1069,30 @@
             this.tabPage4.Text = "        Danh Sách Chờ Thông Quan      ";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // radNotConfirmed
+            // 
+            this.radNotConfirmed.AutoSize = true;
+            this.radNotConfirmed.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radNotConfirmed.Location = new System.Drawing.Point(627, 100);
+            this.radNotConfirmed.Name = "radNotConfirmed";
+            this.radNotConfirmed.Size = new System.Drawing.Size(299, 33);
+            this.radNotConfirmed.TabIndex = 44;
+            this.radNotConfirmed.Text = "Chưa có xác nhận đến";
+            this.radNotConfirmed.UseVisualStyleBackColor = true;
+            // 
+            // radConfirmed
+            // 
+            this.radConfirmed.AutoSize = true;
+            this.radConfirmed.Checked = true;
+            this.radConfirmed.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radConfirmed.Location = new System.Drawing.Point(627, 53);
+            this.radConfirmed.Name = "radConfirmed";
+            this.radConfirmed.Size = new System.Drawing.Size(271, 33);
+            this.radConfirmed.TabIndex = 43;
+            this.radConfirmed.TabStop = true;
+            this.radConfirmed.Text = "Đã có xác nhận đến";
+            this.radConfirmed.UseVisualStyleBackColor = true;
+            // 
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.txtShipmentIdBlock);
@@ -1130,39 +1159,41 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // radConfirmed
+            // btnLogout
             // 
-            this.radConfirmed.AutoSize = true;
-            this.radConfirmed.Checked = true;
-            this.radConfirmed.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radConfirmed.Location = new System.Drawing.Point(627, 53);
-            this.radConfirmed.Name = "radConfirmed";
-            this.radConfirmed.Size = new System.Drawing.Size(271, 33);
-            this.radConfirmed.TabIndex = 43;
-            this.radConfirmed.Text = "Đã có xác nhận đến";
-            this.radConfirmed.UseVisualStyleBackColor = true;
+            this.btnLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogout.ForeColor = System.Drawing.Color.Red;
+            this.btnLogout.Location = new System.Drawing.Point(1377, 736);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(227, 56);
+            this.btnLogout.TabIndex = 33;
+            this.btnLogout.Text = "Logout";
+            this.btnLogout.UseVisualStyleBackColor = true;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
-            // radNotConfirmed
+            // btnLogoutXuat
             // 
-            this.radNotConfirmed.AutoSize = true;
-            this.radNotConfirmed.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radNotConfirmed.Location = new System.Drawing.Point(627, 100);
-            this.radNotConfirmed.Name = "radNotConfirmed";
-            this.radNotConfirmed.Size = new System.Drawing.Size(299, 33);
-            this.radNotConfirmed.TabIndex = 44;
-            this.radNotConfirmed.Text = "Chưa có xác nhận đến";
-            this.radNotConfirmed.UseVisualStyleBackColor = true;
+            this.btnLogoutXuat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogoutXuat.ForeColor = System.Drawing.Color.Red;
+            this.btnLogoutXuat.Location = new System.Drawing.Point(1366, 738);
+            this.btnLogoutXuat.Name = "btnLogoutXuat";
+            this.btnLogoutXuat.Size = new System.Drawing.Size(227, 56);
+            this.btnLogoutXuat.TabIndex = 36;
+            this.btnLogoutXuat.Text = "Logout";
+            this.btnLogoutXuat.UseVisualStyleBackColor = true;
+            this.btnLogoutXuat.Click += new System.EventHandler(this.btnLogoutXuat_Click);
             // 
             // FormNhap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1575, 1543);
+            this.ClientSize = new System.Drawing.Size(1675, 1543);
             this.Controls.Add(this.tabNhap);
             this.MinimizeBox = false;
             this.Name = "FormNhap";
             this.Text = "Rapid Logistics v1.0.15";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormNhap_FormClosed);
             this.tabNhap.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -1280,6 +1311,8 @@
         private System.Windows.Forms.DateTimePicker dtpNgayXuat;
         private System.Windows.Forms.RadioButton radNotConfirmed;
         private System.Windows.Forms.RadioButton radConfirmed;
+        private System.Windows.Forms.Button btnLogout;
+        private System.Windows.Forms.Button btnLogoutXuat;
     }
 }
 
