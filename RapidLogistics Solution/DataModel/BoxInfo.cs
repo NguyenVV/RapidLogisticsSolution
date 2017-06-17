@@ -22,11 +22,14 @@ namespace DataModel
     
         public int Id { get; set; }
         public string BoxId { get; set; }
+        public Nullable<System.DateTime> DateCreated { get; set; }
         public Nullable<int> ShipmentQuantity { get; set; }
         public Nullable<int> MasterBillId { get; set; }
+        public Nullable<int> EmployeeId { get; set; }
     
-        public virtual MasterBill MasterBill { get; set; }
+        public virtual Employee Employee { get; set; }
         public virtual ICollection<ShipmentInfor> ShipmentInfors { get; set; }
         public virtual ICollection<ShipmentOut> ShipmentOuts { get; set; }
+        public virtual MasterBill MasterBill { get; set; }
     }
 }

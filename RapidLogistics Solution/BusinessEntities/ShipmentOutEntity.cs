@@ -13,6 +13,34 @@ namespace BusinessEntities
         int masterBillId;
         string boxIdString;
         string masterBillIdString;
+        int employeeId;
+        DateTime dateCreated;
+
+        public int EmployeeId
+        {
+            get
+            {
+                return employeeId;
+            }
+
+            set
+            {
+                employeeId = value;
+            }
+        }
+
+        public DateTime DateCreated
+        {
+            get
+            {
+                return dateCreated;
+            }
+
+            set
+            {
+                dateCreated = value;
+            }
+        }
 
         public string ShipmentId
         {

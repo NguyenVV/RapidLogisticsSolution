@@ -6,8 +6,35 @@ namespace BusinessEntities
     {
         int id;
         string masterAirwayBill;
-        //DateTime dateCreated;
+        DateTime dateCreated;
         DateTime dateArrived;
+        int employeeId;
+
+        public int EmployeeId
+        {
+            get
+            {
+                return employeeId;
+            }
+
+            set
+            {
+                employeeId = value;
+            }
+        }
+
+        public DateTime DateCreated
+        {
+            get
+            {
+                return dateCreated;
+            }
+
+            set
+            {
+                dateCreated = value;
+            }
+        }
 
         public int Id
         {

@@ -16,5 +16,8 @@ namespace DataModel
     {
         public string ShipmentId { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
+        public Nullable<int> EmployeeId { get; set; }
+    
+        public virtual Employee Employee { get; set; }
     }
 }

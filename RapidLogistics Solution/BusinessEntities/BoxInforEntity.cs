@@ -6,9 +6,36 @@ namespace BusinessEntities
     {
         int id;
         string boxId;
-        //DateTime dateCreated;
+        DateTime dateCreated;
         int shipmentQuantity;
         int masterBillId;
+        int employeeId;
+
+        public int EmployeeId
+        {
+            get
+            {
+                return employeeId;
+            }
+
+            set
+            {
+                employeeId = value;
+            }
+        }
+
+        public DateTime DateCreated
+        {
+            get
+            {
+                return dateCreated;
+            }
+
+            set
+            {
+                dateCreated = value;
+            }
+        }
 
         public int Id
         {

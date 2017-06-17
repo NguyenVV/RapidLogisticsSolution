@@ -52,8 +52,10 @@
     <Compile Include="BoxInforServices.cs" />
     <Compile Include="BusinessProfileServices.cs" />
     <Compile Include="DependencyResolver.cs" />
+    <Compile Include="EmployeeServices.cs" />
     <Compile Include="Interfaces\IBoxInforServices.cs" />
     <Compile Include="Interfaces\IBusinessProfileServices.cs" />
+    <Compile Include="Interfaces\IEmployeeServices.cs" />
     <Compile Include="Interfaces\IManifestServices.cs" />
     <Compile Include="Interfaces\IMasterBillServices.cs" />
     <Compile Include="Interfaces\IShipmentOutServices.cs" />

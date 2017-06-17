@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="BoxInforEntity.cs" />
     <Compile Include="BusinessProfileEntity.cs" />
+    <Compile Include="EmployeeEntity.cs" />
     <Compile Include="ManifestEntity.cs" />
     <Compile Include="MasterAirwayBillEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

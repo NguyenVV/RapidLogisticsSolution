@@ -22,9 +22,12 @@ namespace DataModel
     
         public int Id { get; set; }
         public string MasterAirWayBill { get; set; }
+        public Nullable<System.DateTime> DateCreated { get; set; }
         public Nullable<System.DateTime> DateArrived { get; set; }
+        public Nullable<int> EmployeeId { get; set; }
     
         public virtual ICollection<BoxInfo> BoxInfoes { get; set; }
+        public virtual Employee Employee { get; set; }
         public virtual ICollection<ShipmentOut> ShipmentOuts { get; set; }
     }
 }

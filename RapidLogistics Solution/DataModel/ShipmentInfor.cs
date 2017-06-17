@@ -16,13 +16,17 @@ namespace DataModel
     {
         public int Id { get; set; }
         public string ShipmentId { get; set; }
+        public Nullable<System.DateTime> DateCreated { get; set; }
         public string Sender { get; set; }
         public string Receiver { get; set; }
         public string TelReceiver { get; set; }
+        public Nullable<double> TotalValue { get; set; }
         public string Descrition { get; set; }
         public Nullable<int> BoxId { get; set; }
         public string Status { get; set; }
+        public Nullable<int> EmployeeId { get; set; }
     
         public virtual BoxInfo BoxInfo { get; set; }
+        public virtual Employee Employee { get; set; }
     }
 }

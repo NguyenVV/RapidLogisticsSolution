@@ -25,11 +25,12 @@ namespace DataModel
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<MasterBill> MasterBills { get; set; }
-        public DbSet<ShipmentInfor> ShipmentInfors { get; set; }
-        public DbSet<BoxInfo> BoxInfoes { get; set; }
         public DbSet<ShipmentOut> ShipmentOuts { get; set; }
         public DbSet<Manifest> Manifests { get; set; }
         public DbSet<ShipmentWaitToConfirm> ShipmentWaitToConfirms { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<BoxInfo> BoxInfoes { get; set; }
+        public DbSet<ShipmentInfor> ShipmentInfors { get; set; }
+        public DbSet<MasterBill> MasterBills { get; set; }
     }
 }
