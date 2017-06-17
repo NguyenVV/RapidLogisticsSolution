@@ -10,6 +10,7 @@ Create table [MasterBill]
 	DateArrived DateTime,
 	EmployeeId int references Employee(Id)
 )
+--Alter table [MasterBill] add EmployeeId int references Employee(Id)
 go
 Create table BoxInfo
 (
@@ -20,6 +21,7 @@ Create table BoxInfo
 	MasterBillId int references MasterBill(Id),
 	EmployeeId int references Employee(Id)
 )
+--Alter table BoxInfo add EmployeeId int references Employee(Id)
 go
 Create table ShipmentInfor
 (
@@ -35,6 +37,8 @@ Create table ShipmentInfor
 	[Status] nvarchar(100),
 	EmployeeId int references Employee(Id)
 )
+--Alter table ShipmentInfor add [Status] nvarchar(100)
+--Alter table ShipmentInfor add EmployeeId int references Employee(Id)
 go
 Create table ShipmentOut
 (
@@ -46,6 +50,7 @@ Create table ShipmentOut
 	DateOut DateTime default getdate(),
 	EmployeeId int references Employee(Id)
 )
+--Alter table ShipmentOut add EmployeeId int references Employee(Id)
 go
 -- Chờ thông quan
 Create table ShipmentWaitToConfirm
@@ -54,7 +59,7 @@ Create table ShipmentWaitToConfirm
 	CreatedDate DateTime default getdate(),
 	EmployeeId int references Employee(Id)
 )
-
+--Alter table ShipmentWaitToConfirm add EmployeeId int references Employee(Id)
 go
 Create table Employee
 (
@@ -70,21 +75,7 @@ Create table Employee
 	[Address] nvarchar(200),
 	[Status] bit
 )
-go
-Create table Employee
-(
-	Id int identity primary key,
-	FullName nvarchar (150),
-	UserName nvarchar(150),
-	Pasword nvarchar(500),
-	[Role] nvarchar(100),
-	DateCreated DateTime default getdate(),
-	BirthDate DateTime,
-	Phone varchar(30),
-	Email varchar(150),
-	[Address] nvarchar(200),
-	[Status] bit
-)
+-- Insert into Employee value('Admin hệ thống','Administrator',)
 go
 CREATE TABLE ErrorLog(
 	[Id] [int] IDENTITY(1,1) primary key,

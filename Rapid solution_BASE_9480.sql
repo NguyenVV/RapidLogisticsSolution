@@ -1,4 +1,4 @@
-﻿Create database RapidSolution
+Create database RapidSolution
 go
 use RapidSolution
 go
@@ -7,8 +7,7 @@ Create table [MasterBill]
 	Id int identity primary key,
 	MasterAirWayBill varchar(100) unique,
 	DateCreated DateTime default getdate(),
-	DateArrived DateTime,
-	EmployeeId int references Employee(Id)
+	DateArrived DateTime
 )
 go
 Create table BoxInfo
@@ -17,8 +16,7 @@ Create table BoxInfo
 	BoxId varchar(100) unique,
 	DateCreated DateTime default getdate(),
 	ShipmentQuantity int,
-	MasterBillId int references MasterBill(Id),
-	EmployeeId int references Employee(Id)
+	MasterBillId int references MasterBill(Id)
 )
 go
 Create table ShipmentInfor
@@ -32,9 +30,9 @@ Create table ShipmentInfor
 	TotalValue float,
 	Descrition nvarchar(1000),
 	BoxId int references BoxInfo(Id),
-	[Status] nvarchar(100),
-	EmployeeId int references Employee(Id)
+	[Status] nvarchar(100)
 )
+--Alter table ShipmentInfor add [Status] nvarchar(100)
 go
 Create table ShipmentOut
 (
@@ -43,47 +41,13 @@ Create table ShipmentOut
 	BoxIdString varchar(100),
 	MasterBillId int references [MasterBill](Id),
 	MasterBillIdString varchar(100),
-	DateOut DateTime default getdate(),
-	EmployeeId int references Employee(Id)
+	DateOut DateTime default getdate()
 )
 go
--- Chờ thông quan
 Create table ShipmentWaitToConfirm
 (
 	ShipmentId varchar(100) references ShipmentInfor(ShipmentId) primary key,
-	CreatedDate DateTime default getdate(),
-	EmployeeId int references Employee(Id)
-)
-
-go
-Create table Employee
-(
-	Id int identity primary key,
-	FullName nvarchar (150),
-	UserName nvarchar(150),
-	Pasword nvarchar(500),
-	[Role] nvarchar(100),
-	DateCreated DateTime default getdate(),
-	BirthDate DateTime,
-	Phone varchar(30),
-	Email varchar(150),
-	[Address] nvarchar(200),
-	[Status] bit
-)
-go
-Create table Employee
-(
-	Id int identity primary key,
-	FullName nvarchar (150),
-	UserName nvarchar(150),
-	Pasword nvarchar(500),
-	[Role] nvarchar(100),
-	DateCreated DateTime default getdate(),
-	BirthDate DateTime,
-	Phone varchar(30),
-	Email varchar(150),
-	[Address] nvarchar(200),
-	[Status] bit
+	CreatedDate DateTime default getdate()
 )
 go
 CREATE TABLE ErrorLog(
@@ -199,5 +163,7 @@ VALUES(
 SELECT @ParamReturn = @@IDENTITY;
 Select @ParamReturn;
 END;
+
+
 
 GO

@@ -10,6 +10,7 @@ Create table [MasterBill]
 	DateArrived DateTime,
 	EmployeeId int references Employee(Id)
 )
+--Alter table [MasterBill] add EmployeeId int references Employee(Id)
 go
 Create table BoxInfo
 (
@@ -20,6 +21,11 @@ Create table BoxInfo
 	MasterBillId int references MasterBill(Id),
 	EmployeeId int references Employee(Id)
 )
+<<<<<<< HEAD
+
+=======
+--Alter table BoxInfo add EmployeeId int references Employee(Id)
+>>>>>>> 3bfb434c6b68749a048775e38c67fd5d886ac8d1
 go
 Create table ShipmentInfor
 (
@@ -35,6 +41,12 @@ Create table ShipmentInfor
 	[Status] nvarchar(100),
 	EmployeeId int references Employee(Id)
 )
+<<<<<<< HEAD
+
+=======
+--Alter table ShipmentInfor add [Status] nvarchar(100)
+--Alter table ShipmentInfor add EmployeeId int references Employee(Id)
+>>>>>>> 3bfb434c6b68749a048775e38c67fd5d886ac8d1
 go
 Create table ShipmentOut
 (
@@ -46,6 +58,11 @@ Create table ShipmentOut
 	DateOut DateTime default getdate(),
 	EmployeeId int references Employee(Id)
 )
+<<<<<<< HEAD
+
+=======
+--Alter table ShipmentOut add EmployeeId int references Employee(Id)
+>>>>>>> 3bfb434c6b68749a048775e38c67fd5d886ac8d1
 go
 -- Chờ thông quan
 Create table ShipmentWaitToConfirm
@@ -53,6 +70,7 @@ Create table ShipmentWaitToConfirm
 	ShipmentId varchar(100) references ShipmentInfor(ShipmentId) primary key,
 	CreatedDate DateTime default getdate(),
 	EmployeeId int references Employee(Id)
+<<<<<<< HEAD
 )
 
 go
@@ -70,6 +88,9 @@ Create table Employee
 	[Address] nvarchar(200),
 	[Status] bit
 )
+=======
+)
+--Alter table ShipmentWaitToConfirm add EmployeeId int references Employee(Id)
 go
 Create table Employee
 (
@@ -85,6 +106,8 @@ Create table Employee
 	[Address] nvarchar(200),
 	[Status] bit
 )
+>>>>>>> 3bfb434c6b68749a048775e38c67fd5d886ac8d1
+-- Insert into Employee value('Admin hệ thống','Administrator',)
 go
 CREATE TABLE ErrorLog(
 	[Id] [int] IDENTITY(1,1) primary key,
