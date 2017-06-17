@@ -20,7 +20,9 @@ namespace DataModel
         public Nullable<System.DateTime> DateOut { get; set; }
         public string BoxIdString { get; set; }
         public string MasterBillIdString { get; set; }
+        public Nullable<int> EmployeeId { get; set; }
     
+        public virtual Employee Employee { get; set; }
         public virtual BoxInfo BoxInfo { get; set; }
         public virtual MasterBill MasterBill { get; set; }
     }

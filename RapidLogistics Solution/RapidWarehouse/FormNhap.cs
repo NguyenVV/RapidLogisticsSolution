@@ -24,6 +24,7 @@ namespace RapidWarehouse
         BoxInforEntity currentBoxOut;
         MasterAirwayBillEntity currentMasterOut;
         List<ManifestEntity> manifestList;
+        EmployeeEntity currentEmployee;
         private int xpos = 0, ypos = 0;
         private int xposX = 0, yposX = 0;
         private readonly IMasterBillServices _masterBillServices;
@@ -215,6 +216,8 @@ namespace RapidWarehouse
                     masterBill = new MasterAirwayBillEntity();
                     masterBill.MasterAirwayBill = cbbMasterBill.Text;
                     masterBill.DateArrived = dtpNgayDen.Value;
+                    masterBill.DateCreated = DateTime.Now;
+                    masterBill.EmployeeId = currentEmployee.Id;
                     currentMasterBillId = _masterBillServices.CreateMasterAirwayBill(masterBill);
                     currentMasterBill = masterBill.MasterAirwayBill;
                     masterBill.Id = currentMasterBillId;
@@ -235,6 +238,8 @@ namespace RapidWarehouse
                     boxEntity.BoxId = cbbBoxId.Text;
                     boxEntity.ShipmentQuantity = numberShipment;
                     boxEntity.MasterBillId = currentMasterBillId;
+                    boxEntity.DateCreated = DateTime.Now;
+                    boxEntity.EmployeeId = currentEmployee.Id;
                     currentBoxIdInt = _boxInforServices.CreateBoxInfor(boxEntity);
                     boxEntity.Id = currentBoxIdInt;
                     currentBoxId = boxEntity.BoxId;
@@ -253,6 +258,8 @@ namespace RapidWarehouse
                     ShipmentEntity shipment = new ShipmentEntity();
                     shipment.ShipmentId = shipmentId;
                     shipment.BoxId = currentBoxIdInt;
+                    shipment.DateCreated = DateTime.Now;
+                    shipment.EmployeeId = currentEmployee.Id;
                     try
                     {
                         if (!_shipmentServices.Exists(shipmentId))
@@ -288,6 +295,8 @@ namespace RapidWarehouse
                         masterBill = new MasterAirwayBillEntity();
                         masterBill.MasterAirwayBill = manifest.MasterAirWayBill;
                         masterBill.DateArrived = dtpNgayDen.Value;
+                        masterBill.DateCreated = DateTime.Now;
+                        masterBill.EmployeeId = currentEmployee.Id;
                         currentMasterBillId = _masterBillServices.CreateMasterAirwayBill(masterBill);
                         currentMasterBill = masterBill.MasterAirwayBill;
                         masterBill.Id = currentMasterBillId;
@@ -303,6 +312,8 @@ namespace RapidWarehouse
                             {
                                 boxEntity = new BoxInforEntity();
                                 boxEntity.BoxId = itemBoxID.BoxID;
+                                boxEntity.DateCreated = DateTime.Now;
+                                boxEntity.EmployeeId = currentEmployee.Id;
                                 boxEntity.ShipmentQuantity = manifestList.Where(t => t.BoxID == itemBoxID.BoxID).Count();
                                 boxEntity.MasterBillId = currentMasterBillId;
                                 currentBoxIdInt = _boxInforServices.CreateBoxInfor(boxEntity);
@@ -324,6 +335,8 @@ namespace RapidWarehouse
                                     ShipmentEntity shipment = new ShipmentEntity();
                                     shipment.ShipmentId = item.ShipmentNo;
                                     shipment.BoxId = currentBoxIdInt;
+                                    shipment.DateCreated = DateTime.Now;
+                                    shipment.EmployeeId = currentEmployee.Id;
                                     try
                                     {
                                         if (!_shipmentServices.Exists(shipment.ShipmentId))
@@ -613,6 +626,8 @@ namespace RapidWarehouse
                         shipmentOut.MasterBillId = currentMasterOut.Id;
                         shipmentOut.MasterBillIdString = currentMasterOut.MasterAirwayBill;
                         shipmentOut.DateOut = dtpNgayXuat.Value;
+                        shipmentOut.DateCreated = DateTime.Now;
+                        shipmentOut.EmployeeId = currentEmployee.Id;
                         _shipmentOutServices.Create(shipmentOut);
                     }
                 }

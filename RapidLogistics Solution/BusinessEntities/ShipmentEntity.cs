@@ -12,7 +12,34 @@ namespace BusinessEntities
         //float totalValue;
         string description;
         int boxId;
-        //DateTime dateCreated;
+        DateTime dateCreated;
+        int employeeId;
+
+        public int EmployeeId
+        {
+            get
+            {
+                return employeeId;
+            }
+
+            set
+            {
+                employeeId = value;
+            }
+        }
+
+        public DateTime DateCreated
+        {
+            get
+            {
+                return dateCreated;
+            }
+
+            set
+            {
+                dateCreated = value;
+            }
+        }
 
         public int Id
         {
