@@ -25,15 +25,12 @@ namespace BusinessServices
                 if (shipmentList.Any())
                 {
                     Mapper.CreateMap<ShipmentEntity, ShipmentInfor>();
-                    var shipmentListModel = Mapper.Map< IEnumerable<ShipmentEntity>, IEnumerable< ShipmentInfor> >(shipmentList);
-                    foreach (var shipment in shipmentListModel)
-                    {
-                        _unitOfWork.ShipmentRepository.Insert(shipment);
-                    }
-
+                    var shipmentListModel = Mapper.Map<List<ShipmentEntity>, List< ShipmentInfor> >(shipmentList);
+                    int count = _unitOfWork.ShipmentRepository.Insert(shipmentListModel);
                     _unitOfWork.SaveWinform();
                     scope.Complete();
-                    return shipmentListModel.Count();
+
+                    return count;
                 }
             }
 

@@ -44,8 +44,11 @@ namespace RapidWarehouse
             container.Register<IShipmentOutServices, ShipmentOutServices>();
             container.Register<IManifestServices, ManifestServices>();
             container.Register<IShipmentWaitToConfirmedServices, ShipmentWaitToConfirmedServices>();
+            container.Register<IEmployeeServices, EmployeeServices>();
             container.Register<FormLogin>();
             container.Register<FormNhap>();
+            container.Register<FormHome>();
+            container.Register<FormCreateEditEmployee>();
             //container.Register<FormXuat>();
 
             // Optionally verify the container.

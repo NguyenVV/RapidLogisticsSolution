@@ -30,7 +30,8 @@ namespace DataModel.UnitOfWork
         private GenericRepository<ShipmentInfor> _shipmentRepository; 
         private GenericRepository<ShipmentOut> _shipmentOutRepository;
         private GenericRepository<ShipmentWaitToConfirm> _shipmentWaitConfirmedRepository;
-        
+        private GenericRepository<Employee> _employeeRepository;
+
         #endregion
 
         public UnitOfWork()
@@ -153,6 +154,16 @@ namespace DataModel.UnitOfWork
                 if (this._shipmentWaitConfirmedRepository == null)
                     this._shipmentWaitConfirmedRepository = new GenericRepository<ShipmentWaitToConfirm>(_contextWinform);
                 return _shipmentWaitConfirmedRepository;
+            }
+        }
+
+        public GenericRepository<Employee> EmployeeRepository
+        {
+            get
+            {
+                if (this._employeeRepository == null)
+                    this._employeeRepository = new GenericRepository<Employee>(_contextWinform);
+                return _employeeRepository;
             }
         }
         #endregion

@@ -8,10 +8,11 @@ namespace BusinessServices.Interfaces
 {
     public interface IEmployeeServices
     {
-        int Login(string userName, string password);
+        EmployeeEntity Login(string userName, string password);
         int ChangePassword(string userName, string password, string newPassword);
         int ResetPassword(string email);
         int CreateOrUpdateEmployee(EmployeeEntity employee);
         int Delete(int employeeId);
+        bool IsExist(string userName);
     }
 }

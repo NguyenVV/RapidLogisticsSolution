@@ -32,6 +32,19 @@ namespace BusinessServices
             }
         }
 
+        public int Create(List<ShipmentOutEntity> shipmentOutList)
+        {
+            using (var scope = new TransactionScope())
+            {
+                Mapper.CreateMap<ShipmentOutEntity, ShipmentOut>();
+                var shipmentOutEntityList = Mapper.Map<List<ShipmentOutEntity>, List<ShipmentOut>>(shipmentOutList);
+                int numberInsert = _unitOfWork.ShipmentOutRepository.Insert(shipmentOutEntityList);
+                _unitOfWork.SaveWinform();
+                scope.Complete();
+                return numberInsert;
+            }
+        }
+
         public void Delete(string shipmentId)
         {
             _unitOfWork.ShipmentOutRepository.Delete(shipmentId);

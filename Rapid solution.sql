@@ -60,7 +60,7 @@ Create table Employee
 (
 	Id int identity primary key,
 	FullName nvarchar (150),
-	UserName nvarchar(150),
+	UserName nvarchar(150) unique,
 	Pasword nvarchar(500),
 	[Role] nvarchar(100),
 	DateCreated DateTime default getdate(),

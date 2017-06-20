@@ -52,3 +52,4 @@ C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities
 C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\obj\Debug\BusinessEntities.csproj.App.config
 C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\obj\Debug\BusinessEntities.dll
 C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\obj\Debug\BusinessEntities.pdb
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\obj\Debug\BusinessEntities.csprojResolveAssemblyReference.cache

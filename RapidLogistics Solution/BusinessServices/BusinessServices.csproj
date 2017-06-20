@@ -41,6 +41,7 @@
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -84,6 +85,10 @@
     <ProjectReference Include="..\Resolver\Resolver.csproj">
       <Project>{6CFC3977-2553-4C4E-A212-01F11C3F7543}</Project>
       <Name>Resolver</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ultilities\Ultilities.csproj">
+      <Project>{b55d9f33-5dd7-4909-8072-0bf189b8b60f}</Project>
+      <Name>Ultilities</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

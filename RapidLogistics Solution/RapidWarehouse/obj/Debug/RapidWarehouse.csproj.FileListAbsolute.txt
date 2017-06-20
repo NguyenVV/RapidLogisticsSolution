@@ -129,3 +129,5 @@ C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\o
 C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.exe
 C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.pdb
 C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.FormLogin.resources
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.FormCreateEditEmployee.resources
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.FormHome.resources

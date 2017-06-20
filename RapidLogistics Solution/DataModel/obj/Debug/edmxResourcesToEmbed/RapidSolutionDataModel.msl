@@ -1,42 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="RapidSolutionModelStoreContainer" CdmEntityContainer="RapidSolutionEntities">
-    <EntitySetMapping Name="MasterBills">
-      <EntityTypeMapping TypeName="RapidSolutionModel.MasterBill">
-        <MappingFragment StoreEntitySet="MasterBill">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="MasterAirWayBill" ColumnName="MasterAirWayBill" />
-          <ScalarProperty Name="DateArrived" ColumnName="DateArrived" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ShipmentInfors">
-      <EntityTypeMapping TypeName="RapidSolutionModel.ShipmentInfor">
-        <MappingFragment StoreEntitySet="ShipmentInfor">
-          <ScalarProperty Name="Status" ColumnName="Status" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="ShipmentId" ColumnName="ShipmentId" />
-          <ScalarProperty Name="Sender" ColumnName="Sender" />
-          <ScalarProperty Name="Receiver" ColumnName="Receiver" />
-          <ScalarProperty Name="TelReceiver" ColumnName="TelReceiver" />
-          <ScalarProperty Name="Descrition" ColumnName="Descrition" />
-          <ScalarProperty Name="BoxId" ColumnName="BoxId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="BoxInfoes">
-      <EntityTypeMapping TypeName="RapidSolutionModel.BoxInfo">
-        <MappingFragment StoreEntitySet="BoxInfo">
-          <ScalarProperty Name="MasterBillId" ColumnName="MasterBillId" />
-          <ScalarProperty Name="ShipmentQuantity" ColumnName="ShipmentQuantity" />
-          <ScalarProperty Name="BoxId" ColumnName="BoxId" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="ShipmentOuts">
       <EntityTypeMapping TypeName="RapidSolutionModel.ShipmentOut">
         <MappingFragment StoreEntitySet="ShipmentOut">
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
           <ScalarProperty Name="MasterBillIdString" ColumnName="MasterBillIdString" />
           <ScalarProperty Name="BoxIdString" ColumnName="BoxIdString" />
           <ScalarProperty Name="DateOut" ColumnName="DateOut" />
@@ -78,8 +46,65 @@
     <EntitySetMapping Name="ShipmentWaitToConfirms">
       <EntityTypeMapping TypeName="RapidSolutionModel.ShipmentWaitToConfirm">
         <MappingFragment StoreEntitySet="ShipmentWaitToConfirm">
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
           <ScalarProperty Name="ShipmentId" ColumnName="ShipmentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="RapidSolutionModel.Employee">
+        <MappingFragment StoreEntitySet="Employee">
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="Pasword" ColumnName="Pasword" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BoxInfoes">
+      <EntityTypeMapping TypeName="RapidSolutionModel.BoxInfo">
+        <MappingFragment StoreEntitySet="BoxInfo">
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="MasterBillId" ColumnName="MasterBillId" />
+          <ScalarProperty Name="ShipmentQuantity" ColumnName="ShipmentQuantity" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="BoxId" ColumnName="BoxId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ShipmentInfors">
+      <EntityTypeMapping TypeName="RapidSolutionModel.ShipmentInfor">
+        <MappingFragment StoreEntitySet="ShipmentInfor">
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="BoxId" ColumnName="BoxId" />
+          <ScalarProperty Name="Descrition" ColumnName="Descrition" />
+          <ScalarProperty Name="TotalValue" ColumnName="TotalValue" />
+          <ScalarProperty Name="TelReceiver" ColumnName="TelReceiver" />
+          <ScalarProperty Name="Receiver" ColumnName="Receiver" />
+          <ScalarProperty Name="Sender" ColumnName="Sender" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="ShipmentId" ColumnName="ShipmentId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MasterBills">
+      <EntityTypeMapping TypeName="RapidSolutionModel.MasterBill">
+        <MappingFragment StoreEntitySet="MasterBill">
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="DateArrived" ColumnName="DateArrived" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="MasterAirWayBill" ColumnName="MasterAirWayBill" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

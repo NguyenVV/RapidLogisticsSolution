@@ -168,3 +168,5 @@ C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessServices
 C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessServices\obj\Debug\BusinessServices.csprojResolveAssemblyReference.cache
 C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessServices\obj\Debug\BusinessServices.dll
 C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessServices\obj\Debug\BusinessServices.pdb
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessServices\bin\Debug\Ultilities.dll
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessServices\bin\Debug\Ultilities.pdb

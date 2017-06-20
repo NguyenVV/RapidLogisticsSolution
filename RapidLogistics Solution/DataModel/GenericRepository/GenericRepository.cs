@@ -65,6 +65,29 @@ namespace DataModel.GenericRepository
         }
 
         /// <summary>
+        /// generic Insert method for the the list entities
+        /// </summary>
+        /// <param name="entityList"></param>
+        public virtual int Insert(List<TEntity> entityList)
+        {
+            int numberInsert = 0;
+            if (entityList != null && entityList.Count() > 0)
+            {
+                foreach (TEntity entity in entityList)
+                {
+                    try
+                    {
+                        DbSet.Add(entity);
+                        numberInsert++;
+                    }catch(Exception ex)
+                    { Ultilities.FileHelper.WriteLog(Ultilities.ExceptionLevel.Function, "public virtual void Insert(List<TEntity> entityList)", ex); }
+                }
+            }
+
+            return numberInsert;
+        }
+
+        /// <summary>
         /// Generic Delete method for the entities
         /// </summary>
         /// <param name="id"></param>

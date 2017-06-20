@@ -9,6 +9,22 @@
     <Property Name="DateCreated" Type="datetime" />
     <Property Name="ShipmentQuantity" Type="int" />
     <Property Name="MasterBillId" Type="int" />
+    <Property Name="EmployeeId" Type="int" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="150" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="150" />
+    <Property Name="Pasword" Type="nvarchar" MaxLength="500" />
+    <Property Name="Role" Type="nvarchar" MaxLength="100" />
+    <Property Name="DateCreated" Type="datetime" />
+    <Property Name="BirthDate" Type="datetime" />
+    <Property Name="Phone" Type="varchar" MaxLength="30" />
+    <Property Name="Email" Type="varchar" MaxLength="150" />
+    <Property Name="Address" Type="nvarchar" MaxLength="200" />
   </EntityType>
   <EntityType Name="Manifest">
     <Key>
@@ -46,6 +62,7 @@
     <Property Name="MasterAirWayBill" Type="varchar" MaxLength="100" />
     <Property Name="DateCreated" Type="datetime" />
     <Property Name="DateArrived" Type="datetime" />
+    <Property Name="EmployeeId" Type="int" />
   </EntityType>
   <EntityType Name="ShipmentInfor">
     <Key>
@@ -61,6 +78,7 @@
     <Property Name="Descrition" Type="nvarchar" MaxLength="1000" />
     <Property Name="BoxId" Type="int" />
     <Property Name="Status" Type="nvarchar" MaxLength="100" />
+    <Property Name="EmployeeId" Type="int" />
   </EntityType>
   <EntityType Name="ShipmentOut">
     <Key>
@@ -72,6 +90,7 @@
     <Property Name="MasterBillId" Type="int" />
     <Property Name="MasterBillIdString" Type="varchar" MaxLength="100" />
     <Property Name="DateOut" Type="datetime" />
+    <Property Name="EmployeeId" Type="int" />
   </EntityType>
   <EntityType Name="ShipmentWaitToConfirm">
     <Key>
@@ -79,7 +98,20 @@
     </Key>
     <Property Name="ShipmentId" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="EmployeeId" Type="int" />
   </EntityType>
+  <Association Name="FK__BoxInfo__Employe__45F365D3">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="BoxInfo" Type="Self.BoxInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BoxInfo">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__BoxInfo__MasterB__0CBAE877">
     <End Role="MasterBill" Type="Self.MasterBill" Multiplicity="0..1" />
     <End Role="BoxInfo" Type="Self.BoxInfo" Multiplicity="*" />
@@ -89,6 +121,18 @@
       </Principal>
       <Dependent Role="BoxInfo">
         <PropertyRef Name="MasterBillId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MasterBil__Emplo__46E78A0C">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="MasterBill" Type="Self.MasterBill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MasterBill">
+        <PropertyRef Name="EmployeeId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -104,7 +148,19 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__ShipmentO__BoxId__37A5467C">
+  <Association Name="FK__ShipmentI__Emplo__44FF419A">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="ShipmentInfor" Type="Self.ShipmentInfor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ShipmentInfor">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ShipmentO__BoxId__1B0907CE">
     <End Role="BoxInfo" Type="Self.BoxInfo" Multiplicity="0..1" />
     <End Role="ShipmentOut" Type="Self.ShipmentOut" Multiplicity="*" />
     <ReferentialConstraint>
@@ -116,7 +172,19 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__ShipmentO__Maste__38996AB5">
+  <Association Name="FK__ShipmentO__Emplo__4316F928">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="ShipmentOut" Type="Self.ShipmentOut" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ShipmentOut">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ShipmentO__Maste__1BFD2C07">
     <End Role="MasterBill" Type="Self.MasterBill" Multiplicity="0..1" />
     <End Role="ShipmentOut" Type="Self.ShipmentOut" Multiplicity="*" />
     <ReferentialConstraint>
@@ -129,33 +197,66 @@
     </ReferentialConstraint>
   </Association>
   <!--Errors Found During Generation:
-warning 6035: The relationship 'FK__ShipmentO__Shipm__36B12243' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="FK__ShipmentO__Shipm__36B12243" />-->
+warning 6035: The relationship 'FK__ShipmentO__Shipm__1A14E395' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK__ShipmentO__Shipm__1A14E395" />-->
+  <Association Name="FK__ShipmentW__Emplo__440B1D61">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="ShipmentWaitToConfirm" Type="Self.ShipmentWaitToConfirm" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ShipmentWaitToConfirm">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <!--Errors Found During Generation:
-warning 6035: The relationship 'FK__ShipmentW__Shipm__4F7CD00D' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="FK__ShipmentW__Shipm__4F7CD00D" />-->
+warning 6035: The relationship 'FK__ShipmentW__Shipm__21B6055D' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK__ShipmentW__Shipm__21B6055D" />-->
   <EntityContainer Name="RapidSolutionModelStoreContainer">
     <EntitySet Name="BoxInfo" EntityType="Self.BoxInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Manifest" EntityType="Self.Manifest" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MasterBill" EntityType="Self.MasterBill" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ShipmentInfor" EntityType="Self.ShipmentInfor" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ShipmentOut" EntityType="Self.ShipmentOut" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ShipmentWaitToConfirm" EntityType="Self.ShipmentWaitToConfirm" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__BoxInfo__Employe__45F365D3" Association="Self.FK__BoxInfo__Employe__45F365D3">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="BoxInfo" EntitySet="BoxInfo" />
+    </AssociationSet>
     <AssociationSet Name="FK__BoxInfo__MasterB__0CBAE877" Association="Self.FK__BoxInfo__MasterB__0CBAE877">
       <End Role="MasterBill" EntitySet="MasterBill" />
       <End Role="BoxInfo" EntitySet="BoxInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MasterBil__Emplo__46E78A0C" Association="Self.FK__MasterBil__Emplo__46E78A0C">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="MasterBill" EntitySet="MasterBill" />
     </AssociationSet>
     <AssociationSet Name="FK__ShipmentI__BoxId__15502E78" Association="Self.FK__ShipmentI__BoxId__15502E78">
       <End Role="BoxInfo" EntitySet="BoxInfo" />
       <End Role="ShipmentInfor" EntitySet="ShipmentInfor" />
     </AssociationSet>
-    <AssociationSet Name="FK__ShipmentO__BoxId__37A5467C" Association="Self.FK__ShipmentO__BoxId__37A5467C">
+    <AssociationSet Name="FK__ShipmentI__Emplo__44FF419A" Association="Self.FK__ShipmentI__Emplo__44FF419A">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="ShipmentInfor" EntitySet="ShipmentInfor" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ShipmentO__BoxId__1B0907CE" Association="Self.FK__ShipmentO__BoxId__1B0907CE">
       <End Role="BoxInfo" EntitySet="BoxInfo" />
       <End Role="ShipmentOut" EntitySet="ShipmentOut" />
     </AssociationSet>
-    <AssociationSet Name="FK__ShipmentO__Maste__38996AB5" Association="Self.FK__ShipmentO__Maste__38996AB5">
+    <AssociationSet Name="FK__ShipmentO__Emplo__4316F928" Association="Self.FK__ShipmentO__Emplo__4316F928">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="ShipmentOut" EntitySet="ShipmentOut" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ShipmentO__Maste__1BFD2C07" Association="Self.FK__ShipmentO__Maste__1BFD2C07">
       <End Role="MasterBill" EntitySet="MasterBill" />
       <End Role="ShipmentOut" EntitySet="ShipmentOut" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ShipmentW__Emplo__440B1D61" Association="Self.FK__ShipmentW__Emplo__440B1D61">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="ShipmentWaitToConfirm" EntitySet="ShipmentWaitToConfirm" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

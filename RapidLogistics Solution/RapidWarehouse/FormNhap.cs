@@ -42,6 +42,7 @@ namespace RapidWarehouse
             _boxInforServices = boxInforServices;
             _manifestServices = manifestServices;
             _shipmentWaitConfirmedServices = shipmentWaitToConfirmedServices;
+            currentEmployee = FormLogin.mEmployee;
             grvShipments.ColumnCount = 3;
             grvShipments.Columns[0].Name = "STT";
             grvShipments.Columns[0].ValueType = typeof(int);
@@ -330,6 +331,8 @@ namespace RapidWarehouse
                             List<ManifestEntity> listShipmentNo = manifestList.Where(t => t.BoxID == itemBoxID.BoxID).GroupBy(t => t.ShipmentNo).Select(p => p.First()).ToList();
                             if (listShipmentNo != null && listShipmentNo.Count > 0)
                             {
+                                List<ShipmentEntity> listShipment = new List<ShipmentEntity>();
+
                                 foreach (var item in listShipmentNo)
                                 {
                                     ShipmentEntity shipment = new ShipmentEntity();
@@ -341,11 +344,13 @@ namespace RapidWarehouse
                                     {
                                         if (!_shipmentServices.Exists(shipment.ShipmentId))
                                         {
-                                            _shipmentServices.Create(shipment);
+                                            listShipment.Add(shipment);
                                         }
                                     }
                                     catch (Exception e) { Ultilities.FileHelper.WriteLog(Ultilities.ExceptionLevel.Function, "private void LuuXacNhanDen()", e); }
                                 }
+
+                                int count = _shipmentServices.Create(listShipment);
                             }
                         }
                     }
@@ -611,9 +616,10 @@ namespace RapidWarehouse
 
         private void SaveShipmentOut()
         {
-            if (grvShipmentListOut.Rows.Count > 0)
+            int rowCount = grvShipmentListOut.Rows.Count;
+            if (rowCount > 0)
             {
-                int rowCount = grvShipmentListOut.Rows.Count;
+                List<ShipmentOutEntity> listShipment = new List<ShipmentOutEntity>();
                 for (int i = 0; i < rowCount; i++)
                 {
                     string shipmentId = grvShipmentListOut["Shipment Id", i].Value.ToString();
@@ -628,9 +634,11 @@ namespace RapidWarehouse
                         shipmentOut.DateOut = dtpNgayXuat.Value;
                         shipmentOut.DateCreated = DateTime.Now;
                         shipmentOut.EmployeeId = currentEmployee.Id;
-                        _shipmentOutServices.Create(shipmentOut);
+                        listShipment.Add(shipmentOut);
                     }
                 }
+
+                _shipmentOutServices.Create(listShipment);
             }
         }
 
@@ -868,6 +876,9 @@ namespace RapidWarehouse
 
         private void LoadAllMasterBillByDateToCombobox(DateTime date, ComboBox cbbMaster)
         {
+            cbbMaster.DataSource = null;
+            cbbMaster.Items.Clear();
+
             List<MasterAirwayBillEntity> finalList = new List<MasterAirwayBillEntity>();
             var temp = new MasterAirwayBillEntity();
             temp.Id = 0;
@@ -881,11 +892,6 @@ namespace RapidWarehouse
                 cbbMaster.DataSource = finalList;
                 cbbMaster.ValueMember = "Id";
                 cbbMaster.DisplayMember = "MasterAirwayBill";
-            }
-            else
-            {
-                cbbMaster.DataSource = null;
-                cbbMaster.Items.Clear();
             }
         }
 
@@ -1007,7 +1013,7 @@ namespace RapidWarehouse
 
         [System.Runtime.InteropServices.DllImport("kernel32.dll")]
         public static extern bool Beep(int freq, int duration);
-        
+
         private void AddShipmentListToGrid(List<ShipmentOutEntity> listShipment, DataGridView grv)
         {
             if (grv != null && listShipment != null)
@@ -1066,12 +1072,7 @@ namespace RapidWarehouse
                 cbbBoxes.Items.Clear();
             }
         }
-
-        private void Logout()
-        {
-            this.Dispose();
-            Program.Container.GetInstance<FormLogin>().Show();
-        }
+        
         #endregion
 
         #region Các báo cáo
@@ -1837,12 +1838,14 @@ namespace RapidWarehouse
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            Program.Container.GetInstance<FormHome>().Show();
+            this.Dispose();
         }
 
         private void btnThoat_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            Program.Container.GetInstance<FormHome>().Show();
+            this.Dispose();
         }
 
         private void tabPage2_Click(object sender, EventArgs e)
@@ -2068,17 +2071,14 @@ namespace RapidWarehouse
 
         private void FormNhap_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit();
+            Program.Container.GetInstance<FormHome>().Show();
+            this.Dispose();
         }
-
-        private void btnLogoutXuat_Click(object sender, EventArgs e)
+        
+        private void btnDong_Click(object sender, EventArgs e)
         {
-            Logout();
-        }
-
-        private void btnLogout_Click(object sender, EventArgs e)
-        {
-            Logout();
+            Program.Container.GetInstance<FormHome>().Show();
+            this.Dispose();
         }
 
         private void timer1_Tick(object sender, EventArgs e)

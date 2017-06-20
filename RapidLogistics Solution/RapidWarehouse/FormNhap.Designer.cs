@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormNhap));
             this.tabNhap = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -112,11 +113,9 @@
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.txtShipmentIdBlock = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnDong = new System.Windows.Forms.Button();
             this.grvShipmentsWaitConfirmed = new System.Windows.Forms.DataGridView();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.btnLogout = new System.Windows.Forms.Button();
-            this.btnLogoutXuat = new System.Windows.Forms.Button();
             this.tabNhap.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -141,7 +140,6 @@
             this.tabNhap.Controls.Add(this.tabPage2);
             this.tabNhap.Controls.Add(this.tabPage3);
             this.tabNhap.Controls.Add(this.tabPage4);
-            this.tabNhap.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabNhap.Location = new System.Drawing.Point(0, 0);
             this.tabNhap.Name = "tabNhap";
             this.tabNhap.SelectedIndex = 0;
@@ -418,7 +416,6 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.AutoSize = true;
-            this.groupBox1.Controls.Add(this.btnLogout);
             this.groupBox1.Controls.Add(this.btnExit);
             this.groupBox1.Controls.Add(this.grvShipments);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -437,7 +434,7 @@
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(227, 56);
             this.btnExit.TabIndex = 32;
-            this.btnExit.Text = "Thoát";
+            this.btnExit.Text = "Đóng";
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
@@ -771,7 +768,6 @@
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.AutoSize = true;
-            this.groupBox2.Controls.Add(this.btnLogoutXuat);
             this.groupBox2.Controls.Add(this.btnThoat);
             this.groupBox2.Controls.Add(this.grvShipmentListOut);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -790,7 +786,7 @@
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(227, 56);
             this.btnThoat.TabIndex = 35;
-            this.btnThoat.Text = "Thoát";
+            this.btnThoat.Text = "Đóng";
             this.btnThoat.UseVisualStyleBackColor = true;
             this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
             // 
@@ -868,7 +864,7 @@
             this.tabPage3.Location = new System.Drawing.Point(8, 39);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1559, 1496);
+            this.tabPage3.Size = new System.Drawing.Size(1659, 1496);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "                Báo Cáo                ";
             // 
@@ -1064,7 +1060,7 @@
             this.tabPage4.Location = new System.Drawing.Point(8, 39);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(1559, 1496);
+            this.tabPage4.Size = new System.Drawing.Size(1659, 1496);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "        Danh Sách Chờ Thông Quan      ";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -1118,7 +1114,7 @@
             this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox4.AutoSize = true;
-            this.groupBox4.Controls.Add(this.button1);
+            this.groupBox4.Controls.Add(this.btnDong);
             this.groupBox4.Controls.Add(this.grvShipmentsWaitConfirmed);
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox4.Location = new System.Drawing.Point(6, 181);
@@ -1128,16 +1124,17 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Danh sách shipments chờ thông quan";
             // 
-            // button1
+            // btnDong
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.Red;
-            this.button1.Location = new System.Drawing.Point(1151, 1058);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(227, 56);
-            this.button1.TabIndex = 33;
-            this.button1.Text = "Thoát";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnDong.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDong.ForeColor = System.Drawing.Color.Red;
+            this.btnDong.Location = new System.Drawing.Point(1151, 1058);
+            this.btnDong.Name = "btnDong";
+            this.btnDong.Size = new System.Drawing.Size(227, 56);
+            this.btnDong.TabIndex = 33;
+            this.btnDong.Text = "Đóng";
+            this.btnDong.UseVisualStyleBackColor = true;
+            this.btnDong.Click += new System.EventHandler(this.btnDong_Click);
             // 
             // grvShipmentsWaitConfirmed
             // 
@@ -1159,36 +1156,14 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // btnLogout
-            // 
-            this.btnLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogout.ForeColor = System.Drawing.Color.Red;
-            this.btnLogout.Location = new System.Drawing.Point(1377, 736);
-            this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(227, 56);
-            this.btnLogout.TabIndex = 33;
-            this.btnLogout.Text = "Logout";
-            this.btnLogout.UseVisualStyleBackColor = true;
-            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
-            // 
-            // btnLogoutXuat
-            // 
-            this.btnLogoutXuat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogoutXuat.ForeColor = System.Drawing.Color.Red;
-            this.btnLogoutXuat.Location = new System.Drawing.Point(1366, 738);
-            this.btnLogoutXuat.Name = "btnLogoutXuat";
-            this.btnLogoutXuat.Size = new System.Drawing.Size(227, 56);
-            this.btnLogoutXuat.TabIndex = 36;
-            this.btnLogoutXuat.Text = "Logout";
-            this.btnLogoutXuat.UseVisualStyleBackColor = true;
-            this.btnLogoutXuat.Click += new System.EventHandler(this.btnLogoutXuat_Click);
-            // 
             // FormNhap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1675, 1543);
             this.Controls.Add(this.tabNhap);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimizeBox = false;
             this.Name = "FormNhap";
             this.Text = "Rapid Logistics v1.0.15";
@@ -1285,7 +1260,7 @@
         private System.Windows.Forms.TextBox txtSearchOut;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnDong;
         private System.Windows.Forms.DataGridView grvShipmentsWaitConfirmed;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.TextBox txtShipmentIdBlock;
@@ -1311,8 +1286,6 @@
         private System.Windows.Forms.DateTimePicker dtpNgayXuat;
         private System.Windows.Forms.RadioButton radNotConfirmed;
         private System.Windows.Forms.RadioButton radConfirmed;
-        private System.Windows.Forms.Button btnLogout;
-        private System.Windows.Forms.Button btnLogoutXuat;
     }
 }
 

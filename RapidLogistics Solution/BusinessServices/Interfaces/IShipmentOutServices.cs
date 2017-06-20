@@ -9,6 +9,7 @@ namespace BusinessServices.Interfaces
     public interface IShipmentOutServices
     {
         string Create(ShipmentOutEntity shipmentOut);
+        int Create(List<ShipmentOutEntity> shipmentOutList);
         bool IsExist(string shipmentOutId);
         IEnumerable<ShipmentOutEntity> GetByBoxId(int boxId);
         void Delete(string shipmentId);
