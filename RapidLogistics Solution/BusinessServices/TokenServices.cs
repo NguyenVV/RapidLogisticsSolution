@@ -69,9 +69,12 @@ namespace BusinessServices
             var token = _unitOfWork.TokenRepository.Get(t => t.AuthToken == tokenId && t.ExpiresOn > DateTime.Now);
             if (token != null && !(DateTime.Now > token.ExpiresOn))
             {
-                token.ExpiresOn = token.ExpiresOn.AddSeconds(
+                Token tk = new Token();
+                tk.ExpiresOn = token.ExpiresOn.AddSeconds(
                                               Convert.ToDouble(ConfigurationManager.AppSettings["AuthTokenExpiry"]));
-                _unitOfWork.TokenRepository.Update(token);
+                tk.TokenId = token.TokenId;
+                tk.UserId = token.UserId;
+                _unitOfWork.TokenRepository.Update(token, tk);
                 _unitOfWork.Save();
                 return true;
             }

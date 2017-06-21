@@ -111,8 +111,10 @@ namespace BusinessServices
                     var manifest = _unitOfWork.ManifestRepository.GetByID(manifestId);
                     if (manifest != null)
                     {
-                        manifest.MasterAirWayBill = manifestEntity.MasterAirWayBill;
-                        _unitOfWork.ManifestRepository.Update(manifest);
+                        Manifest manifestNew = new Manifest();
+                        manifestNew.MasterAirWayBill = manifestEntity.MasterAirWayBill;
+                        manifestNew.Id = manifest.Id;
+                        _unitOfWork.ManifestRepository.Update(manifest, manifestNew);
                         _unitOfWork.Save();
                         scope.Complete();
                         success = true;

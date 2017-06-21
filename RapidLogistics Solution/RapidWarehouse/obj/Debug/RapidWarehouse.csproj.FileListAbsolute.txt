@@ -79,12 +79,6 @@ C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWa
 C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\obj\Debug\vi-VN\RapidWarehouse.resources.dll
 C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.exe
 C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.pdb
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.csproj.App.config
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.csprojResolveAssemblyReference.cache
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.FormNhap.resources
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.Properties.Resources.resources
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.FormNhap.vi-VN.resources
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.csproj.GenerateResource.Cache
 C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\bin\Debug\RapidWarehouse.exe.config
 C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\bin\Debug\RapidWarehouse.exe
 C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\bin\Debug\RapidWarehouse.pdb
@@ -125,9 +119,16 @@ C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\b
 C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\bin\Debug\Microsoft.Practices.Unity.xml
 C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
 C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.csproj.App.config
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.csprojResolveAssemblyReference.cache
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.FormChangePassword.resources
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.FormCreateEditEmployee.resources
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.FormHome.resources
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.FormNhap.resources
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.FormLogin.resources
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.Properties.Resources.resources
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.FormNhap.vi-VN.resources
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.csproj.GenerateResource.Cache
 C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\obj\Debug\vi-VN\RapidWarehouse.resources.dll
 C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.exe
 C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.pdb
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.FormLogin.resources
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.FormCreateEditEmployee.resources
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.FormHome.resources

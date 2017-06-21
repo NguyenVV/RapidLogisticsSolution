@@ -57,5 +57,11 @@ namespace RapidWarehouse
         {
             Application.Exit();
         }
+
+        private void btnChangePass_Click(object sender, EventArgs e)
+        {
+            Program.Container.GetInstance<FormChangePassword>().Show();
+            this.Dispose();
+        }
     }
 }

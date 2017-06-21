@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 
 #endregion
 
@@ -114,12 +115,34 @@ namespace DataModel.GenericRepository
         /// Generic update method for the entities
         /// </summary>
         /// <param name="entityToUpdate"></param>
-        public virtual void Update(TEntity entityToUpdate)
+        /// <param name="updatedProperties"></param>
+        public virtual void Update(TEntity entityOriginal, TEntity entityToUpdate, params Expression<Func<TEntity, object>>[] updatedProperties)
         {
-            DbSet.Attach(entityToUpdate);
-            Context.Entry(entityToUpdate).State = EntityState.Modified;
-        }
+            //Ensure only modified fields are updated.
+            var dbEntityEntry = Context.Entry(entityOriginal);
+            dbEntityEntry.OriginalValues.SetValues(entityOriginal);
+            dbEntityEntry.CurrentValues.SetValues(entityToUpdate);
 
+            if (updatedProperties.Any())
+            {
+                //update explicitly mentioned properties
+                foreach (var property in updatedProperties)
+                {
+                    dbEntityEntry.Property(property).IsModified = true;
+                }
+            }
+            else
+            {
+                //no items mentioned, so find out the updated entries
+                foreach (var property in dbEntityEntry.OriginalValues.PropertyNames)
+                {
+                    var original = dbEntityEntry.OriginalValues.GetValue<object>(property);
+                    var current = dbEntityEntry.CurrentValues.GetValue<object>(property);
+                    if (original != null && !original.Equals(current))
+                        dbEntityEntry.Property(property).IsModified = true;
+                }
+            }
+        }
         /// <summary>
         /// generic method to get many record on the basis of a condition.
         /// </summary>

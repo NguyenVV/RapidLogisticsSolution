@@ -136,6 +136,8 @@
             // 
             // tabNhap
             // 
+            this.tabNhap.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabNhap.Controls.Add(this.tabPage1);
             this.tabNhap.Controls.Add(this.tabPage2);
             this.tabNhap.Controls.Add(this.tabPage3);

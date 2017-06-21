@@ -176,13 +176,13 @@ namespace RapidWarehouse
 
             if (!CheckIsMawbExistsInManifest(cbbMasterBill.Text))
             {
-                MessageBox.Show("Mã MAWB không có trong manifest", "Nhập thông tin", MessageBoxButtons.OK);
+                MessageBox.Show("Mã MAWB không có trong manifest của ngày đã chọn "+dtpNgayDen.Value.ToString("dd/MM/yyyy"), "Nhập thông tin", MessageBoxButtons.OK);
                 cbbMasterBill.Focus();
                 return false;
             }
             if (!CheckIsBoxIdExistsInManifest(cbbBoxId.Text))
             {
-                MessageBox.Show("Mã BoxId không có trong manifest", "Nhập thông tin", MessageBoxButtons.OK);
+                MessageBox.Show("Mã BoxId không có trong manifest của ngày đã chọn " + dtpNgayDen.Value.ToString("dd/MM/yyyy"), "Nhập thông tin", MessageBoxButtons.OK);
                 cbbBoxId.Focus();
                 return false;
             }
@@ -251,24 +251,28 @@ namespace RapidWarehouse
                     currentBoxIdInt = boxEntity.Id;
                     currentBoxId = boxEntity.BoxId;
                 }
-
                 int rowCount = grvShipments.Rows.Count;
-                for (int i = 0; i < rowCount; i++)
+                if (rowCount > 0)
                 {
-                    string shipmentId = grvShipments["Shipment Id", i].Value.ToString();
-                    ShipmentEntity shipment = new ShipmentEntity();
-                    shipment.ShipmentId = shipmentId;
-                    shipment.BoxId = currentBoxIdInt;
-                    shipment.DateCreated = DateTime.Now;
-                    shipment.EmployeeId = currentEmployee.Id;
-                    try
+                    List<ShipmentEntity> listShipment = new List<ShipmentEntity>();
+                    for (int i = 0; i < rowCount; i++)
                     {
-                        if (!_shipmentServices.Exists(shipmentId))
+                        string shipmentId = grvShipments["Shipment Id", i].Value.ToString();
+                        ShipmentEntity shipment = new ShipmentEntity();
+                        shipment.ShipmentId = shipmentId;
+                        shipment.BoxId = currentBoxIdInt;
+                        shipment.DateCreated = DateTime.Now;
+                        shipment.EmployeeId = currentEmployee.Id;
+                        try
                         {
-                            _shipmentServices.Create(shipment);
+                            if (!_shipmentServices.Exists(shipmentId))
+                            {
+                                listShipment.Add(shipment);
+                            }
                         }
+                        catch (Exception e) { Ultilities.FileHelper.WriteLog(Ultilities.ExceptionLevel.Function, "private void SaveBoxInfor()", e); }
                     }
-                    catch (Exception e) { Ultilities.FileHelper.WriteLog(Ultilities.ExceptionLevel.Function, "private void SaveBoxInfor()", e); }
+                _shipmentServices.Create(listShipment);
                 }
             }
         }

@@ -49,6 +49,7 @@ namespace RapidWarehouse
             container.Register<FormNhap>();
             container.Register<FormHome>();
             container.Register<FormCreateEditEmployee>();
+            container.Register<FormChangePassword>();
             //container.Register<FormXuat>();
 
             // Optionally verify the container.

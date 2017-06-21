@@ -20,9 +20,10 @@ namespace BusinessServices
         {
             _unitOfWork = unitOfWork;
         }
-        public int ChangePassword(string userName, string password, string newPassword)
+        public int ChangePassword(EmployeeEntity employee, string newPassword)
         {
-            throw new NotImplementedException();
+            employee.Pasword = Encrypt(newPassword);
+            return CreateOrUpdateEmployee(employee);
         }
 
         public int CreateOrUpdateEmployee(EmployeeEntity employee)
@@ -34,7 +35,7 @@ namespace BusinessServices
 
                 if (employee.Id > 0)
                 {
-                    _unitOfWork.EmployeeRepository.Update(employeeModel);
+                    _unitOfWork.EmployeeRepository.Update(_unitOfWork.EmployeeRepository.GetByID(employee.Id), employeeModel);
                 }
                 else
                 {
@@ -78,6 +79,18 @@ namespace BusinessServices
             }
 
             return false;
+        }
+
+        public List<EmployeeEntity> GetAll()
+        {
+            var employeeList = _unitOfWork.EmployeeRepository.GetAll();
+            if (employeeList != null && employeeList.Any())
+            {
+                Mapper.CreateMap<Employee, EmployeeEntity>();
+                var employeeListModel = Mapper.Map<List<Employee>, List<EmployeeEntity>>(employeeList.ToList());
+                return employeeListModel;
+            }
+            return null;
         }
 
         private string Encrypt(string plainText)

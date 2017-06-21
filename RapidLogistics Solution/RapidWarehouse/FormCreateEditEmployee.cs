@@ -1,6 +1,7 @@
 ﻿using BusinessEntities;
 using BusinessServices.Interfaces;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace RapidWarehouse
@@ -9,20 +10,48 @@ namespace RapidWarehouse
     {
         IEmployeeServices mEmployeeService;
         EmployeeEntity employeeCreateOrUpdate;
+        List<EmployeeEntity> listAllEmployee;
         public FormCreateEditEmployee(IEmployeeServices employeeServices)
         {
             InitializeComponent();
             mEmployeeService = employeeServices;
-            dtpBirthDate.CustomFormat = "dd/MM/yyyy";
-            dtpHiredDate.CustomFormat = "dd/MM/yyyy";
+            LoadAllEmployeeToListBox();
         }
 
+        private void LoadAllEmployeeToListBox()
+        {
+            listAllEmployee = mEmployeeService.GetAll();
+            listAllEmployee.Remove(FormLogin.mEmployee);
+            lbListEmployee.DataSource = listAllEmployee;
+            lbListEmployee.DisplayMember = "UserName";
+            lbListEmployee.ValueMember = "Id";
+        }
+
+        private void FillDataEmployeeToForm(EmployeeEntity employee)
+        {
+            txtAddress.Text = employee.Address;
+            txtEmail.Text = employee.Email;
+            txtFullName.Text = employee.FullName;
+            txtPassword.Text = employee.Pasword;
+            txtPhone.Text = employee.Phone;
+            txtUserName.Text = employee.UserName;
+            dtpBirthDate.Value = employee.BirthDate;
+            cbbRole.Text = employee.Role;
+        }
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (ValidateDataInput())
             {
+                // Create new
                 if (employeeCreateOrUpdate == null)
                 {
+                    if (mEmployeeService.IsExist(txtUserName.Text))
+                    {
+                        MessageBox.Show("User Name này đã tồn tại, vui lòng chọn user name khác!");
+                        txtUserName.Focus();
+                        return;
+                    }
+
                     employeeCreateOrUpdate = new EmployeeEntity();
                     employeeCreateOrUpdate.Address = txtAddress.Text;
                     employeeCreateOrUpdate.BirthDate = dtpBirthDate.Value;
@@ -40,11 +69,23 @@ namespace RapidWarehouse
                 }
                 else
                 {
+                    // Update
+                    employeeCreateOrUpdate.Address = txtAddress.Text;
+                    employeeCreateOrUpdate.BirthDate = dtpBirthDate.Value;
+                    employeeCreateOrUpdate.DateCreated = DateTime.Now;
+                    employeeCreateOrUpdate.Email = txtEmail.Text;
+                    employeeCreateOrUpdate.FullName = txtFullName.Text;
+                    employeeCreateOrUpdate.Pasword = txtPassword.Text;
+                    employeeCreateOrUpdate.Phone = txtPhone.Text;
+                    employeeCreateOrUpdate.Role = cbbRole.Text;
+                    employeeCreateOrUpdate.Status = 1;
+                    employeeCreateOrUpdate.UserName = txtUserName.Text;
                     mEmployeeService.CreateOrUpdateEmployee(employeeCreateOrUpdate);
                     MessageBox.Show("Cập nhật " + cbbRole.Text + " thành công !");
                 }
                 
                 employeeCreateOrUpdate = null;
+                LoadAllEmployeeToListBox();
             }
         }
 
@@ -92,13 +133,6 @@ namespace RapidWarehouse
                 return false;
             }
 
-            if (mEmployeeService.IsExist(txtUserName.Text))
-            {
-                MessageBox.Show("User Name này đã tồn tại, vui lòng chọn user name khác!");
-                txtUserName.Focus();
-                return false;
-            }
-
             return true;
         }
 
@@ -114,6 +148,28 @@ namespace RapidWarehouse
             FormHome home = new FormHome();
             home.Show();
             this.Dispose();
+        }
+
+        private void lbListEmployee_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            employeeCreateOrUpdate = (EmployeeEntity)lbListEmployee.SelectedItem;
+            if (employeeCreateOrUpdate != null)
+            {
+                FillDataEmployeeToForm(employeeCreateOrUpdate);
+            }
+        }
+
+        private void btnCreate_Click(object sender, EventArgs e)
+        {
+            employeeCreateOrUpdate = null;
+            txtAddress.Text = "";
+            txtEmail.Text = "";
+            txtFullName.Text = "";
+            txtPassword.Text = "";
+            txtPhone.Text = "";
+            txtUserName.Text = "";
+            dtpBirthDate.Value = DateTime.Now;
+            cbbRole.Text = "";
         }
     }
 }

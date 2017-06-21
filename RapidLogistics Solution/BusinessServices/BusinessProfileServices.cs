@@ -89,8 +89,11 @@ namespace BusinessServices
                     var businessProfile = _unitOfWork.BusinessProfileRepository.GetByID(businessProfileEntityId);
                     if (businessProfile != null)
                     {
-                        businessProfile.Name = businessProfileEntity.Name;
-                        _unitOfWork.BusinessProfileRepository.Update(businessProfile);
+                        Business_profile profile = new Business_profile();
+                        profile.Id = businessProfile.Id;
+                        profile.Phone = businessProfileEntity.Phone;
+                        profile.Name = businessProfileEntity.Name;
+                        _unitOfWork.BusinessProfileRepository.Update(businessProfile, profile);
                         _unitOfWork.Save();
                         scope.Complete();
                         success = true;
