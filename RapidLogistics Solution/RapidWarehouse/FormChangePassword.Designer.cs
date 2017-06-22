@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtOldPassword = new System.Windows.Forms.TextBox();
-            this.txtNewPassword = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.txtReenter = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
+            this.txtNewPassword = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtOldPassword = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,10 +54,72 @@
             this.groupBox1.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.groupBox1.Location = new System.Drawing.Point(26, 40);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(927, 496);
+            this.groupBox1.Size = new System.Drawing.Size(927, 397);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Đổi Password";
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(736, 287);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(169, 63);
+            this.btnCancel.TabIndex = 7;
+            this.btnCancel.Text = "Hủy";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(519, 287);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(169, 63);
+            this.btnSave.TabIndex = 6;
+            this.btnSave.Text = "Lưu";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // txtReenter
+            // 
+            this.txtReenter.Location = new System.Drawing.Point(329, 203);
+            this.txtReenter.Name = "txtReenter";
+            this.txtReenter.Size = new System.Drawing.Size(576, 38);
+            this.txtReenter.TabIndex = 5;
+            this.txtReenter.UseSystemPasswordChar = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(70, 203);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(237, 31);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Nhập lại password";
+            // 
+            // txtNewPassword
+            // 
+            this.txtNewPassword.Location = new System.Drawing.Point(329, 140);
+            this.txtNewPassword.Name = "txtNewPassword";
+            this.txtNewPassword.Size = new System.Drawing.Size(576, 38);
+            this.txtNewPassword.TabIndex = 3;
+            this.txtNewPassword.UseSystemPasswordChar = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(70, 140);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(184, 31);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Password mới";
+            // 
+            // txtOldPassword
+            // 
+            this.txtOldPassword.Location = new System.Drawing.Point(329, 78);
+            this.txtOldPassword.Name = "txtOldPassword";
+            this.txtOldPassword.Size = new System.Drawing.Size(576, 38);
+            this.txtOldPassword.TabIndex = 1;
+            this.txtOldPassword.UseSystemPasswordChar = true;
             // 
             // label1
             // 
@@ -68,77 +130,16 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Password cũ";
             // 
-            // txtOldPassword
-            // 
-            this.txtOldPassword.Location = new System.Drawing.Point(329, 78);
-            this.txtOldPassword.Name = "txtOldPassword";
-            this.txtOldPassword.Size = new System.Drawing.Size(576, 38);
-            this.txtOldPassword.TabIndex = 1;
-            this.txtOldPassword.UseSystemPasswordChar = true;
-            // 
-            // txtNewPassword
-            // 
-            this.txtNewPassword.Location = new System.Drawing.Point(329, 162);
-            this.txtNewPassword.Name = "txtNewPassword";
-            this.txtNewPassword.Size = new System.Drawing.Size(576, 38);
-            this.txtNewPassword.TabIndex = 3;
-            this.txtNewPassword.UseSystemPasswordChar = true;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(70, 162);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(184, 31);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Password mới";
-            // 
-            // txtReenter
-            // 
-            this.txtReenter.Location = new System.Drawing.Point(329, 248);
-            this.txtReenter.Name = "txtReenter";
-            this.txtReenter.Size = new System.Drawing.Size(576, 38);
-            this.txtReenter.TabIndex = 5;
-            this.txtReenter.UseSystemPasswordChar = true;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(70, 248);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(237, 31);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Nhập lại password";
-            // 
-            // btnSave
-            // 
-            this.btnSave.Location = new System.Drawing.Point(519, 372);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(169, 63);
-            this.btnSave.TabIndex = 6;
-            this.btnSave.Text = "Lưu";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Location = new System.Drawing.Point(736, 372);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(169, 63);
-            this.btnCancel.TabIndex = 7;
-            this.btnCancel.Text = "Hủy";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
             // FormChangePassword
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Info;
-            this.ClientSize = new System.Drawing.Size(984, 565);
+            this.ClientSize = new System.Drawing.Size(984, 466);
             this.Controls.Add(this.groupBox1);
             this.Name = "FormChangePassword";
             this.Text = "Đổi Password";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormChangePassword_FormClosed);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

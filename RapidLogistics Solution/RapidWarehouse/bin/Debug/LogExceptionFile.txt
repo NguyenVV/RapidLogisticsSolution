@@ -1,0 +1,3 @@
+Exception at: Save shipmentout and delete _shipmentWaitConfirmedServices on :2017-06-23 03:15:15
+Exception details : System.Data.Entity; The underlying provider failed on Open.
+============================================================================================

@@ -38,6 +38,12 @@ namespace BusinessServices
             _unitOfWork.SaveWinform();
         }
 
+        public void Delete(List<string> shipmentIdList)
+        {
+            _unitOfWork.ShipmentWaitConfirmedRepository.Delete(t => shipmentIdList.Contains(t.ShipmentId));
+            _unitOfWork.SaveWinform();
+        }
+
         public IEnumerable<ShipmentWaitConfirmedEntity> GetAll()
         {
             var shipmentList = _unitOfWork.ShipmentWaitConfirmedRepository.GetAll();

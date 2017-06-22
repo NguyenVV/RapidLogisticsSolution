@@ -47,6 +47,33 @@ Create table ShipmentOut
 	EmployeeId int references Employee(Id)
 )
 go
+go
+Create table ShipmentInforTemp
+(
+	Id int identity primary key,
+	ShipmentId varchar(100) unique,
+	DateCreated DateTime default getdate(),
+	Sender nvarchar(300),
+	Receiver nvarchar(300),
+	TelReceiver varchar(50),
+	TotalValue float,
+	Descrition nvarchar(1000),
+	BoxId int references BoxInfo(Id),
+	[Status] nvarchar(100),
+	EmployeeId int references Employee(Id)
+)
+go
+Create table ShipmentOutTemp
+(
+	ShipmentId varchar(100) references ShipmentInfor(ShipmentId) primary key,
+	BoxIdRef int references BoxInfo(Id),
+	BoxIdString varchar(100),
+	MasterBillId int references [MasterBill](Id),
+	MasterBillIdString varchar(100),
+	DateOut DateTime default getdate(),
+	EmployeeId int references Employee(Id)
+)
+go
 -- Chờ thông quan
 Create table ShipmentWaitToConfirm
 (
@@ -61,21 +88,6 @@ Create table Employee
 	Id int identity primary key,
 	FullName nvarchar (150),
 	UserName nvarchar(150) unique,
-	Pasword nvarchar(500),
-	[Role] nvarchar(100),
-	DateCreated DateTime default getdate(),
-	BirthDate DateTime,
-	Phone varchar(30),
-	Email varchar(150),
-	[Address] nvarchar(200),
-	[Status] bit
-)
-go
-Create table Employee
-(
-	Id int identity primary key,
-	FullName nvarchar (150),
-	UserName nvarchar(150),
 	Pasword nvarchar(500),
 	[Role] nvarchar(100),
 	DateCreated DateTime default getdate(),

@@ -12,5 +12,6 @@ namespace BusinessServices.Interfaces
         bool IsExist(string shipmentOutId);
         IEnumerable<ShipmentWaitConfirmedEntity> GetAll();
         void Delete(string shipmentId);
+        void Delete(List<string> shipmentIdList);
     }
 }

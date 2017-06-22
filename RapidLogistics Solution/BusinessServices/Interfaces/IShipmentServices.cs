@@ -1,4 +1,5 @@
 ﻿using BusinessEntities;
+using DataModel;
 using System.Collections.Generic;
 
 namespace BusinessServices.Interfaces
@@ -8,6 +9,7 @@ namespace BusinessServices.Interfaces
         int Create(ShipmentEntity shipmentEntity);
         int Create(List<ShipmentEntity> shipmentList);
         ShipmentEntity GetByShipmentId(string shipmentId);
+        string[] GetReferenceOfShipment(string shipmentId);
         ShipmentEntity GetByShipmentIdAndBoxId(string shipmentId, int boxId);
         IEnumerable<ShipmentEntity> GetByDate(string shipmentId);
         IEnumerable<ShipmentEntity> GetByBoxId(int boxId);

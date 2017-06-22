@@ -84,6 +84,31 @@ namespace BusinessServices
             }
         }
 
+        public string[] GetReferenceOfShipment(string shipmentId)
+        {
+            using (var scope = new TransactionScope())
+            {
+                string[] arr = new string[6];
+                ShipmentInfor shipmentDataModel = _unitOfWork.ShipmentRepository.Get(t => t.ShipmentId.Equals(shipmentId, StringComparison.CurrentCultureIgnoreCase));
+                
+                if(shipmentDataModel != null)
+                {
+                    arr[0] = shipmentDataModel.Id.ToString();
+                    arr[1] = shipmentDataModel.ShipmentId;
+                    arr[2] = shipmentDataModel.BoxInfo.Id.ToString();
+                    arr[3] = shipmentDataModel.BoxInfo.BoxId;
+                    arr[4] = shipmentDataModel.BoxInfo.MasterBill.Id.ToString();
+                    arr[5] = shipmentDataModel.BoxInfo.MasterBill.MasterAirWayBill;
+                    scope.Complete();
+
+                    return arr;
+                }
+
+                scope.Complete();
+                return null;
+            }
+        }
+
         public bool Exists(string shipmentId)
         {
             return _unitOfWork.ShipmentRepository.Get(t => t.ShipmentId == shipmentId) == null ? false : true;

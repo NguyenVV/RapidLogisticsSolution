@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCreateEditEmployee));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnCreate = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.dtpBirthDate = new System.Windows.Forms.DateTimePicker();
@@ -49,9 +50,8 @@
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.lbListEmployee = new System.Windows.Forms.ListBox();
             this.txtSearchEmployee = new System.Windows.Forms.TextBox();
-            this.btnCreate = new System.Windows.Forms.Button();
+            this.lbListEmployee = new System.Windows.Forms.ListBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -78,14 +78,26 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.txtUserName);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Location = new System.Drawing.Point(0, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1041, 897);
+            this.groupBox1.Size = new System.Drawing.Size(1041, 886);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin nhân viên";
+            // 
+            // btnCreate
+            // 
+            this.btnCreate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnCreate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCreate.Location = new System.Drawing.Point(89, 782);
+            this.btnCreate.Name = "btnCreate";
+            this.btnCreate.Size = new System.Drawing.Size(172, 61);
+            this.btnCreate.TabIndex = 15;
+            this.btnCreate.Text = "Tạo Mới";
+            this.btnCreate.UseVisualStyleBackColor = true;
+            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
             // btnCancel
             // 
@@ -124,7 +136,7 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(82, 365);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(165, 37);
+            this.label8.Size = new System.Drawing.Size(147, 36);
             this.label8.TabIndex = 14;
             this.label8.Text = "Ngày Sinh";
             // 
@@ -137,7 +149,7 @@
             "Administrator"});
             this.cbbRole.Location = new System.Drawing.Point(334, 213);
             this.cbbRole.Name = "cbbRole";
-            this.cbbRole.Size = new System.Drawing.Size(612, 45);
+            this.cbbRole.Size = new System.Drawing.Size(612, 44);
             this.cbbRole.TabIndex = 3;
             // 
             // label7
@@ -145,7 +157,7 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(82, 213);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(110, 37);
+            this.label7.Size = new System.Drawing.Size(97, 36);
             this.label7.TabIndex = 12;
             this.label7.Text = "Quyền";
             // 
@@ -162,7 +174,7 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(82, 600);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(115, 37);
+            this.label6.Size = new System.Drawing.Size(107, 36);
             this.label6.TabIndex = 10;
             this.label6.Text = "Địa chỉ";
             // 
@@ -178,7 +190,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(82, 504);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(97, 37);
+            this.label5.Size = new System.Drawing.Size(90, 36);
             this.label5.TabIndex = 8;
             this.label5.Text = "Email";
             // 
@@ -194,7 +206,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(82, 437);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(172, 37);
+            this.label4.Size = new System.Drawing.Size(156, 36);
             this.label4.TabIndex = 6;
             this.label4.Text = "Điện Thoại";
             // 
@@ -210,7 +222,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(82, 290);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(164, 37);
+            this.label3.Size = new System.Drawing.Size(146, 36);
             this.label3.TabIndex = 4;
             this.label3.Text = "Họ và Tên";
             // 
@@ -228,7 +240,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(82, 141);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(158, 37);
+            this.label2.Size = new System.Drawing.Size(135, 36);
             this.label2.TabIndex = 2;
             this.label2.Text = "Password";
             // 
@@ -244,7 +256,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(82, 74);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(179, 37);
+            this.label1.Size = new System.Drawing.Size(155, 36);
             this.label1.TabIndex = 0;
             this.label1.Text = "User Name";
             // 
@@ -252,14 +264,21 @@
             // 
             this.groupBox2.Controls.Add(this.txtSearchEmployee);
             this.groupBox2.Controls.Add(this.lbListEmployee);
-            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.Color.Green;
-            this.groupBox2.Location = new System.Drawing.Point(1061, 0);
+            this.groupBox2.Location = new System.Drawing.Point(1061, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(557, 897);
+            this.groupBox2.Size = new System.Drawing.Size(557, 885);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Danh Sách Nhân Viên";
+            // 
+            // txtSearchEmployee
+            // 
+            this.txtSearchEmployee.Location = new System.Drawing.Point(20, 52);
+            this.txtSearchEmployee.Name = "txtSearchEmployee";
+            this.txtSearchEmployee.Size = new System.Drawing.Size(516, 38);
+            this.txtSearchEmployee.TabIndex = 1;
             // 
             // lbListEmployee
             // 
@@ -270,25 +289,6 @@
             this.lbListEmployee.Size = new System.Drawing.Size(517, 748);
             this.lbListEmployee.TabIndex = 0;
             this.lbListEmployee.SelectedIndexChanged += new System.EventHandler(this.lbListEmployee_SelectedIndexChanged);
-            // 
-            // txtSearchEmployee
-            // 
-            this.txtSearchEmployee.Location = new System.Drawing.Point(20, 52);
-            this.txtSearchEmployee.Name = "txtSearchEmployee";
-            this.txtSearchEmployee.Size = new System.Drawing.Size(516, 38);
-            this.txtSearchEmployee.TabIndex = 1;
-            // 
-            // btnCreate
-            // 
-            this.btnCreate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnCreate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCreate.Location = new System.Drawing.Point(89, 782);
-            this.btnCreate.Name = "btnCreate";
-            this.btnCreate.Size = new System.Drawing.Size(172, 61);
-            this.btnCreate.TabIndex = 15;
-            this.btnCreate.Text = "Tạo Mới";
-            this.btnCreate.UseVisualStyleBackColor = true;
-            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
             // FormCreateEditEmployee
             // 

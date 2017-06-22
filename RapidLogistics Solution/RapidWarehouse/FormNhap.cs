@@ -58,14 +58,16 @@ namespace RapidWarehouse
             grvShipmentsWaitConfirmed.ColumnCount = 2;
             grvShipmentsWaitConfirmed.Columns[0].Name = "STT";
             grvShipmentsWaitConfirmed.Columns[0].ValueType = typeof(int);
+            grvShipmentsWaitConfirmed.Columns[0].ReadOnly = true;
             grvShipmentsWaitConfirmed.Columns[1].Name = "Shipment Id";
+            grvShipmentsWaitConfirmed.Columns[1].ReadOnly = true;
 
             //listViewShipmentBlocked.Columns.Add("Shipment Id", 500);
             //listViewShipmentBlocked.View = View.Details;
 
             AddDeleteButtonToGridView(grvShipments);
             AddDeleteButtonToGridView(grvShipmentListOut);
-            AddDeleteButtonToGridView(grvShipmentsWaitConfirmed);
+            AddCheckBoxToGridView(grvShipmentsWaitConfirmed);
             LoadAllWaitConfirmedToGridview();
 
             dtpNgayDen.CustomFormat = "dd/MM/yyyy";
@@ -77,6 +79,7 @@ namespace RapidWarehouse
             grvShipments.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             grvShipmentListOut.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             grvShipmentsWaitConfirmed.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            grvShipmentsWaitConfirmed.ReadOnly = false;
             ResetHardCodeText();
             manifestList = (List<ManifestEntity>)_manifestServices.GetManifestByDateString(dtpNgayDen.Value.ToString("yyyy-MM-dd"));
             //LoadAllMasterBillByDateToComboboxXacNhanDen(dtpNgayDen.Value);
@@ -90,9 +93,9 @@ namespace RapidWarehouse
             CloseBoxOut();
             ResetFormInfoNhap();
             ResetFormInfoXuat();
-            xpos = label10.Location.X;
-            ypos = label10.Location.Y;
-            timer1.Start();
+            //xpos = label10.Location.X;
+            //ypos = label10.Location.Y;
+            //timer1.Start();
         }
 
         #region Xác nhận đến
@@ -176,7 +179,7 @@ namespace RapidWarehouse
 
             if (!CheckIsMawbExistsInManifest(cbbMasterBill.Text))
             {
-                MessageBox.Show("Mã MAWB không có trong manifest của ngày đã chọn "+dtpNgayDen.Value.ToString("dd/MM/yyyy"), "Nhập thông tin", MessageBoxButtons.OK);
+                MessageBox.Show("Mã MAWB không có trong manifest của ngày đã chọn " + dtpNgayDen.Value.ToString("dd/MM/yyyy"), "Nhập thông tin", MessageBoxButtons.OK);
                 cbbMasterBill.Focus();
                 return false;
             }
@@ -272,7 +275,7 @@ namespace RapidWarehouse
                         }
                         catch (Exception e) { Ultilities.FileHelper.WriteLog(Ultilities.ExceptionLevel.Function, "private void SaveBoxInfor()", e); }
                     }
-                _shipmentServices.Create(listShipment);
+                    _shipmentServices.Create(listShipment);
                 }
             }
         }
@@ -878,6 +881,18 @@ namespace RapidWarehouse
             grv.Columns["dataGridViewDeleteButton"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
         }
 
+        private void AddCheckBoxToGridView(DataGridView grv)
+        {
+            DataGridViewCheckBoxColumn checkColumn = new DataGridViewCheckBoxColumn();
+            checkColumn.Name = "dataGridViewCheckBox";
+            checkColumn.HeaderText = "";
+            checkColumn.Width = 30;
+            checkColumn.ReadOnly = false;
+            checkColumn.FillWeight = 10;
+            //grv.Columns.Insert(2, checkColumn);
+            grv.Columns.Add(checkColumn);
+        }
+
         private void LoadAllMasterBillByDateToCombobox(DateTime date, ComboBox cbbMaster)
         {
             cbbMaster.DataSource = null;
@@ -977,25 +992,6 @@ namespace RapidWarehouse
                         _shipmentOutServices.Delete(grv.Rows[e.RowIndex].Cells["Shipment Id"].Value.ToString());
                         lblShipmentScanedOut.Text = (grv.Rows.Count - 1) + "";
                     }
-                    else
-                    {
-                        try
-                        {
-                            _shipmentWaitConfirmedServices.Delete(grv.Rows[e.RowIndex].Cells["Shipment Id"].Value.ToString());
-                            ShipmentOutEntity item = new ShipmentOutEntity();
-
-                            item.ShipmentId = grv.Rows[e.RowIndex].Cells["Shipment Id"].Value.ToString();
-                            ShipmentEntity shipment = _shipmentServices.GetByShipmentId(item.ShipmentId);
-                            BoxInforEntity box = _boxInforServices.GetByBoxId(shipment.BoxId);
-                            MasterAirwayBillEntity master = _masterBillServices.GetByMasterBillId(box.MasterBillId);
-                            item.BoxIdRef = box.Id;
-                            item.BoxIdString = box.BoxId;
-                            item.MasterBillId = master.Id;
-                            item.MasterBillIdString = master.MasterAirwayBill;
-                            _shipmentOutServices.Create(item);
-                        }
-                        catch (Exception ex) { Ultilities.FileHelper.WriteLog(Ultilities.ExceptionLevel.Function, "Save shipmentout and delete _shipmentWaitConfirmedServices", ex); }
-                    }
                 }
                 catch (Exception ex) { Ultilities.FileHelper.WriteLog(Ultilities.ExceptionLevel.Function, "private void DeleteRowFromGridview(DataGridView grv, DataGridViewCellEventArgs e, int grvType)", ex); }
 
@@ -1076,7 +1072,7 @@ namespace RapidWarehouse
                 cbbBoxes.Items.Clear();
             }
         }
-        
+
         #endregion
 
         #region Các báo cáo
@@ -2016,11 +2012,66 @@ namespace RapidWarehouse
                 txtShipmentIdBlock.Text = String.Empty;
             }
         }
-
-        private void grvShipmentsWaitConfirmed_CellClick(object sender, DataGridViewCellEventArgs e)
+       
+        private void ConfirmListShipment()
         {
-            DeleteRowFromGridview(grvShipmentsWaitConfirmed, e, 3);
-            ReIndexingRow(grvShipmentsWaitConfirmed);
+            if (MessageBox.Show("Bạn có chắc chắn muốn giữ lại những Shipment đã chọn và Xuất Kho những cái không chọn không ?", "Xuất kho shipment chờ thông quan", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                if (grvShipmentsWaitConfirmed != null && grvShipmentsWaitConfirmed.Rows.Count > 0)
+                {
+                    List<ShipmentOutEntity> listXuat = new List<ShipmentOutEntity>();
+                    List<string> listShipmentId = new List<string>();
+                    List<DataGridViewRow> rowDeletedList = new List<DataGridViewRow>();
+                    try
+                    {
+                        foreach (DataGridViewRow row in grvShipmentsWaitConfirmed.Rows)
+                        {
+                            if (Convert.ToBoolean(row.Cells["dataGridViewCheckBox"].Value) == false)
+                            {
+                                ShipmentOutEntity item = new ShipmentOutEntity();
+
+                                item.ShipmentId = row.Cells["Shipment Id"].Value.ToString();
+                                string[] shipmentRefs = _shipmentServices.GetReferenceOfShipment(item.ShipmentId);
+                                if (shipmentRefs != null)
+                                {
+                                    item.BoxIdRef = int.Parse(shipmentRefs[2]);
+                                    item.BoxIdString = shipmentRefs[3];
+                                    item.MasterBillId = int.Parse(shipmentRefs[4]);
+                                    item.MasterBillIdString = shipmentRefs[5];
+                                    item.DateCreated = DateTime.Now;
+                                    item.EmployeeId = currentEmployee.Id;
+                                    item.DateOut = DateTime.Now;
+                                    listXuat.Add(item);
+                                    listShipmentId.Add(item.ShipmentId);
+                                    rowDeletedList.Add(row);
+                                }
+                            }
+                        }
+
+                        if (rowDeletedList.Count > 0)
+                        {
+                            _shipmentOutServices.Create(listXuat);
+                            _shipmentWaitConfirmedServices.Delete(listShipmentId);
+                            MessageBox.Show("Xuất Kho thành công " + listXuat.Count + " shipment", "Xuất kho shipment chờ thông quan", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            foreach (var row in rowDeletedList)
+                            {
+                                grvShipmentsWaitConfirmed.Rows.Remove(row);
+                            }
+                            ReIndexingRow(grvShipmentsWaitConfirmed);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Bạn đã giữ lại tất cả mà không xuất kho shipment nào cả, hãy thử lại !", "Xuất kho shipment chờ thông quan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Xuất Kho bị lỗi, vui lòng thử lại", "Xuất kho shipment chờ thông quan", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Ultilities.FileHelper.WriteLog(Ultilities.ExceptionLevel.Function, "Save shipmentout and delete _shipmentWaitConfirmedServices", ex);
+                    }
+                }
+            }
         }
 
         private void LoadAllWaitConfirmedToGridview()
@@ -2078,11 +2129,16 @@ namespace RapidWarehouse
             Program.Container.GetInstance<FormHome>().Show();
             this.Dispose();
         }
-        
+
         private void btnDong_Click(object sender, EventArgs e)
         {
             Program.Container.GetInstance<FormHome>().Show();
             this.Dispose();
+        }
+
+        private void btnXuatKhoConfirmed_Click(object sender, EventArgs e)
+        {
+            ConfirmListShipment();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -2103,7 +2159,7 @@ namespace RapidWarehouse
             }
             else if (tabNhap.SelectedIndex == 1)
             {
-                //Xac nhan den
+                //Nhap kho
                 if (xposX >= this.Width)
                 {
                     this.lblXuatKho.Location = new System.Drawing.Point(0, yposX);

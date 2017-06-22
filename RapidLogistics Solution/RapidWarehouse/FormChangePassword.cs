@@ -62,5 +62,12 @@ namespace RapidWarehouse
             home.Show();
             this.Dispose();
         }
+
+        private void FormChangePassword_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            FormHome home = new FormHome();
+            home.Show();
+            this.Dispose();
+        }
     }
 }

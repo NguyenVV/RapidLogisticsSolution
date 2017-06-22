@@ -51,16 +51,16 @@
             this.groupBox1.Controls.Add(this.btnInventory);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.groupBox1.Location = new System.Drawing.Point(13, 12);
+            this.groupBox1.Location = new System.Drawing.Point(32, 28);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1081, 505);
+            this.groupBox1.Size = new System.Drawing.Size(1140, 489);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Các chức năng chương trình";
             // 
             // btnChangePass
             // 
-            this.btnChangePass.Location = new System.Drawing.Point(403, 112);
+            this.btnChangePass.Location = new System.Drawing.Point(432, 112);
             this.btnChangePass.Name = "btnChangePass";
             this.btnChangePass.Size = new System.Drawing.Size(258, 157);
             this.btnChangePass.TabIndex = 36;
@@ -72,7 +72,7 @@
             // 
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit.ForeColor = System.Drawing.Color.Red;
-            this.btnExit.Location = new System.Drawing.Point(637, 426);
+            this.btnExit.Location = new System.Drawing.Point(652, 426);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(203, 56);
             this.btnExit.TabIndex = 35;
@@ -84,7 +84,7 @@
             // 
             this.btnLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogout.ForeColor = System.Drawing.Color.Red;
-            this.btnLogout.Location = new System.Drawing.Point(859, 426);
+            this.btnLogout.Location = new System.Drawing.Point(878, 426);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(203, 56);
             this.btnLogout.TabIndex = 34;
@@ -95,7 +95,7 @@
             // lblWelcome
             // 
             this.lblWelcome.AutoSize = true;
-            this.lblWelcome.Location = new System.Drawing.Point(3, 445);
+            this.lblWelcome.Location = new System.Drawing.Point(12, 445);
             this.lblWelcome.Name = "lblWelcome";
             this.lblWelcome.Size = new System.Drawing.Size(160, 37);
             this.lblWelcome.TabIndex = 2;
@@ -103,7 +103,7 @@
             // 
             // btnManageEmployee
             // 
-            this.btnManageEmployee.Location = new System.Drawing.Point(762, 112);
+            this.btnManageEmployee.Location = new System.Drawing.Point(807, 112);
             this.btnManageEmployee.Name = "btnManageEmployee";
             this.btnManageEmployee.Size = new System.Drawing.Size(274, 157);
             this.btnManageEmployee.TabIndex = 1;
@@ -127,7 +127,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1106, 540);
+            this.ClientSize = new System.Drawing.Size(1201, 547);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormHome";
