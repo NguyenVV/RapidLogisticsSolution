@@ -79,4 +79,3 @@ C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWa
 C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\obj\Debug\vi-VN\RapidWarehouse.resources.dll
 C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.exe
 C:\Users\Nguyen\Desktop\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.pdb
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\bin\Debug\RapidWarehouse.exe.config

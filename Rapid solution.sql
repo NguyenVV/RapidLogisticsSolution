@@ -32,6 +32,7 @@ Create table ShipmentInfor
 	TotalValue float,
 	Descrition nvarchar(1000),
 	BoxId int references BoxInfo(Id),
+	[Weight] float,
 	[Status] nvarchar(100),
 	EmployeeId int references Employee(Id)
 )
@@ -59,6 +60,7 @@ Create table ShipmentInforTemp
 	TotalValue float,
 	Descrition nvarchar(1000),
 	BoxId int references BoxInfo(Id),
+	[Weight] float,
 	[Status] nvarchar(100),
 	EmployeeId int references Employee(Id)
 )

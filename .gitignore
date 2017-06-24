@@ -3,3 +3,8 @@
 ################################################################################
 
 /RapidLogistics Solution/BusinessEntities/bin/Debug
+/RapidLogistics Solution/BusinessServices/bin/Debug
+/RapidLogistics Solution/DataModel/bin/Debug
+/RapidLogistics Solution/DataModel/obj/Debug/edmxResourcesToEmbed
+/RapidLogistics Solution/RapidWarehouse/bin/Debug/vi-VN
+/RapidLogistics Solution/WebApi/bin
