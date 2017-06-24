@@ -33,17 +33,24 @@ namespace RapidWarehouse
                 }
                 else
                 {
-                    mEmployee = mEmployeeService.Login(txtUserName.Text, txtPassword.Text);
-                    if (mEmployee != null)
+                    try
                     {
-                        lblError.Text = "";
-                        home.Show();
-                        home.ShowHideButton();
-                        this.Hide();
-                    }
-                    else
+                        mEmployee = mEmployeeService.Login(txtUserName.Text, txtPassword.Text);
+                        if (mEmployee != null)
+                        {
+                            lblError.Text = "";
+                            home.Show();
+                            home.ShowHideButton();
+                            this.Hide();
+                        }
+                        else
+                        {
+                            lblError.Text = "Bạn đã nhập sai User name hoặc Password, hãy thử lại!";
+                        }
+                    }catch(Exception ex)
                     {
-                        lblError.Text = "Bạn đã nhập sai User name hoặc Password, hãy thử lại!";
+                        Ultilities.FileHelper.WriteLog(Ultilities.ExceptionLevel.Function, "Đã có lỗi xảy ra khi đăng nhập, vui lòng thử lại sau", ex);
+                        lblError.Text = "Đã có lỗi xảy ra khi đăng nhập, vui lòng thử lại sau!";
                     }
                 }
             }

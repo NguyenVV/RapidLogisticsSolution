@@ -162,7 +162,7 @@
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormLogin";
-            this.Text = "Đăng Nhập";
+            this.Text = "Đăng Nhập - Rapid Logistics v1.0.16";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormLogin_FormClosed);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

@@ -147,7 +147,7 @@
             this.tabNhap.Location = new System.Drawing.Point(0, 0);
             this.tabNhap.Name = "tabNhap";
             this.tabNhap.SelectedIndex = 0;
-            this.tabNhap.Size = new System.Drawing.Size(1584, 1542);
+            this.tabNhap.Size = new System.Drawing.Size(1550, 1542);
             this.tabNhap.TabIndex = 0;
             this.tabNhap.SelectedIndexChanged += new System.EventHandler(this.tabNhap_SelectedIndexChanged);
             // 
@@ -166,7 +166,7 @@
             this.tabPage1.Location = new System.Drawing.Point(8, 39);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1568, 1495);
+            this.tabPage1.Size = new System.Drawing.Size(1534, 1495);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "              Xác Nhận Đến              ";
             // 
@@ -428,7 +428,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(18, 647);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1579, 834);
+            this.groupBox1.Size = new System.Drawing.Size(1561, 834);
             this.groupBox1.TabIndex = 27;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Danh sách shipments nhập kho";
@@ -457,7 +457,7 @@
             this.grvShipments.Location = new System.Drawing.Point(11, 54);
             this.grvShipments.Name = "grvShipments";
             this.grvShipments.RowTemplate.Height = 33;
-            this.grvShipments.Size = new System.Drawing.Size(1527, 670);
+            this.grvShipments.Size = new System.Drawing.Size(1509, 670);
             this.grvShipments.TabIndex = 6;
             this.grvShipments.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grvShipments_CellClick);
             // 
@@ -497,7 +497,7 @@
             this.tabPage2.Location = new System.Drawing.Point(8, 39);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1568, 1495);
+            this.tabPage2.Size = new System.Drawing.Size(1534, 1495);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "                Xuất Kho                ";
             // 
@@ -785,7 +785,7 @@
             this.groupBox2.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(25, 647);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1596, 837);
+            this.groupBox2.Size = new System.Drawing.Size(1584, 837);
             this.groupBox2.TabIndex = 40;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Danh sách shipments xuất kho";
@@ -814,7 +814,7 @@
             this.grvShipmentListOut.Location = new System.Drawing.Point(11, 52);
             this.grvShipmentListOut.Name = "grvShipmentListOut";
             this.grvShipmentListOut.RowTemplate.Height = 33;
-            this.grvShipmentListOut.Size = new System.Drawing.Size(1569, 670);
+            this.grvShipmentListOut.Size = new System.Drawing.Size(1557, 670);
             this.grvShipmentListOut.TabIndex = 34;
             this.grvShipmentListOut.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grvShipmentListOut_CellClick);
             // 
@@ -877,7 +877,7 @@
             this.tabPage3.Location = new System.Drawing.Point(8, 39);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1602, 1495);
+            this.tabPage3.Size = new System.Drawing.Size(1568, 1495);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "                Báo Cáo                ";
             // 
@@ -1073,7 +1073,7 @@
             this.tabPage4.Location = new System.Drawing.Point(8, 39);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(1568, 1495);
+            this.tabPage4.Size = new System.Drawing.Size(1534, 1495);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "        Danh Sách Chờ Thông Quan      ";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -1134,7 +1134,7 @@
             this.groupBox4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox4.Location = new System.Drawing.Point(6, 180);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(1754, 1159);
+            this.groupBox4.Size = new System.Drawing.Size(1748, 1159);
             this.groupBox4.TabIndex = 41;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Danh sách shipments chờ thông quan";
@@ -1184,7 +1184,7 @@
             this.grvShipmentsWaitConfirmed.Location = new System.Drawing.Point(6, 55);
             this.grvShipmentsWaitConfirmed.Name = "grvShipmentsWaitConfirmed";
             this.grvShipmentsWaitConfirmed.RowTemplate.Height = 33;
-            this.grvShipmentsWaitConfirmed.Size = new System.Drawing.Size(1536, 984);
+            this.grvShipmentsWaitConfirmed.Size = new System.Drawing.Size(1530, 984);
             this.grvShipmentsWaitConfirmed.TabIndex = 24;
             // 
             // timer1

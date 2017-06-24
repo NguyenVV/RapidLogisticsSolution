@@ -27,6 +27,7 @@ namespace RapidWarehouse
         EmployeeEntity currentEmployee;
         private int xpos = 0, ypos = 0;
         private int xposX = 0, yposX = 0;
+        private int indexWaitConfirmedDeleted = 0;
         private readonly IMasterBillServices _masterBillServices;
         private readonly IShipmentServices _shipmentServices;
         private readonly IShipmentOutServices _shipmentOutServices;
@@ -801,21 +802,34 @@ namespace RapidWarehouse
             {
                 lblVuaNhapOut.Text = txtShipmentIdOut.Text;
 
-                if (IsExistsOnTheGridView(grvShipmentsWaitConfirmed, txtShipmentIdOut.Text))
-                {
-                    Beep(1000, 1000);
-                    Beep(1000, 1000);
-                    Beep(1000, 1000);
-                    MessageBox.Show("Shipment vừa nhập " + txtShipmentIdOut.Text + " đã có trên danh sách chờ thông quan", "Shipment chờ thông quan");
-                    txtShipmentIdOut.Text = String.Empty;
-                    return;
-                }
-
                 if (IsExistsOnTheGridView(grvShipmentListOut, txtShipmentIdOut.Text))
                 {
                     MessageBox.Show("Tìm thấy shipment vừa nhập đã có trên lưới", "Shipment trùng lặp");
                     txtShipmentIdOut.Text = String.Empty;
                     return;
+                }
+
+                if (IsExistsOnTheGridView(grvShipmentsWaitConfirmed, txtShipmentIdOut.Text))
+                {
+                    Beep(1000, 1000);
+                    Beep(1000, 1000);
+                    Beep(1000, 1000);
+                    var result = MessageBox.Show("Shipment vừa nhập " + txtShipmentIdOut.Text + " đã có trên danh sách chờ thông quan\nBạn có muốn xuất kho shipment này luôn không ?", "Shipment chờ thông quan", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (result == DialogResult.Yes)
+                    {
+                        try
+                        {
+                            grvShipmentsWaitConfirmed.Rows.RemoveAt(indexWaitConfirmedDeleted);
+                            _shipmentWaitConfirmedServices.Delete(txtShipmentIdOut.Text);
+                        }
+                        catch (Exception ex) { Ultilities.FileHelper.WriteLog(Ultilities.ExceptionLevel.Function, "Save shipmentout and delete _shipmentWaitConfirmedServices", ex); }
+
+                    }
+                    else
+                    {
+                        txtShipmentIdOut.Text = String.Empty;
+                        return;
+                    }
                 }
 
                 //Check chưa có trong bảng ShipmentInfor thì thêm mới vào
@@ -933,6 +947,7 @@ namespace RapidWarehouse
                     grv.Rows[i].Selected = true;
                     grv.FirstDisplayedScrollingRowIndex = i;
                     grv.Focus();
+                    indexWaitConfirmedDeleted = i;
                     return true;
                 }
                 //}

@@ -38,18 +38,3 @@ C:\Users\Nguyen\Desktop\RapidLogistics Solution\BusinessEntities\obj\Debug\Busin
 C:\Users\Nguyen\Desktop\RapidLogistics Solution\BusinessEntities\obj\Debug\BusinessEntities.csprojResolveAssemblyReference.cache
 C:\Users\Nguyen\Desktop\RapidLogistics Solution\BusinessEntities\obj\Debug\BusinessEntities.dll
 C:\Users\Nguyen\Desktop\RapidLogistics Solution\BusinessEntities\obj\Debug\BusinessEntities.pdb
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\bin\Debug\BusinessEntities.dll.config
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\bin\Debug\BusinessEntities.dll
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\bin\Debug\BusinessEntities.pdb
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\bin\Debug\AutoMapper.dll
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\bin\Debug\System.IO.dll
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\bin\Debug\System.Runtime.dll
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\bin\Debug\System.Threading.Tasks.dll
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\bin\Debug\AutoMapper.xml
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\bin\Debug\System.IO.xml
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\bin\Debug\System.Runtime.xml
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\bin\Debug\System.Threading.Tasks.xml
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\obj\Debug\BusinessEntities.csproj.App.config
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\obj\Debug\BusinessEntities.csprojResolveAssemblyReference.cache
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\obj\Debug\BusinessEntities.dll
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\obj\Debug\BusinessEntities.pdb
