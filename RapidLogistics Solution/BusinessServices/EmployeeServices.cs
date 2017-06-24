@@ -9,6 +9,7 @@ using DataModel.UnitOfWork;
 using AutoMapper;
 using DataModel;
 using System.Transactions;
+using Ultilities;
 
 namespace BusinessServices
 {
@@ -22,7 +23,7 @@ namespace BusinessServices
         }
         public int ChangePassword(EmployeeEntity employee, string newPassword)
         {
-            employee.Pasword = Encrypt(newPassword);
+            employee.Pasword = Security.Encrypt(newPassword);
             return CreateOrUpdateEmployee(employee);
         }
 
@@ -36,12 +37,12 @@ namespace BusinessServices
                 if (employee.Id > 0)
                 {
                     var original = _unitOfWork.EmployeeRepository.GetByID(employee.Id);
-                    employeeModel.Pasword = Encrypt(Decrypt(original.Pasword));
+                    employeeModel.Pasword = Security.Encrypt(Security.Decrypt(original.Pasword));
                     _unitOfWork.EmployeeRepository.Update(original, employeeModel);
                 }
                 else
                 {
-                    employeeModel.Pasword = Encrypt(employee.Pasword);
+                    employeeModel.Pasword = Security.Encrypt(employee.Pasword);
                     _unitOfWork.EmployeeRepository.Insert(employeeModel);
                 }
                 
@@ -61,8 +62,8 @@ namespace BusinessServices
             var employee = _unitOfWork.EmployeeRepository.Get(t => t.UserName.Equals(userName,StringComparison.CurrentCultureIgnoreCase));
             if (employee != null)
             {
-                string pass = Decrypt(employee.Pasword);
-                if (pass.Equals(password + "@123456789"))
+                string pass = Security.Decrypt(employee.Pasword);
+                if (pass.Equals(password))
                 {
                     Mapper.CreateMap<Employee, EmployeeEntity>();
                     var employeeModel = Mapper.Map<Employee, EmployeeEntity>(employee);
@@ -97,30 +98,6 @@ namespace BusinessServices
                 return employeeListModel;
             }
             return null;
-        }
-
-        private string Encrypt(string plainText)
-        {
-            if (plainText == null) throw new ArgumentNullException("plainText");
-
-            //encrypt data
-            var data = Encoding.Unicode.GetBytes(plainText + "@123456789");
-            byte[] encrypted = ProtectedData.Protect(data, null, DataProtectionScope.CurrentUser);
-
-            //return as base64 string
-            return Convert.ToBase64String(encrypted);
-        }
-
-        private string Decrypt(string cipher)
-        {
-            if (cipher == null) throw new ArgumentNullException("cipher");
-
-            //parse base64 string
-            byte[] data = Convert.FromBase64String(cipher);
-
-            //decrypt data
-            byte[] decrypted = ProtectedData.Unprotect(data, null, DataProtectionScope.CurrentUser);
-            return Encoding.Unicode.GetString(decrypted);
         }
     }
 }

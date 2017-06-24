@@ -19,3 +19,15 @@ Exception details : System.Security; Key not valid for use in specified state.
 Exception at: Đã có lỗi xảy ra khi đăng nhập, vui lòng thử lại sau on :2017-06-24 13:28:36
 Exception details : System.Security; Key not valid for use in specified state.
 ============================================================================================
+Exception at: Đã có lỗi xảy ra khi đăng nhập, vui lòng thử lại sau on :2017-06-25 00:45:08
+Exception details : System.Data.Entity; The underlying provider failed on Open.
+============================================================================================
+Exception at: Đã có lỗi xảy ra khi đăng nhập, vui lòng thử lại sau on :2017-06-25 00:46:25
+Exception details : System.Data.Entity; The underlying provider failed on Open.
+============================================================================================
+Exception at: Đã có lỗi xảy ra khi đăng nhập, vui lòng thử lại sau on :2017-06-25 01:21:33
+Exception details : mscorlib; Length of the data to decrypt is invalid.
+============================================================================================
+Exception at: Đã có lỗi xảy ra khi đăng nhập, vui lòng thử lại sau on :2017-06-25 01:22:03
+Exception details : mscorlib; Length of the data to decrypt is invalid.
+============================================================================================
