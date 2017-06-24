@@ -819,7 +819,9 @@ namespace RapidWarehouse
                     {
                         try
                         {
+                            //xóa trên gridview
                             grvShipmentsWaitConfirmed.Rows.RemoveAt(indexWaitConfirmedDeleted);
+                            //xóa trong db
                             _shipmentWaitConfirmedServices.Delete(txtShipmentIdOut.Text);
                         }
                         catch (Exception ex) { Ultilities.FileHelper.WriteLog(Ultilities.ExceptionLevel.Function, "Save shipmentout and delete _shipmentWaitConfirmedServices", ex); }

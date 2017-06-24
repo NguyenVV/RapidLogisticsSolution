@@ -35,7 +35,9 @@ namespace BusinessServices
 
                 if (employee.Id > 0)
                 {
-                    _unitOfWork.EmployeeRepository.Update(_unitOfWork.EmployeeRepository.GetByID(employee.Id), employeeModel);
+                    var original = _unitOfWork.EmployeeRepository.GetByID(employee.Id);
+                    employeeModel.Pasword = Encrypt(Decrypt(original.Pasword));
+                    _unitOfWork.EmployeeRepository.Update(original, employeeModel);
                 }
                 else
                 {
@@ -56,12 +58,16 @@ namespace BusinessServices
 
         public EmployeeEntity Login(string userName, string password)
         {
-            var employee = _unitOfWork.EmployeeRepository.Get(t => t.UserName.Equals(userName,StringComparison.CurrentCultureIgnoreCase) && Decrypt(t.Pasword).Equals(password + "@123456789"));
+            var employee = _unitOfWork.EmployeeRepository.Get(t => t.UserName.Equals(userName,StringComparison.CurrentCultureIgnoreCase));
             if (employee != null)
             {
-                Mapper.CreateMap<Employee, EmployeeEntity>();
-                var employeeModel = Mapper.Map<Employee, EmployeeEntity>(employee);
-                return employeeModel;
+                string pass = Decrypt(employee.Pasword);
+                if (pass.Equals(password + "@123456789"))
+                {
+                    Mapper.CreateMap<Employee, EmployeeEntity>();
+                    var employeeModel = Mapper.Map<Employee, EmployeeEntity>(employee);
+                    return employeeModel;
+                }
             }
             return null;
         }
@@ -99,7 +105,7 @@ namespace BusinessServices
 
             //encrypt data
             var data = Encoding.Unicode.GetBytes(plainText + "@123456789");
-            byte[] encrypted = ProtectedData.Protect(data, null, DataProtectionScope.LocalMachine);
+            byte[] encrypted = ProtectedData.Protect(data, null, DataProtectionScope.CurrentUser);
 
             //return as base64 string
             return Convert.ToBase64String(encrypted);
@@ -113,7 +119,7 @@ namespace BusinessServices
             byte[] data = Convert.FromBase64String(cipher);
 
             //decrypt data
-            byte[] decrypted = ProtectedData.Unprotect(data, null, DataProtectionScope.LocalMachine);
+            byte[] decrypted = ProtectedData.Unprotect(data, null, DataProtectionScope.CurrentUser);
             return Encoding.Unicode.GetString(decrypted);
         }
     }

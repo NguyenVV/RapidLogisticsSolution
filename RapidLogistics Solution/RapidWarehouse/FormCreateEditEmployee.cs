@@ -21,7 +21,10 @@ namespace RapidWarehouse
         private void LoadAllEmployeeToListBox()
         {
             listAllEmployee = mEmployeeService.GetAll();
-            listAllEmployee.Remove(FormLogin.mEmployee);
+            if (listAllEmployee != null && listAllEmployee.Count > 0)
+            {
+                listAllEmployee.Remove(FormLogin.mEmployee);
+            }
             lbListEmployee.DataSource = listAllEmployee;
             lbListEmployee.DisplayMember = "UserName";
             lbListEmployee.ValueMember = "Id";
