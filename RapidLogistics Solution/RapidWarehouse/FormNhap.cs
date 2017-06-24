@@ -2201,5 +2201,15 @@ namespace RapidWarehouse
         }
         #endregion
 
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblThungDaQuet_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

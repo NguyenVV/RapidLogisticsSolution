@@ -59,9 +59,11 @@
             this.lblMaVuaNhap = new System.Windows.Forms.Label();
             this.txtShipmentId = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.btnRefresh = new System.Windows.Forms.Button();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.cbbBoxIdOut = new System.Windows.Forms.ComboBox();
+            this.btnThoat = new System.Windows.Forms.Button();
             this.cbbMasterBillOut = new System.Windows.Forms.ComboBox();
             this.btnOpenBoxOut = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
@@ -83,7 +85,6 @@
             this.label21 = new System.Windows.Forms.Label();
             this.lblMasterBillOut = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnThoat = new System.Windows.Forms.Button();
             this.grvShipmentListOut = new System.Windows.Forms.DataGridView();
             this.lblXuatKho = new System.Windows.Forms.Label();
             this.lblVuaNhapOut = new System.Windows.Forms.Label();
@@ -118,7 +119,7 @@
             this.btnDong = new System.Windows.Forms.Button();
             this.grvShipmentsWaitConfirmed = new System.Windows.Forms.DataGridView();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.tabNhap.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -150,7 +151,7 @@
             this.tabNhap.Name = "tabNhap";
             this.tabNhap.Padding = new System.Drawing.Point(6, 12);
             this.tabNhap.SelectedIndex = 0;
-            this.tabNhap.Size = new System.Drawing.Size(1391, 1480);
+            this.tabNhap.Size = new System.Drawing.Size(1361, 1480);
             this.tabNhap.TabIndex = 0;
             this.tabNhap.SelectedIndexChanged += new System.EventHandler(this.tabNhap_SelectedIndexChanged);
             // 
@@ -166,15 +167,17 @@
             this.tabPage1.Controls.Add(this.lblMaVuaNhap);
             this.tabPage1.Controls.Add(this.txtShipmentId);
             this.tabPage1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabPage1.Location = new System.Drawing.Point(4, 51);
+            this.tabPage1.Location = new System.Drawing.Point(4, 56);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1383, 1425);
+            this.tabPage1.Size = new System.Drawing.Size(1353, 1420);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "              Xác Nhận Đến              ";
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.btnExit);
+            this.groupBox3.Controls.Add(this.button2);
             this.groupBox3.Controls.Add(this.cbbBoxId);
             this.groupBox3.Controls.Add(this.cbbMasterBill);
             this.groupBox3.Controls.Add(this.btnOpenClose);
@@ -182,23 +185,25 @@
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Controls.Add(this.dtpNgayDen);
-            this.groupBox3.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(17, 84);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(1294, 170);
             this.groupBox3.TabIndex = 33;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Nhập thông tin";
+            this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
             // 
             // cbbBoxId
             // 
             this.cbbBoxId.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbbBoxId.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cbbBoxId.BackColor = System.Drawing.Color.LightBlue;
+            this.cbbBoxId.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.cbbBoxId.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbBoxId.FormattingEnabled = true;
-            this.cbbBoxId.Location = new System.Drawing.Point(707, 97);
+            this.cbbBoxId.Location = new System.Drawing.Point(502, 97);
             this.cbbBoxId.Name = "cbbBoxId";
-            this.cbbBoxId.Size = new System.Drawing.Size(340, 36);
+            this.cbbBoxId.Size = new System.Drawing.Size(333, 31);
             this.cbbBoxId.TabIndex = 25;
             this.cbbBoxId.SelectedValueChanged += new System.EventHandler(this.cbbBoxId_SelectedIndexChanged);
             this.cbbBoxId.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbbBoxId_KeyDown);
@@ -208,11 +213,12 @@
             // 
             this.cbbMasterBill.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbbMasterBill.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cbbMasterBill.BackColor = System.Drawing.Color.LightBlue;
+            this.cbbMasterBill.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.cbbMasterBill.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbMasterBill.FormattingEnabled = true;
-            this.cbbMasterBill.Location = new System.Drawing.Point(309, 98);
+            this.cbbMasterBill.Location = new System.Drawing.Point(187, 97);
             this.cbbMasterBill.Name = "cbbMasterBill";
-            this.cbbMasterBill.Size = new System.Drawing.Size(344, 36);
+            this.cbbMasterBill.Size = new System.Drawing.Size(295, 31);
             this.cbbMasterBill.TabIndex = 24;
             this.cbbMasterBill.SelectedIndexChanged += new System.EventHandler(this.cbbMasterBill_SelectedIndexChanged);
             this.cbbMasterBill.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbbMasterBill_KeyDown);
@@ -220,11 +226,12 @@
             // 
             // btnOpenClose
             // 
-            this.btnOpenClose.BackColor = System.Drawing.Color.ForestGreen;
-            this.btnOpenClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.btnOpenClose.Location = new System.Drawing.Point(1086, 36);
+            this.btnOpenClose.BackColor = System.Drawing.Color.Transparent;
+            this.btnOpenClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
+            this.btnOpenClose.ForeColor = System.Drawing.Color.Red;
+            this.btnOpenClose.Location = new System.Drawing.Point(843, 51);
             this.btnOpenClose.Name = "btnOpenClose";
-            this.btnOpenClose.Size = new System.Drawing.Size(193, 129);
+            this.btnOpenClose.Size = new System.Drawing.Size(242, 78);
             this.btnOpenClose.TabIndex = 26;
             this.btnOpenClose.Text = "Mở";
             this.btnOpenClose.UseVisualStyleBackColor = false;
@@ -234,7 +241,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.label3.Location = new System.Drawing.Point(699, 50);
+            this.label3.Location = new System.Drawing.Point(506, 65);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(129, 29);
             this.label3.TabIndex = 29;
@@ -244,7 +251,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(303, 51);
+            this.label2.Location = new System.Drawing.Point(182, 65);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(90, 29);
             this.label2.TabIndex = 28;
@@ -254,7 +261,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(6, 50);
+            this.label1.Location = new System.Drawing.Point(11, 65);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(124, 29);
             this.label1.TabIndex = 27;
@@ -262,17 +269,18 @@
             // 
             // dtpNgayDen
             // 
+            this.dtpNgayDen.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpNgayDen.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpNgayDen.Location = new System.Drawing.Point(14, 99);
             this.dtpNgayDen.Name = "dtpNgayDen";
-            this.dtpNgayDen.Size = new System.Drawing.Size(250, 36);
+            this.dtpNgayDen.Size = new System.Drawing.Size(158, 30);
             this.dtpNgayDen.TabIndex = 23;
             this.dtpNgayDen.ValueChanged += new System.EventHandler(this.dtpNgayDen_ValueChanged);
             // 
             // txtSearch
             // 
             this.txtSearch.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtSearch.Location = new System.Drawing.Point(949, 556);
+            this.txtSearch.Location = new System.Drawing.Point(949, 531);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(362, 31);
             this.txtSearch.TabIndex = 32;
@@ -284,8 +292,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.Color.Red;
-            this.label10.Location = new System.Drawing.Point(584, 21);
+            this.label10.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.label10.Location = new System.Drawing.Point(519, 27);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(322, 54);
             this.label10.TabIndex = 31;
@@ -314,24 +322,25 @@
             // lblDonDaQuet
             // 
             this.lblDonDaQuet.AutoSize = true;
-            this.lblDonDaQuet.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDonDaQuet.ForeColor = System.Drawing.Color.Goldenrod;
-            this.lblDonDaQuet.Location = new System.Drawing.Point(1057, 81);
+            this.lblDonDaQuet.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDonDaQuet.ForeColor = System.Drawing.Color.OrangeRed;
+            this.lblDonDaQuet.Location = new System.Drawing.Point(1044, 71);
             this.lblDonDaQuet.Name = "lblDonDaQuet";
-            this.lblDonDaQuet.Size = new System.Drawing.Size(246, 38);
+            this.lblDonDaQuet.Size = new System.Drawing.Size(64, 44);
             this.lblDonDaQuet.TabIndex = 34;
-            this.lblDonDaQuet.Text = "Tổng ship quét";
+            this.lblDonDaQuet.Text = "68";
             // 
             // lblThungDaQuet
             // 
             this.lblThungDaQuet.AutoSize = true;
-            this.lblThungDaQuet.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThungDaQuet.ForeColor = System.Drawing.Color.Goldenrod;
-            this.lblThungDaQuet.Location = new System.Drawing.Point(1057, 13);
+            this.lblThungDaQuet.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblThungDaQuet.ForeColor = System.Drawing.Color.LightSkyBlue;
+            this.lblThungDaQuet.Location = new System.Drawing.Point(1044, 11);
             this.lblThungDaQuet.Name = "lblThungDaQuet";
-            this.lblThungDaQuet.Size = new System.Drawing.Size(191, 38);
+            this.lblThungDaQuet.Size = new System.Drawing.Size(42, 44);
             this.lblThungDaQuet.TabIndex = 33;
-            this.lblThungDaQuet.Text = "Tổng thùng";
+            this.lblThungDaQuet.Text = "5";
+            this.lblThungDaQuet.Click += new System.EventHandler(this.lblThungDaQuet_Click);
             // 
             // label12
             // 
@@ -369,19 +378,19 @@
             // lblShipmentScaned
             // 
             this.lblShipmentScaned.AutoSize = true;
-            this.lblShipmentScaned.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblShipmentScaned.ForeColor = System.Drawing.Color.Goldenrod;
-            this.lblShipmentScaned.Location = new System.Drawing.Point(776, 181);
+            this.lblShipmentScaned.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblShipmentScaned.ForeColor = System.Drawing.Color.Magenta;
+            this.lblShipmentScaned.Location = new System.Drawing.Point(761, 145);
             this.lblShipmentScaned.Name = "lblShipmentScaned";
-            this.lblShipmentScaned.Size = new System.Drawing.Size(95, 38);
+            this.lblShipmentScaned.Size = new System.Drawing.Size(114, 79);
             this.lblShipmentScaned.TabIndex = 29;
-            this.lblShipmentScaned.Text = "Tổng";
+            this.lblShipmentScaned.Text = "88";
             // 
             // lblNgayDen
             // 
             this.lblNgayDen.AutoSize = true;
             this.lblNgayDen.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNgayDen.ForeColor = System.Drawing.Color.Green;
+            this.lblNgayDen.ForeColor = System.Drawing.Color.Lime;
             this.lblNgayDen.Location = new System.Drawing.Point(4, 21);
             this.lblNgayDen.Name = "lblNgayDen";
             this.lblNgayDen.Size = new System.Drawing.Size(130, 30);
@@ -415,7 +424,7 @@
             this.lblMasterBill.AutoSize = true;
             this.lblMasterBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMasterBill.ForeColor = System.Drawing.Color.Yellow;
-            this.lblMasterBill.Location = new System.Drawing.Point(231, 13);
+            this.lblMasterBill.Location = new System.Drawing.Point(159, 13);
             this.lblMasterBill.Name = "lblMasterBill";
             this.lblMasterBill.Size = new System.Drawing.Size(172, 54);
             this.lblMasterBill.TabIndex = 1;
@@ -426,25 +435,24 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.AutoSize = true;
-            this.groupBox1.Controls.Add(this.btnExit);
             this.groupBox1.Controls.Add(this.grvShipments);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(17, 621);
+            this.groupBox1.Location = new System.Drawing.Point(17, 587);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1413, 801);
+            this.groupBox1.Size = new System.Drawing.Size(1295, 801);
             this.groupBox1.TabIndex = 27;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Danh sách shipments nhập kho";
+            this.groupBox1.Text = "Danh sách đơn hàng";
             // 
             // btnExit
             // 
-            this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExit.ForeColor = System.Drawing.Color.Red;
-            this.btnExit.Location = new System.Drawing.Point(1040, 707);
+            this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExit.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnExit.Location = new System.Drawing.Point(1193, 51);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(208, 53);
+            this.btnExit.Size = new System.Drawing.Size(95, 78);
             this.btnExit.TabIndex = 32;
-            this.btnExit.Text = "Đóng";
+            this.btnExit.Text = "Thoát";
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
@@ -457,10 +465,10 @@
             this.grvShipments.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.grvShipments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grvShipments.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.grvShipments.Location = new System.Drawing.Point(10, 52);
+            this.grvShipments.Location = new System.Drawing.Point(10, 59);
             this.grvShipments.Name = "grvShipments";
             this.grvShipments.RowTemplate.Height = 33;
-            this.grvShipments.Size = new System.Drawing.Size(1365, 643);
+            this.grvShipments.Size = new System.Drawing.Size(1278, 636);
             this.grvShipments.TabIndex = 6;
             this.grvShipments.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grvShipments_CellClick);
             // 
@@ -469,7 +477,7 @@
             this.lblMaVuaNhap.AutoSize = true;
             this.lblMaVuaNhap.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMaVuaNhap.ForeColor = System.Drawing.Color.Red;
-            this.lblMaVuaNhap.Location = new System.Drawing.Point(391, 549);
+            this.lblMaVuaNhap.Location = new System.Drawing.Point(391, 531);
             this.lblMaVuaNhap.Name = "lblMaVuaNhap";
             this.lblMaVuaNhap.Size = new System.Drawing.Size(216, 38);
             this.lblMaVuaNhap.TabIndex = 26;
@@ -477,9 +485,9 @@
             // 
             // txtShipmentId
             // 
-            this.txtShipmentId.BackColor = System.Drawing.Color.LightBlue;
+            this.txtShipmentId.BackColor = System.Drawing.Color.White;
             this.txtShipmentId.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtShipmentId.Location = new System.Drawing.Point(17, 555);
+            this.txtShipmentId.Location = new System.Drawing.Point(17, 537);
             this.txtShipmentId.Name = "txtShipmentId";
             this.txtShipmentId.Size = new System.Drawing.Size(362, 31);
             this.txtShipmentId.TabIndex = 5;
@@ -488,8 +496,7 @@
             // tabPage2
             // 
             this.tabPage2.AutoScroll = true;
-            this.tabPage2.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.tabPage2.Controls.Add(this.btnRefresh);
+            this.tabPage2.BackColor = System.Drawing.Color.LavenderBlush;
             this.tabPage2.Controls.Add(this.groupBox6);
             this.tabPage2.Controls.Add(this.txtSearchOut);
             this.tabPage2.Controls.Add(this.panel2);
@@ -501,12 +508,24 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 56);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1383, 1420);
+            this.tabPage2.Size = new System.Drawing.Size(1353, 1420);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "                Xuất Kho                ";
             // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Location = new System.Drawing.Point(759, 28);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(112, 29);
+            this.btnRefresh.TabIndex = 49;
+            this.btnRefresh.Text = "Làm mới";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Visible = false;
+            // 
             // groupBox6
             // 
+            this.groupBox6.BackColor = System.Drawing.Color.LavenderBlush;
+            this.groupBox6.Controls.Add(this.btnRefresh);
             this.groupBox6.Controls.Add(this.button1);
             this.groupBox6.Controls.Add(this.cbbBoxIdOut);
             this.groupBox6.Controls.Add(this.btnThoat);
@@ -517,28 +536,29 @@
             this.groupBox6.Controls.Add(this.label16);
             this.groupBox6.Controls.Add(this.dtpNgayXuat);
             this.groupBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox6.Location = new System.Drawing.Point(4, 87);
+            this.groupBox6.Location = new System.Drawing.Point(8, 87);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(1350, 126);
+            this.groupBox6.Size = new System.Drawing.Size(1329, 126);
             this.groupBox6.TabIndex = 44;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Nhập thông tin";
             // 
-            // btnRefresh
+            // button1
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(390, 48);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(158, 48);
-            this.btnRefresh.TabIndex = 49;
-            this.btnRefresh.Text = "Làm mới";
-            this.btnRefresh.UseVisualStyleBackColor = true;
-            this.btnRefresh.Visible = false;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.SystemColors.InfoText;
+            this.button1.Location = new System.Drawing.Point(1136, 28);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(86, 78);
+            this.button1.TabIndex = 49;
+            this.button1.Text = "In";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // cbbBoxIdOut
             // 
             this.cbbBoxIdOut.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbbBoxIdOut.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cbbBoxIdOut.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.cbbBoxIdOut.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.cbbBoxIdOut.FormattingEnabled = true;
             this.cbbBoxIdOut.Location = new System.Drawing.Point(538, 75);
             this.cbbBoxIdOut.Name = "cbbBoxIdOut";
@@ -548,11 +568,23 @@
             this.cbbBoxIdOut.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbbBoxIdOut_KeyDown);
             this.cbbBoxIdOut.Leave += new System.EventHandler(this.cbbBoxIdOut_Leave);
             // 
+            // btnThoat
+            // 
+            this.btnThoat.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnThoat.ForeColor = System.Drawing.SystemColors.InfoText;
+            this.btnThoat.Location = new System.Drawing.Point(1233, 28);
+            this.btnThoat.Name = "btnThoat";
+            this.btnThoat.Size = new System.Drawing.Size(96, 78);
+            this.btnThoat.TabIndex = 35;
+            this.btnThoat.Text = "Thoát";
+            this.btnThoat.UseVisualStyleBackColor = true;
+            this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
+            // 
             // cbbMasterBillOut
             // 
             this.cbbMasterBillOut.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbbMasterBillOut.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cbbMasterBillOut.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.cbbMasterBillOut.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.cbbMasterBillOut.ForeColor = System.Drawing.SystemColors.WindowText;
             this.cbbMasterBillOut.FormattingEnabled = true;
             this.cbbMasterBillOut.Location = new System.Drawing.Point(202, 75);
@@ -619,10 +651,10 @@
             // txtSearchOut
             // 
             this.txtSearchOut.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtSearchOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearchOut.Location = new System.Drawing.Point(992, 491);
+            this.txtSearchOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearchOut.Location = new System.Drawing.Point(975, 489);
             this.txtSearchOut.Name = "txtSearchOut";
-            this.txtSearchOut.Size = new System.Drawing.Size(362, 29);
+            this.txtSearchOut.Size = new System.Drawing.Size(362, 34);
             this.txtSearchOut.TabIndex = 43;
             this.txtSearchOut.Text = "NHẬP MÃ ĐỂ TÌM KIẾM";
             this.txtSearchOut.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearchOut_KeyDown);
@@ -646,7 +678,7 @@
             this.panel2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel2.Location = new System.Drawing.Point(8, 219);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1346, 239);
+            this.panel2.Size = new System.Drawing.Size(1329, 239);
             this.panel2.TabIndex = 29;
             // 
             // lblDonDaQuetOut
@@ -754,7 +786,7 @@
             // 
             this.lblBoxIdOut.AutoSize = true;
             this.lblBoxIdOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBoxIdOut.ForeColor = System.Drawing.Color.Lime;
+            this.lblBoxIdOut.ForeColor = System.Drawing.Color.Aqua;
             this.lblBoxIdOut.Location = new System.Drawing.Point(12, 145);
             this.lblBoxIdOut.Name = "lblBoxIdOut";
             this.lblBoxIdOut.Size = new System.Drawing.Size(218, 79);
@@ -790,24 +822,12 @@
             this.groupBox2.AutoSize = true;
             this.groupBox2.Controls.Add(this.grvShipmentListOut);
             this.groupBox2.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(8, 555);
+            this.groupBox2.Location = new System.Drawing.Point(8, 547);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1372, 740);
+            this.groupBox2.Size = new System.Drawing.Size(1347, 740);
             this.groupBox2.TabIndex = 40;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Danh sách đơn hàng";
-            // 
-            // btnThoat
-            // 
-            this.btnThoat.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnThoat.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.btnThoat.Location = new System.Drawing.Point(1237, 28);
-            this.btnThoat.Name = "btnThoat";
-            this.btnThoat.Size = new System.Drawing.Size(96, 78);
-            this.btnThoat.TabIndex = 35;
-            this.btnThoat.Text = "Thoát";
-            this.btnThoat.UseVisualStyleBackColor = true;
-            this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
             // 
             // grvShipmentListOut
             // 
@@ -821,7 +841,7 @@
             this.grvShipmentListOut.Location = new System.Drawing.Point(10, 50);
             this.grvShipmentListOut.Name = "grvShipmentListOut";
             this.grvShipmentListOut.RowTemplate.Height = 33;
-            this.grvShipmentListOut.Size = new System.Drawing.Size(1286, 643);
+            this.grvShipmentListOut.Size = new System.Drawing.Size(1319, 643);
             this.grvShipmentListOut.TabIndex = 34;
             this.grvShipmentListOut.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grvShipmentListOut_CellClick);
             // 
@@ -842,12 +862,12 @@
             // 
             this.lblVuaNhapOut.AutoSize = true;
             this.lblVuaNhapOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVuaNhapOut.ForeColor = System.Drawing.Color.DarkGreen;
-            this.lblVuaNhapOut.Location = new System.Drawing.Point(356, 479);
+            this.lblVuaNhapOut.ForeColor = System.Drawing.Color.OrangeRed;
+            this.lblVuaNhapOut.Location = new System.Drawing.Point(356, 484);
             this.lblVuaNhapOut.Name = "lblVuaNhapOut";
-            this.lblVuaNhapOut.Size = new System.Drawing.Size(249, 44);
+            this.lblVuaNhapOut.Size = new System.Drawing.Size(469, 44);
             this.lblVuaNhapOut.TabIndex = 37;
-            this.lblVuaNhapOut.Text = "Mã vừa nhập";
+            this.lblVuaNhapOut.Text = "LMPDS-371715458-5699";
             // 
             // txtShipmentIdOut
             // 
@@ -1077,10 +1097,10 @@
             this.tabPage4.Controls.Add(this.radConfirmed);
             this.tabPage4.Controls.Add(this.groupBox5);
             this.tabPage4.Controls.Add(this.groupBox4);
-            this.tabPage4.Location = new System.Drawing.Point(4, 51);
+            this.tabPage4.Location = new System.Drawing.Point(4, 56);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(1383, 1425);
+            this.tabPage4.Size = new System.Drawing.Size(1383, 1420);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "        Danh Sách Chờ Thông Quan      ";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -1198,16 +1218,16 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // button1
+            // button2
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.button1.Location = new System.Drawing.Point(1140, 28);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(86, 78);
-            this.button1.TabIndex = 49;
-            this.button1.Text = "In";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.SystemColors.InfoText;
+            this.button2.Location = new System.Drawing.Point(1095, 51);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(86, 78);
+            this.button2.TabIndex = 51;
+            this.button2.Text = "In";
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // FormNhap
             // 
@@ -1343,6 +1363,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnXuatKhoConfirmed;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
 
