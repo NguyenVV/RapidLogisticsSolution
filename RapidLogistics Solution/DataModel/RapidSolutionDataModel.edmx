@@ -30,6 +30,17 @@
           <Property Name="Phone" Type="varchar" MaxLength="30" />
           <Property Name="Email" Type="varchar" MaxLength="150" />
           <Property Name="Address" Type="nvarchar" MaxLength="200" />
+          <Property Name="Status" Type="bit" />
+        </EntityType>
+        <EntityType Name="ErrorLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="AppCode" Type="nvarchar" MaxLength="4000" />
+          <Property Name="ErrorCode" Type="nvarchar" MaxLength="4000" />
+          <Property Name="ErrorMessage" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Manifest">
           <Key>
@@ -85,7 +96,36 @@
           <Property Name="Status" Type="nvarchar" MaxLength="100" />
           <Property Name="EmployeeId" Type="int" />
         </EntityType>
+        <EntityType Name="ShipmentInforTemp">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ShipmentId" Type="varchar" MaxLength="100" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="Sender" Type="nvarchar" MaxLength="300" />
+          <Property Name="Receiver" Type="nvarchar" MaxLength="300" />
+          <Property Name="TelReceiver" Type="varchar" MaxLength="50" />
+          <Property Name="TotalValue" Type="float" />
+          <Property Name="Descrition" Type="nvarchar" MaxLength="1000" />
+          <Property Name="BoxId" Type="int" />
+          <Property Name="Weight" Type="float" />
+          <Property Name="Status" Type="nvarchar" MaxLength="100" />
+          <Property Name="EmployeeId" Type="int" />
+        </EntityType>
         <EntityType Name="ShipmentOut">
+          <Key>
+            <PropertyRef Name="ShipmentId" />
+          </Key>
+          <Property Name="ShipmentId" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="BoxIdRef" Type="int" />
+          <Property Name="BoxIdString" Type="varchar" MaxLength="100" />
+          <Property Name="MasterBillId" Type="int" />
+          <Property Name="MasterBillIdString" Type="varchar" MaxLength="100" />
+          <Property Name="DateOut" Type="datetime" />
+          <Property Name="EmployeeId" Type="int" />
+        </EntityType>
+        <EntityType Name="ShipmentOutTemp">
           <Key>
             <PropertyRef Name="ShipmentId" />
           </Key>
@@ -105,7 +145,7 @@
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="EmployeeId" Type="int" />
         </EntityType>
-        <Association Name="FK__BoxInfo__Employe__45F365D3">
+        <Association Name="FK__BoxInfo__Employe__3A81B327">
           <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
           <End Role="BoxInfo" Type="Self.BoxInfo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -129,7 +169,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__MasterBil__Emplo__46E78A0C">
+        <Association Name="FK__MasterBil__Emplo__398D8EEE">
           <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
           <End Role="MasterBill" Type="Self.MasterBill" Multiplicity="*" />
           <ReferentialConstraint>
@@ -153,7 +193,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ShipmentI__Emplo__44FF419A">
+        <Association Name="FK__ShipmentI__BoxId__5535A963">
+          <End Role="BoxInfo" Type="Self.BoxInfo" Multiplicity="0..1" />
+          <End Role="ShipmentInforTemp" Type="Self.ShipmentInforTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BoxInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShipmentInforTemp">
+              <PropertyRef Name="BoxId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ShipmentI__Emplo__3B75D760">
           <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
           <End Role="ShipmentInfor" Type="Self.ShipmentInfor" Multiplicity="*" />
           <ReferentialConstraint>
@@ -161,6 +213,18 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="ShipmentInfor">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ShipmentI__Emplo__5629CD9C">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="ShipmentInforTemp" Type="Self.ShipmentInforTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShipmentInforTemp">
               <PropertyRef Name="EmployeeId" />
             </Dependent>
           </ReferentialConstraint>
@@ -177,7 +241,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ShipmentO__Emplo__4316F928">
+        <Association Name="FK__ShipmentO__BoxId__59FA5E80">
+          <End Role="BoxInfo" Type="Self.BoxInfo" Multiplicity="0..1" />
+          <End Role="ShipmentOutTemp" Type="Self.ShipmentOutTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BoxInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShipmentOutTemp">
+              <PropertyRef Name="BoxIdRef" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ShipmentO__Emplo__3C69FB99">
           <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
           <End Role="ShipmentOut" Type="Self.ShipmentOut" Multiplicity="*" />
           <ReferentialConstraint>
@@ -185,6 +261,18 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="ShipmentOut">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ShipmentO__Emplo__5CD6CB2B">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="ShipmentOutTemp" Type="Self.ShipmentOutTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShipmentOutTemp">
               <PropertyRef Name="EmployeeId" />
             </Dependent>
           </ReferentialConstraint>
@@ -201,10 +289,25 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__ShipmentO__Maste__5AEE82B9">
+          <End Role="MasterBill" Type="Self.MasterBill" Multiplicity="0..1" />
+          <End Role="ShipmentOutTemp" Type="Self.ShipmentOutTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MasterBill">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShipmentOutTemp">
+              <PropertyRef Name="MasterBillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <!--Errors Found During Generation:
 warning 6035: The relationship 'FK__ShipmentO__Shipm__1A14E395' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
         <Association Name="FK__ShipmentO__Shipm__1A14E395" />-->
-        <Association Name="FK__ShipmentW__Emplo__440B1D61">
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK__ShipmentO__Shipm__59063A47' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK__ShipmentO__Shipm__59063A47" />-->
+        <Association Name="FK__ShipmentW__Emplo__3D5E1FD2">
           <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
           <End Role="ShipmentWaitToConfirm" Type="Self.ShipmentWaitToConfirm" Multiplicity="*" />
           <ReferentialConstraint>
@@ -222,12 +325,15 @@ warning 6035: The relationship 'FK__ShipmentW__Shipm__21B6055D' has columns that
         <EntityContainer Name="RapidSolutionModelStoreContainer">
           <EntitySet Name="BoxInfo" EntityType="Self.BoxInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ErrorLog" EntityType="Self.ErrorLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Manifest" EntityType="Self.Manifest" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MasterBill" EntityType="Self.MasterBill" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ShipmentInfor" EntityType="Self.ShipmentInfor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ShipmentInforTemp" EntityType="Self.ShipmentInforTemp" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ShipmentOut" EntityType="Self.ShipmentOut" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ShipmentOutTemp" EntityType="Self.ShipmentOutTemp" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ShipmentWaitToConfirm" EntityType="Self.ShipmentWaitToConfirm" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__BoxInfo__Employe__45F365D3" Association="Self.FK__BoxInfo__Employe__45F365D3">
+          <AssociationSet Name="FK__BoxInfo__Employe__3A81B327" Association="Self.FK__BoxInfo__Employe__3A81B327">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="BoxInfo" EntitySet="BoxInfo" />
           </AssociationSet>
@@ -235,7 +341,7 @@ warning 6035: The relationship 'FK__ShipmentW__Shipm__21B6055D' has columns that
             <End Role="MasterBill" EntitySet="MasterBill" />
             <End Role="BoxInfo" EntitySet="BoxInfo" />
           </AssociationSet>
-          <AssociationSet Name="FK__MasterBil__Emplo__46E78A0C" Association="Self.FK__MasterBil__Emplo__46E78A0C">
+          <AssociationSet Name="FK__MasterBil__Emplo__398D8EEE" Association="Self.FK__MasterBil__Emplo__398D8EEE">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="MasterBill" EntitySet="MasterBill" />
           </AssociationSet>
@@ -243,23 +349,43 @@ warning 6035: The relationship 'FK__ShipmentW__Shipm__21B6055D' has columns that
             <End Role="BoxInfo" EntitySet="BoxInfo" />
             <End Role="ShipmentInfor" EntitySet="ShipmentInfor" />
           </AssociationSet>
-          <AssociationSet Name="FK__ShipmentI__Emplo__44FF419A" Association="Self.FK__ShipmentI__Emplo__44FF419A">
+          <AssociationSet Name="FK__ShipmentI__BoxId__5535A963" Association="Self.FK__ShipmentI__BoxId__5535A963">
+            <End Role="BoxInfo" EntitySet="BoxInfo" />
+            <End Role="ShipmentInforTemp" EntitySet="ShipmentInforTemp" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ShipmentI__Emplo__3B75D760" Association="Self.FK__ShipmentI__Emplo__3B75D760">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="ShipmentInfor" EntitySet="ShipmentInfor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ShipmentI__Emplo__5629CD9C" Association="Self.FK__ShipmentI__Emplo__5629CD9C">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="ShipmentInforTemp" EntitySet="ShipmentInforTemp" />
           </AssociationSet>
           <AssociationSet Name="FK__ShipmentO__BoxId__1B0907CE" Association="Self.FK__ShipmentO__BoxId__1B0907CE">
             <End Role="BoxInfo" EntitySet="BoxInfo" />
             <End Role="ShipmentOut" EntitySet="ShipmentOut" />
           </AssociationSet>
-          <AssociationSet Name="FK__ShipmentO__Emplo__4316F928" Association="Self.FK__ShipmentO__Emplo__4316F928">
+          <AssociationSet Name="FK__ShipmentO__BoxId__59FA5E80" Association="Self.FK__ShipmentO__BoxId__59FA5E80">
+            <End Role="BoxInfo" EntitySet="BoxInfo" />
+            <End Role="ShipmentOutTemp" EntitySet="ShipmentOutTemp" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ShipmentO__Emplo__3C69FB99" Association="Self.FK__ShipmentO__Emplo__3C69FB99">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="ShipmentOut" EntitySet="ShipmentOut" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ShipmentO__Emplo__5CD6CB2B" Association="Self.FK__ShipmentO__Emplo__5CD6CB2B">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="ShipmentOutTemp" EntitySet="ShipmentOutTemp" />
           </AssociationSet>
           <AssociationSet Name="FK__ShipmentO__Maste__1BFD2C07" Association="Self.FK__ShipmentO__Maste__1BFD2C07">
             <End Role="MasterBill" EntitySet="MasterBill" />
             <End Role="ShipmentOut" EntitySet="ShipmentOut" />
           </AssociationSet>
-          <AssociationSet Name="FK__ShipmentW__Emplo__440B1D61" Association="Self.FK__ShipmentW__Emplo__440B1D61">
+          <AssociationSet Name="FK__ShipmentO__Maste__5AEE82B9" Association="Self.FK__ShipmentO__Maste__5AEE82B9">
+            <End Role="MasterBill" EntitySet="MasterBill" />
+            <End Role="ShipmentOutTemp" EntitySet="ShipmentOutTemp" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ShipmentW__Emplo__3D5E1FD2" Association="Self.FK__ShipmentW__Emplo__3D5E1FD2">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="ShipmentWaitToConfirm" EntitySet="ShipmentWaitToConfirm" />
           </AssociationSet>
@@ -311,6 +437,29 @@ warning 6035: The relationship 'FK__ShipmentW__Shipm__21B6055D' has columns that
           <AssociationSet Name="FK__ShipmentO__Maste__1BFD2C07" Association="RapidSolutionModel.FK__ShipmentO__Maste__1BFD2C07">
             <End Role="MasterBill" EntitySet="MasterBills" />
             <End Role="ShipmentOut" EntitySet="ShipmentOuts" />
+          </AssociationSet>
+          <EntitySet Name="ErrorLogs" EntityType="RapidSolutionModel.ErrorLog" />
+          <EntitySet Name="ShipmentInforTemps" EntityType="RapidSolutionModel.ShipmentInforTemp" />
+          <EntitySet Name="ShipmentOutTemps" EntityType="RapidSolutionModel.ShipmentOutTemp" />
+          <AssociationSet Name="FK__ShipmentI__BoxId__5535A963" Association="RapidSolutionModel.FK__ShipmentI__BoxId__5535A963">
+            <End Role="BoxInfo" EntitySet="BoxInfoes" />
+            <End Role="ShipmentInforTemp" EntitySet="ShipmentInforTemps" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ShipmentO__BoxId__59FA5E80" Association="RapidSolutionModel.FK__ShipmentO__BoxId__59FA5E80">
+            <End Role="BoxInfo" EntitySet="BoxInfoes" />
+            <End Role="ShipmentOutTemp" EntitySet="ShipmentOutTemps" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ShipmentI__Emplo__5629CD9C" Association="RapidSolutionModel.FK__ShipmentI__Emplo__5629CD9C">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="ShipmentInforTemp" EntitySet="ShipmentInforTemps" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ShipmentO__Emplo__5CD6CB2B" Association="RapidSolutionModel.FK__ShipmentO__Emplo__5CD6CB2B">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="ShipmentOutTemp" EntitySet="ShipmentOutTemps" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ShipmentO__Maste__5AEE82B9" Association="RapidSolutionModel.FK__ShipmentO__Maste__5AEE82B9">
+            <End Role="MasterBill" EntitySet="MasterBills" />
+            <End Role="ShipmentOutTemp" EntitySet="ShipmentOutTemps" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="ShipmentOut">
@@ -384,6 +533,9 @@ warning 6035: The relationship 'FK__ShipmentW__Shipm__21B6055D' has columns that
           <NavigationProperty Name="BoxInfoes" Relationship="RapidSolutionModel.FK__BoxInfo__Employe__45F365D3" FromRole="Employee" ToRole="BoxInfo" />
           <NavigationProperty Name="ShipmentInfors" Relationship="RapidSolutionModel.FK__ShipmentI__Emplo__44FF419A" FromRole="Employee" ToRole="ShipmentInfor" />
           <NavigationProperty Name="MasterBills" Relationship="RapidSolutionModel.FK__MasterBil__Emplo__46E78A0C" FromRole="Employee" ToRole="MasterBill" />
+          <Property Name="Status" Type="Boolean" />
+          <NavigationProperty Name="ShipmentInforTemps" Relationship="RapidSolutionModel.FK__ShipmentI__Emplo__5629CD9C" FromRole="Employee" ToRole="ShipmentInforTemp" />
+          <NavigationProperty Name="ShipmentOutTemps" Relationship="RapidSolutionModel.FK__ShipmentO__Emplo__5CD6CB2B" FromRole="Employee" ToRole="ShipmentOutTemp" />
         </EntityType>
         <Association Name="FK__ShipmentO__Emplo__4316F928">
           <End Type="RapidSolutionModel.Employee" Role="Employee" Multiplicity="0..1" />
@@ -423,6 +575,8 @@ warning 6035: The relationship 'FK__ShipmentW__Shipm__21B6055D' has columns that
           <NavigationProperty Name="ShipmentInfors" Relationship="RapidSolutionModel.FK__ShipmentI__BoxId__15502E78" FromRole="BoxInfo" ToRole="ShipmentInfor" />
           <NavigationProperty Name="ShipmentOuts" Relationship="RapidSolutionModel.FK__ShipmentO__BoxId__1B0907CE" FromRole="BoxInfo" ToRole="ShipmentOut" />
           <NavigationProperty Name="MasterBill" Relationship="RapidSolutionModel.FK__BoxInfo__MasterB__0CBAE877" FromRole="BoxInfo" ToRole="MasterBill" />
+          <NavigationProperty Name="ShipmentInforTemps" Relationship="RapidSolutionModel.FK__ShipmentI__BoxId__5535A963" FromRole="BoxInfo" ToRole="ShipmentInforTemp" />
+          <NavigationProperty Name="ShipmentOutTemps" Relationship="RapidSolutionModel.FK__ShipmentO__BoxId__59FA5E80" FromRole="BoxInfo" ToRole="ShipmentOutTemp" />
         </EntityType>
         <EntityType Name="ShipmentInfor">
           <Key>
@@ -502,6 +656,7 @@ warning 6035: The relationship 'FK__ShipmentW__Shipm__21B6055D' has columns that
           <NavigationProperty Name="BoxInfoes" Relationship="RapidSolutionModel.FK__BoxInfo__MasterB__0CBAE877" FromRole="MasterBill" ToRole="BoxInfo" />
           <NavigationProperty Name="Employee" Relationship="RapidSolutionModel.FK__MasterBil__Emplo__46E78A0C" FromRole="MasterBill" ToRole="Employee" />
           <NavigationProperty Name="ShipmentOuts" Relationship="RapidSolutionModel.FK__ShipmentO__Maste__1BFD2C07" FromRole="MasterBill" ToRole="ShipmentOut" />
+          <NavigationProperty Name="ShipmentOutTemps" Relationship="RapidSolutionModel.FK__ShipmentO__Maste__5AEE82B9" FromRole="MasterBill" ToRole="ShipmentOutTemp" />
         </EntityType>
         <Association Name="FK__BoxInfo__MasterB__0CBAE877">
           <End Type="RapidSolutionModel.MasterBill" Role="MasterBill" Multiplicity="0..1" />
@@ -535,6 +690,110 @@ warning 6035: The relationship 'FK__ShipmentW__Shipm__21B6055D' has columns that
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="ShipmentOut">
+              <PropertyRef Name="MasterBillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ErrorLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="AppCode" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="ErrorCode" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="ErrorMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ShipmentInforTemp">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ShipmentId" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="Sender" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Receiver" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="TelReceiver" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TotalValue" Type="Double" />
+          <Property Name="Descrition" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="BoxId" Type="Int32" />
+          <Property Name="Weight" Type="Double" />
+          <Property Name="Status" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeId" Type="Int32" />
+          <NavigationProperty Name="BoxInfo" Relationship="RapidSolutionModel.FK__ShipmentI__BoxId__5535A963" FromRole="ShipmentInforTemp" ToRole="BoxInfo" />
+          <NavigationProperty Name="Employee" Relationship="RapidSolutionModel.FK__ShipmentI__Emplo__5629CD9C" FromRole="ShipmentInforTemp" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="ShipmentOutTemp">
+          <Key>
+            <PropertyRef Name="ShipmentId" />
+          </Key>
+          <Property Name="ShipmentId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="BoxIdRef" Type="Int32" />
+          <Property Name="BoxIdString" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MasterBillId" Type="Int32" />
+          <Property Name="MasterBillIdString" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DateOut" Type="DateTime" Precision="3" />
+          <Property Name="EmployeeId" Type="Int32" />
+          <NavigationProperty Name="BoxInfo" Relationship="RapidSolutionModel.FK__ShipmentO__BoxId__59FA5E80" FromRole="ShipmentOutTemp" ToRole="BoxInfo" />
+          <NavigationProperty Name="Employee" Relationship="RapidSolutionModel.FK__ShipmentO__Emplo__5CD6CB2B" FromRole="ShipmentOutTemp" ToRole="Employee" />
+          <NavigationProperty Name="MasterBill" Relationship="RapidSolutionModel.FK__ShipmentO__Maste__5AEE82B9" FromRole="ShipmentOutTemp" ToRole="MasterBill" />
+        </EntityType>
+        <Association Name="FK__ShipmentI__BoxId__5535A963">
+          <End Type="RapidSolutionModel.BoxInfo" Role="BoxInfo" Multiplicity="0..1" />
+          <End Type="RapidSolutionModel.ShipmentInforTemp" Role="ShipmentInforTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BoxInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShipmentInforTemp">
+              <PropertyRef Name="BoxId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ShipmentO__BoxId__59FA5E80">
+          <End Type="RapidSolutionModel.BoxInfo" Role="BoxInfo" Multiplicity="0..1" />
+          <End Type="RapidSolutionModel.ShipmentOutTemp" Role="ShipmentOutTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BoxInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShipmentOutTemp">
+              <PropertyRef Name="BoxIdRef" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ShipmentI__Emplo__5629CD9C">
+          <End Type="RapidSolutionModel.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="RapidSolutionModel.ShipmentInforTemp" Role="ShipmentInforTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShipmentInforTemp">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ShipmentO__Emplo__5CD6CB2B">
+          <End Type="RapidSolutionModel.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="RapidSolutionModel.ShipmentOutTemp" Role="ShipmentOutTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShipmentOutTemp">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ShipmentO__Maste__5AEE82B9">
+          <End Type="RapidSolutionModel.MasterBill" Role="MasterBill" Multiplicity="0..1" />
+          <End Type="RapidSolutionModel.ShipmentOutTemp" Role="ShipmentOutTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MasterBill">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShipmentOutTemp">
               <PropertyRef Name="MasterBillId" />
             </Dependent>
           </ReferentialConstraint>
@@ -599,6 +858,7 @@ warning 6035: The relationship 'FK__ShipmentW__Shipm__21B6055D' has columns that
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="RapidSolutionModel.Employee">
               <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
@@ -649,6 +909,48 @@ warning 6035: The relationship 'FK__ShipmentW__Shipm__21B6055D' has columns that
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
                 <ScalarProperty Name="MasterAirWayBill" ColumnName="MasterAirWayBill" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ErrorLogs">
+            <EntityTypeMapping TypeName="RapidSolutionModel.ErrorLog">
+              <MappingFragment StoreEntitySet="ErrorLog">
+                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+                <ScalarProperty Name="ErrorCode" ColumnName="ErrorCode" />
+                <ScalarProperty Name="AppCode" ColumnName="AppCode" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShipmentInforTemps">
+            <EntityTypeMapping TypeName="RapidSolutionModel.ShipmentInforTemp">
+              <MappingFragment StoreEntitySet="ShipmentInforTemp">
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="BoxId" ColumnName="BoxId" />
+                <ScalarProperty Name="Descrition" ColumnName="Descrition" />
+                <ScalarProperty Name="TotalValue" ColumnName="TotalValue" />
+                <ScalarProperty Name="TelReceiver" ColumnName="TelReceiver" />
+                <ScalarProperty Name="Receiver" ColumnName="Receiver" />
+                <ScalarProperty Name="Sender" ColumnName="Sender" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="ShipmentId" ColumnName="ShipmentId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShipmentOutTemps">
+            <EntityTypeMapping TypeName="RapidSolutionModel.ShipmentOutTemp">
+              <MappingFragment StoreEntitySet="ShipmentOutTemp">
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="DateOut" ColumnName="DateOut" />
+                <ScalarProperty Name="MasterBillIdString" ColumnName="MasterBillIdString" />
+                <ScalarProperty Name="MasterBillId" ColumnName="MasterBillId" />
+                <ScalarProperty Name="BoxIdString" ColumnName="BoxIdString" />
+                <ScalarProperty Name="BoxIdRef" ColumnName="BoxIdRef" />
+                <ScalarProperty Name="ShipmentId" ColumnName="ShipmentId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

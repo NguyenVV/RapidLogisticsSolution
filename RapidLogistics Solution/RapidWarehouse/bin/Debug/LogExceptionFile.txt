@@ -31,3 +31,9 @@ Exception details : mscorlib; Length of the data to decrypt is invalid.
 Exception at: Đã có lỗi xảy ra khi đăng nhập, vui lòng thử lại sau on :2017-06-25 01:22:03
 Exception details : mscorlib; Length of the data to decrypt is invalid.
 ============================================================================================
+Exception at: Đã có lỗi xảy ra khi đăng nhập, vui lòng thử lại sau on :2017-06-26 01:21:46
+Exception details : mscorlib; Length of the data to decrypt is invalid.
+============================================================================================
+Exception at: Đã có lỗi xảy ra khi đăng nhập, vui lòng thử lại sau on :2017-06-26 01:21:53
+Exception details : mscorlib; Length of the data to decrypt is invalid.
+============================================================================================

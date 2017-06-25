@@ -19,6 +19,8 @@ namespace BusinessServices
             registerComponent.RegisterType<IShipmentServices, ShipmentServices>();
             registerComponent.RegisterType<IShipmentOutServices, ShipmentOutServices>();
             registerComponent.RegisterType<IEmployeeServices, EmployeeServices>();
+            registerComponent.RegisterType<IShipmentTempServices, ShipmentTempServices>();
+            registerComponent.RegisterType<IShipmentOutTempServices, ShipmentOutTempServices>();
         }
     }
 }

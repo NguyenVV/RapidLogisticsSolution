@@ -32,5 +32,8 @@ namespace DataModel
         public DbSet<BoxInfo> BoxInfoes { get; set; }
         public DbSet<ShipmentInfor> ShipmentInfors { get; set; }
         public DbSet<MasterBill> MasterBills { get; set; }
+        public DbSet<ErrorLog> ErrorLogs { get; set; }
+        public DbSet<ShipmentInforTemp> ShipmentInforTemps { get; set; }
+        public DbSet<ShipmentOutTemp> ShipmentOutTemps { get; set; }
     }
 }

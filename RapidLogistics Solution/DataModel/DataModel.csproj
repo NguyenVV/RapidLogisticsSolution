@@ -58,6 +58,9 @@
     <Compile Include="Employee.cs">
       <DependentUpon>RapidSolutionDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ErrorLog.cs">
+      <DependentUpon>RapidSolutionDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="error_log.cs">
       <DependentUpon>WebApiDataModel.tt</DependentUpon>
     </Compile>
@@ -92,7 +95,13 @@
     <Compile Include="ShipmentInfor.cs">
       <DependentUpon>RapidSolutionDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ShipmentInforTemp.cs">
+      <DependentUpon>RapidSolutionDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="ShipmentOut.cs">
+      <DependentUpon>RapidSolutionDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ShipmentOutTemp.cs">
       <DependentUpon>RapidSolutionDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ShipmentWaitToConfirm.cs">

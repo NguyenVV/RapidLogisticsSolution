@@ -31,7 +31,6 @@ namespace BusinessServices
                 return shipmentOutEntity.ShipmentId;
             }
         }
-
         public int Create(List<ShipmentOutEntity> shipmentOutList)
         {
             using (var scope = new TransactionScope())
@@ -44,13 +43,11 @@ namespace BusinessServices
                 return numberInsert;
             }
         }
-
         public void Delete(string shipmentId)
         {
             _unitOfWork.ShipmentOutRepository.Delete(shipmentId);
             _unitOfWork.SaveWinform();
         }
-
         public IEnumerable<ShipmentOutEntity> GetByBoxId(int boxId)
         {
             var shipmentList = _unitOfWork.ShipmentOutRepository.GetMany(t => t.BoxIdRef == boxId);
@@ -60,9 +57,9 @@ namespace BusinessServices
                 var shipmentListModel = Mapper.Map<List<ShipmentOut>, List<ShipmentOutEntity>>(shipmentList.ToList());
                 return shipmentListModel;
             }
+
             return null;
         }
-
         public IEnumerable<ShipmentOutEntity> GetByDate(DateTime value)
         {
             var shipmentList = _unitOfWork.ShipmentOutRepository.GetMany(t => t.DateOut.Value.Date == value.Date);
@@ -74,7 +71,6 @@ namespace BusinessServices
             }
             return null;
         }
-
         public IEnumerable<ShipmentOutEntity> GetByDateRange(DateTime start, DateTime end)
         {
             var masterList = _unitOfWork.ShipmentOutRepository.GetMany(t => t.DateOut.Value.Date >= start.Date && t.DateOut.Value.Date <= end.Date);
@@ -86,12 +82,10 @@ namespace BusinessServices
             }
             return null;
         }
-
         public int GetTotalByMasterBill(int id)
         {
             return _unitOfWork.ShipmentOutRepository.GetMany(t => t.MasterBillId == id).Count();
         }
-
         public bool IsExist(string shipmentId)
         {
             using (var scope = new TransactionScope())

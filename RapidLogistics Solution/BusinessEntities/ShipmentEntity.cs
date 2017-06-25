@@ -14,6 +14,7 @@ namespace BusinessEntities
         int boxId;
         DateTime dateCreated;
         int employeeId;
+        public float Weight { get; set; }
 
         public int EmployeeId
         {

@@ -48,7 +48,6 @@ Create table ShipmentOut
 	EmployeeId int references Employee(Id)
 )
 go
-go
 Create table ShipmentInforTemp
 (
 	Id int identity primary key,

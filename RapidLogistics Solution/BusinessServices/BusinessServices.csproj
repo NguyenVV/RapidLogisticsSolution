@@ -60,7 +60,9 @@
     <Compile Include="Interfaces\IManifestServices.cs" />
     <Compile Include="Interfaces\IMasterBillServices.cs" />
     <Compile Include="Interfaces\IShipmentOutServices.cs" />
+    <Compile Include="Interfaces\IShipmentOutTempServices.cs" />
     <Compile Include="Interfaces\IShipmentServices.cs" />
+    <Compile Include="Interfaces\IShipmentTempServices.cs" />
     <Compile Include="Interfaces\IShipmentWaitToConfirmedServices.cs" />
     <Compile Include="Interfaces\ITokenServices.cs" />
     <Compile Include="Interfaces\IUserServices.cs" />
@@ -68,7 +70,9 @@
     <Compile Include="ManifestServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShipmentOutServices.cs" />
+    <Compile Include="ShipmentOutTempServices.cs" />
     <Compile Include="ShipmentServices.cs" />
+    <Compile Include="ShipmentTempServices.cs" />
     <Compile Include="ShipmentWaitToConfirmedServices.cs" />
     <Compile Include="TokenServices.cs" />
     <Compile Include="UserServices.cs" />

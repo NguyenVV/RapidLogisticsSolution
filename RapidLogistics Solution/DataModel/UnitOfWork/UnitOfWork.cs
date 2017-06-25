@@ -29,6 +29,8 @@ namespace DataModel.UnitOfWork
         private GenericRepository<BoxInfo> _boxInforRepository;
         private GenericRepository<ShipmentInfor> _shipmentRepository; 
         private GenericRepository<ShipmentOut> _shipmentOutRepository;
+        private GenericRepository<ShipmentInforTemp> _shipmentTempRepository;
+        private GenericRepository<ShipmentOutTemp> _shipmentOutTempRepository;
         private GenericRepository<ShipmentWaitToConfirm> _shipmentWaitConfirmedRepository;
         private GenericRepository<Employee> _employeeRepository;
 
@@ -137,6 +139,16 @@ namespace DataModel.UnitOfWork
             }
         }
 
+        public GenericRepository<ShipmentInforTemp> ShipmentTempRepository
+        {
+            get
+            {
+                if (this._shipmentTempRepository == null)
+                    this._shipmentTempRepository = new GenericRepository<ShipmentInforTemp>(_contextWinform);
+                return _shipmentTempRepository;
+            }
+        }
+
         public GenericRepository<ShipmentOut> ShipmentOutRepository
         {
             get
@@ -144,6 +156,16 @@ namespace DataModel.UnitOfWork
                 if (this._shipmentOutRepository == null)
                     this._shipmentOutRepository = new GenericRepository<ShipmentOut>(_contextWinform);
                 return _shipmentOutRepository;
+            }
+        }
+
+        public GenericRepository<ShipmentOutTemp> ShipmentOutTempRepository
+        {
+            get
+            {
+                if (this._shipmentOutTempRepository == null)
+                    this._shipmentOutTempRepository = new GenericRepository<ShipmentOutTemp>(_contextWinform);
+                return _shipmentOutTempRepository;
             }
         }
 

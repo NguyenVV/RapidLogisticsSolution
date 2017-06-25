@@ -3,6 +3,7 @@ using BusinessServices.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using Ultilities;
 
 namespace RapidWarehouse
 {
@@ -35,7 +36,7 @@ namespace RapidWarehouse
             txtAddress.Text = employee.Address;
             txtEmail.Text = employee.Email;
             txtFullName.Text = employee.FullName;
-            txtPassword.Text = employee.Pasword;
+            txtPassword.Text = Security.Decrypt(employee.Pasword);
             txtPhone.Text = employee.Phone;
             txtUserName.Text = employee.UserName;
             dtpBirthDate.Value = employee.BirthDate;
@@ -62,10 +63,10 @@ namespace RapidWarehouse
                     employeeCreateOrUpdate.Email = txtEmail.Text;
                     employeeCreateOrUpdate.FullName = txtFullName.Text;
                     employeeCreateOrUpdate.Id = 0;
-                    employeeCreateOrUpdate.Pasword = txtPassword.Text;
+                    employeeCreateOrUpdate.Pasword = Security.Encrypt(txtPassword.Text);
                     employeeCreateOrUpdate.Phone = txtPhone.Text;
                     employeeCreateOrUpdate.Role = cbbRole.Text;
-                    employeeCreateOrUpdate.Status = 1;
+                    employeeCreateOrUpdate.Status = true;
                     employeeCreateOrUpdate.UserName = txtUserName.Text;
                     mEmployeeService.CreateOrUpdateEmployee(employeeCreateOrUpdate);
                     MessageBox.Show("Tạo " + cbbRole.Text + " thành công !");
@@ -78,10 +79,10 @@ namespace RapidWarehouse
                     employeeCreateOrUpdate.DateCreated = DateTime.Now;
                     employeeCreateOrUpdate.Email = txtEmail.Text;
                     employeeCreateOrUpdate.FullName = txtFullName.Text;
-                    employeeCreateOrUpdate.Pasword = txtPassword.Text;
+                    employeeCreateOrUpdate.Pasword = Security.Encrypt(txtPassword.Text);
                     employeeCreateOrUpdate.Phone = txtPhone.Text;
                     employeeCreateOrUpdate.Role = cbbRole.Text;
-                    employeeCreateOrUpdate.Status = 1;
+                    employeeCreateOrUpdate.Status = true;
                     employeeCreateOrUpdate.UserName = txtUserName.Text;
                     mEmployeeService.CreateOrUpdateEmployee(employeeCreateOrUpdate);
                     MessageBox.Show("Cập nhật " + cbbRole.Text + " thành công !");
@@ -142,6 +143,7 @@ namespace RapidWarehouse
         private void btnCancel_Click(object sender, EventArgs e)
         {
             FormHome home = new FormHome();
+            home.ShowHideButton();
             home.Show();
             this.Dispose();
         }
@@ -149,6 +151,7 @@ namespace RapidWarehouse
         private void FormCreateEditEmployee_FormClosed(object sender, FormClosedEventArgs e)
         {
             FormHome home = new FormHome();
+            home.ShowHideButton();
             home.Show();
             this.Dispose();
         }
@@ -173,6 +176,7 @@ namespace RapidWarehouse
             txtUserName.Text = "";
             dtpBirthDate.Value = DateTime.Now;
             cbbRole.Text = "";
+            txtUserName.Focus();
         }
     }
 }

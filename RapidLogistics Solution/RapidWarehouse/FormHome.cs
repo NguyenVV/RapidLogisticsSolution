@@ -13,16 +13,19 @@ namespace RapidWarehouse
 
         public void ShowHideButton()
         {
-            if (FormLogin.mEmployee.Role.Equals("Administrator"))
+            if (FormLogin.mEmployee != null)
             {
-                btnManageEmployee.Visible = true;
-            }
-            else
-            {
-                btnManageEmployee.Visible = false;
-            }
+                if (FormLogin.mEmployee.Role.Equals("Administrator"))
+                {
+                    btnManageEmployee.Visible = true;
+                }
+                else
+                {
+                    btnManageEmployee.Visible = false;
+                }
 
-            lblWelcome.Text = "Xin chào " + FormLogin.mEmployee.UserName;
+                lblWelcome.Text = "Xin chào " + FormLogin.mEmployee.FullName + "!";
+            }
         }
 
         private void btnInventory_Click(object sender, EventArgs e)

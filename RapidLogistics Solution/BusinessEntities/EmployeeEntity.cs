@@ -7,7 +7,8 @@ namespace BusinessEntities
 {
     public class EmployeeEntity
     {
-        int id, status;
+        private int id;
+        private bool status;
         string fullName, userName, pasword, role, phone, email, address;
         DateTime dateCreated, birthDate;
 
@@ -115,7 +116,7 @@ namespace BusinessEntities
             }
         }
 
-        public int Status
+        public bool Status
         {
             get
             {

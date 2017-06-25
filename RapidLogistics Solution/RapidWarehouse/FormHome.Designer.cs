@@ -95,7 +95,7 @@
             // lblWelcome
             // 
             this.lblWelcome.AutoSize = true;
-            this.lblWelcome.Location = new System.Drawing.Point(12, 445);
+            this.lblWelcome.Location = new System.Drawing.Point(12, 439);
             this.lblWelcome.Name = "lblWelcome";
             this.lblWelcome.Size = new System.Drawing.Size(160, 37);
             this.lblWelcome.TabIndex = 2;

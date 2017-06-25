@@ -18,26 +18,32 @@ namespace RapidWarehouse
         {
             if(txtOldPassword.Text.Length < 4)
             {
-                MessageBox.Show("Nhập password chưa hợp lệ, phải từ 4 ký tự");
+                MessageBox.Show("Nhập mật khẩu chưa hợp lệ, phải từ 4 ký tự");
                 txtOldPassword.Focus();
                 return;
             }
             if (txtNewPassword.Text.Length < 4)
             {
-                MessageBox.Show("Nhập password chưa hợp lệ, phải từ 4 ký tự");
+                MessageBox.Show("Nhập mật khẩu chưa hợp lệ, phải từ 4 ký tự");
                 txtNewPassword.Focus();
                 return;
             }
             if (txtReenter.Text.Length < 4)
             {
-                MessageBox.Show("Nhập password chưa hợp lệ, phải từ 4 ký tự");
+                MessageBox.Show("Nhập mật khẩu chưa hợp lệ, phải từ 4 ký tự");
+                txtReenter.Focus();
+                return;
+            }
+            if (!txtReenter.Text.Equals(txtNewPassword.Text))
+            {
+                MessageBox.Show("Nhập mật khẩu mới và nhập lại mật khẩu mới chưa khớp nhau, hãy nhập lại");
                 txtReenter.Focus();
                 return;
             }
 
-            if(mEmployeeService.Login(FormLogin.mEmployee.UserName, txtOldPassword.Text) == null)
+            if (mEmployeeService.Login(FormLogin.mEmployee.UserName, txtOldPassword.Text) == null)
             {
-                MessageBox.Show("Nhập password chưa hợp đúng, hãy thử lại!");
+                MessageBox.Show("Nhập mật khẩu chưa đúng, hãy thử lại!");
                 txtOldPassword.Focus();
                 return;
             }
@@ -48,17 +54,18 @@ namespace RapidWarehouse
             if (employee != null)
             {
                 FormLogin.mEmployee = employee;
-                MessageBox.Show("Đổi password thành công!");
+                MessageBox.Show("Đổi mật khẩu thành công!");
             }
             else
             {
-                MessageBox.Show("Đổi password không thành công, hãy thử lại!");
+                MessageBox.Show("Đổi mật khẩu không thành công, hãy thử lại!");
             }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             FormHome home = new FormHome();
+            home.ShowHideButton();
             home.Show();
             this.Dispose();
         }
@@ -66,6 +73,7 @@ namespace RapidWarehouse
         private void FormChangePassword_FormClosed(object sender, FormClosedEventArgs e)
         {
             FormHome home = new FormHome();
+            home.ShowHideButton();
             home.Show();
             this.Dispose();
         }

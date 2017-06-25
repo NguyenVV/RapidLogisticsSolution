@@ -36,7 +36,6 @@ namespace BusinessServices
 
             return 0;
         }
-
         public int Create(ShipmentEntity shipmentEntity)
         {
             using (var scope = new TransactionScope())
@@ -49,7 +48,6 @@ namespace BusinessServices
                 return shipmentDataModel.Id;
             }
         }
-
         public IEnumerable<ShipmentEntity> GetByBoxId(int boxId)
         {
             var shipmentList = _unitOfWork.ShipmentRepository.GetMany(t => t.BoxId == boxId);
@@ -61,12 +59,10 @@ namespace BusinessServices
             }
             return null;
         }
-
         public IEnumerable<ShipmentEntity> GetByDate(string shipmentId)
         {
             throw new NotImplementedException();
         }
-
         public ShipmentEntity GetByShipmentId(string shipmentId)
         {
             using (var scope = new TransactionScope())
@@ -83,7 +79,6 @@ namespace BusinessServices
                 return shipmentData;
             }
         }
-
         public string[] GetReferenceOfShipment(string shipmentId)
         {
             using (var scope = new TransactionScope())
@@ -108,7 +103,6 @@ namespace BusinessServices
                 return null;
             }
         }
-
         public bool Exists(string shipmentId)
         {
             return _unitOfWork.ShipmentRepository.Get(t => t.ShipmentId == shipmentId) == null ? false : true;
@@ -118,7 +112,6 @@ namespace BusinessServices
             _unitOfWork.ShipmentRepository.Delete(shipmentId);
             _unitOfWork.SaveWinform();
         }
-
         public ShipmentEntity GetByShipmentIdAndBoxId(string shipmentId, int boxId)
         {
             using (var scope = new TransactionScope())
@@ -135,7 +128,6 @@ namespace BusinessServices
                 return shipmentData;
             }
         }
-
         public ReportDetailEntity SearchByShipmentId(string shipmentId)
         {
             ReportDetailEntity reportEntity = new ReportDetailEntity();
@@ -157,7 +149,6 @@ namespace BusinessServices
             }
             return null;
         }
-
         public void Delete(string shipmentId)
         {
             _unitOfWork.ShipmentRepository.Delete(t=>t.ShipmentId==shipmentId);

@@ -18,6 +18,7 @@ namespace DataModel
         {
             this.BoxInfoes = new HashSet<BoxInfo>();
             this.ShipmentOuts = new HashSet<ShipmentOut>();
+            this.ShipmentOutTemps = new HashSet<ShipmentOutTemp>();
         }
     
         public int Id { get; set; }
@@ -29,5 +30,6 @@ namespace DataModel
         public virtual ICollection<BoxInfo> BoxInfoes { get; set; }
         public virtual Employee Employee { get; set; }
         public virtual ICollection<ShipmentOut> ShipmentOuts { get; set; }
+        public virtual ICollection<ShipmentOutTemp> ShipmentOutTemps { get; set; }
     }
 }

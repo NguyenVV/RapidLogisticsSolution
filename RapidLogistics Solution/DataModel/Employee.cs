@@ -21,6 +21,8 @@ namespace DataModel
             this.BoxInfoes = new HashSet<BoxInfo>();
             this.ShipmentInfors = new HashSet<ShipmentInfor>();
             this.MasterBills = new HashSet<MasterBill>();
+            this.ShipmentInforTemps = new HashSet<ShipmentInforTemp>();
+            this.ShipmentOutTemps = new HashSet<ShipmentOutTemp>();
         }
     
         public int Id { get; set; }
@@ -33,11 +35,14 @@ namespace DataModel
         public string Phone { get; set; }
         public string Email { get; set; }
         public string Address { get; set; }
+        public Nullable<bool> Status { get; set; }
     
         public virtual ICollection<ShipmentOut> ShipmentOuts { get; set; }
         public virtual ICollection<ShipmentWaitToConfirm> ShipmentWaitToConfirms { get; set; }
         public virtual ICollection<BoxInfo> BoxInfoes { get; set; }
         public virtual ICollection<ShipmentInfor> ShipmentInfors { get; set; }
         public virtual ICollection<MasterBill> MasterBills { get; set; }
+        public virtual ICollection<ShipmentInforTemp> ShipmentInforTemps { get; set; }
+        public virtual ICollection<ShipmentOutTemp> ShipmentOutTemps { get; set; }
     }
 }

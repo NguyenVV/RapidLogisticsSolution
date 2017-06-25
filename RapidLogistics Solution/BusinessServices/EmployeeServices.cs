@@ -37,7 +37,7 @@ namespace BusinessServices
                 if (employee.Id > 0)
                 {
                     var original = _unitOfWork.EmployeeRepository.GetByID(employee.Id);
-                    employeeModel.Pasword = Security.Encrypt(Security.Decrypt(original.Pasword));
+                    //employeeModel.Pasword = Security.Encrypt(original.Pasword);
                     _unitOfWork.EmployeeRepository.Update(original, employeeModel);
                 }
                 else
