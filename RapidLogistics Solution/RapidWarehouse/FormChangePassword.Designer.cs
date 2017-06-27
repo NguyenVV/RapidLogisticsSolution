@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.txtReenter = new System.Windows.Forms.TextBox();
@@ -37,35 +36,15 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtOldPassword = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.btnCancel);
-            this.groupBox1.Controls.Add(this.btnSave);
-            this.groupBox1.Controls.Add(this.txtReenter);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.txtNewPassword);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.txtOldPassword);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.groupBox1.Location = new System.Drawing.Point(26, 40);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(927, 397);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Đổi mật khẩu";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(736, 287);
+            this.btnCancel.Location = new System.Drawing.Point(371, 367);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(169, 62);
+            this.btnCancel.Size = new System.Drawing.Size(118, 47);
             this.btnCancel.TabIndex = 7;
             this.btnCancel.Text = "Hủy";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -73,9 +52,9 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(519, 287);
+            this.btnSave.Location = new System.Drawing.Point(98, 367);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(169, 62);
+            this.btnSave.Size = new System.Drawing.Size(118, 47);
             this.btnSave.TabIndex = 6;
             this.btnSave.Text = "Lưu";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -83,76 +62,96 @@
             // 
             // txtReenter
             // 
-            this.txtReenter.Location = new System.Drawing.Point(329, 203);
+            this.txtReenter.Location = new System.Drawing.Point(92, 291);
             this.txtReenter.Name = "txtReenter";
-            this.txtReenter.Size = new System.Drawing.Size(576, 38);
+            this.txtReenter.Size = new System.Drawing.Size(397, 29);
             this.txtReenter.TabIndex = 5;
             this.txtReenter.UseSystemPasswordChar = true;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(70, 203);
+            this.label3.Location = new System.Drawing.Point(87, 263);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(231, 31);
+            this.label3.Size = new System.Drawing.Size(168, 25);
             this.label3.TabIndex = 4;
             this.label3.Text = "Nhập lại mật khẩu";
             // 
             // txtNewPassword
             // 
-            this.txtNewPassword.Location = new System.Drawing.Point(329, 140);
+            this.txtNewPassword.Location = new System.Drawing.Point(92, 214);
             this.txtNewPassword.Name = "txtNewPassword";
-            this.txtNewPassword.Size = new System.Drawing.Size(576, 38);
+            this.txtNewPassword.Size = new System.Drawing.Size(397, 29);
             this.txtNewPassword.TabIndex = 3;
             this.txtNewPassword.UseSystemPasswordChar = true;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(70, 140);
+            this.label2.Location = new System.Drawing.Point(87, 185);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(175, 31);
+            this.label2.Size = new System.Drawing.Size(129, 25);
             this.label2.TabIndex = 2;
             this.label2.Text = "Mật khẩu mới";
             // 
             // txtOldPassword
             // 
-            this.txtOldPassword.Location = new System.Drawing.Point(329, 78);
+            this.txtOldPassword.Location = new System.Drawing.Point(92, 131);
             this.txtOldPassword.Name = "txtOldPassword";
-            this.txtOldPassword.Size = new System.Drawing.Size(576, 38);
+            this.txtOldPassword.Size = new System.Drawing.Size(397, 29);
             this.txtOldPassword.TabIndex = 1;
             this.txtOldPassword.UseSystemPasswordChar = true;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(70, 78);
+            this.label1.Location = new System.Drawing.Point(87, 102);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(161, 31);
+            this.label1.Size = new System.Drawing.Size(119, 25);
             this.label1.TabIndex = 0;
             this.label1.Text = "Mật khẩu cũ";
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Teal;
+            this.label4.Location = new System.Drawing.Point(150, 26);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(277, 48);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Đổi mật khẩu";
             // 
             // FormChangePassword
             // 
             this.AcceptButton = this.btnSave;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(984, 466);
-            this.Controls.Add(this.groupBox1);
+            this.ClientSize = new System.Drawing.Size(579, 460);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.txtReenter);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.txtOldPassword);
+            this.Controls.Add(this.txtNewPassword);
+            this.Controls.Add(this.label2);
             this.Name = "FormChangePassword";
-            this.Text = "Đổi Password";
+            this.Text = "Đổi mật khẩu";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormChangePassword_FormClosed);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.TextBox txtReenter;
@@ -161,5 +160,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtOldPassword;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label4;
     }
 }
