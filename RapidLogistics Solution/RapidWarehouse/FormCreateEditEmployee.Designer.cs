@@ -52,6 +52,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtSearchEmployee = new System.Windows.Forms.TextBox();
             this.lbListEmployee = new System.Windows.Forms.ListBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -78,22 +79,23 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.txtUserName);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.142858F);
             this.groupBox1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.groupBox1.Location = new System.Drawing.Point(0, 12);
+            this.groupBox1.Location = new System.Drawing.Point(12, 78);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1041, 886);
+            this.groupBox1.Size = new System.Drawing.Size(730, 659);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Thông tin nhân viên";
+            this.groupBox1.Text = "Thông tin";
             // 
             // btnCreate
             // 
             this.btnCreate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnCreate.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnCreate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCreate.Location = new System.Drawing.Point(89, 782);
+            this.btnCreate.Location = new System.Drawing.Point(46, 581);
             this.btnCreate.Name = "btnCreate";
-            this.btnCreate.Size = new System.Drawing.Size(172, 61);
+            this.btnCreate.Size = new System.Drawing.Size(168, 47);
             this.btnCreate.TabIndex = 15;
             this.btnCreate.Text = "Tạo Mới";
             this.btnCreate.UseVisualStyleBackColor = true;
@@ -102,9 +104,10 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(774, 782);
+            this.btnCancel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnCancel.Location = new System.Drawing.Point(439, 582);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(172, 61);
+            this.btnCancel.Size = new System.Drawing.Size(168, 46);
             this.btnCancel.TabIndex = 11;
             this.btnCancel.Text = "Hủy";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -113,10 +116,11 @@
             // btnSave
             // 
             this.btnSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnSave.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(564, 782);
+            this.btnSave.Location = new System.Drawing.Point(245, 582);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(172, 61);
+            this.btnSave.Size = new System.Drawing.Size(168, 46);
             this.btnSave.TabIndex = 10;
             this.btnSave.Text = "Lưu";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -126,17 +130,19 @@
             // 
             this.dtpBirthDate.CustomFormat = "dd/MM/yyyy";
             this.dtpBirthDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpBirthDate.Location = new System.Drawing.Point(334, 365);
+            this.dtpBirthDate.Location = new System.Drawing.Point(258, 273);
             this.dtpBirthDate.Name = "dtpBirthDate";
-            this.dtpBirthDate.Size = new System.Drawing.Size(612, 44);
+            this.dtpBirthDate.Size = new System.Drawing.Size(324, 29);
             this.dtpBirthDate.TabIndex = 5;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(82, 365);
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.142858F);
+            this.label8.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.label8.Location = new System.Drawing.Point(43, 273);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(147, 36);
+            this.label8.Size = new System.Drawing.Size(103, 25);
             this.label8.TabIndex = 14;
             this.label8.Text = "Ngày Sinh";
             // 
@@ -147,161 +153,190 @@
             this.cbbRole.Items.AddRange(new object[] {
             "Nhân Viên",
             "Administrator"});
-            this.cbbRole.Location = new System.Drawing.Point(334, 213);
+            this.cbbRole.Location = new System.Drawing.Point(258, 165);
             this.cbbRole.Name = "cbbRole";
-            this.cbbRole.Size = new System.Drawing.Size(612, 44);
+            this.cbbRole.Size = new System.Drawing.Size(324, 32);
             this.cbbRole.TabIndex = 3;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(82, 213);
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.142858F);
+            this.label7.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.label7.Location = new System.Drawing.Point(43, 165);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(97, 36);
+            this.label7.Size = new System.Drawing.Size(117, 25);
             this.label7.TabIndex = 12;
-            this.label7.Text = "Quyền";
+            this.label7.Text = "Phân quyền";
             // 
             // txtAddress
             // 
-            this.txtAddress.Location = new System.Drawing.Point(334, 600);
+            this.txtAddress.Location = new System.Drawing.Point(258, 427);
             this.txtAddress.Multiline = true;
             this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(612, 130);
+            this.txtAddress.Size = new System.Drawing.Size(324, 125);
             this.txtAddress.TabIndex = 9;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(82, 600);
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.142858F);
+            this.label6.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.label6.Location = new System.Drawing.Point(43, 430);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(107, 36);
+            this.label6.Size = new System.Drawing.Size(71, 25);
             this.label6.TabIndex = 10;
             this.label6.Text = "Địa chỉ";
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(334, 504);
+            this.txtEmail.Location = new System.Drawing.Point(258, 373);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(612, 44);
+            this.txtEmail.Size = new System.Drawing.Size(324, 29);
             this.txtEmail.TabIndex = 8;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(82, 504);
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.142858F);
+            this.label5.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.label5.Location = new System.Drawing.Point(43, 373);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(90, 36);
+            this.label5.Size = new System.Drawing.Size(60, 25);
             this.label5.TabIndex = 8;
             this.label5.Text = "Email";
             // 
             // txtPhone
             // 
-            this.txtPhone.Location = new System.Drawing.Point(334, 437);
+            this.txtPhone.Location = new System.Drawing.Point(258, 322);
             this.txtPhone.Name = "txtPhone";
-            this.txtPhone.Size = new System.Drawing.Size(612, 44);
+            this.txtPhone.Size = new System.Drawing.Size(324, 29);
             this.txtPhone.TabIndex = 7;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(82, 437);
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.142858F);
+            this.label4.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.label4.Location = new System.Drawing.Point(43, 322);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(156, 36);
+            this.label4.Size = new System.Drawing.Size(107, 25);
             this.label4.TabIndex = 6;
             this.label4.Text = "Điện Thoại";
             // 
             // txtFullName
             // 
-            this.txtFullName.Location = new System.Drawing.Point(334, 290);
+            this.txtFullName.Location = new System.Drawing.Point(258, 224);
             this.txtFullName.Name = "txtFullName";
-            this.txtFullName.Size = new System.Drawing.Size(612, 44);
+            this.txtFullName.Size = new System.Drawing.Size(324, 29);
             this.txtFullName.TabIndex = 4;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(82, 290);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.142858F);
+            this.label3.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.label3.Location = new System.Drawing.Point(43, 224);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(146, 36);
+            this.label3.Size = new System.Drawing.Size(103, 25);
             this.label3.TabIndex = 4;
             this.label3.Text = "Họ và Tên";
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(334, 141);
+            this.txtPassword.Location = new System.Drawing.Point(258, 111);
             this.txtPassword.MaxLength = 150;
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(612, 44);
+            this.txtPassword.Size = new System.Drawing.Size(324, 29);
             this.txtPassword.TabIndex = 2;
             this.txtPassword.UseSystemPasswordChar = true;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(82, 141);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.142858F);
+            this.label2.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.label2.Location = new System.Drawing.Point(43, 111);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(135, 36);
+            this.label2.Size = new System.Drawing.Size(93, 25);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Password";
+            this.label2.Text = "Mật khẩu";
             // 
             // txtUserName
             // 
-            this.txtUserName.Location = new System.Drawing.Point(334, 74);
+            this.txtUserName.Location = new System.Drawing.Point(258, 59);
             this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(612, 44);
+            this.txtUserName.Size = new System.Drawing.Size(324, 29);
             this.txtUserName.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(82, 74);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.142858F);
+            this.label1.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.label1.Location = new System.Drawing.Point(43, 59);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(155, 36);
+            this.label1.Size = new System.Drawing.Size(197, 25);
             this.label1.TabIndex = 0;
-            this.label1.Text = "User Name";
+            this.label1.Text = "Tài khoản đăng nhập";
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.txtSearchEmployee);
             this.groupBox2.Controls.Add(this.lbListEmployee);
-            this.groupBox2.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.ForeColor = System.Drawing.Color.Green;
-            this.groupBox2.Location = new System.Drawing.Point(1061, 12);
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.142858F);
+            this.groupBox2.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.groupBox2.Location = new System.Drawing.Point(759, 78);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(557, 885);
+            this.groupBox2.Size = new System.Drawing.Size(511, 659);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Danh Sách Nhân Viên";
             // 
             // txtSearchEmployee
             // 
-            this.txtSearchEmployee.Location = new System.Drawing.Point(20, 52);
+            this.txtSearchEmployee.Location = new System.Drawing.Point(18, 50);
             this.txtSearchEmployee.Name = "txtSearchEmployee";
-            this.txtSearchEmployee.Size = new System.Drawing.Size(516, 38);
+            this.txtSearchEmployee.Size = new System.Drawing.Size(473, 29);
             this.txtSearchEmployee.TabIndex = 1;
             // 
             // lbListEmployee
             // 
             this.lbListEmployee.FormattingEnabled = true;
-            this.lbListEmployee.ItemHeight = 31;
-            this.lbListEmployee.Location = new System.Drawing.Point(21, 116);
+            this.lbListEmployee.ItemHeight = 24;
+            this.lbListEmployee.Location = new System.Drawing.Point(19, 111);
             this.lbListEmployee.Name = "lbListEmployee";
-            this.lbListEmployee.Size = new System.Drawing.Size(517, 748);
+            this.lbListEmployee.Size = new System.Drawing.Size(474, 508);
             this.lbListEmployee.TabIndex = 0;
             this.lbListEmployee.SelectedIndexChanged += new System.EventHandler(this.lbListEmployee_SelectedIndexChanged);
             // 
+            // label9
+            // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label9.AutoSize = true;
+            this.label9.BackColor = System.Drawing.Color.Transparent;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.Teal;
+            this.label9.Location = new System.Drawing.Point(396, 15);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(398, 48);
+            this.label9.TabIndex = 7;
+            this.label9.Text = "Quản lý người dùng";
+            // 
             // FormCreateEditEmployee
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1630, 916);
+            this.ClientSize = new System.Drawing.Size(1297, 751);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormCreateEditEmployee";
-            this.Text = "Quản Lý Tài Khoản";
+            this.Text = "Quản lý người dùng";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormCreateEditEmployee_FormClosed);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -337,5 +372,6 @@
         private System.Windows.Forms.TextBox txtSearchEmployee;
         private System.Windows.Forms.ListBox lbListEmployee;
         private System.Windows.Forms.Button btnCreate;
+        private System.Windows.Forms.Label label9;
     }
 }
