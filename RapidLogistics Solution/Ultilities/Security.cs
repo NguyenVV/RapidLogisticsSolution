@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
+using System.Configuration;
+using System.Data.EntityClient;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -99,6 +103,53 @@ namespace Ultilities
                 rngCsp.GetBytes(randomBytes);
             }
             return randomBytes;
+        }
+
+
+        public static void buildNewConnection(string serverName, string databaseName, string userId, string password)
+        {
+            string providerName = "System.Data.SqlClient";
+
+            SqlConnectionStringBuilder sqlBuilder = new SqlConnectionStringBuilder();
+            sqlBuilder.DataSource = serverName;
+            sqlBuilder.InitialCatalog = databaseName;
+            sqlBuilder.UserID = userId;
+            sqlBuilder.Password = password;
+            sqlBuilder.PersistSecurityInfo = true;
+            //sqlBuilder.IntegratedSecurity = true;
+
+            string providerString = sqlBuilder.ToString();
+
+            EntityConnectionStringBuilder entityBuilder = new EntityConnectionStringBuilder();
+            entityBuilder.Provider = providerName;
+
+            // Set the provider-specific connection string. 
+            entityBuilder.ProviderConnectionString = providerString;
+
+            //' Set the Metadata location. 
+            //metadata = res://*/RapidSolutionDataModel.csdl|res://*/RapidSolutionDataModel.ssdl|res://*/RapidSolutionDataModel.msl
+            entityBuilder.Metadata = "res://*/RapidSolutionDataModel.csdl|res://*/RapidSolutionDataModel.ssdl|res://*/RapidSolutionDataModel.msl";
+
+            var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            config.ConnectionStrings.ConnectionStrings["RapidSolutionEntities"].ConnectionString = entityBuilder.ToString();
+            config.Save(ConfigurationSaveMode.Full);
+            ConfigurationManager.RefreshSection("connectionStrings");
+
+            //var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            //var connectionStringsSection = (ConnectionStringsSection)config.GetSection("connectionStrings");
+            //connectionStringsSection.ConnectionStrings["RapidSolutionEntities"].ConnectionString = entityBuilder.ToString();
+            //config.Save();
+            //ConfigurationManager.RefreshSection("connectionStrings");
+        }
+
+        public static void SaveToRegedit(string serverName, string databaseName, string userId, string password)
+        {
+            RegistryKey key = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\RapidSolution");
+            key.SetValue("DataSource", serverName);
+            key.SetValue("InitialCatalog", databaseName);
+            key.SetValue("UserID", userId);
+            key.SetValue("Password", password);
+            key.Close();
         }
     }
 }

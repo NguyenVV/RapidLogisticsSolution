@@ -1,5 +1,6 @@
 ﻿using BusinessEntities;
 using BusinessServices.Interfaces;
+using Microsoft.Win32;
 using System;
 using System.Windows.Forms;
 
@@ -14,6 +15,24 @@ namespace RapidWarehouse
         {
             InitializeComponent();
             mEmployeeService = employeeServices;
+            OpenConnection();
+        }
+        
+        private void OpenConnection()
+        {
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\RapidSolution");
+            if (key != null)
+            {
+                Ultilities.Security.buildNewConnection(key.GetValue("DataSource").ToString(), key.GetValue("InitialCatalog").ToString(),
+                    key.GetValue("UserID").ToString(), key.GetValue("Password").ToString());
+            }
+            else
+            {
+                if (MessageBox.Show("Bạn chưa có thiết lập thông tin cơ sở dữ liệu, bạn có muốn thiết lập bây giờ không ?", "Thiết lập thông tin cơ sở dữ liệu", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    Program.Container.GetInstance<FormConfigDB>().Show();
+                }
+            }
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -88,6 +107,11 @@ namespace RapidWarehouse
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void lblConfigDb_Click(object sender, EventArgs e)
+        {
+            Program.Container.GetInstance<FormConfigDB>().Show();
         }
     }
 }
