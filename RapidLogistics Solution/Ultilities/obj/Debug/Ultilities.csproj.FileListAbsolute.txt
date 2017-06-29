@@ -5,3 +5,10 @@ D:\MVC\Rapid\warehouse.rapid\WareHouseSoft\RapidLogistics Solution\Ultilities\bi
 D:\MVC\Rapid\warehouse.rapid\WareHouseSoft\RapidLogistics Solution\Ultilities\obj\Debug\Ultilities.csprojResolveAssemblyReference.cache
 D:\MVC\Rapid\warehouse.rapid\WareHouseSoft\RapidLogistics Solution\Ultilities\obj\Debug\Ultilities.dll
 D:\MVC\Rapid\warehouse.rapid\WareHouseSoft\RapidLogistics Solution\Ultilities\obj\Debug\Ultilities.pdb
+D:\MVC\Rapid\warehouse.rapid\WareHouseSoft\RapidLogisticsSolution\RapidLogistics Solution\Ultilities\bin\Debug\Ultilities.dll
+D:\MVC\Rapid\warehouse.rapid\WareHouseSoft\RapidLogisticsSolution\RapidLogistics Solution\Ultilities\bin\Debug\Ultilities.pdb
+D:\MVC\Rapid\warehouse.rapid\WareHouseSoft\RapidLogisticsSolution\RapidLogistics Solution\Ultilities\bin\Debug\System.Net.Http.dll
+D:\MVC\Rapid\warehouse.rapid\WareHouseSoft\RapidLogisticsSolution\RapidLogistics Solution\Ultilities\bin\Debug\System.Net.Http.xml
+D:\MVC\Rapid\warehouse.rapid\WareHouseSoft\RapidLogisticsSolution\RapidLogistics Solution\Ultilities\obj\Debug\Ultilities.csprojResolveAssemblyReference.cache
+D:\MVC\Rapid\warehouse.rapid\WareHouseSoft\RapidLogisticsSolution\RapidLogistics Solution\Ultilities\obj\Debug\Ultilities.dll
+D:\MVC\Rapid\warehouse.rapid\WareHouseSoft\RapidLogisticsSolution\RapidLogistics Solution\Ultilities\obj\Debug\Ultilities.pdb
