@@ -62,3 +62,16 @@ C:\Users\Nguyen\Desktop\RapidLogistics Solution\Resolver\bin\Debug\Microsoft.Pra
 C:\Users\Nguyen\Desktop\RapidLogistics Solution\Resolver\obj\Debug\Resolver.csprojResolveAssemblyReference.cache
 C:\Users\Nguyen\Desktop\RapidLogistics Solution\Resolver\obj\Debug\Resolver.dll
 C:\Users\Nguyen\Desktop\RapidLogistics Solution\Resolver\obj\Debug\Resolver.pdb
+D:\MVC\Rapid\warehouse.rapid\WareHouseSoft\RapidLogisticsSolution\RapidLogistics Solution\Resolver\bin\Debug\Resolver.dll
+D:\MVC\Rapid\warehouse.rapid\WareHouseSoft\RapidLogisticsSolution\RapidLogistics Solution\Resolver\bin\Debug\Resolver.pdb
+D:\MVC\Rapid\warehouse.rapid\WareHouseSoft\RapidLogisticsSolution\RapidLogistics Solution\Resolver\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+D:\MVC\Rapid\warehouse.rapid\WareHouseSoft\RapidLogisticsSolution\RapidLogistics Solution\Resolver\bin\Debug\Microsoft.Practices.Unity.Configuration.dll
+D:\MVC\Rapid\warehouse.rapid\WareHouseSoft\RapidLogisticsSolution\RapidLogistics Solution\Resolver\bin\Debug\Microsoft.Practices.Unity.dll
+D:\MVC\Rapid\warehouse.rapid\WareHouseSoft\RapidLogisticsSolution\RapidLogistics Solution\Resolver\bin\Debug\Unity.Mvc3.dll
+D:\MVC\Rapid\warehouse.rapid\WareHouseSoft\RapidLogisticsSolution\RapidLogistics Solution\Resolver\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+D:\MVC\Rapid\warehouse.rapid\WareHouseSoft\RapidLogisticsSolution\RapidLogistics Solution\Resolver\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+D:\MVC\Rapid\warehouse.rapid\WareHouseSoft\RapidLogisticsSolution\RapidLogistics Solution\Resolver\bin\Debug\Microsoft.Practices.Unity.xml
+D:\MVC\Rapid\warehouse.rapid\WareHouseSoft\RapidLogisticsSolution\RapidLogistics Solution\Resolver\bin\Debug\Microsoft.Practices.Unity.Configuration.xml
+D:\MVC\Rapid\warehouse.rapid\WareHouseSoft\RapidLogisticsSolution\RapidLogistics Solution\Resolver\obj\Debug\Resolver.csprojResolveAssemblyReference.cache
+D:\MVC\Rapid\warehouse.rapid\WareHouseSoft\RapidLogisticsSolution\RapidLogistics Solution\Resolver\obj\Debug\Resolver.dll
+D:\MVC\Rapid\warehouse.rapid\WareHouseSoft\RapidLogisticsSolution\RapidLogistics Solution\Resolver\obj\Debug\Resolver.pdb
