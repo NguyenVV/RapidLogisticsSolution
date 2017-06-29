@@ -180,9 +180,9 @@
             this.label7.ForeColor = System.Drawing.Color.Firebrick;
             this.label7.Location = new System.Drawing.Point(74, 439);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(277, 25);
+            this.label7.Size = new System.Drawing.Size(272, 25);
             this.label7.TabIndex = 19;
-            this.label7.Text = "Kết nối đến CSDL thành công.";
+            this.label7.Text = "Kết nối đến CSDL thành công";
             // 
             // label8
             // 
