@@ -1,7 +1,4 @@
-﻿using BusinessEntities;
-using System;
-using System.Globalization;
-using System.Threading;
+﻿using System;
 using System.Windows.Forms;
 
 namespace RapidWarehouse
@@ -93,6 +90,24 @@ namespace RapidWarehouse
         private void timerMinute_Tick(object sender, EventArgs e)
         {
             lblTime.Text = DateTime.Now.ToString("HH:mm");
+        }
+
+        private void btnExportInventory_Click(object sender, EventArgs e)
+        {
+            Program.Container.GetInstance<FormXuat>().Show();
+            this.Dispose();
+        }
+
+        private void btnWaitToConfirm_Click(object sender, EventArgs e)
+        {
+            Program.Container.GetInstance<FormChoThongQuan>().Show();
+            this.Dispose();
+        }
+
+        private void btnReports_Click(object sender, EventArgs e)
+        {
+            Program.Container.GetInstance<FormBaoCao>().Show();
+            this.Dispose();
         }
     }
 }

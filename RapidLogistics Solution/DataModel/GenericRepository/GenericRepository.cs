@@ -35,6 +35,12 @@ namespace DataModel.GenericRepository
         #endregion
 
         #region Public member methods...
+        public void DisposeContext()
+        {
+            if (Context == null)
+                return;
+            Context.Dispose();
+        }
 
         /// <summary>
         /// generic Get method for Entities

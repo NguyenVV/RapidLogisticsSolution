@@ -59,7 +59,7 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Teal;
-            this.label3.Location = new System.Drawing.Point(356, 30);
+            this.label3.Location = new System.Drawing.Point(303, 30);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(521, 55);
             this.label3.TabIndex = 6;
@@ -71,7 +71,7 @@
             this.btnSave.Location = new System.Drawing.Point(359, 497);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(181, 46);
-            this.btnSave.TabIndex = 12;
+            this.btnSave.TabIndex = 6;
             this.btnSave.Text = "Lưu";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -82,7 +82,7 @@
             this.txtDbName.Location = new System.Drawing.Point(80, 234);
             this.txtDbName.Name = "txtDbName";
             this.txtDbName.Size = new System.Drawing.Size(461, 38);
-            this.txtDbName.TabIndex = 9;
+            this.txtDbName.TabIndex = 2;
             this.txtDbName.Text = "RapidSolution";
             // 
             // btnTestConnection
@@ -90,7 +90,7 @@
             this.btnTestConnection.Location = new System.Drawing.Point(80, 496);
             this.btnTestConnection.Name = "btnTestConnection";
             this.btnTestConnection.Size = new System.Drawing.Size(181, 47);
-            this.btnTestConnection.TabIndex = 11;
+            this.btnTestConnection.TabIndex = 5;
             this.btnTestConnection.Text = "Kiểm tra kết nối";
             this.btnTestConnection.UseVisualStyleBackColor = true;
             this.btnTestConnection.Click += new System.EventHandler(this.btnTestConnection_Click);
@@ -110,7 +110,7 @@
             this.txtServer.Location = new System.Drawing.Point(79, 150);
             this.txtServer.Name = "txtServer";
             this.txtServer.Size = new System.Drawing.Size(461, 38);
-            this.txtServer.TabIndex = 8;
+            this.txtServer.TabIndex = 1;
             this.txtServer.Text = "192.168.100.4";
             // 
             // label2
@@ -138,7 +138,7 @@
             this.txtPassword.Location = new System.Drawing.Point(80, 409);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(461, 38);
-            this.txtPassword.TabIndex = 16;
+            this.txtPassword.TabIndex = 4;
             this.txtPassword.Text = "trungnd123@";
             this.txtPassword.UseSystemPasswordChar = true;
             // 
@@ -157,7 +157,7 @@
             this.txtUserName.Location = new System.Drawing.Point(79, 325);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(461, 38);
-            this.txtUserName.TabIndex = 15;
+            this.txtUserName.TabIndex = 3;
             this.txtUserName.Text = "sa";
             // 
             // label6
@@ -194,7 +194,7 @@
             this.textBox3.Location = new System.Drawing.Point(621, 325);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(461, 38);
-            this.textBox3.TabIndex = 26;
+            this.textBox3.TabIndex = 9;
             // 
             // label9
             // 
@@ -212,7 +212,7 @@
             this.textBox4.Location = new System.Drawing.Point(622, 234);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(461, 38);
-            this.textBox4.TabIndex = 22;
+            this.textBox4.TabIndex = 8;
             this.textBox4.UseSystemPasswordChar = true;
             // 
             // label10
@@ -230,7 +230,7 @@
             this.textBox5.Location = new System.Drawing.Point(621, 150);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(461, 38);
-            this.textBox5.TabIndex = 21;
+            this.textBox5.TabIndex = 7;
             // 
             // label11
             // 
@@ -243,6 +243,7 @@
             // 
             // FormConfigDB
             // 
+            this.AcceptButton = this.btnTestConnection;
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1163, 600);
@@ -268,6 +269,7 @@
             this.Controls.Add(this.label2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormConfigDB";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cấu Hình";
             this.ResumeLayout(false);
             this.PerformLayout();

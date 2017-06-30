@@ -10,14 +10,14 @@ namespace RapidWarehouse
     {
         IEmployeeServices mEmployeeService;
         public static EmployeeEntity mEmployee;
-        
+
         public FormLogin(IEmployeeServices employeeServices)
         {
             InitializeComponent();
             mEmployeeService = employeeServices;
             OpenConnection();
         }
-        
+
         private void OpenConnection()
         {
             RegistryKey key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\RapidSolution");
@@ -30,6 +30,7 @@ namespace RapidWarehouse
             {
                 if (MessageBox.Show("Bạn chưa có thiết lập thông tin cơ sở dữ liệu, bạn có muốn thiết lập bây giờ không ?", "Thiết lập thông tin cơ sở dữ liệu", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
+                    this.Hide();
                     Program.Container.GetInstance<FormConfigDB>().Show();
                 }
             }
@@ -40,37 +41,25 @@ namespace RapidWarehouse
             if (ValidateLogin())
             {
                 FormHome home = new FormHome();
-                if (txtUserName.Text.Equals("Administrator", StringComparison.CurrentCultureIgnoreCase)
-                    && txtPassword.Text.Equals("Pass@word"))
+                try
                 {
-                    lblError.Text = "";
-                    mEmployee = new EmployeeEntity();
-                    mEmployee.Role = "Administrator";
-                    home.ShowHideButton();
-                    home.Show();
-                    this.Hide();
-                }
-                else
-                {
-                    try
+                    mEmployee = mEmployeeService.Login(txtUserName.Text, txtPassword.Text);
+                    if (mEmployee != null)
                     {
-                        mEmployee = mEmployeeService.Login(txtUserName.Text, txtPassword.Text);
-                        if (mEmployee != null)
-                        {
-                            lblError.Text = "";
-                            home.Show();
-                            home.ShowHideButton();
-                            this.Hide();
-                        }
-                        else
-                        {
-                            lblError.Text = "Bạn đã nhập sai User name hoặc Password, hãy thử lại!";
-                        }
-                    }catch(Exception ex)
-                    {
-                        Ultilities.FileHelper.WriteLog(Ultilities.ExceptionLevel.Function, "Đã có lỗi xảy ra khi đăng nhập, vui lòng thử lại sau", ex);
-                        lblError.Text = "Đã có lỗi xảy ra khi đăng nhập, vui lòng thử lại sau!";
+                        lblError.Text = "";
+                        home.Show();
+                        home.ShowHideButton();
+                        this.Hide();
                     }
+                    else
+                    {
+                        lblError.Text = "Bạn đã nhập sai User name hoặc Password, hãy thử lại!";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Ultilities.FileHelper.WriteLog(Ultilities.ExceptionLevel.Function, "Đã có lỗi xảy ra khi đăng nhập, vui lòng thử lại sau", ex);
+                    lblError.Text = "Đã có lỗi xảy ra khi đăng nhập, vui lòng thử lại sau!";
                 }
             }
         }
@@ -111,6 +100,7 @@ namespace RapidWarehouse
 
         private void lblConfigDb_Click(object sender, EventArgs e)
         {
+            this.Hide();
             Program.Container.GetInstance<FormConfigDB>().Show();
         }
     }

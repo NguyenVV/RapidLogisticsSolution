@@ -1,15 +1,6 @@
 ﻿using BusinessServices.Interfaces;
 using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Configuration;
-using System.Data;
-using System.Data.EntityClient;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace RapidWarehouse
@@ -22,6 +13,19 @@ namespace RapidWarehouse
             InitializeComponent();
             this._employeeServices = employeeServices;
             lblMessage.Text = "";
+            FillInfo();
+        }
+
+        private void FillInfo()
+        {
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\RapidSolution");
+            if (key != null)
+            {
+                txtServer.Text = key.GetValue("DataSource").ToString();
+                txtDbName.Text = key.GetValue("InitialCatalog").ToString();
+                txtUserName.Text = key.GetValue("UserID").ToString();
+                txtPassword.Text = key.GetValue("Password").ToString();
+            }
         }
 
         private void btnTestConnection_Click(object sender, EventArgs e)
@@ -34,17 +38,16 @@ namespace RapidWarehouse
             }
             catch(Exception ex)
             {
-                lblMessage.Text = "Kết nối đến CSDL thất bại, hãy thử lại!";
+                Ultilities.FileHelper.WriteLog(Ultilities.ExceptionLevel.Application, "Test connection", ex);
+                MessageBox.Show("Kết nối đến CSDL thất bại, thử lại ngay bây giờ!", "Kết nối thất bại",MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Application.Restart();
             }
-            
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            //buildNewConnection(txtServer.Text, txtDbName.Text, txtUserName.Text, txtPassword.Text);
             Ultilities.Security.SaveToRegedit(txtServer.Text, txtDbName.Text, txtUserName.Text, txtPassword.Text);
-            this.Dispose();
+            Application.Restart();
         }
-
     }
 }

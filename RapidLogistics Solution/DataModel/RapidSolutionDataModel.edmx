@@ -193,7 +193,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ShipmentI__BoxId__5535A963">
+        <Association Name="FK__ShipmentI__BoxId__45F365D3">
           <End Role="BoxInfo" Type="Self.BoxInfo" Multiplicity="0..1" />
           <End Role="ShipmentInforTemp" Type="Self.ShipmentInforTemp" Multiplicity="*" />
           <ReferentialConstraint>
@@ -217,7 +217,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ShipmentI__Emplo__5629CD9C">
+        <Association Name="FK__ShipmentI__Emplo__46E78A0C">
           <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
           <End Role="ShipmentInforTemp" Type="Self.ShipmentInforTemp" Multiplicity="*" />
           <ReferentialConstraint>
@@ -241,7 +241,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ShipmentO__BoxId__59FA5E80">
+        <Association Name="FK__ShipmentO__BoxId__4CA06362">
           <End Role="BoxInfo" Type="Self.BoxInfo" Multiplicity="0..1" />
           <End Role="ShipmentOutTemp" Type="Self.ShipmentOutTemp" Multiplicity="*" />
           <ReferentialConstraint>
@@ -265,7 +265,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ShipmentO__Emplo__5CD6CB2B">
+        <Association Name="FK__ShipmentO__Emplo__4F7CD00D">
           <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
           <End Role="ShipmentOutTemp" Type="Self.ShipmentOutTemp" Multiplicity="*" />
           <ReferentialConstraint>
@@ -289,7 +289,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ShipmentO__Maste__5AEE82B9">
+        <Association Name="FK__ShipmentO__Maste__4D94879B">
           <End Role="MasterBill" Type="Self.MasterBill" Multiplicity="0..1" />
           <End Role="ShipmentOutTemp" Type="Self.ShipmentOutTemp" Multiplicity="*" />
           <ReferentialConstraint>
@@ -305,8 +305,8 @@
 warning 6035: The relationship 'FK__ShipmentO__Shipm__1A14E395' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
         <Association Name="FK__ShipmentO__Shipm__1A14E395" />-->
         <!--Errors Found During Generation:
-warning 6035: The relationship 'FK__ShipmentO__Shipm__59063A47' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="FK__ShipmentO__Shipm__59063A47" />-->
+warning 6035: The relationship 'FK__ShipmentO__Shipm__4BAC3F29' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK__ShipmentO__Shipm__4BAC3F29" />-->
         <Association Name="FK__ShipmentW__Emplo__3D5E1FD2">
           <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
           <End Role="ShipmentWaitToConfirm" Type="Self.ShipmentWaitToConfirm" Multiplicity="*" />
@@ -319,9 +319,6 @@ warning 6035: The relationship 'FK__ShipmentO__Shipm__59063A47' has columns that
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errors Found During Generation:
-warning 6035: The relationship 'FK__ShipmentW__Shipm__21B6055D' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="FK__ShipmentW__Shipm__21B6055D" />-->
         <EntityContainer Name="RapidSolutionModelStoreContainer">
           <EntitySet Name="BoxInfo" EntityType="Self.BoxInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
@@ -349,7 +346,7 @@ warning 6035: The relationship 'FK__ShipmentW__Shipm__21B6055D' has columns that
             <End Role="BoxInfo" EntitySet="BoxInfo" />
             <End Role="ShipmentInfor" EntitySet="ShipmentInfor" />
           </AssociationSet>
-          <AssociationSet Name="FK__ShipmentI__BoxId__5535A963" Association="Self.FK__ShipmentI__BoxId__5535A963">
+          <AssociationSet Name="FK__ShipmentI__BoxId__45F365D3" Association="Self.FK__ShipmentI__BoxId__45F365D3">
             <End Role="BoxInfo" EntitySet="BoxInfo" />
             <End Role="ShipmentInforTemp" EntitySet="ShipmentInforTemp" />
           </AssociationSet>
@@ -357,7 +354,7 @@ warning 6035: The relationship 'FK__ShipmentW__Shipm__21B6055D' has columns that
             <End Role="Employee" EntitySet="Employee" />
             <End Role="ShipmentInfor" EntitySet="ShipmentInfor" />
           </AssociationSet>
-          <AssociationSet Name="FK__ShipmentI__Emplo__5629CD9C" Association="Self.FK__ShipmentI__Emplo__5629CD9C">
+          <AssociationSet Name="FK__ShipmentI__Emplo__46E78A0C" Association="Self.FK__ShipmentI__Emplo__46E78A0C">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="ShipmentInforTemp" EntitySet="ShipmentInforTemp" />
           </AssociationSet>
@@ -365,7 +362,7 @@ warning 6035: The relationship 'FK__ShipmentW__Shipm__21B6055D' has columns that
             <End Role="BoxInfo" EntitySet="BoxInfo" />
             <End Role="ShipmentOut" EntitySet="ShipmentOut" />
           </AssociationSet>
-          <AssociationSet Name="FK__ShipmentO__BoxId__59FA5E80" Association="Self.FK__ShipmentO__BoxId__59FA5E80">
+          <AssociationSet Name="FK__ShipmentO__BoxId__4CA06362" Association="Self.FK__ShipmentO__BoxId__4CA06362">
             <End Role="BoxInfo" EntitySet="BoxInfo" />
             <End Role="ShipmentOutTemp" EntitySet="ShipmentOutTemp" />
           </AssociationSet>
@@ -373,7 +370,7 @@ warning 6035: The relationship 'FK__ShipmentW__Shipm__21B6055D' has columns that
             <End Role="Employee" EntitySet="Employee" />
             <End Role="ShipmentOut" EntitySet="ShipmentOut" />
           </AssociationSet>
-          <AssociationSet Name="FK__ShipmentO__Emplo__5CD6CB2B" Association="Self.FK__ShipmentO__Emplo__5CD6CB2B">
+          <AssociationSet Name="FK__ShipmentO__Emplo__4F7CD00D" Association="Self.FK__ShipmentO__Emplo__4F7CD00D">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="ShipmentOutTemp" EntitySet="ShipmentOutTemp" />
           </AssociationSet>
@@ -381,7 +378,7 @@ warning 6035: The relationship 'FK__ShipmentW__Shipm__21B6055D' has columns that
             <End Role="MasterBill" EntitySet="MasterBill" />
             <End Role="ShipmentOut" EntitySet="ShipmentOut" />
           </AssociationSet>
-          <AssociationSet Name="FK__ShipmentO__Maste__5AEE82B9" Association="Self.FK__ShipmentO__Maste__5AEE82B9">
+          <AssociationSet Name="FK__ShipmentO__Maste__4D94879B" Association="Self.FK__ShipmentO__Maste__4D94879B">
             <End Role="MasterBill" EntitySet="MasterBill" />
             <End Role="ShipmentOutTemp" EntitySet="ShipmentOutTemp" />
           </AssociationSet>

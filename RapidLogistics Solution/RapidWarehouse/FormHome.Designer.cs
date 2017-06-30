@@ -31,11 +31,11 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormHome));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnWaitToConfirm = new System.Windows.Forms.Button();
+            this.btnExportInventory = new System.Windows.Forms.Button();
             this.lblTime = new System.Windows.Forms.Label();
             this.lblDate = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnReports = new System.Windows.Forms.Button();
             this.btnChangePass = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnLogout = new System.Windows.Forms.Button();
@@ -48,49 +48,50 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.button3);
-            this.groupBox1.Controls.Add(this.button2);
+            this.groupBox1.Controls.Add(this.btnWaitToConfirm);
+            this.groupBox1.Controls.Add(this.btnExportInventory);
             this.groupBox1.Controls.Add(this.lblTime);
             this.groupBox1.Controls.Add(this.lblDate);
-            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.btnReports);
             this.groupBox1.Controls.Add(this.btnChangePass);
             this.groupBox1.Controls.Add(this.btnExit);
             this.groupBox1.Controls.Add(this.btnLogout);
             this.groupBox1.Controls.Add(this.lblWelcome);
             this.groupBox1.Controls.Add(this.btnManageEmployee);
             this.groupBox1.Controls.Add(this.btnInventory);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.groupBox1.Location = new System.Drawing.Point(10, 32);
+            this.groupBox1.Location = new System.Drawing.Point(10, 10);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(53);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox1.Size = new System.Drawing.Size(1397, 554);
+            this.groupBox1.Size = new System.Drawing.Size(1411, 554);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Các Chức Năng";
             // 
-            // button3
+            // btnWaitToConfirm
             // 
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(635, 83);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(259, 97);
-            this.button3.TabIndex = 41;
-            this.button3.Text = "Hàng chờ thông quan";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnWaitToConfirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnWaitToConfirm.Location = new System.Drawing.Point(635, 83);
+            this.btnWaitToConfirm.Name = "btnWaitToConfirm";
+            this.btnWaitToConfirm.Size = new System.Drawing.Size(259, 97);
+            this.btnWaitToConfirm.TabIndex = 41;
+            this.btnWaitToConfirm.Text = "Hàng chờ thông quan";
+            this.btnWaitToConfirm.UseVisualStyleBackColor = true;
+            this.btnWaitToConfirm.Click += new System.EventHandler(this.btnWaitToConfirm_Click);
             // 
-            // button2
+            // btnExportInventory
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(336, 83);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(259, 97);
-            this.button2.TabIndex = 40;
-            this.button2.Text = "Xuất kho";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnExportInventory.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExportInventory.Location = new System.Drawing.Point(336, 83);
+            this.btnExportInventory.Name = "btnExportInventory";
+            this.btnExportInventory.Size = new System.Drawing.Size(259, 97);
+            this.btnExportInventory.TabIndex = 40;
+            this.btnExportInventory.Text = "Xuất kho";
+            this.btnExportInventory.UseVisualStyleBackColor = true;
+            this.btnExportInventory.Click += new System.EventHandler(this.btnExportInventory_Click);
             // 
             // lblTime
             // 
@@ -114,15 +115,16 @@
             this.lblDate.TabIndex = 38;
             this.lblDate.Text = "Thứ sáu ngày 13 tháng 6 năm 2017";
             // 
-            // button1
+            // btnReports
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(35, 248);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(259, 97);
-            this.button1.TabIndex = 37;
-            this.button1.Text = "Báo cáo";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnReports.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReports.Location = new System.Drawing.Point(35, 248);
+            this.btnReports.Name = "btnReports";
+            this.btnReports.Size = new System.Drawing.Size(259, 97);
+            this.btnReports.TabIndex = 37;
+            this.btnReports.Text = "Báo cáo";
+            this.btnReports.UseVisualStyleBackColor = true;
+            this.btnReports.Click += new System.EventHandler(this.btnReports_Click);
             // 
             // btnChangePass
             // 
@@ -163,7 +165,7 @@
             // 
             this.lblWelcome.AutoSize = true;
             this.lblWelcome.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWelcome.Location = new System.Drawing.Point(1115, 80);
+            this.lblWelcome.Location = new System.Drawing.Point(1038, 83);
             this.lblWelcome.Name = "lblWelcome";
             this.lblWelcome.Size = new System.Drawing.Size(256, 26);
             this.lblWelcome.TabIndex = 2;
@@ -193,7 +195,7 @@
             // 
             // timerMinute
             // 
-            this.timerMinute.Interval = 10000;
+            this.timerMinute.Interval = 1000;
             this.timerMinute.Tick += new System.EventHandler(this.timerMinute_Tick);
             // 
             // FormHome
@@ -228,9 +230,9 @@
         private System.Windows.Forms.Button btnChangePass;
         private System.Windows.Forms.Label lblTime;
         private System.Windows.Forms.Label lblDate;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnReports;
+        private System.Windows.Forms.Button btnWaitToConfirm;
+        private System.Windows.Forms.Button btnExportInventory;
         private System.Windows.Forms.Timer timerMinute;
     }
 }

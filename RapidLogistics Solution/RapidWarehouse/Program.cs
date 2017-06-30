@@ -53,6 +53,9 @@ namespace RapidWarehouse
             container.Register<FormCreateEditEmployee>();
             container.Register<FormChangePassword>();
             container.Register<FormConfigDB>();
+            container.Register<FormXuat>();
+            container.Register<FormChoThongQuan>();
+            container.Register<FormBaoCao>();
 
             // Optionally verify the container.
             //container.Verify();

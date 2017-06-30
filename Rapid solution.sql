@@ -78,7 +78,7 @@ go
 -- Chờ thông quan
 Create table ShipmentWaitToConfirm
 (
-	ShipmentId varchar(100) references ShipmentInfor(ShipmentId) primary key,
+	ShipmentId varchar(100) primary key,
 	CreatedDate DateTime default getdate(),
 	EmployeeId int references Employee(Id)
 )
