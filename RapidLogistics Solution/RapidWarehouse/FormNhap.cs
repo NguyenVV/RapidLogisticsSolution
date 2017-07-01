@@ -49,6 +49,7 @@ namespace RapidWarehouse
             grvShipments.Columns[2].ValueType = typeof(int);
             grvShipments.Columns[2].Visible = false;
             grvShipments.Columns[1].Name = "Shipment Id";
+            grvShipments.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
 
             AddDeleteButtonToGridView(grvShipments);
 
@@ -56,7 +57,7 @@ namespace RapidWarehouse
             ResetHardCodeText();
             manifestList = (List<ManifestEntity>)_manifestServices.GetManifestByDateString(dtpNgayDen.Value.ToString("yyyy-MM-dd"));
             //LoadAllMasterBillByDateToComboboxXacNhanDen(dtpNgayDen.Value);
-            //LoadAllMasterBillByDateToCombobox(dtpNgayDen.Value, cbbMasterBill);
+            LoadAllMasterBillByDateToCombobox(dtpNgayDen.Value, cbbMasterBill);
 
             cbbMasterBill.SelectedText = "";
             FillInforXacNhanDen();
@@ -79,14 +80,14 @@ namespace RapidWarehouse
                 OpenBox();
                 LoadShipmentsByBoxIdInXacNhanDen(cbbBoxId.Text, grvShipments);
                 btnOpenClose.Text = "Đóng";
-                if (!cbbBoxId.Items.Contains(cbbBoxId.Text))
-                {
-                    cbbBoxId.Items.Add(cbbBoxId.Text);
-                }
-                if (!cbbMasterBill.Items.Contains(cbbMasterBill.Text))
-                {
-                    cbbMasterBill.Items.Add(cbbMasterBill.Text);
-                }
+                //if (!cbbBoxId.Items.Contains(cbbBoxId.Text))
+                //{
+                //    cbbBoxId.Items.Add(cbbBoxId.Text);
+                //}
+                //if (!cbbMasterBill.Items.Contains(cbbMasterBill.Text))
+                //{
+                //    cbbMasterBill.Items.Add(cbbMasterBill.Text);
+                //}
             }
             else
             {
@@ -350,7 +351,19 @@ namespace RapidWarehouse
                 cbbMasterBill.Items.Clear();
             }
         }
+        private void LoadAllBoxIdByMasterBill(int masterBillId)
+        {
+            cbbBoxId.Items.Clear();
+            cbbBoxId.DataSource = null;
 
+            List<BoxInforEntity> masterBillList = (List<BoxInforEntity>)_boxInforServices.GetByMasterBill(masterBillId);
+            if (masterBillList != null && masterBillList.Count > 0)
+            {
+                cbbBoxId.DataSource = masterBillList;
+                cbbBoxId.ValueMember = "Id";
+                cbbBoxId.DisplayMember = "MasterAirwayBill";
+            }
+        }
         private bool CheckIsMawbExistsInManifest(string mawb)
         {
             if (manifestList != null && manifestList.Count > 0)
@@ -378,47 +391,28 @@ namespace RapidWarehouse
         }
         private void cbbMasterBill_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //if (!string.IsNullOrEmpty(cbbMasterBill.Text))
-            //{
-            //    if (!string.IsNullOrEmpty(cbbMasterBill.Text))
-            //    {
-            //        MasterAirwayBillEntity masterBill = _masterBillServices.GetByMasterBillId(cbbMasterBill.Text);
-            //        //if (masterBill != null)
-            //        //{
-            //        //    btnXacNhan.Text = "Đã Xác Nhận";
-            //        //    btnXacNhan.Enabled = false;
-            //        //}
-            //        //else
-            //        //{
-            //        //    btnXacNhan.Text = "Xác Nhận MAWB Này";
-            //        //    btnXacNhan.Enabled = true;
-            //        //}
-            //    }
+            MasterAirwayBillEntity masterBill = (MasterAirwayBillEntity)cbbMasterBill.SelectedItem;
+            if (masterBill != null)
+            {
+                List<BoxInforEntity> listBoxInfo = _boxInforServices.GetByMasterBill(masterBill.Id).ToList();
+                if (listBoxInfo != null && listBoxInfo.Count > 0)
+                {
+                    cbbBoxId.DataSource = listBoxInfo;
+                    cbbBoxId.ValueMember = "Id";
+                    cbbBoxId.DisplayMember = "BoxId";
+                }
+                else
+                {
+                    cbbBoxId.DataSource = null;
+                    cbbBoxId.Items.Clear();
+                }
+            }
+            else
+            {
+                cbbBoxId.Items.Clear();
+            }
 
-            //    List<ManifestEntity> finalList = new List<ManifestEntity>();
-            //    finalList.Add(new ManifestEntity());
-
-            //    List<ManifestEntity> listBoxInfo = manifestList.Where(t => t.MasterAirWayBill == cbbMasterBill.Text).GroupBy(t => t.BoxID).Select(p => p.First()).ToList();
-            //    if (listBoxInfo != null && listBoxInfo.Count > 0)
-            //    {
-            //        finalList.AddRange(listBoxInfo);
-            //        cbbBoxId.DataSource = finalList;
-            //        cbbBoxId.ValueMember = "BoxId";
-            //        cbbBoxId.DisplayMember = "BoxId";
-            //    }
-            //    else
-            //    {
-            //        cbbBoxId.DataSource = null;
-            //        cbbBoxId.Items.Clear();
-            //    }
-            //}
-            //else
-            //{
-            //    cbbBoxId.DataSource = null;
-            //    cbbBoxId.Items.Clear();
-            //}
-
-            //lblMasterBill.Text = cbbMasterBill.Text;
+            lblMasterBill.Text = cbbMasterBill.Text;
         }
 
         private void btnXacNhan_Click(object sender, EventArgs e)
@@ -473,7 +467,7 @@ namespace RapidWarehouse
             manifestList = (List<ManifestEntity>)_manifestServices.GetManifestByDateString(dtpNgayDen.Value.ToString("yyyy-MM-dd"));
             lblNgayDen.Text = dtpNgayDen.Value.ToString("dd/MM/yyyy");
             //LoadAllMasterBillByDateToComboboxXacNhanDen(dtpNgayDen.Value);
-            //LoadAllMasterBillByDateToCombobox(dtpNgayDen.Value, cbbMasterBill);
+            LoadAllMasterBillByDateToCombobox(dtpNgayDen.Value, cbbMasterBill);
         }
         private void UpdateValueOverviewNhapKho()
         {
@@ -600,22 +594,17 @@ namespace RapidWarehouse
 
         private void LoadAllMasterBillByDateToCombobox(DateTime date, ComboBox cbbMaster)
         {
-            cbbMaster.DataSource = null;
-            cbbMaster.Items.Clear();
-
-            List<MasterAirwayBillEntity> finalList = new List<MasterAirwayBillEntity>();
-            var temp = new MasterAirwayBillEntity();
-            temp.Id = 0;
-            temp.MasterAirwayBill = string.Empty;
-            finalList.Add(temp);
-
             List<MasterAirwayBillEntity> masterBillList = (List<MasterAirwayBillEntity>)_masterBillServices.GetByDateArrived(date);
             if (masterBillList != null && masterBillList.Count > 0)
             {
-                finalList.AddRange(masterBillList);
-                cbbMaster.DataSource = finalList;
+                cbbMaster.DataSource = masterBillList;
                 cbbMaster.ValueMember = "Id";
                 cbbMaster.DisplayMember = "MasterAirwayBill";
+            }
+            else
+            {
+                cbbMaster.DataSource = null;
+                cbbMaster.Items.Clear();
             }
         }
 
@@ -903,34 +892,34 @@ namespace RapidWarehouse
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (tabNhap.SelectedIndex == 0)
-            {
-                //Xac nhan den
-                if (xpos <= 0)
-                {
-                    this.label10.Location = new System.Drawing.Point(this.Width, ypos);
-                    xpos = this.Width;
-                }
-                else
-                {
-                    this.label10.Location = new System.Drawing.Point(xpos, ypos);
-                    xpos -= 5;
-                }
-            }
-            else if (tabNhap.SelectedIndex == 1)
-            {
-                //Nhap kho
-                if (xposX >= this.Width)
-                {
-                    //this.lblXuatKho.Location = new System.Drawing.Point(0, yposX);
-                    xposX = 0;
-                }
-                else
-                {
-                    //this.lblXuatKho.Location = new System.Drawing.Point(xposX, yposX);
-                    xposX += 8;
-                }
-            }
+            //if (tabNhap.SelectedIndex == 0)
+            //{
+            //    //Xac nhan den
+            //    if (xpos <= 0)
+            //    {
+            //        this.label10.Location = new System.Drawing.Point(this.Width, ypos);
+            //        xpos = this.Width;
+            //    }
+            //    else
+            //    {
+            //        this.label10.Location = new System.Drawing.Point(xpos, ypos);
+            //        xpos -= 5;
+            //    }
+            //}
+            //else if (tabNhap.SelectedIndex == 1)
+            //{
+            //    //Nhap kho
+            //    if (xposX >= this.Width)
+            //    {
+            //        //this.lblXuatKho.Location = new System.Drawing.Point(0, yposX);
+            //        xposX = 0;
+            //    }
+            //    else
+            //    {
+            //        //this.lblXuatKho.Location = new System.Drawing.Point(xposX, yposX);
+            //        xposX += 8;
+            //    }
+            //}
         }
  
         private void txtSearch_Enter(object sender, EventArgs e)

@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormXuat));
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.btnRefresh = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnPrint = new System.Windows.Forms.Button();
             this.cbbBoxIdOut = new System.Windows.Forms.ComboBox();
             this.btnThoat = new System.Windows.Forms.Button();
             this.cbbMasterBillOut = new System.Windows.Forms.ComboBox();
@@ -68,7 +68,7 @@
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.btnRefresh);
-            this.groupBox6.Controls.Add(this.button1);
+            this.groupBox6.Controls.Add(this.btnPrint);
             this.groupBox6.Controls.Add(this.cbbBoxIdOut);
             this.groupBox6.Controls.Add(this.btnThoat);
             this.groupBox6.Controls.Add(this.cbbMasterBillOut);
@@ -80,7 +80,7 @@
             this.groupBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox6.Location = new System.Drawing.Point(31, 104);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(1450, 201);
+            this.groupBox6.Size = new System.Drawing.Size(1612, 201);
             this.groupBox6.TabIndex = 51;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Nhập thông tin";
@@ -96,16 +96,17 @@
             this.btnRefresh.Visible = false;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
-            // button1
+            // btnPrint
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.button1.Location = new System.Drawing.Point(1240, 62);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(94, 87);
-            this.button1.TabIndex = 49;
-            this.button1.Text = "In";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnPrint.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrint.ForeColor = System.Drawing.SystemColors.InfoText;
+            this.btnPrint.Location = new System.Drawing.Point(1393, 72);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(94, 87);
+            this.btnPrint.TabIndex = 49;
+            this.btnPrint.Text = "In";
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // cbbBoxIdOut
             // 
@@ -125,7 +126,7 @@
             // 
             this.btnThoat.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnThoat.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.btnThoat.Location = new System.Drawing.Point(1346, 62);
+            this.btnThoat.Location = new System.Drawing.Point(1499, 72);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(98, 87);
             this.btnThoat.TabIndex = 35;
@@ -153,7 +154,7 @@
             this.btnOpenBoxOut.BackColor = System.Drawing.Color.Gainsboro;
             this.btnOpenBoxOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold);
             this.btnOpenBoxOut.ForeColor = System.Drawing.Color.Red;
-            this.btnOpenBoxOut.Location = new System.Drawing.Point(964, 62);
+            this.btnOpenBoxOut.Location = new System.Drawing.Point(1117, 72);
             this.btnOpenBoxOut.Name = "btnOpenBoxOut";
             this.btnOpenBoxOut.Size = new System.Drawing.Size(264, 87);
             this.btnOpenBoxOut.TabIndex = 45;
@@ -205,7 +206,7 @@
             // 
             this.txtSearchOut.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtSearchOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearchOut.Location = new System.Drawing.Point(1086, 602);
+            this.txtSearchOut.Location = new System.Drawing.Point(1233, 605);
             this.txtSearchOut.Name = "txtSearchOut";
             this.txtSearchOut.Size = new System.Drawing.Size(395, 38);
             this.txtSearchOut.TabIndex = 50;
@@ -233,7 +234,7 @@
             this.panel2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel2.Location = new System.Drawing.Point(31, 321);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1450, 249);
+            this.panel2.Size = new System.Drawing.Size(1597, 249);
             this.panel2.TabIndex = 46;
             // 
             // lblDonDaQuetOut
@@ -241,7 +242,7 @@
             this.lblDonDaQuetOut.AutoSize = true;
             this.lblDonDaQuetOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDonDaQuetOut.ForeColor = System.Drawing.Color.BlueViolet;
-            this.lblDonDaQuetOut.Location = new System.Drawing.Point(1251, 60);
+            this.lblDonDaQuetOut.Location = new System.Drawing.Point(1444, 59);
             this.lblDonDaQuetOut.Name = "lblDonDaQuetOut";
             this.lblDonDaQuetOut.Size = new System.Drawing.Size(86, 44);
             this.lblDonDaQuetOut.TabIndex = 36;
@@ -253,7 +254,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.DarkGray;
-            this.label9.Location = new System.Drawing.Point(961, 67);
+            this.label9.Location = new System.Drawing.Point(1154, 66);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(293, 36);
             this.label9.TabIndex = 35;
@@ -265,7 +266,7 @@
             this.lblDonDaXuat.AutoSize = true;
             this.lblDonDaXuat.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDonDaXuat.ForeColor = System.Drawing.Color.MediumOrchid;
-            this.lblDonDaXuat.Location = new System.Drawing.Point(1263, 105);
+            this.lblDonDaXuat.Location = new System.Drawing.Point(1456, 104);
             this.lblDonDaXuat.Name = "lblDonDaXuat";
             this.lblDonDaXuat.Size = new System.Drawing.Size(86, 44);
             this.lblDonDaXuat.TabIndex = 34;
@@ -276,7 +277,7 @@
             this.lblThungDaQuetOut.AutoSize = true;
             this.lblThungDaQuetOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblThungDaQuetOut.ForeColor = System.Drawing.Color.BlueViolet;
-            this.lblThungDaQuetOut.Location = new System.Drawing.Point(1253, 18);
+            this.lblThungDaQuetOut.Location = new System.Drawing.Point(1446, 17);
             this.lblThungDaQuetOut.Name = "lblThungDaQuetOut";
             this.lblThungDaQuetOut.Size = new System.Drawing.Size(42, 44);
             this.lblThungDaQuetOut.TabIndex = 33;
@@ -287,7 +288,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.DarkGray;
-            this.label11.Location = new System.Drawing.Point(862, 192);
+            this.label11.Location = new System.Drawing.Point(1055, 191);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(158, 36);
             this.label11.TabIndex = 32;
@@ -298,7 +299,7 @@
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.DarkGray;
-            this.label13.Location = new System.Drawing.Point(961, 111);
+            this.label13.Location = new System.Drawing.Point(1154, 110);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(291, 36);
             this.label13.TabIndex = 31;
@@ -309,7 +310,7 @@
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.ForeColor = System.Drawing.Color.DarkGray;
-            this.label17.Location = new System.Drawing.Point(961, 24);
+            this.label17.Location = new System.Drawing.Point(1154, 23);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(248, 36);
             this.label17.TabIndex = 30;
@@ -320,7 +321,7 @@
             this.lblShipmentScanedOut.AutoSize = true;
             this.lblShipmentScanedOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblShipmentScanedOut.ForeColor = System.Drawing.Color.Red;
-            this.lblShipmentScanedOut.Location = new System.Drawing.Point(1036, 151);
+            this.lblShipmentScanedOut.Location = new System.Drawing.Point(1229, 150);
             this.lblShipmentScanedOut.Name = "lblShipmentScanedOut";
             this.lblShipmentScanedOut.Size = new System.Drawing.Size(129, 91);
             this.lblShipmentScanedOut.TabIndex = 29;
@@ -469,7 +470,7 @@
 
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.Button btnRefresh;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.ComboBox cbbBoxIdOut;
         private System.Windows.Forms.Button btnThoat;
         private System.Windows.Forms.ComboBox cbbMasterBillOut;

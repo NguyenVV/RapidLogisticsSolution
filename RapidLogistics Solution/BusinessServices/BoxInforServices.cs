@@ -82,7 +82,7 @@ namespace BusinessServices
 
         public IEnumerable<BoxInforEntity> GetByMasterBill(int masterBillId)
         {
-            var boxInforList = _unitOfWork.BoxInforRepository.GetMany(t => t.MasterBillId == masterBillId);
+            var boxInforList = _unitOfWork.BoxInforRepository.GetMany(t => t.MasterBillId == masterBillId).OrderByDescending(t => t.DateCreated);
             if (boxInforList != null && boxInforList.Any())
             {
                 Mapper.CreateMap<BoxInfo, BoxInforEntity>();

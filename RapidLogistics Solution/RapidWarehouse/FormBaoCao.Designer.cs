@@ -51,6 +51,12 @@
             this.label20 = new System.Windows.Forms.Label();
             this.dtpNgayXuatReport = new System.Windows.Forms.DateTimePicker();
             this.btnChiTietXuatKho = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cbbBoxId = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cbbMasterBill = new System.Windows.Forms.ComboBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabNhap.SuspendLayout();
@@ -266,6 +272,12 @@
             // 
             this.tabPage2.AutoScroll = true;
             this.tabPage2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPage2.Controls.Add(this.button2);
+            this.tabPage2.Controls.Add(this.button1);
+            this.tabPage2.Controls.Add(this.label1);
+            this.tabPage2.Controls.Add(this.cbbBoxId);
+            this.tabPage2.Controls.Add(this.label2);
+            this.tabPage2.Controls.Add(this.cbbMasterBill);
             this.tabPage2.Controls.Add(this.label20);
             this.tabPage2.Controls.Add(this.dtpNgayXuatReport);
             this.tabPage2.Controls.Add(this.btnChiTietXuatKho);
@@ -294,7 +306,7 @@
             this.dtpNgayXuatReport.Location = new System.Drawing.Point(190, 48);
             this.dtpNgayXuatReport.Name = "dtpNgayXuatReport";
             this.dtpNgayXuatReport.Size = new System.Drawing.Size(203, 35);
-            this.dtpNgayXuatReport.TabIndex = 47;
+            this.dtpNgayXuatReport.TabIndex = 1;
             // 
             // btnChiTietXuatKho
             // 
@@ -302,10 +314,68 @@
             this.btnChiTietXuatKho.Location = new System.Drawing.Point(82, 120);
             this.btnChiTietXuatKho.Name = "btnChiTietXuatKho";
             this.btnChiTietXuatKho.Size = new System.Drawing.Size(309, 152);
-            this.btnChiTietXuatKho.TabIndex = 46;
+            this.btnChiTietXuatKho.TabIndex = 4;
             this.btnChiTietXuatKho.Text = "Bảng kê chi tiết sản lượng xuất kho";
             this.btnChiTietXuatKho.UseVisualStyleBackColor = true;
             this.btnChiTietXuatKho.Click += new System.EventHandler(this.btnChiTietXuatKho_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.label1.Location = new System.Drawing.Point(1016, 47);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(113, 31);
+            this.label1.TabIndex = 55;
+            this.label1.Text = "Thùng :";
+            // 
+            // cbbBoxId
+            // 
+            this.cbbBoxId.FormattingEnabled = true;
+            this.cbbBoxId.Location = new System.Drawing.Point(1147, 46);
+            this.cbbBoxId.Name = "cbbBoxId";
+            this.cbbBoxId.Size = new System.Drawing.Size(336, 37);
+            this.cbbBoxId.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.label2.Location = new System.Drawing.Point(467, 48);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(118, 31);
+            this.label2.TabIndex = 53;
+            this.label2.Text = "MAWB :";
+            // 
+            // cbbMasterBill
+            // 
+            this.cbbMasterBill.FormattingEnabled = true;
+            this.cbbMasterBill.Location = new System.Drawing.Point(595, 48);
+            this.cbbMasterBill.Name = "cbbMasterBill";
+            this.cbbMasterBill.Size = new System.Drawing.Size(359, 37);
+            this.cbbMasterBill.TabIndex = 2;
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.button1.Location = new System.Drawing.Point(595, 120);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(309, 152);
+            this.button1.TabIndex = 56;
+            this.button1.Text = "Bảng kê chi tiết sản lượng xuất kho theo MAWB";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.OliveDrab;
+            this.button2.Location = new System.Drawing.Point(1147, 120);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(309, 152);
+            this.button2.TabIndex = 57;
+            this.button2.Text = "Bảng kê chi tiết sản lượng xuất kho theo thùng";
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // FormBaoCao
             // 
@@ -354,5 +424,11 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.DateTimePicker dtpNgayXuatReport;
         private System.Windows.Forms.Button btnChiTietXuatKho;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cbbBoxId;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cbbMasterBill;
     }
 }

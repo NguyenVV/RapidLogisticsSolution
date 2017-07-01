@@ -47,7 +47,7 @@ namespace BusinessServices.Interfaces
 
         public IEnumerable<MasterAirwayBillEntity> GetByDateArrived(DateTime dateArrived)
         {
-            var masterBillList = _unitOfWork.MasterBillRepository.GetMany(t => t.DateArrived.Value.ToShortDateString().Equals(dateArrived.Date.ToShortDateString()));
+            var masterBillList = _unitOfWork.MasterBillRepository.GetMany(t => t.DateArrived.Value.ToString("yyyyMMdd").Equals(dateArrived.Date.ToString("yyyyMMdd"))).OrderByDescending(t=>t.DateArrived);
             if (masterBillList != null && masterBillList.Any())
             {
                 Mapper.CreateMap<MasterBill, MasterAirwayBillEntity>();

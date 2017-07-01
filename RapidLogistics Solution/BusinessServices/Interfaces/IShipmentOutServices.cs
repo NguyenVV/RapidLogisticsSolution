@@ -12,6 +12,7 @@ namespace BusinessServices.Interfaces
         int Create(List<ShipmentOutEntity> shipmentOutList);
         bool IsExist(string shipmentOutId);
         IEnumerable<ShipmentOutEntity> GetByBoxId(int boxId);
+        IEnumerable<ShipmentOutEntity> GetByMasterBillId(int masterBillId);
         void Delete(string shipmentId);
         int GetTotalByMasterBill(int id);
         IEnumerable<ShipmentOutEntity> GetByDate(DateTime value);

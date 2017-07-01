@@ -30,8 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormNhap));
-            this.tabNhap = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnExit = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -59,45 +58,15 @@
             this.grvShipments = new System.Windows.Forms.DataGridView();
             this.lblMaVuaNhap = new System.Windows.Forms.Label();
             this.txtShipmentId = new System.Windows.Forms.TextBox();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.tabNhap.SuspendLayout();
-            this.tabPage1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grvShipments)).BeginInit();
             this.SuspendLayout();
             // 
-            // tabNhap
+            // timer1
             // 
-            this.tabNhap.Controls.Add(this.tabPage1);
-            this.tabNhap.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabNhap.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabNhap.Location = new System.Drawing.Point(0, 0);
-            this.tabNhap.Name = "tabNhap";
-            this.tabNhap.Padding = new System.Drawing.Point(6, 12);
-            this.tabNhap.SelectedIndex = 0;
-            this.tabNhap.Size = new System.Drawing.Size(1675, 1543);
-            this.tabNhap.TabIndex = 0;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.AutoScroll = true;
-            this.tabPage1.BackColor = System.Drawing.Color.Transparent;
-            this.tabPage1.Controls.Add(this.groupBox3);
-            this.tabPage1.Controls.Add(this.txtSearch);
-            this.tabPage1.Controls.Add(this.label10);
-            this.tabPage1.Controls.Add(this.panel1);
-            this.tabPage1.Controls.Add(this.groupBox1);
-            this.tabPage1.Controls.Add(this.lblMaVuaNhap);
-            this.tabPage1.Controls.Add(this.txtShipmentId);
-            this.tabPage1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabPage1.Location = new System.Drawing.Point(8, 61);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1659, 1474);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "              Xác Nhận Đến              ";
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // groupBox3
             // 
@@ -111,31 +80,30 @@
             this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Controls.Add(this.dtpNgayDen);
             this.groupBox3.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(19, 87);
+            this.groupBox3.Location = new System.Drawing.Point(37, 83);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(1412, 177);
-            this.groupBox3.TabIndex = 33;
+            this.groupBox3.Size = new System.Drawing.Size(1593, 177);
+            this.groupBox3.TabIndex = 40;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Nhập thông tin";
-            this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
             // 
             // btnExit
             // 
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnExit.Location = new System.Drawing.Point(1299, 53);
+            this.btnExit.Location = new System.Drawing.Point(1473, 51);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(104, 83);
             this.btnExit.TabIndex = 32;
             this.btnExit.Text = "Thoát";
             this.btnExit.UseVisualStyleBackColor = true;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            this.btnExit.Click += new System.EventHandler(this.btnThoat_Click);
             // 
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.button2.Location = new System.Drawing.Point(1192, 53);
+            this.button2.Location = new System.Drawing.Point(1366, 51);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(94, 83);
             this.button2.TabIndex = 51;
@@ -149,12 +117,11 @@
             this.cbbBoxId.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.cbbBoxId.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbBoxId.FormattingEnabled = true;
-            this.cbbBoxId.Location = new System.Drawing.Point(548, 101);
+            this.cbbBoxId.Location = new System.Drawing.Point(575, 101);
             this.cbbBoxId.Name = "cbbBoxId";
             this.cbbBoxId.Size = new System.Drawing.Size(363, 33);
             this.cbbBoxId.TabIndex = 25;
-            this.cbbBoxId.SelectedValueChanged += new System.EventHandler(this.cbbBoxId_SelectedIndexChanged);
-            this.cbbBoxId.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbbBoxId_KeyDown);
+            this.cbbBoxId.SelectedIndexChanged += new System.EventHandler(this.cbbBoxId_SelectedIndexChanged);
             this.cbbBoxId.Leave += new System.EventHandler(this.cbbBoxId_Leave);
             // 
             // cbbMasterBill
@@ -164,12 +131,11 @@
             this.cbbMasterBill.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.cbbMasterBill.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbMasterBill.FormattingEnabled = true;
-            this.cbbMasterBill.Location = new System.Drawing.Point(204, 101);
+            this.cbbMasterBill.Location = new System.Drawing.Point(224, 101);
             this.cbbMasterBill.Name = "cbbMasterBill";
             this.cbbMasterBill.Size = new System.Drawing.Size(321, 33);
             this.cbbMasterBill.TabIndex = 24;
             this.cbbMasterBill.SelectedIndexChanged += new System.EventHandler(this.cbbMasterBill_SelectedIndexChanged);
-            this.cbbMasterBill.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbbMasterBill_KeyDown);
             this.cbbMasterBill.Leave += new System.EventHandler(this.cbbMasterBill_Leave);
             // 
             // btnOpenClose
@@ -177,7 +143,7 @@
             this.btnOpenClose.BackColor = System.Drawing.Color.Transparent;
             this.btnOpenClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
             this.btnOpenClose.ForeColor = System.Drawing.Color.Red;
-            this.btnOpenClose.Location = new System.Drawing.Point(920, 53);
+            this.btnOpenClose.Location = new System.Drawing.Point(1094, 51);
             this.btnOpenClose.Name = "btnOpenClose";
             this.btnOpenClose.Size = new System.Drawing.Size(260, 83);
             this.btnOpenClose.TabIndex = 26;
@@ -189,7 +155,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.label3.Location = new System.Drawing.Point(542, 68);
+            this.label3.Location = new System.Drawing.Point(569, 51);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(143, 31);
             this.label3.TabIndex = 29;
@@ -199,7 +165,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(199, 68);
+            this.label2.Location = new System.Drawing.Point(218, 51);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(101, 31);
             this.label2.TabIndex = 28;
@@ -209,7 +175,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(10, 68);
+            this.label1.Location = new System.Drawing.Point(12, 51);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(138, 31);
             this.label1.TabIndex = 27;
@@ -228,10 +194,10 @@
             // txtSearch
             // 
             this.txtSearch.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtSearch.Location = new System.Drawing.Point(1035, 553);
+            this.txtSearch.Location = new System.Drawing.Point(1219, 557);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(395, 35);
-            this.txtSearch.TabIndex = 32;
+            this.txtSearch.Size = new System.Drawing.Size(395, 31);
+            this.txtSearch.TabIndex = 39;
             this.txtSearch.Text = "NHẬP MÃ ĐỂ TÌM KIẾM";
             this.txtSearch.Enter += new System.EventHandler(this.txtSearch_Enter);
             this.txtSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearch_KeyDown);
@@ -244,10 +210,10 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label10.Location = new System.Drawing.Point(566, 28);
+            this.label10.Location = new System.Drawing.Point(584, 8);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(370, 63);
-            this.label10.TabIndex = 31;
+            this.label10.TabIndex = 38;
             this.label10.Text = "Xác nhận đến";
             // 
             // panel1
@@ -265,17 +231,17 @@
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.lblMasterBill);
             this.panel1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel1.Location = new System.Drawing.Point(19, 272);
+            this.panel1.Location = new System.Drawing.Point(37, 268);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1413, 255);
-            this.panel1.TabIndex = 28;
+            this.panel1.Size = new System.Drawing.Size(1593, 255);
+            this.panel1.TabIndex = 37;
             // 
             // lblDonDaQuet
             // 
             this.lblDonDaQuet.AutoSize = true;
             this.lblDonDaQuet.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDonDaQuet.ForeColor = System.Drawing.Color.OrangeRed;
-            this.lblDonDaQuet.Location = new System.Drawing.Point(1228, 74);
+            this.lblDonDaQuet.Location = new System.Drawing.Point(1402, 74);
             this.lblDonDaQuet.Name = "lblDonDaQuet";
             this.lblDonDaQuet.Size = new System.Drawing.Size(72, 51);
             this.lblDonDaQuet.TabIndex = 34;
@@ -286,19 +252,18 @@
             this.lblThungDaQuet.AutoSize = true;
             this.lblThungDaQuet.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblThungDaQuet.ForeColor = System.Drawing.Color.LightSkyBlue;
-            this.lblThungDaQuet.Location = new System.Drawing.Point(1228, 11);
+            this.lblThungDaQuet.Location = new System.Drawing.Point(1402, 11);
             this.lblThungDaQuet.Name = "lblThungDaQuet";
             this.lblThungDaQuet.Size = new System.Drawing.Size(47, 51);
             this.lblThungDaQuet.TabIndex = 33;
             this.lblThungDaQuet.Text = "5";
-            this.lblThungDaQuet.Click += new System.EventHandler(this.lblThungDaQuet_Click);
             // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.DarkGray;
-            this.label12.Location = new System.Drawing.Point(821, 192);
+            this.label12.Location = new System.Drawing.Point(995, 192);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(158, 36);
             this.label12.TabIndex = 32;
@@ -309,7 +274,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.DarkGray;
-            this.label5.Location = new System.Drawing.Point(913, 84);
+            this.label5.Location = new System.Drawing.Point(1087, 84);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(282, 36);
             this.label5.TabIndex = 31;
@@ -320,7 +285,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.DarkGray;
-            this.label4.Location = new System.Drawing.Point(913, 22);
+            this.label4.Location = new System.Drawing.Point(1087, 22);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(315, 36);
             this.label4.TabIndex = 30;
@@ -331,7 +296,7 @@
             this.lblShipmentScaned.AutoSize = true;
             this.lblShipmentScaned.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblShipmentScaned.ForeColor = System.Drawing.Color.Magenta;
-            this.lblShipmentScaned.Location = new System.Drawing.Point(976, 151);
+            this.lblShipmentScaned.Location = new System.Drawing.Point(1150, 151);
             this.lblShipmentScaned.Name = "lblShipmentScaned";
             this.lblShipmentScaned.Size = new System.Drawing.Size(129, 91);
             this.lblShipmentScaned.TabIndex = 29;
@@ -388,10 +353,10 @@
             this.groupBox1.AutoSize = true;
             this.groupBox1.Controls.Add(this.grvShipments);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(19, 611);
+            this.groupBox1.Location = new System.Drawing.Point(37, 607);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1601, 842);
-            this.groupBox1.TabIndex = 27;
+            this.groupBox1.TabIndex = 36;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Danh sách đơn hàng";
             // 
@@ -409,32 +374,27 @@
             this.grvShipments.RowTemplate.Height = 33;
             this.grvShipments.Size = new System.Drawing.Size(1582, 744);
             this.grvShipments.TabIndex = 6;
-            this.grvShipments.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grvShipments_CellClick);
             // 
             // lblMaVuaNhap
             // 
             this.lblMaVuaNhap.AutoSize = true;
             this.lblMaVuaNhap.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMaVuaNhap.ForeColor = System.Drawing.Color.Red;
-            this.lblMaVuaNhap.Location = new System.Drawing.Point(427, 553);
+            this.lblMaVuaNhap.Location = new System.Drawing.Point(445, 549);
             this.lblMaVuaNhap.Name = "lblMaVuaNhap";
             this.lblMaVuaNhap.Size = new System.Drawing.Size(249, 44);
-            this.lblMaVuaNhap.TabIndex = 26;
+            this.lblMaVuaNhap.TabIndex = 35;
             this.lblMaVuaNhap.Text = "Mã vừa nhập";
             // 
             // txtShipmentId
             // 
             this.txtShipmentId.BackColor = System.Drawing.Color.White;
             this.txtShipmentId.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtShipmentId.Location = new System.Drawing.Point(19, 559);
+            this.txtShipmentId.Location = new System.Drawing.Point(37, 555);
             this.txtShipmentId.Name = "txtShipmentId";
-            this.txtShipmentId.Size = new System.Drawing.Size(395, 35);
-            this.txtShipmentId.TabIndex = 5;
+            this.txtShipmentId.Size = new System.Drawing.Size(395, 31);
+            this.txtShipmentId.TabIndex = 34;
             this.txtShipmentId.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtShipmentId_KeyPress);
-            // 
-            // timer1
-            // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // FormNhap
             // 
@@ -442,16 +402,19 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1675, 1543);
-            this.Controls.Add(this.tabNhap);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.txtSearch);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.lblMaVuaNhap);
+            this.Controls.Add(this.txtShipmentId);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimizeBox = false;
             this.Name = "FormNhap";
             this.Text = "Rapid Logistics v1.0.16";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormNhap_FormClosed);
-            this.tabNhap.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -459,33 +422,15 @@
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grvShipments)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TabControl tabNhap;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TextBox txtShipmentId;
-        private System.Windows.Forms.Label lblMaVuaNhap;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label lblBoxId;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label lblMasterBill;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DataGridView grvShipments;
-        private System.Windows.Forms.Label lblNgayDen;
-        private System.Windows.Forms.Label lblShipmentScaned;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label lblDonDaQuet;
-        private System.Windows.Forms.Label lblThungDaQuet;
-        private System.Windows.Forms.Button btnExit;
-        private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ComboBox cbbBoxId;
         private System.Windows.Forms.ComboBox cbbMasterBill;
         private System.Windows.Forms.Button btnOpenClose;
@@ -493,7 +438,23 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker dtpNgayDen;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lblDonDaQuet;
+        private System.Windows.Forms.Label lblThungDaQuet;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblShipmentScaned;
+        private System.Windows.Forms.Label lblNgayDen;
+        private System.Windows.Forms.Label lblBoxId;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblMasterBill;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.DataGridView grvShipments;
+        private System.Windows.Forms.Label lblMaVuaNhap;
+        private System.Windows.Forms.TextBox txtShipmentId;
     }
 }
 
