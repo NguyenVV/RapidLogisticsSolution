@@ -43,13 +43,14 @@
             this.btnManageEmployee = new System.Windows.Forms.Button();
             this.btnInventory = new System.Windows.Forms.Button();
             this.timerMinute = new System.Windows.Forms.Timer(this.components);
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.panel1);
+            this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.Controls.Add(this.btnWaitToConfirm);
             this.groupBox1.Controls.Add(this.btnExportInventory);
             this.groupBox1.Controls.Add(this.lblTime);
@@ -64,11 +65,11 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.groupBox1.Location = new System.Drawing.Point(9, 10);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(49, 51, 49, 51);
+            this.groupBox1.Location = new System.Drawing.Point(10, 10);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(53, 53, 53, 53);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(9, 10, 9, 10);
-            this.groupBox1.Size = new System.Drawing.Size(1294, 532);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            this.groupBox1.Size = new System.Drawing.Size(1411, 554);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Các Chức Năng";
@@ -76,9 +77,9 @@
             // btnWaitToConfirm
             // 
             this.btnWaitToConfirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnWaitToConfirm.Location = new System.Drawing.Point(582, 80);
+            this.btnWaitToConfirm.Location = new System.Drawing.Point(635, 83);
             this.btnWaitToConfirm.Name = "btnWaitToConfirm";
-            this.btnWaitToConfirm.Size = new System.Drawing.Size(237, 93);
+            this.btnWaitToConfirm.Size = new System.Drawing.Size(259, 97);
             this.btnWaitToConfirm.TabIndex = 41;
             this.btnWaitToConfirm.Text = "Hàng chờ thông quan";
             this.btnWaitToConfirm.UseVisualStyleBackColor = true;
@@ -87,9 +88,9 @@
             // btnExportInventory
             // 
             this.btnExportInventory.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExportInventory.Location = new System.Drawing.Point(308, 80);
+            this.btnExportInventory.Location = new System.Drawing.Point(336, 83);
             this.btnExportInventory.Name = "btnExportInventory";
-            this.btnExportInventory.Size = new System.Drawing.Size(237, 93);
+            this.btnExportInventory.Size = new System.Drawing.Size(259, 97);
             this.btnExportInventory.TabIndex = 40;
             this.btnExportInventory.Text = "Xuất kho";
             this.btnExportInventory.UseVisualStyleBackColor = true;
@@ -99,9 +100,9 @@
             // 
             this.lblTime.AutoSize = true;
             this.lblTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTime.Location = new System.Drawing.Point(1053, 313);
+            this.lblTime.Location = new System.Drawing.Point(1149, 326);
             this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(145, 54);
+            this.lblTime.Size = new System.Drawing.Size(167, 63);
             this.lblTime.TabIndex = 39;
             this.lblTime.Text = "15:30";
             // 
@@ -111,18 +112,18 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDate.AutoSize = true;
             this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDate.Location = new System.Drawing.Point(975, 274);
+            this.lblDate.Location = new System.Drawing.Point(1064, 285);
             this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(304, 24);
+            this.lblDate.Size = new System.Drawing.Size(353, 26);
             this.lblDate.TabIndex = 38;
             this.lblDate.Text = "Thứ sáu ngày 13 tháng 6 năm 2017";
             // 
             // btnReports
             // 
             this.btnReports.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReports.Location = new System.Drawing.Point(32, 238);
+            this.btnReports.Location = new System.Drawing.Point(35, 248);
             this.btnReports.Name = "btnReports";
-            this.btnReports.Size = new System.Drawing.Size(237, 93);
+            this.btnReports.Size = new System.Drawing.Size(259, 97);
             this.btnReports.TabIndex = 37;
             this.btnReports.Text = "Báo cáo";
             this.btnReports.UseVisualStyleBackColor = true;
@@ -131,9 +132,9 @@
             // btnChangePass
             // 
             this.btnChangePass.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnChangePass.Location = new System.Drawing.Point(308, 238);
+            this.btnChangePass.Location = new System.Drawing.Point(336, 248);
             this.btnChangePass.Name = "btnChangePass";
-            this.btnChangePass.Size = new System.Drawing.Size(237, 93);
+            this.btnChangePass.Size = new System.Drawing.Size(259, 97);
             this.btnChangePass.TabIndex = 36;
             this.btnChangePass.Text = "Hệ thống";
             this.btnChangePass.UseVisualStyleBackColor = true;
@@ -143,9 +144,9 @@
             // 
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit.ForeColor = System.Drawing.Color.Green;
-            this.btnExit.Location = new System.Drawing.Point(1007, 468);
+            this.btnExit.Location = new System.Drawing.Point(1099, 487);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(244, 45);
+            this.btnExit.Size = new System.Drawing.Size(266, 47);
             this.btnExit.TabIndex = 35;
             this.btnExit.Text = "Thoát";
             this.btnExit.UseVisualStyleBackColor = true;
@@ -155,9 +156,9 @@
             // 
             this.btnLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogout.ForeColor = System.Drawing.Color.Green;
-            this.btnLogout.Location = new System.Drawing.Point(1007, 412);
+            this.btnLogout.Location = new System.Drawing.Point(1099, 429);
             this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(244, 46);
+            this.btnLogout.Size = new System.Drawing.Size(266, 48);
             this.btnLogout.TabIndex = 34;
             this.btnLogout.Text = "Đổi người dùng";
             this.btnLogout.UseVisualStyleBackColor = true;
@@ -167,18 +168,18 @@
             // 
             this.lblWelcome.AutoSize = true;
             this.lblWelcome.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWelcome.Location = new System.Drawing.Point(724, 26);
+            this.lblWelcome.Location = new System.Drawing.Point(790, 27);
             this.lblWelcome.Name = "lblWelcome";
-            this.lblWelcome.Size = new System.Drawing.Size(225, 24);
+            this.lblWelcome.Size = new System.Drawing.Size(256, 26);
             this.lblWelcome.TabIndex = 2;
             this.lblWelcome.Text = "Xin chào Nguyễn Văn A !";
             // 
             // btnManageEmployee
             // 
             this.btnManageEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnManageEmployee.Location = new System.Drawing.Point(582, 238);
+            this.btnManageEmployee.Location = new System.Drawing.Point(635, 248);
             this.btnManageEmployee.Name = "btnManageEmployee";
-            this.btnManageEmployee.Size = new System.Drawing.Size(237, 93);
+            this.btnManageEmployee.Size = new System.Drawing.Size(259, 97);
             this.btnManageEmployee.TabIndex = 1;
             this.btnManageEmployee.Text = "Quản lý người dùng";
             this.btnManageEmployee.UseVisualStyleBackColor = true;
@@ -187,9 +188,9 @@
             // btnInventory
             // 
             this.btnInventory.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInventory.Location = new System.Drawing.Point(32, 80);
+            this.btnInventory.Location = new System.Drawing.Point(35, 83);
             this.btnInventory.Name = "btnInventory";
-            this.btnInventory.Size = new System.Drawing.Size(237, 93);
+            this.btnInventory.Size = new System.Drawing.Size(259, 97);
             this.btnInventory.TabIndex = 0;
             this.btnInventory.Text = "Xác nhận đến";
             this.btnInventory.UseVisualStyleBackColor = true;
@@ -200,31 +201,35 @@
             this.timerMinute.Interval = 1000;
             this.timerMinute.Tick += new System.EventHandler(this.timerMinute_Tick);
             // 
-            // panel1
+            // pictureBox1
             // 
-            this.panel1.BackgroundImage = global::RapidWarehouse.Properties.Resources.logo;
-            this.panel1.Location = new System.Drawing.Point(979, 26);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(303, 240);
-            this.panel1.TabIndex = 42;
+            this.pictureBox1.Image = global::RapidWarehouse.Properties.Resources.logo;
+            this.pictureBox1.InitialImage = global::RapidWarehouse.Properties.Resources.logo;
+            this.pictureBox1.Location = new System.Drawing.Point(1074, 35);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(307, 243);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 42;
+            this.pictureBox1.TabStop = false;
             // 
             // FormHome
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1312, 567);
+            this.ClientSize = new System.Drawing.Size(1431, 591);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormHome";
-            this.Padding = new System.Windows.Forms.Padding(9, 10, 9, 10);
+            this.Padding = new System.Windows.Forms.Padding(10, 10, 10, 10);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Kho hàng Rapid Hà Nội";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormHome_FormClosed);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -244,6 +249,6 @@
         private System.Windows.Forms.Button btnWaitToConfirm;
         private System.Windows.Forms.Button btnExportInventory;
         private System.Windows.Forms.Timer timerMinute;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

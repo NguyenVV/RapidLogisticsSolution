@@ -408,6 +408,7 @@ namespace RapidWarehouse
             cbbMaster.Items.Clear();
             
             List<MasterAirwayBillEntity> masterBillList = (List<MasterAirwayBillEntity>)_masterBillServices.GetByDateArrived(date);
+            List<ShipmentOutEntity> listOut = (List < ShipmentOutEntity > )_shipmentOutServices.GetByDate(dtpNgayXuat.Value);
             if (masterBillList != null && masterBillList.Count > 0)
             {
                 cbbMaster.DataSource = masterBillList;

@@ -84,6 +84,19 @@ namespace BusinessServices
             }
             return null;
         }
+
+        public IEnumerable<ShipmentOutEntity> GetAllMasterBillByDate(DateTime value)
+        {
+            //var shipmentList = _unitOfWork.ShipmentOutRepository.GetMany(t => t.DateOut.Value.Date == value.Date).Select(t=>t.MasterBillIdString).Distinct();
+            //if (shipmentList != null && shipmentList.Any())
+            //{
+            //    Mapper.CreateMap<ShipmentOut, ShipmentOutEntity>();
+            //    var shipmentListModel = Mapper.Map<List<ShipmentOut>, List<ShipmentOutEntity>>(shipmentList.ToList());
+            //    return shipmentListModel;
+            //}
+            return null;
+        }
+
         public IEnumerable<ShipmentOutEntity> GetByDateRange(DateTime start, DateTime end)
         {
             var masterList = _unitOfWork.ShipmentOutRepository.GetMany(t => t.DateOut.Value.Date >= start.Date && t.DateOut.Value.Date <= end.Date);
