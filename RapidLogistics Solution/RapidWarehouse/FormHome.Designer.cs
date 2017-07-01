@@ -43,11 +43,13 @@
             this.btnManageEmployee = new System.Windows.Forms.Button();
             this.btnInventory = new System.Windows.Forms.Button();
             this.timerMinute = new System.Windows.Forms.Timer(this.components);
+            this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Controls.Add(this.btnWaitToConfirm);
             this.groupBox1.Controls.Add(this.btnExportInventory);
             this.groupBox1.Controls.Add(this.lblTime);
@@ -97,7 +99,7 @@
             // 
             this.lblTime.AutoSize = true;
             this.lblTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTime.Location = new System.Drawing.Point(1033, 126);
+            this.lblTime.Location = new System.Drawing.Point(1053, 313);
             this.lblTime.Name = "lblTime";
             this.lblTime.Size = new System.Drawing.Size(145, 54);
             this.lblTime.TabIndex = 39;
@@ -109,7 +111,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDate.AutoSize = true;
             this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDate.Location = new System.Drawing.Point(945, 41);
+            this.lblDate.Location = new System.Drawing.Point(975, 274);
             this.lblDate.Name = "lblDate";
             this.lblDate.Size = new System.Drawing.Size(304, 24);
             this.lblDate.TabIndex = 38;
@@ -141,9 +143,9 @@
             // 
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit.ForeColor = System.Drawing.Color.Green;
-            this.btnExit.Location = new System.Drawing.Point(1007, 441);
+            this.btnExit.Location = new System.Drawing.Point(1007, 468);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(244, 61);
+            this.btnExit.Size = new System.Drawing.Size(244, 45);
             this.btnExit.TabIndex = 35;
             this.btnExit.Text = "Thoát";
             this.btnExit.UseVisualStyleBackColor = true;
@@ -153,9 +155,9 @@
             // 
             this.btnLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogout.ForeColor = System.Drawing.Color.Green;
-            this.btnLogout.Location = new System.Drawing.Point(1007, 357);
+            this.btnLogout.Location = new System.Drawing.Point(1007, 412);
             this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(244, 61);
+            this.btnLogout.Size = new System.Drawing.Size(244, 46);
             this.btnLogout.TabIndex = 34;
             this.btnLogout.Text = "Đổi người dùng";
             this.btnLogout.UseVisualStyleBackColor = true;
@@ -165,7 +167,7 @@
             // 
             this.lblWelcome.AutoSize = true;
             this.lblWelcome.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWelcome.Location = new System.Drawing.Point(952, 80);
+            this.lblWelcome.Location = new System.Drawing.Point(724, 26);
             this.lblWelcome.Name = "lblWelcome";
             this.lblWelcome.Size = new System.Drawing.Size(225, 24);
             this.lblWelcome.TabIndex = 2;
@@ -197,6 +199,14 @@
             // 
             this.timerMinute.Interval = 1000;
             this.timerMinute.Tick += new System.EventHandler(this.timerMinute_Tick);
+            // 
+            // panel1
+            // 
+            this.panel1.BackgroundImage = global::RapidWarehouse.Properties.Resources.logo;
+            this.panel1.Location = new System.Drawing.Point(979, 26);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(303, 240);
+            this.panel1.TabIndex = 42;
             // 
             // FormHome
             // 
@@ -234,5 +244,6 @@
         private System.Windows.Forms.Button btnWaitToConfirm;
         private System.Windows.Forms.Button btnExportInventory;
         private System.Windows.Forms.Timer timerMinute;
+        private System.Windows.Forms.Panel panel1;
     }
 }
