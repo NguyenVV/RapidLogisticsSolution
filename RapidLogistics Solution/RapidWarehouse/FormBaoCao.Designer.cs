@@ -59,6 +59,7 @@
             this.btnChiTietXuatKho = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabNhap.SuspendLayout();
@@ -69,6 +70,7 @@
             // 
             this.tabPage3.AutoScroll = true;
             this.tabPage3.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.tabPage3.Controls.Add(this.label5);
             this.tabPage3.Controls.Add(this.btnKeChiTietSanLuongTonKho);
             this.tabPage3.Controls.Add(this.label23);
             this.tabPage3.Controls.Add(this.dtpTo);
@@ -80,12 +82,12 @@
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage3.Size = new System.Drawing.Size(1527, 929);
             this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "        Báo Cáo Tồn Kho, Đối Soát Ca        ";
+            this.tabPage3.Text = "Báo Cáo Tồn Kho, Đối Soát Ca        ";
             // 
             // btnKeChiTietSanLuongTonKho
             // 
             this.btnKeChiTietSanLuongTonKho.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnKeChiTietSanLuongTonKho.Location = new System.Drawing.Point(515, 113);
+            this.btnKeChiTietSanLuongTonKho.Location = new System.Drawing.Point(821, 176);
             this.btnKeChiTietSanLuongTonKho.Name = "btnKeChiTietSanLuongTonKho";
             this.btnKeChiTietSanLuongTonKho.Size = new System.Drawing.Size(283, 146);
             this.btnKeChiTietSanLuongTonKho.TabIndex = 51;
@@ -97,7 +99,7 @@
             // 
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.label23.Location = new System.Drawing.Point(415, 36);
+            this.label23.Location = new System.Drawing.Point(721, 99);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(136, 29);
             this.label23.TabIndex = 50;
@@ -107,7 +109,7 @@
             // 
             this.dtpTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpTo.Location = new System.Drawing.Point(580, 36);
+            this.dtpTo.Location = new System.Drawing.Point(886, 99);
             this.dtpTo.Name = "dtpTo";
             this.dtpTo.Size = new System.Drawing.Size(186, 31);
             this.dtpTo.TabIndex = 49;
@@ -116,7 +118,7 @@
             // 
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.label22.Location = new System.Drawing.Point(8, 36);
+            this.label22.Location = new System.Drawing.Point(314, 99);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(113, 29);
             this.label22.TabIndex = 48;
@@ -126,7 +128,7 @@
             // 
             this.dtpFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFrom.Location = new System.Drawing.Point(173, 36);
+            this.dtpFrom.Location = new System.Drawing.Point(479, 99);
             this.dtpFrom.Name = "dtpFrom";
             this.dtpFrom.Size = new System.Drawing.Size(186, 31);
             this.dtpFrom.TabIndex = 47;
@@ -134,7 +136,7 @@
             // btnSanLuongTonKho
             // 
             this.btnSanLuongTonKho.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSanLuongTonKho.Location = new System.Drawing.Point(73, 113);
+            this.btnSanLuongTonKho.Location = new System.Drawing.Point(379, 176);
             this.btnSanLuongTonKho.Name = "btnSanLuongTonKho";
             this.btnSanLuongTonKho.Size = new System.Drawing.Size(283, 146);
             this.btnSanLuongTonKho.TabIndex = 46;
@@ -409,6 +411,20 @@
             this.label4.TabIndex = 52;
             this.label4.Text = "Báo cáo xác nhận đến";
             // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.Teal;
+            this.label5.Location = new System.Drawing.Point(441, 23);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(513, 48);
+            this.label5.TabIndex = 59;
+            this.label5.Text = "Báo cáo tồn kho, đối soát";
+            // 
             // FormBaoCao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
@@ -464,5 +480,6 @@
         private System.Windows.Forms.ComboBox cbbMasterBill;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label5;
     }
 }
