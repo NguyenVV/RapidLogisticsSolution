@@ -85,16 +85,16 @@ namespace BusinessServices
             return null;
         }
 
-        public IEnumerable<ShipmentOutEntity> GetAllMasterBillByDate(DateTime value)
+        public IEnumerable<MasterAirwayBillEntity> GetAllMasterBillByDate(DateTime value)
         {
-            //var shipmentList = _unitOfWork.ShipmentOutRepository.GetMany(t => t.DateOut.Value.Date == value.Date).Select(t=>t.MasterBillIdString).Distinct();
-            //if (shipmentList != null && shipmentList.Any())
-            //{
-            //    Mapper.CreateMap<ShipmentOut, ShipmentOutEntity>();
-            //    var shipmentListModel = Mapper.Map<List<ShipmentOut>, List<ShipmentOutEntity>>(shipmentList.ToList());
-            //    return shipmentListModel;
-            //}
-            return null;
+            var list = _unitOfWork.ShipmentOutRepository.GetMany(t => t.DateOut.Value.Date == value.Date).Select(t => new MasterAirwayBillEntity { Id = (int)t.MasterBillId, MasterAirwayBill = t.MasterBillIdString });
+            return list.GroupBy(t=>t.MasterAirwayBill).Select(y => y.First());
+        }
+
+        public IEnumerable<BoxInforEntity> GetAllBoxByMasterBill(int masterBillId)
+        {
+            var list = _unitOfWork.ShipmentOutRepository.GetMany(t => t.MasterBillId == masterBillId).Select(t => new BoxInforEntity { Id = (int)t.MasterBillId, BoxId = t.BoxIdString });
+            return list.GroupBy(t => t.BoxId).Select(y => y.First());
         }
 
         public IEnumerable<ShipmentOutEntity> GetByDateRange(DateTime start, DateTime end)

@@ -38,6 +38,9 @@ namespace RapidWarehouse
             dtpNgayXuatReport.CustomFormat = "dd/MM/yyyy";
             dtpFrom.CustomFormat = "dd/MM/yyyy";
             dtpTo.CustomFormat = "dd/MM/yyyy";
+
+            LoadAllMasterBillByDateToCombobox(dtpNgayXuatReport.Value, cbbMasterBillOut);
+            LoadAllMasterBillByDateToCombobox(dtpNgayBaoCao.Value, cbbMasterList);
         }
 
 
@@ -267,12 +270,12 @@ namespace RapidWarehouse
 
         private void cbbMasterList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbbMasterList.SelectedIndex > 0)
+            if (cbbMasterList.SelectedIndex >= 0)
             {
                 MasterAirwayBillEntity itemMaster = (MasterAirwayBillEntity)cbbMasterList.SelectedItem;
 
                 LoadBoxIdListFromMasterBillId(itemMaster.Id, cbbBoxIdReport);
-                cbbBoxIdReport.SelectedIndex = 1;
+                cbbBoxIdReport.SelectedIndex = 0;
             }
         }
 
@@ -407,12 +410,12 @@ namespace RapidWarehouse
 
         private void btnChiTietXuatKho_Click(object sender, EventArgs e)
         {
-            ChiTietSanLuongXuatKho();
+            List<ShipmentOutEntity> listDetail = (List<ShipmentOutEntity>)_shipmentOutServices.GetByDate(dtpNgayXuatReport.Value);
+            ChiTietSanLuongXuatKho(listDetail);
         }
 
-        private void ChiTietSanLuongXuatKho()
+        private void ChiTietSanLuongXuatKho(List<ShipmentOutEntity> listDetail, string masterBillIdString = null, string boxIdString=null)
         {
-            List<ShipmentOutEntity> listDetail = (List<ShipmentOutEntity>)_shipmentOutServices.GetByDate(dtpNgayXuatReport.Value);
             int totalThung = 0;
             int totalShipment;
             if (listDetail != null && listDetail.Count > 0)
@@ -435,12 +438,25 @@ namespace RapidWarehouse
                 return;
             }
 
+            string infoHeader = "TỔNG SỐ THÙNG: " + totalThung;
+            if(boxIdString != null)
+            {
+                infoHeader = "MÃ THÙNG: " + boxIdString;
+            }
+            else
+            {
+                if(masterBillIdString!= null)
+                {
+                    infoHeader = "MÃ MAWB: " + masterBillIdString;
+                }
+            }
+
             string fileName = Environment.CurrentDirectory + @"\ChiTietSanLuongXuatKho" + DateTime.Now.ToString("ddMMyyyHHmmss") + ".doc";
             string companyName = "CÔNG TY CP CÔNG NGHỆ THẦN TỐC\t\t\t\t\t\tEMW01";
             string headlineText = "BẢNG KÊ CHI TIẾT SẢN LƯỢNG XUẤT KHO";
-            string ngayDen = "NGÀY ĐẾN : " + dtpNgayXuatReport.Value.ToString("dd/MM/yyyy") + "\n"
+            string ngayDen = "NGÀY XUẤT : " + dtpNgayXuatReport.Value.ToString("dd/MM/yyyy") + "\n"
 
-                            + "TỔNG SỐ THÙNG: " + totalThung
+                            + infoHeader
                             + "\t\t\tTỔNG SỐ ĐƠN HÀNG: " + totalShipment;
             string boPhanGiaoNhan = "BỘ PHẬN KHO\t\t\t\t\t\tBỘ PHẬN GIAO NHẬN";
 
@@ -836,24 +852,16 @@ namespace RapidWarehouse
         #endregion
 
         #region Dùng chung
-        
 
         private void LoadAllMasterBillByDateToCombobox(DateTime date, ComboBox cbbMaster)
         {
             cbbMaster.DataSource = null;
             cbbMaster.Items.Clear();
 
-            List<MasterAirwayBillEntity> finalList = new List<MasterAirwayBillEntity>();
-            var temp = new MasterAirwayBillEntity();
-            temp.Id = 0;
-            temp.MasterAirwayBill = string.Empty;
-            finalList.Add(temp);
-
-            List<MasterAirwayBillEntity> masterBillList = (List<MasterAirwayBillEntity>)_masterBillServices.GetByDateArrived(date);
+            List<MasterAirwayBillEntity> masterBillList = _shipmentOutServices.GetAllMasterBillByDate(date).ToList();
             if (masterBillList != null && masterBillList.Count > 0)
             {
-                finalList.AddRange(masterBillList);
-                cbbMaster.DataSource = finalList;
+                cbbMaster.DataSource = masterBillList;
                 cbbMaster.ValueMember = "Id";
                 cbbMaster.DisplayMember = "MasterAirwayBill";
             }
@@ -863,17 +871,10 @@ namespace RapidWarehouse
             if (masterBillId <= 0)
                 return;
 
-            List<BoxInforEntity> finalList = new List<BoxInforEntity>();
-            var temp = new BoxInforEntity();
-            temp.Id = 0;
-            temp.BoxId = string.Empty;
-            finalList.Add(temp);
-
-            List<BoxInforEntity> listBoxInfo = (List<BoxInforEntity>)_boxInforServices.GetByMasterBill(masterBillId);
+            List<BoxInforEntity> listBoxInfo = _shipmentOutServices.GetAllBoxByMasterBill(masterBillId).ToList();
             if (listBoxInfo != null && listBoxInfo.Count > 0)
             {
-                finalList.AddRange(listBoxInfo);
-                cbbBoxes.DataSource = finalList;
+                cbbBoxes.DataSource = listBoxInfo;
                 cbbBoxes.ValueMember = "Id";
                 cbbBoxes.DisplayMember = "BoxId";
             }
@@ -883,7 +884,7 @@ namespace RapidWarehouse
                 cbbBoxes.Items.Clear();
             }
         }
-
+        
         #endregion
 
         private void FormBaoCao_FormClosed(object sender, FormClosedEventArgs e)
@@ -892,6 +893,42 @@ namespace RapidWarehouse
             home.ShowHideButton();
             home.Show();
             this.Dispose();
+        }
+
+        private void cbbMasterBillOut_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbbMasterBillOut.SelectedIndex >= 0)
+            {
+                MasterAirwayBillEntity itemMaster = (MasterAirwayBillEntity)cbbMasterBillOut.SelectedItem;
+
+                LoadBoxIdListFromMasterBillId(itemMaster.Id, cbbBoxIdOut);
+                cbbBoxIdOut.SelectedIndex = 0;
+            }
+        }
+
+        private void btnReportByMawb_Click(object sender, EventArgs e)
+        {
+            MasterAirwayBillEntity master = (MasterAirwayBillEntity)cbbMasterBillOut.SelectedItem;
+            if (master != null)
+            {
+                List<ShipmentOutEntity> listDetail = (List<ShipmentOutEntity>)_shipmentOutServices.GetByMasterBillId(master.Id);
+                ChiTietSanLuongXuatKho(listDetail, master.MasterAirwayBill);
+            }
+        }
+
+        private void btnReportByBox_Click(object sender, EventArgs e)
+        {
+            BoxInforEntity box = (BoxInforEntity)cbbBoxIdOut.SelectedItem;
+            if (box != null)
+            {
+                List<ShipmentOutEntity> listDetail = (List<ShipmentOutEntity>)_shipmentOutServices.GetByBoxId(box.Id);
+                ChiTietSanLuongXuatKho(listDetail, null, box.BoxId);
+            }
+        }
+
+        private void dtpNgayXuatReport_ValueChanged(object sender, EventArgs e)
+        {
+            LoadAllMasterBillByDateToCombobox(dtpNgayXuatReport.Value, cbbMasterBillOut);
         }
     }
 }

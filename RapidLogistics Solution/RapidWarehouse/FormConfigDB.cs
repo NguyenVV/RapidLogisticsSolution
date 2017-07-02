@@ -39,8 +39,11 @@ namespace RapidWarehouse
             catch(Exception ex)
             {
                 Ultilities.FileHelper.WriteLog(Ultilities.ExceptionLevel.Application, "Test connection", ex);
-                MessageBox.Show("Kết nối đến CSDL thất bại, thử lại ngay bây giờ!", "Kết nối thất bại",MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Application.Restart();
+                Ultilities.Security.SaveToRegedit(txtServer.Text, txtDbName.Text, txtUserName.Text, txtPassword.Text);
+                if (MessageBox.Show("Kết nối đến CSDL thất bại, thử lại ngay bây giờ!", "Kết nối thất bại", MessageBoxButtons.OK, MessageBoxIcon.Information) == DialogResult.Yes)
+                {
+                    Application.Restart();
+                }
             }
         }
 
@@ -48,6 +51,12 @@ namespace RapidWarehouse
         {
             Ultilities.Security.SaveToRegedit(txtServer.Text, txtDbName.Text, txtUserName.Text, txtPassword.Text);
             Application.Restart();
+        }
+
+        private void FormConfigDB_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Program.Container.GetInstance<FormLogin>().Show();
+            this.Dispose();
         }
     }
 }

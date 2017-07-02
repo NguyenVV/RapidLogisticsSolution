@@ -73,9 +73,7 @@ namespace RapidWarehouse
             txtShipmentIdOut.Enabled = true;
             grvShipmentListOut.Enabled = true;
             txtShipmentIdOut.Focus();
-
-            var box = _boxInforServices.GetByBoxId(cbbBoxIdOut.Text);
-            LoadShipmentsByBoxId(box, grvShipmentListOut);
+            
             lblShipmentScanedOut.Text = (grvShipmentListOut.Rows.Count).ToString();
         }
 
@@ -261,6 +259,9 @@ namespace RapidWarehouse
                         return;
                     }
                 }
+                var box = _boxInforServices.GetByBoxId(cbbBoxIdOut.Text);
+                if (!LoadShipmentsByBoxId(box, grvShipmentListOut))
+                    return;
 
                 OpenBoxOut();
                 btnOpenBoxOut.Text = "Đóng";
@@ -407,8 +408,8 @@ namespace RapidWarehouse
             cbbMaster.DataSource = null;
             cbbMaster.Items.Clear();
             
-            List<MasterAirwayBillEntity> masterBillList = (List<MasterAirwayBillEntity>)_masterBillServices.GetByDateArrived(date);
-            List<ShipmentOutEntity> listOut = (List < ShipmentOutEntity > )_shipmentOutServices.GetByDate(dtpNgayXuat.Value);
+            List<MasterAirwayBillEntity> masterBillList = _shipmentOutServices.GetAllMasterBillByDate(date).ToList();
+            //List<ShipmentOutEntity> listOut = (List < ShipmentOutEntity > )_shipmentOutServices.GetByDate(dtpNgayXuat.Value);
             if (masterBillList != null && masterBillList.Count > 0)
             {
                 cbbMaster.DataSource = masterBillList;
@@ -502,22 +503,23 @@ namespace RapidWarehouse
                 numberShipmentOut = index;
             }
         }
-        private void LoadShipmentsByBoxId(BoxInforEntity boxEntity, DataGridView shipmentGrid)
+        private bool LoadShipmentsByBoxId(BoxInforEntity boxEntity, DataGridView shipmentGrid)
         {
             if (boxEntity == null)
             {
                 shipmentGrid.Rows.Clear();
-                return;
+                return false;
             }
 
             List<ShipmentOutEntity> listShipment = (List<ShipmentOutEntity>)_shipmentOutServices.GetByBoxId(boxEntity.Id);
             List<ShipmentOutEntity> listShipmentOutTemp = (List<ShipmentOutEntity>)_shipmentOutTempServices.GetByBoxId(boxEntity.Id);
-
-            if (listShipment != null)
+            
+            if (MessageBox.Show("Bạn có chắc chắn muốn xử lý mã thùng là " + boxEntity.BoxId + "\nvới tổng số đơn hàng đã xuất kho là " + listShipment.Count, "Chọn xử lý", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 if (listShipmentOutTemp != null)
                 {
                     var result = MessageBox.Show("Có " + listShipmentOutTemp.Count + " đơn hàng chưa lưu ở phiên làm việc trước, bạn có muốn tiếp tục xử lý hay không ?", "Load đơn hàng chưa lưu", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
                     if (result == DialogResult.Yes)
                     {
                         listShipment.AddRange(listShipmentOutTemp);
@@ -527,19 +529,18 @@ namespace RapidWarehouse
                         _shipmentOutTempServices.DeleteByEmployeeId(currentEmployee.Id);
                     }
                 }
-            }
-            else
-            {
-                listShipment = listShipmentOutTemp;
-            }
 
-            if (listShipment != null && listShipment.Count > 0)
-            {
-                AddShipmentListToGrid(listShipment, shipmentGrid);
-            }
+                if (listShipment != null)
+                {
+                    AddShipmentListToGrid(listShipment, shipmentGrid);
+                }
+
+                return true;
+            } 
             else
             {
                 shipmentGrid.Rows.Clear();
+                return false;
             }
         }
         private void LoadBoxIdListFromMasterBillId(int masterBillId, ComboBox cbbBoxes)
@@ -547,7 +548,7 @@ namespace RapidWarehouse
             if (masterBillId <= 0)
                 return;
             
-            List<BoxInforEntity> listBoxInfo = (List<BoxInforEntity>)_boxInforServices.GetByMasterBill(masterBillId);
+            List<BoxInforEntity> listBoxInfo = _shipmentOutServices.GetAllBoxByMasterBill(masterBillId).ToList();
             if (listBoxInfo != null && listBoxInfo.Count > 0)
             {
                 cbbBoxes.DataSource = listBoxInfo;
@@ -577,9 +578,7 @@ namespace RapidWarehouse
         }
         private void GoHome()
         {
-            var home = new FormHome();
-            home.ShowHideButton();
-            home.Show();
+            Program.Container.GetInstance<FormHome>().Show();
             this.Dispose();
         }
 

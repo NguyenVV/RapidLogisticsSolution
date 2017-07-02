@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormHome));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnWaitToConfirm = new System.Windows.Forms.Button();
             this.btnExportInventory = new System.Windows.Forms.Button();
             this.lblTime = new System.Windows.Forms.Label();
@@ -43,7 +44,6 @@
             this.btnManageEmployee = new System.Windows.Forms.Button();
             this.btnInventory = new System.Windows.Forms.Button();
             this.timerMinute = new System.Windows.Forms.Timer(this.components);
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -66,13 +66,24 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.groupBox1.Location = new System.Drawing.Point(10, 10);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(53, 53, 53, 53);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(53);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(10);
             this.groupBox1.Size = new System.Drawing.Size(1411, 554);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Các Chức Năng";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::RapidWarehouse.Properties.Resources.logo;
+            this.pictureBox1.InitialImage = global::RapidWarehouse.Properties.Resources.logo;
+            this.pictureBox1.Location = new System.Drawing.Point(1074, 35);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(307, 243);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 42;
+            this.pictureBox1.TabStop = false;
             // 
             // btnWaitToConfirm
             // 
@@ -80,7 +91,7 @@
             this.btnWaitToConfirm.Location = new System.Drawing.Point(635, 83);
             this.btnWaitToConfirm.Name = "btnWaitToConfirm";
             this.btnWaitToConfirm.Size = new System.Drawing.Size(259, 97);
-            this.btnWaitToConfirm.TabIndex = 41;
+            this.btnWaitToConfirm.TabIndex = 2;
             this.btnWaitToConfirm.Text = "Hàng chờ thông quan";
             this.btnWaitToConfirm.UseVisualStyleBackColor = true;
             this.btnWaitToConfirm.Click += new System.EventHandler(this.btnWaitToConfirm_Click);
@@ -91,7 +102,7 @@
             this.btnExportInventory.Location = new System.Drawing.Point(336, 83);
             this.btnExportInventory.Name = "btnExportInventory";
             this.btnExportInventory.Size = new System.Drawing.Size(259, 97);
-            this.btnExportInventory.TabIndex = 40;
+            this.btnExportInventory.TabIndex = 1;
             this.btnExportInventory.Text = "Xuất kho";
             this.btnExportInventory.UseVisualStyleBackColor = true;
             this.btnExportInventory.Click += new System.EventHandler(this.btnExportInventory_Click);
@@ -124,7 +135,7 @@
             this.btnReports.Location = new System.Drawing.Point(35, 248);
             this.btnReports.Name = "btnReports";
             this.btnReports.Size = new System.Drawing.Size(259, 97);
-            this.btnReports.TabIndex = 37;
+            this.btnReports.TabIndex = 3;
             this.btnReports.Text = "Báo cáo";
             this.btnReports.UseVisualStyleBackColor = true;
             this.btnReports.Click += new System.EventHandler(this.btnReports_Click);
@@ -135,7 +146,7 @@
             this.btnChangePass.Location = new System.Drawing.Point(336, 248);
             this.btnChangePass.Name = "btnChangePass";
             this.btnChangePass.Size = new System.Drawing.Size(259, 97);
-            this.btnChangePass.TabIndex = 36;
+            this.btnChangePass.TabIndex = 4;
             this.btnChangePass.Text = "Hệ thống";
             this.btnChangePass.UseVisualStyleBackColor = true;
             this.btnChangePass.Click += new System.EventHandler(this.btnChangePass_Click);
@@ -147,7 +158,7 @@
             this.btnExit.Location = new System.Drawing.Point(1099, 487);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(266, 47);
-            this.btnExit.TabIndex = 35;
+            this.btnExit.TabIndex = 7;
             this.btnExit.Text = "Thoát";
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
@@ -159,7 +170,7 @@
             this.btnLogout.Location = new System.Drawing.Point(1099, 429);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(266, 48);
-            this.btnLogout.TabIndex = 34;
+            this.btnLogout.TabIndex = 6;
             this.btnLogout.Text = "Đổi người dùng";
             this.btnLogout.UseVisualStyleBackColor = true;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
@@ -180,7 +191,7 @@
             this.btnManageEmployee.Location = new System.Drawing.Point(635, 248);
             this.btnManageEmployee.Name = "btnManageEmployee";
             this.btnManageEmployee.Size = new System.Drawing.Size(259, 97);
-            this.btnManageEmployee.TabIndex = 1;
+            this.btnManageEmployee.TabIndex = 5;
             this.btnManageEmployee.Text = "Quản lý người dùng";
             this.btnManageEmployee.UseVisualStyleBackColor = true;
             this.btnManageEmployee.Click += new System.EventHandler(this.btnManageEmployee_Click);
@@ -201,17 +212,6 @@
             this.timerMinute.Interval = 1000;
             this.timerMinute.Tick += new System.EventHandler(this.timerMinute_Tick);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::RapidWarehouse.Properties.Resources.logo;
-            this.pictureBox1.InitialImage = global::RapidWarehouse.Properties.Resources.logo;
-            this.pictureBox1.Location = new System.Drawing.Point(1074, 35);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(307, 243);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 42;
-            this.pictureBox1.TabStop = false;
-            // 
             // FormHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -222,11 +222,12 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormHome";
-            this.Padding = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            this.Padding = new System.Windows.Forms.Padding(10);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Kho hàng Rapid Hà Nội";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormHome_FormClosed);
+            this.Shown += new System.EventHandler(this.FormHome_Shown);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

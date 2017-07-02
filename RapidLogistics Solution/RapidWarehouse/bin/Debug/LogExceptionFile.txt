@@ -145,3 +145,21 @@ Exception details : System.Data.Entity; The underlying provider failed on Open.
 Exception at: Test connection on :2017-07-01 01:50:41
 Exception details : System.Data.Entity; The underlying provider failed on Open.
 ============================================================================================
+Exception at: Test connection on :2017-07-02 13:39:08
+Exception details : System.Data.Entity; The underlying provider failed on Open.
+============================================================================================
+Exception at: Test connection on :2017-07-02 13:40:11
+Exception details : System.Data.Entity; The underlying provider failed on Open.
+============================================================================================
+Exception at: Đã có lỗi xảy ra khi đăng nhập, vui lòng thử lại sau on :2017-07-02 14:54:26
+Exception details : System.Data.Entity; The underlying provider failed on Open.
+============================================================================================
+Exception at: Đã có lỗi xảy ra khi đăng nhập, vui lòng thử lại sau on :2017-07-02 15:03:13
+Exception details : System.Data.Entity; The underlying provider failed on Open.
+============================================================================================
+Exception at: Đã có lỗi xảy ra khi đăng nhập, vui lòng thử lại sau on :2017-07-02 15:03:38
+Exception details : System.Data.Entity; The underlying provider failed on Open.
+============================================================================================
+Exception at: Test connection on :2017-07-02 15:04:22
+Exception details : System.Data.Entity; The underlying provider failed on Open.
+============================================================================================

@@ -2,6 +2,8 @@
 using BusinessServices.Interfaces;
 using Microsoft.Win32;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace RapidWarehouse
@@ -15,40 +17,44 @@ namespace RapidWarehouse
         {
             InitializeComponent();
             mEmployeeService = employeeServices;
-            OpenConnection();
+            //CheckConnection();
         }
 
-        private void OpenConnection()
+        private void CheckConnection()
         {
-            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\RapidSolution");
-            if (key != null)
+            try
             {
-                Ultilities.Security.buildNewConnection(key.GetValue("DataSource").ToString(), key.GetValue("InitialCatalog").ToString(),
-                    key.GetValue("UserID").ToString(), key.GetValue("Password").ToString());
+                mEmployeeService.IsExist("Admin");
+                lblError.Text = "Đã có kết nối, mời bạn đăng nhập!";
             }
-            else
+            catch
             {
-                if (MessageBox.Show("Bạn chưa có thiết lập thông tin cơ sở dữ liệu, bạn có muốn thiết lập bây giờ không ?", "Thiết lập thông tin cơ sở dữ liệu", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    this.Hide();
-                    Program.Container.GetInstance<FormConfigDB>().Show();
-                }
+                ShowDialogQuestionConnectToDb();
             }
+        }
+
+        private void ShowDialogQuestionConnectToDb()
+        {
+            if (MessageBox.Show("Kết nối đến CSDL thất bại !\nBạn có muốn thiết lập bây giờ không ?", "Thiết lập thông tin cơ sở dữ liệu", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                this.Hide();
+                Program.Container.GetInstance<FormConfigDB>().Show();
+            }
+
+            lblError.Text = "Không có kết nối đến cơ sở dữ liệu!";
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
             if (ValidateLogin())
             {
-                FormHome home = new FormHome();
                 try
                 {
                     mEmployee = mEmployeeService.Login(txtUserName.Text, txtPassword.Text);
                     if (mEmployee != null)
                     {
                         lblError.Text = "";
-                        home.Show();
-                        home.ShowHideButton();
+                        Program.Container.GetInstance<FormHome>().Show();
                         this.Hide();
                     }
                     else
@@ -60,6 +66,7 @@ namespace RapidWarehouse
                 {
                     Ultilities.FileHelper.WriteLog(Ultilities.ExceptionLevel.Function, "Đã có lỗi xảy ra khi đăng nhập, vui lòng thử lại sau", ex);
                     lblError.Text = "Đã có lỗi xảy ra khi đăng nhập, vui lòng thử lại sau!";
+                    ShowDialogQuestionConnectToDb();
                 }
             }
         }
@@ -103,5 +110,13 @@ namespace RapidWarehouse
             this.Hide();
             Program.Container.GetInstance<FormConfigDB>().Show();
         }
+        public List<Control> GetAll(Control control)
+        {
+            var controls = control.Controls.Cast<Control>();
+
+            return controls.SelectMany(ctrl => GetAll(ctrl))
+                                      .Concat(controls).ToList();
+        }
+        
     }
 }

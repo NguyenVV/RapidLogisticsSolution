@@ -271,6 +271,7 @@
             this.Name = "FormConfigDB";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cấu Hình";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormConfigDB_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

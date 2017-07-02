@@ -109,5 +109,10 @@ namespace RapidWarehouse
             Program.Container.GetInstance<FormBaoCao>().Show();
             this.Dispose();
         }
+
+        private void FormHome_Shown(object sender, EventArgs e)
+        {
+            ShowHideButton();
+        }
     }
 }

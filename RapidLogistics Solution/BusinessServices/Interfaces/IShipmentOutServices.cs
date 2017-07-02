@@ -13,6 +13,8 @@ namespace BusinessServices.Interfaces
         bool IsExist(string shipmentOutId);
         IEnumerable<ShipmentOutEntity> GetByBoxId(int boxId);
         IEnumerable<ShipmentOutEntity> GetByMasterBillId(int masterBillId);
+        IEnumerable<MasterAirwayBillEntity> GetAllMasterBillByDate(DateTime value);
+        IEnumerable<BoxInforEntity> GetAllBoxByMasterBill(int masterBillId);
         void Delete(string shipmentId);
         int GetTotalByMasterBill(int id);
         IEnumerable<ShipmentOutEntity> GetByDate(DateTime value);
