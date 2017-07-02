@@ -1,3 +1,18 @@
 Exception at: private void DeleteRowFromGridview(DataGridView grv, DataGridViewCellEventArgs e, int grvType) on :2017-07-01 10:17:56
 Exception details : EntityFramework; An error occurred while updating the entries. See the inner exception for details.
 ============================================================================================
+Exception at: Đã có lỗi xảy ra khi đăng nhập, vui lòng thử lại sau on :2017-07-02 21:22:56
+Exception details : System.Data.Entity; The underlying provider failed on Open.
+============================================================================================
+Exception at: Đã có lỗi xảy ra khi đăng nhập, vui lòng thử lại sau on :2017-07-02 21:23:54
+Exception details : System.Data.Entity; The underlying provider failed on Open.
+============================================================================================
+Exception at: Đã có lỗi xảy ra khi đăng nhập, vui lòng thử lại sau on :2017-07-02 21:29:34
+Exception details : System.Data.Entity; The underlying provider failed on Open.
+============================================================================================
+Exception at: Test connection on :2017-07-02 21:42:14
+Exception details : System.Data.Entity; The underlying provider failed on Open.
+============================================================================================
+Exception at: Test connection on :2017-07-02 21:43:28
+Exception details : System.Data.Entity; The underlying provider failed on Open.
+============================================================================================

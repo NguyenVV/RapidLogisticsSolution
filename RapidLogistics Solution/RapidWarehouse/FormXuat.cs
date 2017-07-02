@@ -293,7 +293,7 @@ namespace RapidWarehouse
 
                 if (IsExistsOnTheGridView(grvShipmentListOut, txtShipmentIdOut.Text))
                 {
-                    MessageBox.Show("Tìm thấy shipment vừa nhập đã có trên lưới", "Shipment trùng lặp");
+                    MessageBox.Show("Tìm thấy đơn hàng vừa nhập đã có trên lưới", "Đơn hàng trùng lặp");
                     txtShipmentIdOut.Text = String.Empty;
                     return;
                 }
@@ -303,7 +303,7 @@ namespace RapidWarehouse
                     Beep(1000, 1000);
                     Beep(1000, 1000);
                     Beep(1000, 1000);
-                    var result = MessageBox.Show("Shipment vừa nhập " + txtShipmentIdOut.Text + " đã có trên danh sách chờ thông quan\nBạn có muốn xuất kho shipment này luôn không ?", "Shipment chờ thông quan", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    var result = MessageBox.Show("Mã đơn hàng vừa nhập " + txtShipmentIdOut.Text + " đã có trên danh sách chờ thông quan\nBạn có muốn xuất kho đơn hàng này luôn không ?", "Đơn hàng chờ thông quan", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (result == DialogResult.Yes)
                     {
                         try
@@ -328,7 +328,7 @@ namespace RapidWarehouse
                 {
                     if (!nhapMoiKhongCanXacNhan)
                     {
-                        MessageBox.Show("Mã shipment vừa nhập hiện không có trong kho hoặc trong mã thùng này\n nên không thể xuất kho", "Nhập thông tin", MessageBoxButtons.OK);
+                        MessageBox.Show("Mã đơn hàng vừa nhập hiện không có trong kho hoặc trong mã thùng này\n nên không thể xuất kho", "Nhập thông tin", MessageBoxButtons.OK);
                         txtShipmentIdOut.Text = String.Empty;
                         return;
                     }
@@ -350,7 +350,7 @@ namespace RapidWarehouse
 
                 if (_shipmentOutServices.IsExist(txtShipmentIdOut.Text))
                 {
-                    MessageBox.Show("Mã shipment vừa nhập đã được xuất rồi\n nên không thể xuất kho", "Nhập thông tin", MessageBoxButtons.OK);
+                    MessageBox.Show("Mã đơn hàng vừa nhập đã được xuất rồi\n nên không thể xuất kho", "Nhập thông tin", MessageBoxButtons.OK);
                     txtShipmentIdOut.Text = String.Empty;
                     return;
                 }
@@ -455,7 +455,7 @@ namespace RapidWarehouse
             //Check if click is on specific column 
             if (e.ColumnIndex == grv.Columns["dataGridViewDeleteButton"].Index)
             {
-                DialogResult result = MessageBox.Show("Bạn muốn xóa shipment : " + grv.Rows[e.RowIndex].Cells["Shipment Id"].Value, "Xóa shipment", MessageBoxButtons.YesNo);
+                DialogResult result = MessageBox.Show("Bạn muốn xóa đơn hàng : " + grv.Rows[e.RowIndex].Cells["Shipment Id"].Value, "Xóa đơn hàng", MessageBoxButtons.YesNo);
                 if (result == DialogResult.No)
                     return;
 
@@ -507,7 +507,8 @@ namespace RapidWarehouse
         {
             if (boxEntity == null)
             {
-                shipmentGrid.Rows.Clear();
+                shipmentGrid.DataSource = null;
+                //shipmentGrid.Rows.Clear();
                 return false;
             }
 
@@ -536,10 +537,11 @@ namespace RapidWarehouse
                 }
 
                 return true;
-            } 
+            }
             else
             {
-                shipmentGrid.Rows.Clear();
+                shipmentGrid.DataSource = null;
+                //shipmentGrid.Rows.Clear();
                 return false;
             }
         }
@@ -625,18 +627,18 @@ namespace RapidWarehouse
                 {
                     if (IsExistsOnTheGridView(grvShipmentListOut, txtSearchOut.Text))
                     {
-                        MessageBox.Show("Tìm thấy shipment vừa nhập đã có trên lưới", "Shipment trùng lặp");
+                        MessageBox.Show("Tìm thấy đơn hàng vừa nhập đã có trên lưới", "Đơn hàng trùng lặp");
                     }
 
                     var result = _shipmentServices.SearchByShipmentId(txtSearchOut.Text);
                     if (result == null)
                     {
-                        MessageBox.Show("Không tìm thấy BoxId nào chứa Shipment vừa nhập!");
+                        MessageBox.Show("Không tìm thấy Thùng nào chứa đơn hàng vừa nhập!");
                     }
                     else
                     {
                         string boxId = result.BoxId == string.Empty ? cbbBoxIdOut.Text : result.BoxId;
-                        MessageBox.Show("BoxId chứa Shipment vừa nhập là:\n\n" + boxId + "\nBoxId này sẽ được copy xuống ô text box tìm kiếm bên dưới!", "Tìm thấy BoxId");
+                        MessageBox.Show("Thùng chứa đơn hàng vừa nhập là:\n\n" + boxId + "\nMã thùng này sẽ được copy xuống ô text box tìm kiếm bên dưới!", "Tìm thấy mã thùng");
                         txtSearchOut.Text = boxId;
                         //txtSearchOut.Focus();
                     }

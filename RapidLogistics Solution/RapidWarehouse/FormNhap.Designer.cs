@@ -33,7 +33,7 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnExit = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnPrint = new System.Windows.Forms.Button();
             this.cbbBoxId = new System.Windows.Forms.ComboBox();
             this.cbbMasterBill = new System.Windows.Forms.ComboBox();
             this.btnOpenClose = new System.Windows.Forms.Button();
@@ -71,7 +71,7 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.btnExit);
-            this.groupBox3.Controls.Add(this.button2);
+            this.groupBox3.Controls.Add(this.btnPrint);
             this.groupBox3.Controls.Add(this.cbbBoxId);
             this.groupBox3.Controls.Add(this.cbbMasterBill);
             this.groupBox3.Controls.Add(this.btnOpenClose);
@@ -91,24 +91,25 @@
             // 
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnExit.Location = new System.Drawing.Point(1473, 51);
+            this.btnExit.Location = new System.Drawing.Point(1473, 60);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(104, 83);
-            this.btnExit.TabIndex = 32;
+            this.btnExit.TabIndex = 6;
             this.btnExit.Text = "Thoát";
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnThoat_Click);
             // 
-            // button2
+            // btnPrint
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.button2.Location = new System.Drawing.Point(1366, 51);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(94, 83);
-            this.button2.TabIndex = 51;
-            this.button2.Text = "In";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnPrint.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrint.ForeColor = System.Drawing.SystemColors.InfoText;
+            this.btnPrint.Location = new System.Drawing.Point(1366, 60);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(94, 83);
+            this.btnPrint.TabIndex = 5;
+            this.btnPrint.Text = "In";
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // cbbBoxId
             // 
@@ -120,7 +121,7 @@
             this.cbbBoxId.Location = new System.Drawing.Point(575, 101);
             this.cbbBoxId.Name = "cbbBoxId";
             this.cbbBoxId.Size = new System.Drawing.Size(363, 33);
-            this.cbbBoxId.TabIndex = 25;
+            this.cbbBoxId.TabIndex = 3;
             this.cbbBoxId.SelectedIndexChanged += new System.EventHandler(this.cbbBoxId_SelectedIndexChanged);
             this.cbbBoxId.Leave += new System.EventHandler(this.cbbBoxId_Leave);
             // 
@@ -134,7 +135,7 @@
             this.cbbMasterBill.Location = new System.Drawing.Point(224, 101);
             this.cbbMasterBill.Name = "cbbMasterBill";
             this.cbbMasterBill.Size = new System.Drawing.Size(321, 33);
-            this.cbbMasterBill.TabIndex = 24;
+            this.cbbMasterBill.TabIndex = 2;
             this.cbbMasterBill.SelectedIndexChanged += new System.EventHandler(this.cbbMasterBill_SelectedIndexChanged);
             this.cbbMasterBill.Leave += new System.EventHandler(this.cbbMasterBill_Leave);
             // 
@@ -143,10 +144,10 @@
             this.btnOpenClose.BackColor = System.Drawing.Color.Transparent;
             this.btnOpenClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
             this.btnOpenClose.ForeColor = System.Drawing.Color.Red;
-            this.btnOpenClose.Location = new System.Drawing.Point(1094, 51);
+            this.btnOpenClose.Location = new System.Drawing.Point(1094, 60);
             this.btnOpenClose.Name = "btnOpenClose";
             this.btnOpenClose.Size = new System.Drawing.Size(260, 83);
-            this.btnOpenClose.TabIndex = 26;
+            this.btnOpenClose.TabIndex = 4;
             this.btnOpenClose.Text = "Mở";
             this.btnOpenClose.UseVisualStyleBackColor = false;
             this.btnOpenClose.Click += new System.EventHandler(this.btnOpenClose_Click);
@@ -188,7 +189,7 @@
             this.dtpNgayDen.Location = new System.Drawing.Point(15, 103);
             this.dtpNgayDen.Name = "dtpNgayDen";
             this.dtpNgayDen.Size = new System.Drawing.Size(172, 33);
-            this.dtpNgayDen.TabIndex = 23;
+            this.dtpNgayDen.TabIndex = 1;
             this.dtpNgayDen.ValueChanged += new System.EventHandler(this.dtpNgayDen_ValueChanged);
             // 
             // txtSearch
@@ -197,7 +198,7 @@
             this.txtSearch.Location = new System.Drawing.Point(1219, 557);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(395, 31);
-            this.txtSearch.TabIndex = 39;
+            this.txtSearch.TabIndex = 8;
             this.txtSearch.Text = "NHẬP MÃ ĐỂ TÌM KIẾM";
             this.txtSearch.Enter += new System.EventHandler(this.txtSearch_Enter);
             this.txtSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearch_KeyDown);
@@ -355,7 +356,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(37, 607);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1601, 842);
+            this.groupBox1.Size = new System.Drawing.Size(1663, 842);
             this.groupBox1.TabIndex = 36;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Danh sách đơn hàng";
@@ -372,8 +373,8 @@
             this.grvShipments.Location = new System.Drawing.Point(11, 61);
             this.grvShipments.Name = "grvShipments";
             this.grvShipments.RowTemplate.Height = 33;
-            this.grvShipments.Size = new System.Drawing.Size(1582, 744);
-            this.grvShipments.TabIndex = 6;
+            this.grvShipments.Size = new System.Drawing.Size(1644, 744);
+            this.grvShipments.TabIndex = 9;
             // 
             // lblMaVuaNhap
             // 
@@ -393,7 +394,7 @@
             this.txtShipmentId.Location = new System.Drawing.Point(37, 555);
             this.txtShipmentId.Name = "txtShipmentId";
             this.txtShipmentId.Size = new System.Drawing.Size(395, 31);
-            this.txtShipmentId.TabIndex = 34;
+            this.txtShipmentId.TabIndex = 7;
             this.txtShipmentId.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtShipmentId_KeyPress);
             // 
             // FormNhap
@@ -401,7 +402,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1675, 1543);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(1675, 1466);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.label10);
@@ -412,7 +414,8 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimizeBox = false;
             this.Name = "FormNhap";
-            this.Text = "Rapid Logistics v1.0.16";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Xác nhận đến - Rapid Logistics v1.0.17";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormNhap_FormClosed);
             this.groupBox3.ResumeLayout(false);
@@ -430,7 +433,7 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button btnExit;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.ComboBox cbbBoxId;
         private System.Windows.Forms.ComboBox cbbMasterBill;
         private System.Windows.Forms.Button btnOpenClose;

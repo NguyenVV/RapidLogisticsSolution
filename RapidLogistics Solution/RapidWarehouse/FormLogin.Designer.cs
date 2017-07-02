@@ -140,7 +140,7 @@
             this.lblConfigDb.Location = new System.Drawing.Point(75, 385);
             this.lblConfigDb.Name = "lblConfigDb";
             this.lblConfigDb.Size = new System.Drawing.Size(199, 24);
-            this.lblConfigDb.TabIndex = 7;
+            this.lblConfigDb.TabIndex = 5;
             this.lblConfigDb.Text = "Cấu hình cơ sở dữ liệu";
             this.lblConfigDb.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.lblConfigDb.Click += new System.EventHandler(this.lblConfigDb_Click);
@@ -153,7 +153,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(130, 24);
             this.label6.TabIndex = 8;
-            this.label6.Text = "Version 1.0.16";
+            this.label6.Text = "Version 1.0.17";
             // 
             // FormLogin
             // 

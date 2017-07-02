@@ -1,8 +1,11 @@
 ﻿using BusinessEntities;
 using BusinessServices.Interfaces;
+using Novacode;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -63,7 +66,7 @@ namespace RapidWarehouse
             FillInforXacNhanDen();
             CloseBox();
             ResetFormInfoNhap();
-            ResetFormInfoXuat();
+            dtpNgayDen.Focus();
             //xpos = label10.Location.X;
             //ypos = label10.Location.Y;
             //timer1.Start();
@@ -115,11 +118,7 @@ namespace RapidWarehouse
             lblMasterBill.Text = String.Empty;
             lblBoxId.Text = String.Empty;
         }
-
-        private void ResetFormInfoXuat() { 
-            lblMasterBill.Text = String.Empty;
-            lblBoxId.Text = String.Empty;
-        }
+        
         private void OpenBox()
         {
             FillInforXacNhanDen();
@@ -159,12 +158,12 @@ namespace RapidWarehouse
 
             if (box != null)
             {
-                var resultBox = MessageBox.Show("Mã BoxId này đã được xác nhận rồi, có " + shipmentAmount + " shipments, bạn có muốn mở không ?", "BoxId đã được xác nhận", MessageBoxButtons.YesNo);
+                var resultBox = MessageBox.Show("Mã thùng này đã được xác nhận rồi, có " + shipmentAmount + " đơn hàng\nBạn có muốn mở không ?", "Mã thùng đã được xác nhận", MessageBoxButtons.YesNo);
                 cbbBoxId.Focus();
                 return resultBox == DialogResult.Yes;
             }
 
-            var result = MessageBox.Show("Bạn có chắc chắn muốn xử lý BoxId: " + cbbBoxId.Text + " với tổng số ShipmentNo = " + shipmentAmount, "Chọn xử lý", MessageBoxButtons.YesNo);
+            var result = MessageBox.Show("Bạn có chắc chắn muốn xử lý mã thùng: " + cbbBoxId.Text + " với tổng số đơn hàng = " + shipmentAmount, "Chọn xử lý", MessageBoxButtons.YesNo);
 
             return result == DialogResult.Yes;
         }
@@ -487,14 +486,14 @@ namespace RapidWarehouse
             {
                 if (IsExistsOnTheGridView(grvShipments, txtShipmentId.Text))
                 {
-                    MessageBox.Show("Tìm thấy shipment vừa nhập đã có trên lưới", "Shipment trùng lặp");
+                    MessageBox.Show("Tìm thấy đơn hàng vừa nhập đã có trên lưới", "Đơn hàng trùng lặp");
                     txtShipmentId.Text = String.Empty;
                     return;
                 }
 
                 if (_shipmentServices.GetByShipmentId(txtShipmentId.Text) != null)
                 {
-                    MessageBox.Show("Mã shipment vừa nhập đã có trong kho nên không thể nhập kho", "Shipment đã tồn tại", MessageBoxButtons.OK);
+                    MessageBox.Show("Mã đơn hàng vừa nhập đã có trong kho nên không thể nhập kho", "Đơn hàng đã tồn tại", MessageBoxButtons.OK);
                     txtShipmentId.Text = String.Empty;
                     return;
                 }
@@ -657,7 +656,7 @@ namespace RapidWarehouse
             //Check if click is on specific column 
             if (e.ColumnIndex == grv.Columns["dataGridViewDeleteButton"].Index)
             {
-                DialogResult result = MessageBox.Show("Bạn muốn xóa shipment : " + grv.Rows[e.RowIndex].Cells["Shipment Id"].Value, "Xóa shipment", MessageBoxButtons.YesNo);
+                DialogResult result = MessageBox.Show("Bạn muốn xóa đơn hàng : " + grv.Rows[e.RowIndex].Cells["Shipment Id"].Value, "Xóa đơn hàng", MessageBoxButtons.YesNo);
                 if (result == DialogResult.No)
                     return;
 
@@ -814,17 +813,17 @@ namespace RapidWarehouse
                 {
                     if (IsExistsOnTheGridView(grvShipments, txtSearch.Text))
                     {
-                        MessageBox.Show("Tìm thấy shipment vừa nhập đã có trên lưới", "Shipment trùng lặp");
+                        MessageBox.Show("Tìm thấy đơn hàng vừa nhập đã có trên lưới", "Đơn hàng trùng lặp");
                     }
 
                     var result = _shipmentServices.SearchByShipmentId(txtSearch.Text);
                     if (result == null)
                     {
-                        MessageBox.Show("Không tìm thấy BoxId nào chứa Shipment vừa nhập!");
+                        MessageBox.Show("Không tìm thấy thùng nào chứa đơn hàng vừa nhập!");
                     }
                     else
                     {
-                        MessageBox.Show("BoxId chứa Shipment vừa nhập là:\n\n" + result.BoxId + "\nBoxId này sẽ được copy xuống ô text box tìm kiếm bên dưới!", "Tìm thấy BoxId");
+                        MessageBox.Show("Thùng chứa đơn hàng vừa nhập là:\n\n" + result.BoxId + "\nMã thùng này sẽ được copy xuống ô text box tìm kiếm bên dưới!", "Tìm thấy mã thùng");
                         txtSearch.Text = result.BoxId;
                         txtSearch.Focus();
                     }
@@ -928,6 +927,122 @@ namespace RapidWarehouse
             {
                 txtSearch.Text = "";
             }
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(cbbBoxId.Text) || cbbBoxId.Text == string.Empty)
+            {
+                MessageBox.Show("Hãy chọn mã thùng để in báo cáo");
+                return;
+            }
+
+            ChiTietSanLuongNhapKhoTheoThung();
+        }
+        private void ChiTietSanLuongNhapKhoTheoThung()
+        {
+            List<ReportDetailEntity> listDetail = new List<ReportDetailEntity>();
+            BoxInforEntity boxSelected = (BoxInforEntity)cbbBoxId.SelectedItem;
+
+            int totalShipment = 0;
+
+            List<ShipmentEntity> listShipment = (List<ShipmentEntity>)_shipmentServices.GetByBoxId(boxSelected.Id);
+
+            if (listShipment != null & listShipment.Count > 0)
+            {
+                foreach (var ship in listShipment)
+                {
+                    ReportDetailEntity entity = new ReportDetailEntity();
+                    entity.MasterId = cbbMasterBill.Text;
+                    entity.BoxId = boxSelected.BoxId;
+                    entity.ShipmentId = ship.ShipmentId;
+                    listDetail.Add(entity);
+                }
+                totalShipment = listShipment.Count;
+            }
+
+            string fileName = Environment.CurrentDirectory + @"\ChiTietSanLuongNhapKhoTheoThung" + DateTime.Now.ToString("ddMMyyyHHmmss") + ".doc";
+            string companyName = "CÔNG TY CP CÔNG NGHỆ THẦN TỐC\t\t\t\t\t\tIMW03";
+            string headlineText = "BẢNG KÊ CHI TIẾT SẢN LƯỢNG NHẬP KHO";
+            string ngayDen = "NGÀY ĐẾN : " + dtpNgayDen.Value.ToString("dd/MM/yyyy") + "\n"
+
+                            + "MÃ THÙNG: " + boxSelected.BoxId
+                            + "\t\t\tTỔNG SỐ ĐƠN HÀNG: " + totalShipment;
+            string boPhanGiaoNhan = "BỘ PHẬN KHO\t\t\t\t\t\tBỘ PHẬN GIAO NHẬN";
+
+            // A formatting object for our headline:
+            var headLineFormat = new Formatting();
+            headLineFormat.FontFamily = new System.Drawing.FontFamily("Times New Roman");
+            headLineFormat.Size = 18D;
+            headLineFormat.Position = 12;
+            headLineFormat.Bold = true;
+
+            // A formatting object for our normal paragraph text:
+            var paraFormat = new Formatting();
+            paraFormat.FontFamily = new System.Drawing.FontFamily("Times New Roman");
+            paraFormat.Size = 12D;
+            paraFormat.Position = 10;
+            paraFormat.Bold = false;
+
+
+            var paraRightFormat = new Formatting();
+            paraRightFormat.FontFamily = new System.Drawing.FontFamily("Times New Roman");
+            paraRightFormat.Size = 12D;
+            paraRightFormat.Position = 12;
+            paraRightFormat.Bold = true;
+
+            // Create the document in memory:
+            var doc = DocX.Create(fileName);
+
+            Table table = doc.AddTable(listDetail.Count + 1, 7);
+
+            //table.ColumnWidths.Add(100); table.ColumnWidths.Add(500); table.ColumnWidths.Add(100);
+
+            table.Rows[0].Cells[0].Paragraphs.First().Append("STT").Font(new FontFamily("Times New Roman"));
+            //table.Rows[0].Cells[0].Width = 50;
+            table.Rows[0].Cells[1].Paragraphs.First().Append("Vận đơn chủ (MAWB)").Font(new FontFamily("Times New Roman")).Alignment = Alignment.center;
+            //table.Rows[0].Cells[1].Width = 800;
+            table.Rows[0].Cells[2].Paragraphs.First().Append("Mã đơn hàng (ShipmentNo)").Font(new FontFamily("Times New Roman")).Alignment = Alignment.center;
+            table.Rows[0].Cells[3].Paragraphs.First().Append("Mã thùng (BoxId)").Font(new FontFamily("Times New Roman")).Alignment = Alignment.center;
+            table.Rows[0].Cells[4].Paragraphs.First().Append("Nội dung (Content)").Font(new FontFamily("Times New Roman")).Alignment = Alignment.center;
+            table.Rows[0].Cells[5].Paragraphs.First().Append("Số lượng (Quantity)").Font(new FontFamily("Times New Roman")).Alignment = Alignment.center;
+            table.Rows[0].Cells[6].Paragraphs.First().Append("Trọng lượng (Weight)").Font(new FontFamily("Times New Roman")).Alignment = Alignment.center;
+            //table.Rows[0].Cells[2].Width = 100;
+            table.Rows[0].Cells[0].FillColor = Color.FromName("DarkGray");
+            table.Rows[0].Cells[1].FillColor = Color.FromName("DarkGray");
+            table.Rows[0].Cells[2].FillColor = Color.FromName("DarkGray");
+            table.Rows[0].Cells[3].FillColor = Color.FromName("DarkGray");
+            table.Rows[0].Cells[4].FillColor = Color.FromName("DarkGray");
+            table.Rows[0].Cells[5].FillColor = Color.FromName("DarkGray");
+            table.Rows[0].Cells[6].FillColor = Color.FromName("DarkGray");
+
+
+            for (int i = 0; i < totalShipment; i++)
+            {
+                table.Rows[i + 1].Cells[0].Paragraphs.First().Append((i + 1) + "").Font(new FontFamily("Times New Roman"));
+                table.Rows[i + 1].Cells[1].Paragraphs.First().Append(listDetail[i].MasterId).Font(new FontFamily("Times New Roman"));
+                table.Rows[i + 1].Cells[2].Paragraphs.First().Append(listDetail[i].ShipmentId).Font(new FontFamily("Times New Roman"));
+                table.Rows[i + 1].Cells[3].Paragraphs.First().Append(listDetail[i].BoxId).Font(new FontFamily("Times New Roman"));
+                table.Rows[i + 1].Cells[4].Paragraphs.First().Append("").Font(new FontFamily("Times New Roman"));
+                table.Rows[i + 1].Cells[5].Paragraphs.First().Append("").Font(new FontFamily("Times New Roman"));
+                table.Rows[i + 1].Cells[6].Paragraphs.First().Append("").Font(new FontFamily("Times New Roman"));
+            }
+
+            doc.InsertParagraph(companyName, false, paraFormat);
+            doc.InsertParagraph(Environment.NewLine);
+            // Insert the now text obejcts;
+            Paragraph title = doc.InsertParagraph(headlineText, false, headLineFormat);
+            title.Alignment = Alignment.center;
+            doc.InsertParagraph(ngayDen, false, paraFormat);
+            doc.InsertTable(table);
+            doc.InsertParagraph(Environment.NewLine);
+            Paragraph giaoNhan = doc.InsertParagraph(boPhanGiaoNhan, false, paraRightFormat);
+            giaoNhan.Alignment = Alignment.center;
+            // Save to the output directory:
+
+            doc.SaveAs(fileName);
+            // Open in Word:
+            Process.Start("WINWORD.EXE", "\"" + fileName + "\"");
         }
 
         private void txtSearch_Leave(object sender, EventArgs e)

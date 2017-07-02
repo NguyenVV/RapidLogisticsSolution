@@ -210,7 +210,7 @@
             this.cbbBoxIdReport.Location = new System.Drawing.Point(1121, 98);
             this.cbbBoxIdReport.Name = "cbbBoxIdReport";
             this.cbbBoxIdReport.Size = new System.Drawing.Size(336, 37);
-            this.cbbBoxIdReport.TabIndex = 50;
+            this.cbbBoxIdReport.TabIndex = 3;
             this.cbbBoxIdReport.SelectedIndexChanged += new System.EventHandler(this.cbbBoxIdReport_SelectedIndexChanged);
             this.cbbBoxIdReport.Leave += new System.EventHandler(this.cbbBoxIdReport_Leave);
             // 
@@ -220,7 +220,7 @@
             this.btnChiTietTheoThung.Location = new System.Drawing.Point(1121, 172);
             this.btnChiTietTheoThung.Name = "btnChiTietTheoThung";
             this.btnChiTietTheoThung.Size = new System.Drawing.Size(309, 152);
-            this.btnChiTietTheoThung.TabIndex = 49;
+            this.btnChiTietTheoThung.TabIndex = 6;
             this.btnChiTietTheoThung.Text = "Báo cáo chi tiết sản lượng nhập kho (theo thùng)";
             this.btnChiTietTheoThung.UseVisualStyleBackColor = true;
             this.btnChiTietTheoThung.Click += new System.EventHandler(this.btnChiTietTheoThung_Click);
@@ -241,7 +241,7 @@
             this.btnChiTietSanLuong.Location = new System.Drawing.Point(603, 172);
             this.btnChiTietSanLuong.Name = "btnChiTietSanLuong";
             this.btnChiTietSanLuong.Size = new System.Drawing.Size(309, 152);
-            this.btnChiTietSanLuong.TabIndex = 47;
+            this.btnChiTietSanLuong.TabIndex = 5;
             this.btnChiTietSanLuong.Text = "Báo cáo chi tiết sản lượng nhập kho";
             this.btnChiTietSanLuong.UseVisualStyleBackColor = true;
             this.btnChiTietSanLuong.Click += new System.EventHandler(this.btnChiTietSanLuong_Click);
@@ -252,7 +252,7 @@
             this.cbbMasterList.Location = new System.Drawing.Point(572, 100);
             this.cbbMasterList.Name = "cbbMasterList";
             this.cbbMasterList.Size = new System.Drawing.Size(359, 37);
-            this.cbbMasterList.TabIndex = 46;
+            this.cbbMasterList.TabIndex = 2;
             this.cbbMasterList.SelectedIndexChanged += new System.EventHandler(this.cbbMasterList_SelectedIndexChanged);
             this.cbbMasterList.Leave += new System.EventHandler(this.cbbMasterList_Leave);
             // 
@@ -262,7 +262,7 @@
             this.btnSanLuongNhap.Location = new System.Drawing.Point(94, 172);
             this.btnSanLuongNhap.Name = "btnSanLuongNhap";
             this.btnSanLuongNhap.Size = new System.Drawing.Size(309, 152);
-            this.btnSanLuongNhap.TabIndex = 45;
+            this.btnSanLuongNhap.TabIndex = 4;
             this.btnSanLuongNhap.Text = "Báo cáo sản lượng nhập kho";
             this.btnSanLuongNhap.UseVisualStyleBackColor = true;
             this.btnSanLuongNhap.Click += new System.EventHandler(this.btnSanLuongNhap_Click);
@@ -284,7 +284,7 @@
             this.dtpNgayBaoCao.Location = new System.Drawing.Point(203, 100);
             this.dtpNgayBaoCao.Name = "dtpNgayBaoCao";
             this.dtpNgayBaoCao.Size = new System.Drawing.Size(203, 35);
-            this.dtpNgayBaoCao.TabIndex = 43;
+            this.dtpNgayBaoCao.TabIndex = 1;
             this.dtpNgayBaoCao.ValueChanged += new System.EventHandler(this.dtpNgayBaoCao_ValueChanged);
             // 
             // tabNhap
@@ -292,7 +292,6 @@
             this.tabNhap.Controls.Add(this.tabPage1);
             this.tabNhap.Controls.Add(this.tabPage2);
             this.tabNhap.Controls.Add(this.tabPage3);
-            this.tabNhap.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabNhap.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabNhap.Location = new System.Drawing.Point(0, 0);
             this.tabNhap.Name = "tabNhap";
@@ -434,12 +433,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1675, 1030);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(1700, 1030);
             this.Controls.Add(this.tabNhap);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormBaoCao";
-            this.Text = "Các Báo Cáo";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Các Báo Cáo - Rapid Logistics v1.0.17";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormBaoCao_FormClosed);
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();

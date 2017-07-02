@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormChangePassword));
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.txtReenter = new System.Windows.Forms.TextBox();
@@ -45,7 +46,7 @@
             this.btnCancel.Location = new System.Drawing.Point(405, 382);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(129, 49);
-            this.btnCancel.TabIndex = 7;
+            this.btnCancel.TabIndex = 5;
             this.btnCancel.Text = "Hủy";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -55,7 +56,7 @@
             this.btnSave.Location = new System.Drawing.Point(107, 382);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(129, 49);
-            this.btnSave.TabIndex = 6;
+            this.btnSave.TabIndex = 4;
             this.btnSave.Text = "Lưu";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -65,7 +66,7 @@
             this.txtReenter.Location = new System.Drawing.Point(100, 303);
             this.txtReenter.Name = "txtReenter";
             this.txtReenter.Size = new System.Drawing.Size(433, 31);
-            this.txtReenter.TabIndex = 5;
+            this.txtReenter.TabIndex = 3;
             this.txtReenter.UseSystemPasswordChar = true;
             // 
             // label3
@@ -82,7 +83,7 @@
             this.txtNewPassword.Location = new System.Drawing.Point(100, 223);
             this.txtNewPassword.Name = "txtNewPassword";
             this.txtNewPassword.Size = new System.Drawing.Size(433, 31);
-            this.txtNewPassword.TabIndex = 3;
+            this.txtNewPassword.TabIndex = 2;
             this.txtNewPassword.UseSystemPasswordChar = true;
             // 
             // label2
@@ -142,9 +143,10 @@
             this.Controls.Add(this.txtOldPassword);
             this.Controls.Add(this.txtNewPassword);
             this.Controls.Add(this.label2);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormChangePassword";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Đổi mật khẩu";
+            this.Text = "Đổi mật khẩu - Rapid Logistics v1.0.17";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormChangePassword_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();

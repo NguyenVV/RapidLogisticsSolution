@@ -890,7 +890,6 @@ namespace RapidWarehouse
         private void FormBaoCao_FormClosed(object sender, FormClosedEventArgs e)
         {
             var home = new FormHome();
-            home.ShowHideButton();
             home.Show();
             this.Dispose();
         }

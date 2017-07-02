@@ -270,7 +270,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormConfigDB";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Cấu Hình";
+            this.Text = "Cấu Hình - Rapid Logistics v1.0.17";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormConfigDB_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();

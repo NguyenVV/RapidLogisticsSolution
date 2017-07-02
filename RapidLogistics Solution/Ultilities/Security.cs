@@ -143,7 +143,7 @@ namespace Ultilities
                 //ConfigurationManager.RefreshSection("connectionStrings");
             }catch (Exception ex)
             {
-
+                Ultilities.FileHelper.WriteLog(ExceptionLevel.Function, "public static void buildNewConnection", ex);
             }
         }
 

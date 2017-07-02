@@ -40,7 +40,7 @@ namespace RapidWarehouse
             {
                 Ultilities.FileHelper.WriteLog(Ultilities.ExceptionLevel.Application, "Test connection", ex);
                 Ultilities.Security.SaveToRegedit(txtServer.Text, txtDbName.Text, txtUserName.Text, txtPassword.Text);
-                if (MessageBox.Show("Kết nối đến CSDL thất bại, thử lại ngay bây giờ!", "Kết nối thất bại", MessageBoxButtons.OK, MessageBoxIcon.Information) == DialogResult.Yes)
+                if (MessageBox.Show("Kết nối đến CSDL thất bại, thử lại ngay bây giờ!", "Kết nối thất bại", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                 {
                     Application.Restart();
                 }
@@ -49,6 +49,7 @@ namespace RapidWarehouse
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            Ultilities.Security.buildNewConnection(txtServer.Text, txtDbName.Text, txtUserName.Text, txtPassword.Text);
             Ultilities.Security.SaveToRegedit(txtServer.Text, txtDbName.Text, txtUserName.Text, txtPassword.Text);
             Application.Restart();
         }

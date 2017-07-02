@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormXuat));
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.btnRefresh = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
             this.cbbBoxIdOut = new System.Windows.Forms.ComboBox();
             this.btnThoat = new System.Windows.Forms.Button();
@@ -67,7 +66,6 @@
             // 
             // groupBox6
             // 
-            this.groupBox6.Controls.Add(this.btnRefresh);
             this.groupBox6.Controls.Add(this.btnPrint);
             this.groupBox6.Controls.Add(this.cbbBoxIdOut);
             this.groupBox6.Controls.Add(this.btnThoat);
@@ -85,25 +83,14 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Nhập thông tin";
             // 
-            // btnRefresh
-            // 
-            this.btnRefresh.Location = new System.Drawing.Point(799, 43);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(151, 43);
-            this.btnRefresh.TabIndex = 49;
-            this.btnRefresh.Text = "Làm mới";
-            this.btnRefresh.UseVisualStyleBackColor = true;
-            this.btnRefresh.Visible = false;
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-            // 
             // btnPrint
             // 
             this.btnPrint.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrint.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.btnPrint.Location = new System.Drawing.Point(1393, 72);
+            this.btnPrint.Location = new System.Drawing.Point(1393, 66);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(94, 87);
-            this.btnPrint.TabIndex = 49;
+            this.btnPrint.TabIndex = 5;
             this.btnPrint.Text = "In";
             this.btnPrint.UseVisualStyleBackColor = true;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
@@ -114,10 +101,10 @@
             this.cbbBoxIdOut.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbbBoxIdOut.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.cbbBoxIdOut.FormattingEnabled = true;
-            this.cbbBoxIdOut.Location = new System.Drawing.Point(587, 107);
+            this.cbbBoxIdOut.Location = new System.Drawing.Point(587, 101);
             this.cbbBoxIdOut.Name = "cbbBoxIdOut";
             this.cbbBoxIdOut.Size = new System.Drawing.Size(363, 39);
-            this.cbbBoxIdOut.TabIndex = 44;
+            this.cbbBoxIdOut.TabIndex = 3;
             this.cbbBoxIdOut.SelectedIndexChanged += new System.EventHandler(this.cbbBoxIdOut_SelectedIndexChanged);
             this.cbbBoxIdOut.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbbBoxIdOut_KeyDown);
             this.cbbBoxIdOut.Leave += new System.EventHandler(this.cbbBoxIdOut_Leave);
@@ -126,10 +113,10 @@
             // 
             this.btnThoat.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnThoat.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.btnThoat.Location = new System.Drawing.Point(1499, 72);
+            this.btnThoat.Location = new System.Drawing.Point(1499, 66);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(98, 87);
-            this.btnThoat.TabIndex = 35;
+            this.btnThoat.TabIndex = 6;
             this.btnThoat.Text = "Thoát";
             this.btnThoat.UseVisualStyleBackColor = true;
             this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
@@ -141,10 +128,10 @@
             this.cbbMasterBillOut.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.cbbMasterBillOut.ForeColor = System.Drawing.SystemColors.WindowText;
             this.cbbMasterBillOut.FormattingEnabled = true;
-            this.cbbMasterBillOut.Location = new System.Drawing.Point(220, 107);
+            this.cbbMasterBillOut.Location = new System.Drawing.Point(220, 101);
             this.cbbMasterBillOut.Name = "cbbMasterBillOut";
             this.cbbMasterBillOut.Size = new System.Drawing.Size(345, 39);
-            this.cbbMasterBillOut.TabIndex = 43;
+            this.cbbMasterBillOut.TabIndex = 2;
             this.cbbMasterBillOut.SelectedIndexChanged += new System.EventHandler(this.cbbMasterBillOut_SelectedIndexChanged);
             this.cbbMasterBillOut.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbbMasterBillOut_KeyDown);
             this.cbbMasterBillOut.Leave += new System.EventHandler(this.cbbMasterBillOut_Leave);
@@ -154,10 +141,10 @@
             this.btnOpenBoxOut.BackColor = System.Drawing.Color.Gainsboro;
             this.btnOpenBoxOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold);
             this.btnOpenBoxOut.ForeColor = System.Drawing.Color.Red;
-            this.btnOpenBoxOut.Location = new System.Drawing.Point(1117, 72);
+            this.btnOpenBoxOut.Location = new System.Drawing.Point(1117, 66);
             this.btnOpenBoxOut.Name = "btnOpenBoxOut";
             this.btnOpenBoxOut.Size = new System.Drawing.Size(264, 87);
-            this.btnOpenBoxOut.TabIndex = 45;
+            this.btnOpenBoxOut.TabIndex = 4;
             this.btnOpenBoxOut.Text = "Mở";
             this.btnOpenBoxOut.UseVisualStyleBackColor = false;
             this.btnOpenBoxOut.Click += new System.EventHandler(this.btnOpenBoxOut_Click);
@@ -166,7 +153,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.label14.Location = new System.Drawing.Point(593, 72);
+            this.label14.Location = new System.Drawing.Point(593, 66);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(134, 31);
             this.label14.TabIndex = 48;
@@ -176,7 +163,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.label15.Location = new System.Drawing.Point(226, 72);
+            this.label15.Location = new System.Drawing.Point(226, 66);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(101, 31);
             this.label15.TabIndex = 47;
@@ -186,7 +173,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.label16.Location = new System.Drawing.Point(15, 72);
+            this.label16.Location = new System.Drawing.Point(15, 66);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(145, 31);
             this.label16.TabIndex = 46;
@@ -196,10 +183,10 @@
             // 
             this.dtpNgayXuat.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpNgayXuat.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpNgayXuat.Location = new System.Drawing.Point(12, 107);
+            this.dtpNgayXuat.Location = new System.Drawing.Point(12, 101);
             this.dtpNgayXuat.Name = "dtpNgayXuat";
             this.dtpNgayXuat.Size = new System.Drawing.Size(186, 35);
-            this.dtpNgayXuat.TabIndex = 42;
+            this.dtpNgayXuat.TabIndex = 1;
             this.dtpNgayXuat.ValueChanged += new System.EventHandler(this.dtpNgayXuat_ValueChanged);
             // 
             // txtSearchOut
@@ -209,7 +196,7 @@
             this.txtSearchOut.Location = new System.Drawing.Point(1233, 605);
             this.txtSearchOut.Name = "txtSearchOut";
             this.txtSearchOut.Size = new System.Drawing.Size(395, 38);
-            this.txtSearchOut.TabIndex = 50;
+            this.txtSearchOut.TabIndex = 8;
             this.txtSearchOut.Text = "NHẬP MÃ ĐỂ TÌM KIẾM";
             this.txtSearchOut.Enter += new System.EventHandler(this.txtSearchOut_Enter);
             this.txtSearchOut.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearchOut_KeyDown);
@@ -378,9 +365,9 @@
             this.groupBox2.AutoSize = true;
             this.groupBox2.Controls.Add(this.grvShipmentListOut);
             this.groupBox2.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(31, 668);
+            this.groupBox2.Location = new System.Drawing.Point(31, 652);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1612, 762);
+            this.groupBox2.Size = new System.Drawing.Size(1612, 776);
             this.groupBox2.TabIndex = 49;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Danh sách đơn hàng";
@@ -394,11 +381,11 @@
             this.grvShipmentListOut.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.grvShipmentListOut.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grvShipmentListOut.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.grvShipmentListOut.Location = new System.Drawing.Point(11, 52);
+            this.grvShipmentListOut.Location = new System.Drawing.Point(11, 67);
             this.grvShipmentListOut.Name = "grvShipmentListOut";
             this.grvShipmentListOut.RowTemplate.Height = 33;
             this.grvShipmentListOut.Size = new System.Drawing.Size(1586, 670);
-            this.grvShipmentListOut.TabIndex = 34;
+            this.grvShipmentListOut.TabIndex = 9;
             this.grvShipmentListOut.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grvShipmentListOut_CellClick);
             // 
             // lblXuatKho
@@ -432,7 +419,7 @@
             this.txtShipmentIdOut.Location = new System.Drawing.Point(31, 605);
             this.txtShipmentIdOut.Name = "txtShipmentIdOut";
             this.txtShipmentIdOut.Size = new System.Drawing.Size(373, 31);
-            this.txtShipmentIdOut.TabIndex = 45;
+            this.txtShipmentIdOut.TabIndex = 7;
             this.txtShipmentIdOut.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtShipmentIdOut_KeyDown);
             // 
             // FormXuat
@@ -442,7 +429,7 @@
             this.AutoScroll = true;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(1675, 1430);
+            this.ClientSize = new System.Drawing.Size(1675, 1448);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.txtSearchOut);
             this.Controls.Add(this.panel2);
@@ -452,7 +439,8 @@
             this.Controls.Add(this.txtShipmentIdOut);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormXuat";
-            this.Text = "Xuất Kho";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Xuất kho - Rapid Logistics v1.0.17";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormXuat_FormClosed);
             this.groupBox6.ResumeLayout(false);
@@ -469,7 +457,6 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.ComboBox cbbBoxIdOut;
         private System.Windows.Forms.Button btnThoat;
