@@ -131,6 +131,7 @@
             this.grvShipmentsWaitConfirmed.RowTemplate.Height = 33;
             this.grvShipmentsWaitConfirmed.Size = new System.Drawing.Size(1584, 847);
             this.grvShipmentsWaitConfirmed.TabIndex = 4;
+            this.grvShipmentsWaitConfirmed.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grvShipmentsWaitConfirmed_CellClick);
             // 
             // groupBox5
             // 

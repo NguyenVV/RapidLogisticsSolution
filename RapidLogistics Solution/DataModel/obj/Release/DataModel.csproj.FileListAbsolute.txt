@@ -13,3 +13,20 @@ C:\Users\Nguyen\Desktop\RapidLogisticsAPI\DataModel\bin\Release\Microsoft.Practi
 C:\Users\Nguyen\Desktop\RapidLogisticsAPI\DataModel\obj\Release\DataModel.csprojResolveAssemblyReference.cache
 C:\Users\Nguyen\Desktop\RapidLogisticsAPI\DataModel\obj\Release\DataModel.dll
 C:\Users\Nguyen\Desktop\RapidLogisticsAPI\DataModel\obj\Release\DataModel.pdb
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\DataModel\bin\Release\DataModel.dll.config
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\DataModel\bin\Release\DataModel.dll
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\DataModel\bin\Release\DataModel.pdb
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\DataModel\bin\Release\EntityFramework.dll
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\DataModel\bin\Release\Resolver.dll
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\DataModel\bin\Release\Ultilities.dll
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\DataModel\bin\Release\Microsoft.Practices.Unity.dll
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\DataModel\bin\Release\Microsoft.Practices.ServiceLocation.dll
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\DataModel\bin\Release\Resolver.pdb
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\DataModel\bin\Release\Ultilities.pdb
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\DataModel\bin\Release\EntityFramework.xml
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\DataModel\bin\Release\Microsoft.Practices.Unity.xml
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\DataModel\bin\Release\Microsoft.Practices.ServiceLocation.pdb
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\DataModel\bin\Release\Microsoft.Practices.ServiceLocation.xml
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\DataModel\obj\Release\DataModel.csprojResolveAssemblyReference.cache
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\DataModel\obj\Release\DataModel.dll
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\DataModel\obj\Release\DataModel.pdb

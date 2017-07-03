@@ -514,8 +514,14 @@ namespace RapidWarehouse
 
             List<ShipmentOutEntity> listShipment = (List<ShipmentOutEntity>)_shipmentOutServices.GetByBoxId(boxEntity.Id);
             List<ShipmentOutEntity> listShipmentOutTemp = (List<ShipmentOutEntity>)_shipmentOutTempServices.GetByBoxId(boxEntity.Id);
-            
-            if (MessageBox.Show("Bạn có chắc chắn muốn xử lý mã thùng là " + boxEntity.BoxId + "\nvới tổng số đơn hàng đã xuất kho là " + listShipment.Count, "Chọn xử lý", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            string text = "Bạn có chắc chắn muốn xử lý mã thùng là " + boxEntity.BoxId;
+
+            if (listShipment!=null && listShipment.Count > 0)
+            {
+                text += "\nvới tổng số đơn hàng đã xuất kho là " + listShipment.Count;
+            }
+            text += " không ?";
+            if (MessageBox.Show(text, "Chọn xử lý", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 if (listShipmentOutTemp != null)
                 {

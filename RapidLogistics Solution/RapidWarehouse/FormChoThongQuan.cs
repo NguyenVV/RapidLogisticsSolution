@@ -43,6 +43,7 @@ namespace RapidWarehouse
             grvShipmentsWaitConfirmed.Columns[1].ReadOnly = true;
 
             AddCheckBoxToGridView(grvShipmentsWaitConfirmed);
+            AddDeleteButtonToGridView(grvShipmentsWaitConfirmed);
             LoadAllWaitConfirmedToGridview();
 
             grvShipmentsWaitConfirmed.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
@@ -63,7 +64,16 @@ namespace RapidWarehouse
             //grv.Columns.Insert(2, checkColumn);
             grv.Columns.Add(checkColumn);
         }
-
+        private void AddDeleteButtonToGridView(DataGridView grv)
+        {
+            var deleteButton = new DataGridViewButtonColumn();
+            deleteButton.Name = "dataGridViewDeleteButton";
+            deleteButton.HeaderText = "";
+            deleteButton.Text = "Xóa";
+            deleteButton.UseColumnTextForButtonValue = true;
+            grv.Columns.Add(deleteButton);
+            grv.Columns["dataGridViewDeleteButton"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+        }
         /// <summary>
         /// Kiểm tra xem mã shipment vừa scan đã có trên lưới hay chưa
         /// </summary>
@@ -257,5 +267,36 @@ namespace RapidWarehouse
 
         #endregion
 
+        private void grvShipmentsWaitConfirmed_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DeleteRowFromGridview(grvShipmentsWaitConfirmed, e, 3);
+            numberShipmentOut--;
+            ReIndexingRow(grvShipmentsWaitConfirmed);
+        }
+        private void DeleteRowFromGridview(DataGridView grv, DataGridViewCellEventArgs e, int grvType=3)
+        {
+            //if click is on new row or header row
+            if (e.RowIndex == grv.NewRowIndex || e.RowIndex < 0)
+                return;
+
+            //Check if click is on specific column 
+            if (e.ColumnIndex == grv.Columns["dataGridViewDeleteButton"].Index)
+            {
+                DialogResult result = MessageBox.Show("Bạn muốn xóa đơn hàng : " + grv.Rows[e.RowIndex].Cells["Shipment Id"].Value + " khỏi danh sách chờ thông quan", "Xóa đơn hàng", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.No)
+                    return;
+
+                try
+                {
+                    if (grvType == 3)
+                    {
+                        _shipmentWaitConfirmedServices.Delete(grv.Rows[e.RowIndex].Cells["Shipment Id"].Value.ToString());
+                    }
+                }
+                catch (Exception ex) { Ultilities.FileHelper.WriteLog(Ultilities.ExceptionLevel.Function, "private void DeleteRowFromGridview(DataGridView grv, DataGridViewCellEventArgs e, int grvType)", ex); }
+
+                grv.Rows.RemoveAt(e.RowIndex);
+            }
+        }
     }
 }
