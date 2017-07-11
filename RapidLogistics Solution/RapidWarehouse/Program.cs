@@ -24,11 +24,19 @@ namespace RapidWarehouse
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Bootstrap();
-            Application.Run(container.GetInstance<FormLogin>());
-            //Application.Run(container.GetInstance<FormNhap>());
+            try
+            {
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Bootstrap();
+                Application.Run(container.GetInstance<FormLogin>());
+                //Application.Run(container.GetInstance<FormNhap>());
+            }
+            catch (Exception e)
+            {
+                Ultilities.FileHelper.WriteLog(Ultilities.ExceptionLevel.Function, "static void Main()", e);
+                MessageBox.Show("Đã có lỗi xảy ra khi xử lý chương trình !\n Chúng tôi đã ghi nhận\nVui lòng thử lại sau!", "Có lỗi xảy ra", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private static void Bootstrap()

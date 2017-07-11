@@ -52,12 +52,18 @@ namespace RapidWarehouse
                 MessageBox.Show("Hãy chọn mã MAWB ở trên để làm báo cáo");
                 return;
             }
-            SanLuongNhapKho();
+            MasterAirwayBillEntity masterItem = (MasterAirwayBillEntity)cbbMasterList.SelectedItem;
+            if (masterItem == null)
+            {
+                MessageBox.Show("Không tìm thấy MAWB mà bạn đã nhập trong ngày đến đã chọn", "Không tìm thấy MAWB đã nhập trong ngày đến", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            SanLuongNhapKho(masterItem);
         }
 
-        public void SanLuongNhapKho()
+        public void SanLuongNhapKho(MasterAirwayBillEntity masterItem)
         {
-            MasterAirwayBillEntity masterItem = (MasterAirwayBillEntity)cbbMasterList.SelectedItem;
             List<BoxInforEntity> listBox = (List<BoxInforEntity>)_boxInforServices.GetByMasterBill(masterItem.Id);
             string fileName = Environment.CurrentDirectory + @"\SanLuongNhapKho" + DateTime.Now.ToString("ddMMyyyHHmmss") + ".doc";
             string companyName = "CÔNG TY CP CÔNG NGHỆ THẦN TỐC\t\t\t\t\t\tIMW01";
@@ -295,17 +301,21 @@ namespace RapidWarehouse
         {
             if (string.IsNullOrWhiteSpace(cbbBoxIdReport.Text) || cbbBoxIdReport.Text == string.Empty)
             {
-                MessageBox.Show("Hãy chọn mã thùng ở trên để làm báo cáo");
+                MessageBox.Show("Hãy chọn mã thùng ở trên để làm báo cáo","Chọn thùng",MessageBoxButtons.OK,MessageBoxIcon.Information);
                 return;
             }
-
-            ChiTietSanLuongNhapKhoTheoThung();
+            BoxInforEntity boxSelected = (BoxInforEntity)cbbBoxIdReport.SelectedItem;
+            if (boxSelected == null)
+            {
+                MessageBox.Show("Không tìm thấy mã thùng mà bạn đã nhập trong ngày đến đã chọn", "Không tìm thấy thùng đã nhập trong ngày đến", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            ChiTietSanLuongNhapKhoTheoThung(boxSelected);
         }
 
-        private void ChiTietSanLuongNhapKhoTheoThung()
+        private void ChiTietSanLuongNhapKhoTheoThung(BoxInforEntity boxSelected)
         {
             List<ReportDetailEntity> listDetail = new List<ReportDetailEntity>();
-            BoxInforEntity boxSelected = (BoxInforEntity)cbbBoxIdReport.SelectedItem;
 
             int totalShipment = 0;
 
@@ -913,6 +923,10 @@ namespace RapidWarehouse
                 List<ShipmentOutEntity> listDetail = (List<ShipmentOutEntity>)_shipmentOutServices.GetByMasterBillId(master.Id);
                 ChiTietSanLuongXuatKho(listDetail, master.MasterAirwayBill);
             }
+            else
+            {
+                MessageBox.Show("Không có MAWB nào trong ngày đến đã chọn", "Không có MAWB nào trong ngày đến", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void btnReportByBox_Click(object sender, EventArgs e)
@@ -922,6 +936,10 @@ namespace RapidWarehouse
             {
                 List<ShipmentOutEntity> listDetail = (List<ShipmentOutEntity>)_shipmentOutServices.GetByBoxId(box.Id);
                 ChiTietSanLuongXuatKho(listDetail, null, box.BoxId);
+            }
+            else
+            {
+                MessageBox.Show("Không tìm thấy mã thùng mà bạn đã nhập trong ngày xuất đã chọn", "Không tìm thấy thùng đã nhập trong ngày xuất", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

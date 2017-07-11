@@ -82,7 +82,7 @@
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage3.Size = new System.Drawing.Size(1659, 961);
             this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Báo Cáo Tồn Kho, Đối Soát Ca        ";
+            this.tabPage3.Text = "       Báo Cáo Tồn Kho, Đối Soát Ca        ";
             // 
             // label5
             // 
@@ -207,6 +207,8 @@
             // cbbBoxIdReport
             // 
             this.cbbBoxIdReport.FormattingEnabled = true;
+            this.cbbBoxIdReport.Items.AddRange(new object[] {
+            "===Tất cả==="});
             this.cbbBoxIdReport.Location = new System.Drawing.Point(1121, 98);
             this.cbbBoxIdReport.Name = "cbbBoxIdReport";
             this.cbbBoxIdReport.Size = new System.Drawing.Size(336, 37);
@@ -249,6 +251,8 @@
             // cbbMasterList
             // 
             this.cbbMasterList.FormattingEnabled = true;
+            this.cbbMasterList.Items.AddRange(new object[] {
+            "===Tất cả==="});
             this.cbbMasterList.Location = new System.Drawing.Point(572, 100);
             this.cbbMasterList.Name = "cbbMasterList";
             this.cbbMasterList.Size = new System.Drawing.Size(359, 37);

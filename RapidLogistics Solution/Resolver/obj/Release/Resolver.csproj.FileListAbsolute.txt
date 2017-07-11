@@ -22,3 +22,4 @@ C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\Resolver\bin\Rel
 C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\Resolver\bin\Release\Microsoft.Practices.Unity.Configuration.xml
 C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\Resolver\obj\Release\Resolver.dll
 C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\Resolver\obj\Release\Resolver.pdb
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\Resolver\obj\Release\Resolver.csprojResolveAssemblyReference.cache

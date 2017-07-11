@@ -104,20 +104,3 @@ D:\MVC\Rapid\warehouse.rapid\WareHouseSoft\RapidLogisticsSolution\RapidLogistics
 D:\MVC\Rapid\warehouse.rapid\WareHouseSoft\RapidLogisticsSolution\RapidLogistics Solution\DataModel\obj\Debug\DataModel.csprojResolveAssemblyReference.cache
 D:\MVC\Rapid\warehouse.rapid\WareHouseSoft\RapidLogisticsSolution\RapidLogistics Solution\DataModel\obj\Debug\DataModel.dll
 D:\MVC\Rapid\warehouse.rapid\WareHouseSoft\RapidLogisticsSolution\RapidLogistics Solution\DataModel\obj\Debug\DataModel.pdb
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\DataModel\bin\Debug\DataModel.dll.config
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\DataModel\bin\Debug\DataModel.dll
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\DataModel\bin\Debug\DataModel.pdb
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\DataModel\bin\Debug\EntityFramework.dll
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\DataModel\bin\Debug\Resolver.dll
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\DataModel\bin\Debug\Ultilities.dll
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\DataModel\bin\Debug\Microsoft.Practices.Unity.dll
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\DataModel\bin\Debug\Microsoft.Practices.ServiceLocation.dll
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\DataModel\bin\Debug\Resolver.pdb
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\DataModel\bin\Debug\Ultilities.pdb
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\DataModel\bin\Debug\EntityFramework.xml
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\DataModel\bin\Debug\Microsoft.Practices.Unity.xml
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\DataModel\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\DataModel\bin\Debug\Microsoft.Practices.ServiceLocation.xml
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\DataModel\obj\Debug\DataModel.csprojResolveAssemblyReference.cache
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\DataModel\obj\Debug\DataModel.dll
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\DataModel\obj\Debug\DataModel.pdb
