@@ -190,14 +190,14 @@ namespace RapidWarehouse
             {
                 if (String.IsNullOrWhiteSpace(cbbMasterBillOut.Text) || String.IsNullOrWhiteSpace(cbbBoxIdOut.Text))
                 {
-                    MessageBox.Show("Bạn cần phải nhập Master airway bill (MAWB) và Mã thùng trước", "Nhập thông tin", MessageBoxButtons.OK);
+                    MessageBox.Show("Bạn cần phải nhập Master airway bill (MAWB) và Mã thùng trước", "Nhập thông tin", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
                 currentMasterOut = _masterBillServices.GetByMasterBillId(cbbMasterBillOut.Text);
 
                 if (currentMasterOut == null)
                 {
-                    var result = MessageBox.Show("Mã MAWB vừa nhập chưa được xác nhận đến trên hệ thống!\n Bạn có muốn nhập mới luôn không ?", "Nhập thông tin", MessageBoxButtons.YesNo);
+                    var result = MessageBox.Show("Mã MAWB vừa nhập chưa được xác nhận đến trên hệ thống!\nBạn có muốn nhập mới luôn không ?", "Nhập thông tin", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (result == DialogResult.No)
                     {
@@ -226,7 +226,7 @@ namespace RapidWarehouse
                 currentBoxOut = _boxInforServices.GetByBoxId(cbbBoxIdOut.Text);
                 if (currentBoxOut == null)
                 {
-                    var result = MessageBox.Show("Mã thùng vừa nhập chưa được xác nhận đến trên hệ thống!\n Bạn có muốn nhập mới luôn không ?", "Nhập thông tin", MessageBoxButtons.YesNo);
+                    var result = MessageBox.Show("Mã thùng vừa nhập chưa được xác nhận đến trên hệ thống!\nBạn có muốn nhập mới luôn không ?", "Nhập thông tin", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (result == DialogResult.No)
                     {
@@ -314,7 +314,6 @@ namespace RapidWarehouse
                             _shipmentWaitConfirmedServices.Delete(txtShipmentIdOut.Text);
                         }
                         catch (Exception ex) { Ultilities.FileHelper.WriteLog(Ultilities.ExceptionLevel.Function, "Save shipmentout and delete _shipmentWaitConfirmedServices", ex); }
-
                     }
                     else
                     {
@@ -328,9 +327,18 @@ namespace RapidWarehouse
                 {
                     if (!nhapMoiKhongCanXacNhan)
                     {
-                        MessageBox.Show("Mã đơn hàng vừa nhập hiện không có trong kho hoặc trong mã thùng này\n nên không thể xuất kho", "Nhập thông tin", MessageBoxButtons.OK);
+                        MessageBox.Show("Mã đơn hàng vừa nhập hiện không có trong kho hoặc trong mã thùng này nên không thể xuất kho", "Nhập thông tin", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         txtShipmentIdOut.Text = String.Empty;
                         return;
+                    }
+                    else
+                    {
+                        if (_shipmentServices.Exists(txtShipmentIdOut.Text))
+                        {
+                            MessageBox.Show("Không thể xuất kho\nMã đơn hàng vừa nhập thuộc mã thùng khác nên không thể xuất kho", "Không thể xuất kho", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            txtShipmentIdOut.Text = String.Empty;
+                            return;
+                        }
                     }
 
                     ShipmentEntity shipment = new ShipmentEntity
@@ -350,7 +358,7 @@ namespace RapidWarehouse
 
                 if (_shipmentOutServices.IsExist(txtShipmentIdOut.Text))
                 {
-                    MessageBox.Show("Mã đơn hàng vừa nhập đã được xuất rồi\n nên không thể xuất kho", "Nhập thông tin", MessageBoxButtons.OK);
+                    MessageBox.Show("Mã đơn hàng vừa nhập đã được xuất rồi nên không thể xuất kho", "Nhập thông tin", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txtShipmentIdOut.Text = String.Empty;
                     return;
                 }

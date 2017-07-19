@@ -163,3 +163,10 @@ Exception details : System.Data.Entity; The underlying provider failed on Open.
 Exception at: Test connection on :2017-07-02 15:04:22
 Exception details : System.Data.Entity; The underlying provider failed on Open.
 ============================================================================================
+Exception at : private void txtShipmentIdOut_KeyDown(object sender, KeyEventArgs e) on :2017-07-19 23:05:36
+Exception message : EntityFramework; An error occurred while updating the entries. See the inner exception for details.
+Exception stacktrace : EntityFramework; at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   at DataModel.UnitOfWork.UnitOfWork.SaveWinform() in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\DataModel\UnitOfWork\UnitOfWork.cs:line 225
+   at BusinessServices.ShipmentServices.Create(ShipmentEntity shipmentEntity) in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessServices\ShipmentServices.cs:line 46
+   at RapidWarehouse.FormXuat.txtShipmentIdOut_KeyDown(Object sender, KeyEventArgs e) in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\FormXuat.cs:line 345
+============================================================================================

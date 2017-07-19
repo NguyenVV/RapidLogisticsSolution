@@ -12,8 +12,9 @@ namespace Ultilities
             try
             {
                 writer = new StreamWriter(AppDomain.CurrentDomain.BaseDirectory + "\\LogExceptionFile.txt", true);
-                writer.WriteLine("Exception at: "+ whereOccur+ " on :" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-                writer.WriteLine("Exception details : " + ex.Source.ToString().Trim() + "; " + ex.Message.ToString().Trim());
+                writer.WriteLine("Exception at : "+ whereOccur+ " on :" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                writer.WriteLine("Exception message : " + ex.Source.ToString().Trim() + "; " + ex.Message.ToString().Trim());
+                writer.WriteLine("Exception stacktrace : " + ex.Source.ToString().Trim() + "; " + ex.StackTrace.Trim());
                 writer.WriteLine("============================================================================================");
                 writer.Flush();
                 writer.Close();
