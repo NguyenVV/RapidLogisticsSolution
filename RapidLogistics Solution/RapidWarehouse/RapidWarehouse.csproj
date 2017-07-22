@@ -106,6 +106,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExcelWriter.cs" />
     <Compile Include="FormBaoCao.cs">
       <SubType>Form</SubType>
     </Compile>
