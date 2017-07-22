@@ -25,8 +25,10 @@ namespace DataModel
         public Nullable<int> BoxId { get; set; }
         public string Status { get; set; }
         public Nullable<int> EmployeeId { get; set; }
+        public Nullable<int> WarehouseId { get; set; }
     
         public virtual BoxInfo BoxInfo { get; set; }
         public virtual Employee Employee { get; set; }
+        public virtual Warehouse Warehouse { get; set; }
     }
 }

@@ -35,5 +35,6 @@ namespace DataModel
         public DbSet<ErrorLog> ErrorLogs { get; set; }
         public DbSet<ShipmentInforTemp> ShipmentInforTemps { get; set; }
         public DbSet<ShipmentOutTemp> ShipmentOutTemps { get; set; }
+        public DbSet<Warehouse> Warehouses { get; set; }
     }
 }

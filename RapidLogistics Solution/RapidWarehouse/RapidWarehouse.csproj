@@ -142,6 +142,12 @@
     <Compile Include="FormHome.Designer.cs">
       <DependentUpon>FormHome.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormMangeWarehouses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMangeWarehouses.Designer.cs">
+      <DependentUpon>FormMangeWarehouses.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormNhap.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,6 +160,7 @@
     <Compile Include="FormLogin.Designer.cs">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormUltils.cs" />
     <Compile Include="FormXuat.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -179,6 +186,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormHome.resx">
       <DependentUpon>FormHome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMangeWarehouses.resx">
+      <DependentUpon>FormMangeWarehouses.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormNhap.resx">
       <DependentUpon>FormNhap.cs</DependentUpon>

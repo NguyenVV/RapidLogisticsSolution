@@ -29,6 +29,12 @@
         <AssociationConnector Association="RapidSolutionModel.FK__ShipmentI__Emplo__5629CD9C" />
         <AssociationConnector Association="RapidSolutionModel.FK__ShipmentO__Emplo__5CD6CB2B" />
         <AssociationConnector Association="RapidSolutionModel.FK__ShipmentO__Maste__5AEE82B9" />
+        <EntityTypeShape EntityType="RapidSolutionModel.Warehouse" Width="1.5" PointX="3" PointY="5.875" />
+        <AssociationConnector Association="RapidSolutionModel.FK__Employee__Wareho__628FA481" />
+        <AssociationConnector Association="RapidSolutionModel.FK__ShipmentI__Wareh__5EBF139D" />
+        <AssociationConnector Association="RapidSolutionModel.FK__ShipmentI__Wareh__60A75C0F" />
+        <AssociationConnector Association="RapidSolutionModel.FK__ShipmentO__Wareh__5FB337D6" />
+        <AssociationConnector Association="RapidSolutionModel.FK__ShipmentO__Wareh__619B8048" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

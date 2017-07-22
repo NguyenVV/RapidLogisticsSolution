@@ -7,7 +7,7 @@ namespace BusinessEntities
 {
     public class EmployeeEntity
     {
-        private int id;
+        private int id, warehouseId;
         private bool status;
         string fullName, userName, pasword, role, phone, email, address;
         DateTime dateCreated, birthDate;
@@ -152,6 +152,19 @@ namespace BusinessEntities
             set
             {
                 birthDate = value;
+            }
+        }
+        
+        public int WarehouseId
+        {
+            get
+            {
+                return warehouseId;
+            }
+
+            set
+            {
+                warehouseId = value;
             }
         }
     }

@@ -36,6 +36,7 @@ namespace DataModel
         public string Email { get; set; }
         public string Address { get; set; }
         public Nullable<bool> Status { get; set; }
+        public Nullable<int> WarehouseId { get; set; }
     
         public virtual ICollection<ShipmentOut> ShipmentOuts { get; set; }
         public virtual ICollection<ShipmentWaitToConfirm> ShipmentWaitToConfirms { get; set; }
@@ -44,5 +45,6 @@ namespace DataModel
         public virtual ICollection<MasterBill> MasterBills { get; set; }
         public virtual ICollection<ShipmentInforTemp> ShipmentInforTemps { get; set; }
         public virtual ICollection<ShipmentOutTemp> ShipmentOutTemps { get; set; }
+        public virtual Warehouse Warehouse { get; set; }
     }
 }

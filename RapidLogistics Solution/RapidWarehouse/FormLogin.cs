@@ -11,13 +11,19 @@ namespace RapidWarehouse
     public partial class FormLogin : Form
     {
         IEmployeeServices mEmployeeService;
+        IWarehouseServices mWarehouseService;
         public static EmployeeEntity mEmployee;
+        public static WarehouseEntity mWarehouse;
 
-        public FormLogin(IEmployeeServices employeeServices)
+        public FormLogin(IEmployeeServices employeeServices, IWarehouseServices warehouseService)
         {
             InitializeComponent();
             mEmployeeService = employeeServices;
+            mWarehouseService = warehouseService;
             //CheckConnection();
+            LoadAllWarehouses();
+            this.Text = "Đăng Nhập - " + FormUltils.getInstance().GetVersionInfo();
+            lblVersion.Text = FormUltils.getInstance().GetVersionInfo();
         }
 
         private void CheckConnection()
@@ -33,6 +39,13 @@ namespace RapidWarehouse
             }
         }
 
+        private void LoadAllWarehouses()
+        {
+            var list = mWarehouseService.GetAll();
+            cbbWarehouse.DataSource = list;
+            cbbWarehouse.DisplayMember = "Name";
+            cbbWarehouse.ValueMember = "Id";
+        }
         private void ShowDialogQuestionConnectToDb()
         {
             if (MessageBox.Show("Kết nối đến CSDL thất bại !\nBạn có muốn thiết lập bây giờ không ?", "Thiết lập thông tin cơ sở dữ liệu", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -75,15 +88,22 @@ namespace RapidWarehouse
         {
             if (string.IsNullOrEmpty(txtUserName.Text) || txtUserName.Text.Length < 4)
             {
-                MessageBox.Show("Vui lòng nhập User Name từ 4 ký tự trở lên!");
+                MessageBox.Show("Vui lòng nhập User Name từ 4 ký tự trở lên!", "Nhập thông tin", MessageBoxButtons.OK,MessageBoxIcon.Information);
                 txtUserName.Focus();
                 return false;
             }
 
             if (string.IsNullOrEmpty(txtPassword.Text) || txtPassword.Text.Length < 4)
             {
-                MessageBox.Show("Vui lòng nhập Password từ 4 ký tự trở lên!");
+                MessageBox.Show("Vui lòng nhập Password từ 4 ký tự trở lên!", "Nhập thông tin", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 txtPassword.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(cbbWarehouse.Text) || cbbWarehouse.Text.Length < 4 || cbbWarehouse.SelectedItem == null)
+            {
+                MessageBox.Show("Vui lòng chọn kho!", "Nhập thông tin", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                cbbWarehouse.Focus();
                 return false;
             }
 
@@ -117,6 +137,13 @@ namespace RapidWarehouse
             return controls.SelectMany(ctrl => GetAll(ctrl))
                                       .Concat(controls).ToList();
         }
-        
+
+        private void cbbWarehouse_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbbWarehouse.SelectedItem != null)
+            {
+                mWarehouse = (WarehouseEntity)cbbWarehouse.SelectedItem;
+            }
+        }
     }
 }

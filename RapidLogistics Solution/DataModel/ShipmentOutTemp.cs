@@ -21,9 +21,11 @@ namespace DataModel
         public string MasterBillIdString { get; set; }
         public Nullable<System.DateTime> DateOut { get; set; }
         public Nullable<int> EmployeeId { get; set; }
+        public Nullable<int> WarehouseId { get; set; }
     
         public virtual BoxInfo BoxInfo { get; set; }
         public virtual Employee Employee { get; set; }
         public virtual MasterBill MasterBill { get; set; }
+        public virtual Warehouse Warehouse { get; set; }
     }
 }

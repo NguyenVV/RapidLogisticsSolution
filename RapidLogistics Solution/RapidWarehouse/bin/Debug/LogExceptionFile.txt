@@ -170,3 +170,17 @@ Exception stacktrace : EntityFramework; at System.Data.Entity.Internal.InternalC
    at BusinessServices.ShipmentServices.Create(ShipmentEntity shipmentEntity) in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessServices\ShipmentServices.cs:line 46
    at RapidWarehouse.FormXuat.txtShipmentIdOut_KeyDown(Object sender, KeyEventArgs e) in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\FormXuat.cs:line 345
 ============================================================================================
+Exception at : static void Main() on :2017-07-22 11:11:26
+Exception message : SimpleInjector; Object reference not set to an instance of an object.
+Exception stacktrace : SimpleInjector; at SimpleInjector.InstanceProducer.GetInstance()
+   at SimpleInjector.Container.GetInstanceForRootType[TService]()
+   at SimpleInjector.Container.GetInstance[TService]()
+   at RapidWarehouse.Program.Main() in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\Program.cs:line 32
+============================================================================================
+Exception at : static void Main() on :2017-07-22 11:18:08
+Exception message : SimpleInjector; Object reference not set to an instance of an object.
+Exception stacktrace : SimpleInjector; at SimpleInjector.InstanceProducer.GetInstance()
+   at SimpleInjector.Container.GetInstanceForRootType[TService]()
+   at SimpleInjector.Container.GetInstance[TService]()
+   at RapidWarehouse.Program.Main() in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\Program.cs:line 32
+============================================================================================

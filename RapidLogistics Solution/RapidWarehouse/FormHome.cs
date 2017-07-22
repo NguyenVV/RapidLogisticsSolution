@@ -10,6 +10,7 @@ namespace RapidWarehouse
             InitializeComponent();
             timerMinute.Start();
             lblTime.Text = DateTime.Now.ToString("HH:mm");
+            this.Text = FormUltils.getInstance().GetFormText();
         }
 
         public void ShowHideButton()
@@ -19,15 +20,18 @@ namespace RapidWarehouse
                 if (FormLogin.mEmployee.Role.Equals("Administrator"))
                 {
                     btnManageEmployee.Visible = true;
+                    btnManageWarehouse.Visible = true;
                 }
                 else
                 {
                     btnManageEmployee.Visible = false;
+                    btnManageWarehouse.Visible = false;
                 }
                 lblDate.Text = string.Format("{0}, ngày {1} tháng {2} năm {3}", getTodayVietNamese(DateTime.Today.DayOfWeek),DateTime.Today.Day, DateTime.Today.Month, DateTime.Today.Year);
                 lblWelcome.Text = "Xin chào " + FormLogin.mEmployee.FullName + "!";
             }
         }
+
         private string getTodayVietNamese(DayOfWeek dayweek)
         {
             switch (dayweek)
@@ -113,6 +117,12 @@ namespace RapidWarehouse
         private void FormHome_Shown(object sender, EventArgs e)
         {
             ShowHideButton();
+        }
+
+        private void btnManageWarehouse_Click(object sender, EventArgs e)
+        {
+            Program.Container.GetInstance<FormMangeWarehouses>().Show();
+            this.Dispose();
         }
     }
 }

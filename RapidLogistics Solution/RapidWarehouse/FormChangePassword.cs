@@ -12,6 +12,7 @@ namespace RapidWarehouse
         {
             InitializeComponent();
             mEmployeeService = employeeServices;
+            this.Text = "Đổi mật khẩu - " + FormUltils.getInstance().GetVersionInfo();
         }
 
         private void btnSave_Click(object sender, EventArgs e)

@@ -44,6 +44,7 @@
             this.btnManageEmployee = new System.Windows.Forms.Button();
             this.btnInventory = new System.Windows.Forms.Button();
             this.timerMinute = new System.Windows.Forms.Timer(this.components);
+            this.btnManageWarehouse = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -51,6 +52,7 @@
             // groupBox1
             // 
             this.groupBox1.AutoSize = true;
+            this.groupBox1.Controls.Add(this.btnManageWarehouse);
             this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.Controls.Add(this.btnWaitToConfirm);
             this.groupBox1.Controls.Add(this.btnExportInventory);
@@ -213,6 +215,17 @@
             this.timerMinute.Interval = 1000;
             this.timerMinute.Tick += new System.EventHandler(this.timerMinute_Tick);
             // 
+            // btnManageWarehouse
+            // 
+            this.btnManageWarehouse.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnManageWarehouse.Location = new System.Drawing.Point(635, 402);
+            this.btnManageWarehouse.Name = "btnManageWarehouse";
+            this.btnManageWarehouse.Size = new System.Drawing.Size(259, 97);
+            this.btnManageWarehouse.TabIndex = 43;
+            this.btnManageWarehouse.Text = "Quản lý kho hàng";
+            this.btnManageWarehouse.UseVisualStyleBackColor = true;
+            this.btnManageWarehouse.Click += new System.EventHandler(this.btnManageWarehouse_Click);
+            // 
             // FormHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -253,5 +266,6 @@
         private System.Windows.Forms.Button btnExportInventory;
         private System.Windows.Forms.Timer timerMinute;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button btnManageWarehouse;
     }
 }

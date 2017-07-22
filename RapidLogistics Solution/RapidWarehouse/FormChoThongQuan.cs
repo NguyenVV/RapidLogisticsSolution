@@ -48,6 +48,8 @@ namespace RapidWarehouse
 
             grvShipmentsWaitConfirmed.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             grvShipmentsWaitConfirmed.ReadOnly = false;
+
+            this.Text = "Hàng chờ thông quan - " + FormUltils.getInstance().GetVersionInfo();
         }
 
 

@@ -33,6 +33,7 @@ namespace DataModel.UnitOfWork
         private GenericRepository<ShipmentOutTemp> _shipmentOutTempRepository;
         private GenericRepository<ShipmentWaitToConfirm> _shipmentWaitConfirmedRepository;
         private GenericRepository<Employee> _employeeRepository;
+        private GenericRepository<Warehouse> _warehouseRepository;
 
         #endregion
 
@@ -186,6 +187,16 @@ namespace DataModel.UnitOfWork
                 if (this._employeeRepository == null)
                     this._employeeRepository = new GenericRepository<Employee>(_contextWinform);
                 return _employeeRepository;
+            }
+        }
+
+        public GenericRepository<Warehouse> WarehouseRepository
+        {
+            get
+            {
+                if (this._warehouseRepository == null)
+                    this._warehouseRepository = new GenericRepository<Warehouse>(_contextWinform);
+                return _warehouseRepository;
             }
         }
         #endregion

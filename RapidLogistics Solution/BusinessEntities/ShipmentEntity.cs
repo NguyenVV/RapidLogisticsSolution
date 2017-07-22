@@ -13,7 +13,19 @@ namespace BusinessEntities
         string description;
         int boxId;
         DateTime dateCreated;
-        int employeeId;
+        int employeeId, warehouseId;
+        public int WarehouseId
+        {
+            get
+            {
+                return warehouseId;
+            }
+
+            set
+            {
+                warehouseId = value;
+            }
+        }
         public float Weight { get; set; }
 
         public int EmployeeId

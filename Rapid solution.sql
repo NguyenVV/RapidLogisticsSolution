@@ -34,7 +34,16 @@ Create table ShipmentInfor
 	BoxId int references BoxInfo(Id),
 	[Weight] float,
 	[Status] nvarchar(100),
-	EmployeeId int references Employee(Id)
+	EmployeeId int references Employee(Id),
+	WarehouseId int references Warehouse(Id)
+)
+go
+Create table Warehouse
+(
+	Id int identity primary key,
+	IdCode varchar(50),
+	Name nvarchar(200),
+	Location nvarchar(500)
 )
 go
 Create table ShipmentOut
@@ -45,7 +54,8 @@ Create table ShipmentOut
 	MasterBillId int references [MasterBill](Id),
 	MasterBillIdString varchar(100),
 	DateOut DateTime default getdate(),
-	EmployeeId int references Employee(Id)
+	EmployeeId int references Employee(Id),
+	WarehouseId int references Warehouse(Id)
 )
 go
 Create table ShipmentInforTemp
@@ -61,7 +71,8 @@ Create table ShipmentInforTemp
 	BoxId int references BoxInfo(Id),
 	[Weight] float,
 	[Status] nvarchar(100),
-	EmployeeId int references Employee(Id)
+	EmployeeId int references Employee(Id),
+	WarehouseId int references Warehouse(Id)
 )
 go
 Create table ShipmentOutTemp
@@ -72,7 +83,8 @@ Create table ShipmentOutTemp
 	MasterBillId int references [MasterBill](Id),
 	MasterBillIdString varchar(100),
 	DateOut DateTime default getdate(),
-	EmployeeId int references Employee(Id)
+	EmployeeId int references Employee(Id),
+	WarehouseId int references Warehouse(Id)
 )
 go
 -- Chờ thông quan
@@ -96,7 +108,8 @@ Create table Employee
 	Phone varchar(30),
 	Email varchar(150),
 	[Address] nvarchar(200),
-	[Status] bit
+	[Status] bit,
+	WarehouseId int references Warehouse(Id)
 )
 go
 CREATE TABLE ErrorLog(

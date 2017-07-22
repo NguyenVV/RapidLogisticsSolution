@@ -41,6 +41,7 @@ namespace RapidWarehouse
 
             LoadAllMasterBillByDateToCombobox(dtpNgayXuatReport.Value, cbbMasterBillOut);
             LoadAllMasterBillByDateToCombobox(dtpNgayBaoCao.Value, cbbMasterList);
+            this.Text = "Các báo cáo - " + FormUltils.getInstance().GetVersionInfo();
         }
 
 

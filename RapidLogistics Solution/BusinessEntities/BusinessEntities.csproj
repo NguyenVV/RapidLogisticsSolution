@@ -69,6 +69,7 @@
     <Compile Include="ShipmentWaitConfirmedEntity.cs" />
     <Compile Include="TokenEntity.cs" />
     <Compile Include="UserEntity.cs" />
+    <Compile Include="WarehouseEntity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

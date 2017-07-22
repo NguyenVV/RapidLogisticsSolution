@@ -67,6 +67,7 @@ namespace RapidWarehouse
             CloseBox();
             ResetFormInfoNhap();
             dtpNgayDen.Focus();
+            this.Text = "Xác nhận đến - " + FormUltils.getInstance().GetVersionInfo();
             //xpos = label10.Location.X;
             //ypos = label10.Location.Y;
             //timer1.Start();
@@ -228,6 +229,7 @@ namespace RapidWarehouse
                         shipment.ShipmentId = shipmentId;
                         shipment.BoxId = currentBoxIdInt;
                         shipment.DateCreated = DateTime.Now;
+                        shipment.WarehouseId = FormLogin.mWarehouse.Id;
                         shipment.EmployeeId = currentEmployee.Id;
                         try
                         {
@@ -310,6 +312,7 @@ namespace RapidWarehouse
                                     shipment.BoxId = currentBoxIdInt;
                                     shipment.DateCreated = DateTime.Now;
                                     shipment.EmployeeId = currentEmployee.Id;
+                                    shipment.WarehouseId = FormLogin.mWarehouse.Id;
                                     try
                                     {
                                         if (!_shipmentServices.Exists(shipment.ShipmentId))
@@ -1054,16 +1057,5 @@ namespace RapidWarehouse
         }
         
         #endregion
-
-        private void groupBox3_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblThungDaQuet_Click(object sender, EventArgs e)
-        {
-
-        }
-
     }
 }

@@ -35,7 +35,7 @@ namespace RapidWarehouse
             catch (Exception e)
             {
                 Ultilities.FileHelper.WriteLog(Ultilities.ExceptionLevel.Function, "static void Main()", e);
-                MessageBox.Show("Đã có lỗi xảy ra khi xử lý chương trình !\n Chúng tôi đã ghi nhận\nVui lòng thử lại sau!", "Có lỗi xảy ra", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Đã có lỗi xảy ra khi xử lý chương trình !\nChúng tôi đã ghi nhận\nVui lòng thử lại sau!", "Có lỗi xảy ra", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -55,6 +55,7 @@ namespace RapidWarehouse
             container.Register<IEmployeeServices, EmployeeServices>();
             container.Register<IShipmentTempServices, ShipmentTempServices>();
             container.Register<IShipmentOutTempServices, ShipmentOutTempServices>();
+            container.Register<IWarehouseServices, WarehouseServices>();
             container.Register<FormLogin>();
             container.Register<FormNhap>();
             container.Register<FormHome>();
@@ -64,6 +65,7 @@ namespace RapidWarehouse
             container.Register<FormXuat>();
             container.Register<FormChoThongQuan>();
             container.Register<FormBaoCao>();
+            container.Register<FormMangeWarehouses>();
 
             // Optionally verify the container.
             //container.Verify();

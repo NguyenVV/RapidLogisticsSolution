@@ -14,6 +14,8 @@ namespace RapidWarehouse
             this._employeeServices = employeeServices;
             lblMessage.Text = "";
             FillInfo();
+
+            this.Text = "Cấu Hình - " + FormUltils.getInstance().GetVersionInfo();
         }
 
         private void FillInfo()

@@ -54,6 +54,7 @@ namespace RapidWarehouse
             FillInforOut();
             CloseBoxOut();
             dtpNgayXuat.Focus();
+            this.Text = "Xuất kho - " + FormUltils.getInstance().GetVersionInfo();
         }
         
         #region Xuất kho
@@ -97,6 +98,7 @@ namespace RapidWarehouse
                         shipmentOut.DateOut = dtpNgayXuat.Value;
                         shipmentOut.DateCreated = DateTime.Now;
                         shipmentOut.EmployeeId = currentEmployee.Id;
+                        shipmentOut.WarehouseId = FormLogin.mWarehouse.Id;
                         listShipment.Add(shipmentOut);
                     }
                 }
@@ -346,6 +348,7 @@ namespace RapidWarehouse
                         ShipmentId = txtShipmentIdOut.Text,
                         BoxId = currentBoxOut.Id,
                         EmployeeId = currentEmployee.Id,
+                        WarehouseId = FormLogin.mWarehouse.Id,
                         DateCreated = DateTime.Now
                     };
 
@@ -380,6 +383,7 @@ namespace RapidWarehouse
                 shipmentOut.DateOut = dtpNgayXuat.Value;
                 shipmentOut.DateCreated = DateTime.Now;
                 shipmentOut.EmployeeId = currentEmployee.Id;
+                shipmentOut.WarehouseId = FormLogin.mWarehouse.Id;
                 _shipmentOutTempServices.Create(shipmentOut);
                 // Clear text box after process
                 txtShipmentIdOut.Text = String.Empty;

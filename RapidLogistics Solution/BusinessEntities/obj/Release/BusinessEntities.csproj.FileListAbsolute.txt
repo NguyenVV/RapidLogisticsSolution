@@ -3,18 +3,3 @@ C:\Users\Nguyen\Desktop\RapidLogisticsAPI\BusinessEntities\bin\Release\BusinessE
 C:\Users\Nguyen\Desktop\RapidLogisticsAPI\BusinessEntities\obj\Release\BusinessEntities.csprojResolveAssemblyReference.cache
 C:\Users\Nguyen\Desktop\RapidLogisticsAPI\BusinessEntities\obj\Release\BusinessEntities.dll
 C:\Users\Nguyen\Desktop\RapidLogisticsAPI\BusinessEntities\obj\Release\BusinessEntities.pdb
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\bin\Release\BusinessEntities.dll.config
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\bin\Release\BusinessEntities.dll
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\bin\Release\BusinessEntities.pdb
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\bin\Release\AutoMapper.dll
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\bin\Release\System.IO.dll
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\bin\Release\System.Runtime.dll
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\bin\Release\System.Threading.Tasks.dll
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\bin\Release\AutoMapper.xml
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\bin\Release\System.IO.xml
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\bin\Release\System.Runtime.xml
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\bin\Release\System.Threading.Tasks.xml
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\obj\Release\BusinessEntities.csproj.App.config
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\obj\Release\BusinessEntities.dll
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\obj\Release\BusinessEntities.pdb
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\obj\Release\BusinessEntities.csprojResolveAssemblyReference.cache

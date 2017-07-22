@@ -39,7 +39,9 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lblConfigDb = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.lblVersion = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cbbWarehouse = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -79,7 +81,7 @@
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(70, 314);
+            this.btnLogin.Location = new System.Drawing.Point(70, 414);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(211, 47);
             this.btnLogin.TabIndex = 3;
@@ -90,7 +92,7 @@
             // btnExit
             // 
             this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnExit.Location = new System.Drawing.Point(382, 315);
+            this.btnExit.Location = new System.Drawing.Point(382, 415);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(218, 46);
             this.btnExit.TabIndex = 4;
@@ -103,7 +105,7 @@
             this.lblError.AutoSize = true;
             this.lblError.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblError.ForeColor = System.Drawing.Color.Red;
-            this.lblError.Location = new System.Drawing.Point(73, 284);
+            this.lblError.Location = new System.Drawing.Point(73, 382);
             this.lblError.Name = "lblError";
             this.lblError.Size = new System.Drawing.Size(0, 26);
             this.lblError.TabIndex = 5;
@@ -112,7 +114,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(393, 384);
+            this.label4.Location = new System.Drawing.Point(393, 484);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(224, 26);
             this.label4.TabIndex = 6;
@@ -137,7 +139,7 @@
             this.lblConfigDb.AutoSize = true;
             this.lblConfigDb.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblConfigDb.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.lblConfigDb.Location = new System.Drawing.Point(75, 385);
+            this.lblConfigDb.Location = new System.Drawing.Point(75, 485);
             this.lblConfigDb.Name = "lblConfigDb";
             this.lblConfigDb.Size = new System.Drawing.Size(199, 24);
             this.lblConfigDb.TabIndex = 5;
@@ -145,15 +147,34 @@
             this.lblConfigDb.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.lblConfigDb.Click += new System.EventHandler(this.lblConfigDb_Click);
             // 
-            // label6
+            // lblVersion
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(13, 9);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(130, 24);
-            this.label6.TabIndex = 8;
-            this.label6.Text = "Version 1.0.17";
+            this.lblVersion.AutoSize = true;
+            this.lblVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVersion.Location = new System.Drawing.Point(13, 9);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(130, 24);
+            this.lblVersion.TabIndex = 8;
+            this.lblVersion.Text = "Version 1.0.17";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(65, 293);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(104, 25);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "Chọn kho";
+            // 
+            // cbbWarehouse
+            // 
+            this.cbbWarehouse.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbWarehouse.FormattingEnabled = true;
+            this.cbbWarehouse.Location = new System.Drawing.Point(71, 324);
+            this.cbbWarehouse.Name = "cbbWarehouse";
+            this.cbbWarehouse.Size = new System.Drawing.Size(530, 39);
+            this.cbbWarehouse.TabIndex = 10;
+            this.cbbWarehouse.SelectedIndexChanged += new System.EventHandler(this.cbbWarehouse_SelectedIndexChanged);
             // 
             // FormLogin
             // 
@@ -164,8 +185,10 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.CancelButton = this.btnExit;
-            this.ClientSize = new System.Drawing.Size(665, 432);
-            this.Controls.Add(this.label6);
+            this.ClientSize = new System.Drawing.Size(665, 528);
+            this.Controls.Add(this.cbbWarehouse);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.lblConfigDb);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label4);
@@ -198,6 +221,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblConfigDb;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblVersion;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox cbbWarehouse;
     }
 }

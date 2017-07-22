@@ -115,6 +115,9 @@
     <Compile Include="User.cs">
       <DependentUpon>WebApiDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Warehouse.cs">
+      <DependentUpon>RapidSolutionDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="WebApiDataModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

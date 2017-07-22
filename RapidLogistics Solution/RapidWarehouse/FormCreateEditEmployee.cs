@@ -17,6 +17,7 @@ namespace RapidWarehouse
             InitializeComponent();
             mEmployeeService = employeeServices;
             LoadAllEmployeeToListBox();
+            this.Text = "Quản lý người dùng - " + FormUltils.getInstance().GetVersionInfo();
         }
 
         private void LoadAllEmployeeToListBox()
@@ -90,6 +91,7 @@ namespace RapidWarehouse
                 
                 employeeCreateOrUpdate = null;
                 LoadAllEmployeeToListBox();
+                txtUserName.Enabled = false;
             }
         }
 
@@ -142,17 +144,13 @@ namespace RapidWarehouse
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            FormHome home = new FormHome();
-            home.ShowHideButton();
-            home.Show();
+            Program.Container.GetInstance<FormHome>().Show();
             this.Dispose();
         }
 
         private void FormCreateEditEmployee_FormClosed(object sender, FormClosedEventArgs e)
         {
-            FormHome home = new FormHome();
-            home.ShowHideButton();
-            home.Show();
+            Program.Container.GetInstance<FormHome>().Show();
             this.Dispose();
         }
 
@@ -174,6 +172,7 @@ namespace RapidWarehouse
             txtPassword.Text = "";
             txtPhone.Text = "";
             txtUserName.Text = "";
+            txtUserName.Enabled = true;
             dtpBirthDate.Value = DateTime.Now;
             cbbRole.Text = "";
             txtUserName.Focus();

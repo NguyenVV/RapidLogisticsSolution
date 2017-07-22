@@ -31,6 +31,7 @@
           <Property Name="Email" Type="varchar" MaxLength="150" />
           <Property Name="Address" Type="nvarchar" MaxLength="200" />
           <Property Name="Status" Type="bit" />
+          <Property Name="WarehouseId" Type="int" />
         </EntityType>
         <EntityType Name="ErrorLog">
           <Key>
@@ -95,6 +96,7 @@
           <Property Name="BoxId" Type="int" />
           <Property Name="Status" Type="nvarchar" MaxLength="100" />
           <Property Name="EmployeeId" Type="int" />
+          <Property Name="WarehouseId" Type="int" />
         </EntityType>
         <EntityType Name="ShipmentInforTemp">
           <Key>
@@ -112,6 +114,7 @@
           <Property Name="Weight" Type="float" />
           <Property Name="Status" Type="nvarchar" MaxLength="100" />
           <Property Name="EmployeeId" Type="int" />
+          <Property Name="WarehouseId" Type="int" />
         </EntityType>
         <EntityType Name="ShipmentOut">
           <Key>
@@ -124,6 +127,7 @@
           <Property Name="MasterBillIdString" Type="varchar" MaxLength="100" />
           <Property Name="DateOut" Type="datetime" />
           <Property Name="EmployeeId" Type="int" />
+          <Property Name="WarehouseId" Type="int" />
         </EntityType>
         <EntityType Name="ShipmentOutTemp">
           <Key>
@@ -136,6 +140,7 @@
           <Property Name="MasterBillIdString" Type="varchar" MaxLength="100" />
           <Property Name="DateOut" Type="datetime" />
           <Property Name="EmployeeId" Type="int" />
+          <Property Name="WarehouseId" Type="int" />
         </EntityType>
         <EntityType Name="ShipmentWaitToConfirm">
           <Key>
@@ -144,6 +149,16 @@
           <Property Name="ShipmentId" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="EmployeeId" Type="int" />
+        </EntityType>
+        <EntityType Name="Warehouse">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdCode" Type="varchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="Location" Type="nvarchar" MaxLength="500" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <Association Name="FK__BoxInfo__Employe__3A81B327">
           <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
@@ -166,6 +181,18 @@
             </Principal>
             <Dependent Role="BoxInfo">
               <PropertyRef Name="MasterBillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employee__Wareho__628FA481">
+          <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="WarehouseId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -226,6 +253,30 @@
             </Principal>
             <Dependent Role="ShipmentInforTemp">
               <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ShipmentI__Wareh__5EBF139D">
+          <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="0..1" />
+          <End Role="ShipmentInfor" Type="Self.ShipmentInfor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShipmentInfor">
+              <PropertyRef Name="WarehouseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ShipmentI__Wareh__60A75C0F">
+          <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="0..1" />
+          <End Role="ShipmentInforTemp" Type="Self.ShipmentInforTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShipmentInforTemp">
+              <PropertyRef Name="WarehouseId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -307,6 +358,30 @@ warning 6035: The relationship 'FK__ShipmentO__Shipm__1A14E395' has columns that
         <!--Errors Found During Generation:
 warning 6035: The relationship 'FK__ShipmentO__Shipm__4BAC3F29' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
         <Association Name="FK__ShipmentO__Shipm__4BAC3F29" />-->
+        <Association Name="FK__ShipmentO__Wareh__5FB337D6">
+          <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="0..1" />
+          <End Role="ShipmentOut" Type="Self.ShipmentOut" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShipmentOut">
+              <PropertyRef Name="WarehouseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ShipmentO__Wareh__619B8048">
+          <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="0..1" />
+          <End Role="ShipmentOutTemp" Type="Self.ShipmentOutTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShipmentOutTemp">
+              <PropertyRef Name="WarehouseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__ShipmentW__Emplo__3D5E1FD2">
           <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
           <End Role="ShipmentWaitToConfirm" Type="Self.ShipmentWaitToConfirm" Multiplicity="*" />
@@ -330,6 +405,7 @@ warning 6035: The relationship 'FK__ShipmentO__Shipm__4BAC3F29' has columns that
           <EntitySet Name="ShipmentOut" EntityType="Self.ShipmentOut" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ShipmentOutTemp" EntityType="Self.ShipmentOutTemp" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ShipmentWaitToConfirm" EntityType="Self.ShipmentWaitToConfirm" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Warehouse" EntityType="Self.Warehouse" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__BoxInfo__Employe__3A81B327" Association="Self.FK__BoxInfo__Employe__3A81B327">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="BoxInfo" EntitySet="BoxInfo" />
@@ -337,6 +413,10 @@ warning 6035: The relationship 'FK__ShipmentO__Shipm__4BAC3F29' has columns that
           <AssociationSet Name="FK__BoxInfo__MasterB__0CBAE877" Association="Self.FK__BoxInfo__MasterB__0CBAE877">
             <End Role="MasterBill" EntitySet="MasterBill" />
             <End Role="BoxInfo" EntitySet="BoxInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employee__Wareho__628FA481" Association="Self.FK__Employee__Wareho__628FA481">
+            <End Role="Warehouse" EntitySet="Warehouse" />
+            <End Role="Employee" EntitySet="Employee" />
           </AssociationSet>
           <AssociationSet Name="FK__MasterBil__Emplo__398D8EEE" Association="Self.FK__MasterBil__Emplo__398D8EEE">
             <End Role="Employee" EntitySet="Employee" />
@@ -356,6 +436,14 @@ warning 6035: The relationship 'FK__ShipmentO__Shipm__4BAC3F29' has columns that
           </AssociationSet>
           <AssociationSet Name="FK__ShipmentI__Emplo__46E78A0C" Association="Self.FK__ShipmentI__Emplo__46E78A0C">
             <End Role="Employee" EntitySet="Employee" />
+            <End Role="ShipmentInforTemp" EntitySet="ShipmentInforTemp" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ShipmentI__Wareh__5EBF139D" Association="Self.FK__ShipmentI__Wareh__5EBF139D">
+            <End Role="Warehouse" EntitySet="Warehouse" />
+            <End Role="ShipmentInfor" EntitySet="ShipmentInfor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ShipmentI__Wareh__60A75C0F" Association="Self.FK__ShipmentI__Wareh__60A75C0F">
+            <End Role="Warehouse" EntitySet="Warehouse" />
             <End Role="ShipmentInforTemp" EntitySet="ShipmentInforTemp" />
           </AssociationSet>
           <AssociationSet Name="FK__ShipmentO__BoxId__1B0907CE" Association="Self.FK__ShipmentO__BoxId__1B0907CE">
@@ -380,6 +468,14 @@ warning 6035: The relationship 'FK__ShipmentO__Shipm__4BAC3F29' has columns that
           </AssociationSet>
           <AssociationSet Name="FK__ShipmentO__Maste__4D94879B" Association="Self.FK__ShipmentO__Maste__4D94879B">
             <End Role="MasterBill" EntitySet="MasterBill" />
+            <End Role="ShipmentOutTemp" EntitySet="ShipmentOutTemp" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ShipmentO__Wareh__5FB337D6" Association="Self.FK__ShipmentO__Wareh__5FB337D6">
+            <End Role="Warehouse" EntitySet="Warehouse" />
+            <End Role="ShipmentOut" EntitySet="ShipmentOut" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ShipmentO__Wareh__619B8048" Association="Self.FK__ShipmentO__Wareh__619B8048">
+            <End Role="Warehouse" EntitySet="Warehouse" />
             <End Role="ShipmentOutTemp" EntitySet="ShipmentOutTemp" />
           </AssociationSet>
           <AssociationSet Name="FK__ShipmentW__Emplo__3D5E1FD2" Association="Self.FK__ShipmentW__Emplo__3D5E1FD2">
@@ -458,6 +554,27 @@ warning 6035: The relationship 'FK__ShipmentO__Shipm__4BAC3F29' has columns that
             <End Role="MasterBill" EntitySet="MasterBills" />
             <End Role="ShipmentOutTemp" EntitySet="ShipmentOutTemps" />
           </AssociationSet>
+          <EntitySet Name="Warehouses" EntityType="RapidSolutionModel.Warehouse" />
+          <AssociationSet Name="FK__Employee__Wareho__628FA481" Association="RapidSolutionModel.FK__Employee__Wareho__628FA481">
+            <End Role="Warehouse" EntitySet="Warehouses" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ShipmentI__Wareh__5EBF139D" Association="RapidSolutionModel.FK__ShipmentI__Wareh__5EBF139D">
+            <End Role="Warehouse" EntitySet="Warehouses" />
+            <End Role="ShipmentInfor" EntitySet="ShipmentInfors" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ShipmentI__Wareh__60A75C0F" Association="RapidSolutionModel.FK__ShipmentI__Wareh__60A75C0F">
+            <End Role="Warehouse" EntitySet="Warehouses" />
+            <End Role="ShipmentInforTemp" EntitySet="ShipmentInforTemps" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ShipmentO__Wareh__5FB337D6" Association="RapidSolutionModel.FK__ShipmentO__Wareh__5FB337D6">
+            <End Role="Warehouse" EntitySet="Warehouses" />
+            <End Role="ShipmentOut" EntitySet="ShipmentOuts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ShipmentO__Wareh__619B8048" Association="RapidSolutionModel.FK__ShipmentO__Wareh__619B8048">
+            <End Role="Warehouse" EntitySet="Warehouses" />
+            <End Role="ShipmentOutTemp" EntitySet="ShipmentOutTemps" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="ShipmentOut">
           <Key>
@@ -473,6 +590,8 @@ warning 6035: The relationship 'FK__ShipmentO__Shipm__4BAC3F29' has columns that
           <NavigationProperty Name="Employee" Relationship="RapidSolutionModel.FK__ShipmentO__Emplo__4316F928" FromRole="ShipmentOut" ToRole="Employee" />
           <NavigationProperty Name="BoxInfo" Relationship="RapidSolutionModel.FK__ShipmentO__BoxId__1B0907CE" FromRole="ShipmentOut" ToRole="BoxInfo" />
           <NavigationProperty Name="MasterBill" Relationship="RapidSolutionModel.FK__ShipmentO__Maste__1BFD2C07" FromRole="ShipmentOut" ToRole="MasterBill" />
+          <Property Name="WarehouseId" Type="Int32" />
+          <NavigationProperty Name="Warehouse" Relationship="RapidSolutionModel.FK__ShipmentO__Wareh__5FB337D6" FromRole="ShipmentOut" ToRole="Warehouse" />
         </EntityType>
         <EntityType Name="Manifest">
           <Key>
@@ -533,6 +652,8 @@ warning 6035: The relationship 'FK__ShipmentO__Shipm__4BAC3F29' has columns that
           <Property Name="Status" Type="Boolean" />
           <NavigationProperty Name="ShipmentInforTemps" Relationship="RapidSolutionModel.FK__ShipmentI__Emplo__5629CD9C" FromRole="Employee" ToRole="ShipmentInforTemp" />
           <NavigationProperty Name="ShipmentOutTemps" Relationship="RapidSolutionModel.FK__ShipmentO__Emplo__5CD6CB2B" FromRole="Employee" ToRole="ShipmentOutTemp" />
+          <Property Name="WarehouseId" Type="Int32" />
+          <NavigationProperty Name="Warehouse" Relationship="RapidSolutionModel.FK__Employee__Wareho__628FA481" FromRole="Employee" ToRole="Warehouse" />
         </EntityType>
         <Association Name="FK__ShipmentO__Emplo__4316F928">
           <End Type="RapidSolutionModel.Employee" Role="Employee" Multiplicity="0..1" />
@@ -592,6 +713,8 @@ warning 6035: The relationship 'FK__ShipmentO__Shipm__4BAC3F29' has columns that
           <Property Name="EmployeeId" Type="Int32" />
           <NavigationProperty Name="BoxInfo" Relationship="RapidSolutionModel.FK__ShipmentI__BoxId__15502E78" FromRole="ShipmentInfor" ToRole="BoxInfo" />
           <NavigationProperty Name="Employee" Relationship="RapidSolutionModel.FK__ShipmentI__Emplo__44FF419A" FromRole="ShipmentInfor" ToRole="Employee" />
+          <Property Name="WarehouseId" Type="Int32" />
+          <NavigationProperty Name="Warehouse" Relationship="RapidSolutionModel.FK__ShipmentI__Wareh__5EBF139D" FromRole="ShipmentInfor" ToRole="Warehouse" />
         </EntityType>
         <Association Name="FK__BoxInfo__Employe__45F365D3">
           <End Type="RapidSolutionModel.Employee" Role="Employee" Multiplicity="0..1" />
@@ -719,6 +842,8 @@ warning 6035: The relationship 'FK__ShipmentO__Shipm__4BAC3F29' has columns that
           <Property Name="EmployeeId" Type="Int32" />
           <NavigationProperty Name="BoxInfo" Relationship="RapidSolutionModel.FK__ShipmentI__BoxId__5535A963" FromRole="ShipmentInforTemp" ToRole="BoxInfo" />
           <NavigationProperty Name="Employee" Relationship="RapidSolutionModel.FK__ShipmentI__Emplo__5629CD9C" FromRole="ShipmentInforTemp" ToRole="Employee" />
+          <Property Name="WarehouseId" Type="Int32" />
+          <NavigationProperty Name="Warehouse" Relationship="RapidSolutionModel.FK__ShipmentI__Wareh__60A75C0F" FromRole="ShipmentInforTemp" ToRole="Warehouse" />
         </EntityType>
         <EntityType Name="ShipmentOutTemp">
           <Key>
@@ -734,6 +859,8 @@ warning 6035: The relationship 'FK__ShipmentO__Shipm__4BAC3F29' has columns that
           <NavigationProperty Name="BoxInfo" Relationship="RapidSolutionModel.FK__ShipmentO__BoxId__59FA5E80" FromRole="ShipmentOutTemp" ToRole="BoxInfo" />
           <NavigationProperty Name="Employee" Relationship="RapidSolutionModel.FK__ShipmentO__Emplo__5CD6CB2B" FromRole="ShipmentOutTemp" ToRole="Employee" />
           <NavigationProperty Name="MasterBill" Relationship="RapidSolutionModel.FK__ShipmentO__Maste__5AEE82B9" FromRole="ShipmentOutTemp" ToRole="MasterBill" />
+          <Property Name="WarehouseId" Type="Int32" />
+          <NavigationProperty Name="Warehouse" Relationship="RapidSolutionModel.FK__ShipmentO__Wareh__619B8048" FromRole="ShipmentOutTemp" ToRole="Warehouse" />
         </EntityType>
         <Association Name="FK__ShipmentI__BoxId__5535A963">
           <End Type="RapidSolutionModel.BoxInfo" Role="BoxInfo" Multiplicity="0..1" />
@@ -795,6 +922,81 @@ warning 6035: The relationship 'FK__ShipmentO__Shipm__4BAC3F29' has columns that
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Warehouse">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Employees" Relationship="RapidSolutionModel.FK__Employee__Wareho__628FA481" FromRole="Warehouse" ToRole="Employee" />
+          <NavigationProperty Name="ShipmentInfors" Relationship="RapidSolutionModel.FK__ShipmentI__Wareh__5EBF139D" FromRole="Warehouse" ToRole="ShipmentInfor" />
+          <NavigationProperty Name="ShipmentInforTemps" Relationship="RapidSolutionModel.FK__ShipmentI__Wareh__60A75C0F" FromRole="Warehouse" ToRole="ShipmentInforTemp" />
+          <NavigationProperty Name="ShipmentOuts" Relationship="RapidSolutionModel.FK__ShipmentO__Wareh__5FB337D6" FromRole="Warehouse" ToRole="ShipmentOut" />
+          <NavigationProperty Name="ShipmentOutTemps" Relationship="RapidSolutionModel.FK__ShipmentO__Wareh__619B8048" FromRole="Warehouse" ToRole="ShipmentOutTemp" />
+        </EntityType>
+        <Association Name="FK__Employee__Wareho__628FA481">
+          <End Type="RapidSolutionModel.Warehouse" Role="Warehouse" Multiplicity="0..1" />
+          <End Type="RapidSolutionModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="WarehouseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ShipmentI__Wareh__5EBF139D">
+          <End Type="RapidSolutionModel.Warehouse" Role="Warehouse" Multiplicity="0..1" />
+          <End Type="RapidSolutionModel.ShipmentInfor" Role="ShipmentInfor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShipmentInfor">
+              <PropertyRef Name="WarehouseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ShipmentI__Wareh__60A75C0F">
+          <End Type="RapidSolutionModel.Warehouse" Role="Warehouse" Multiplicity="0..1" />
+          <End Type="RapidSolutionModel.ShipmentInforTemp" Role="ShipmentInforTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShipmentInforTemp">
+              <PropertyRef Name="WarehouseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ShipmentO__Wareh__5FB337D6">
+          <End Type="RapidSolutionModel.Warehouse" Role="Warehouse" Multiplicity="0..1" />
+          <End Type="RapidSolutionModel.ShipmentOut" Role="ShipmentOut" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShipmentOut">
+              <PropertyRef Name="WarehouseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ShipmentO__Wareh__619B8048">
+          <End Type="RapidSolutionModel.Warehouse" Role="Warehouse" Multiplicity="0..1" />
+          <End Type="RapidSolutionModel.ShipmentOutTemp" Role="ShipmentOutTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShipmentOutTemp">
+              <PropertyRef Name="WarehouseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -804,6 +1006,7 @@ warning 6035: The relationship 'FK__ShipmentO__Shipm__4BAC3F29' has columns that
           <EntitySetMapping Name="ShipmentOuts">
             <EntityTypeMapping TypeName="RapidSolutionModel.ShipmentOut">
               <MappingFragment StoreEntitySet="ShipmentOut">
+                <ScalarProperty Name="WarehouseId" ColumnName="WarehouseId" />
                 <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
                 <ScalarProperty Name="MasterBillIdString" ColumnName="MasterBillIdString" />
                 <ScalarProperty Name="BoxIdString" ColumnName="BoxIdString" />
@@ -855,6 +1058,7 @@ warning 6035: The relationship 'FK__ShipmentO__Shipm__4BAC3F29' has columns that
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="RapidSolutionModel.Employee">
               <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="WarehouseId" ColumnName="WarehouseId" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
@@ -884,6 +1088,7 @@ warning 6035: The relationship 'FK__ShipmentO__Shipm__4BAC3F29' has columns that
           <EntitySetMapping Name="ShipmentInfors">
             <EntityTypeMapping TypeName="RapidSolutionModel.ShipmentInfor">
               <MappingFragment StoreEntitySet="ShipmentInfor">
+                <ScalarProperty Name="WarehouseId" ColumnName="WarehouseId" />
                 <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="BoxId" ColumnName="BoxId" />
@@ -923,6 +1128,7 @@ warning 6035: The relationship 'FK__ShipmentO__Shipm__4BAC3F29' has columns that
           <EntitySetMapping Name="ShipmentInforTemps">
             <EntityTypeMapping TypeName="RapidSolutionModel.ShipmentInforTemp">
               <MappingFragment StoreEntitySet="ShipmentInforTemp">
+                <ScalarProperty Name="WarehouseId" ColumnName="WarehouseId" />
                 <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Weight" ColumnName="Weight" />
@@ -941,6 +1147,7 @@ warning 6035: The relationship 'FK__ShipmentO__Shipm__4BAC3F29' has columns that
           <EntitySetMapping Name="ShipmentOutTemps">
             <EntityTypeMapping TypeName="RapidSolutionModel.ShipmentOutTemp">
               <MappingFragment StoreEntitySet="ShipmentOutTemp">
+                <ScalarProperty Name="WarehouseId" ColumnName="WarehouseId" />
                 <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
                 <ScalarProperty Name="DateOut" ColumnName="DateOut" />
                 <ScalarProperty Name="MasterBillIdString" ColumnName="MasterBillIdString" />
@@ -948,6 +1155,17 @@ warning 6035: The relationship 'FK__ShipmentO__Shipm__4BAC3F29' has columns that
                 <ScalarProperty Name="BoxIdString" ColumnName="BoxIdString" />
                 <ScalarProperty Name="BoxIdRef" ColumnName="BoxIdRef" />
                 <ScalarProperty Name="ShipmentId" ColumnName="ShipmentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Warehouses">
+            <EntityTypeMapping TypeName="RapidSolutionModel.Warehouse">
+              <MappingFragment StoreEntitySet="Warehouse">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IdCode" ColumnName="IdCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

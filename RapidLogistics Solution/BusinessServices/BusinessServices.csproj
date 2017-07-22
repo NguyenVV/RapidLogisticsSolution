@@ -66,6 +66,7 @@
     <Compile Include="Interfaces\IShipmentWaitToConfirmedServices.cs" />
     <Compile Include="Interfaces\ITokenServices.cs" />
     <Compile Include="Interfaces\IUserServices.cs" />
+    <Compile Include="Interfaces\IWarehouseServices.cs" />
     <Compile Include="MasterBillServices.cs" />
     <Compile Include="ManifestServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="ShipmentWaitToConfirmedServices.cs" />
     <Compile Include="TokenServices.cs" />
     <Compile Include="UserServices.cs" />
+    <Compile Include="WarehouseServices.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessEntities\BusinessEntities.csproj">
