@@ -34,3 +34,14 @@ go
 update [ShipmentInfor] set WarehouseId = 1
 go
 update [ShipmentOut] set WarehouseId = 1
+
+go
+
+Alter table [ShipmentInfor] add DeclarationNo varchar(15)
+Alter table [ShipmentInfor] add Country nvarchar(100)--o	Nước gửi(Country)
+Alter table [ShipmentInfor] add [Address] nvarchar(500)--o	Địa chỉ nhận(Address)
+Alter table [ShipmentInfor] add Consignee nvarchar(200)--o	Consignee (Destination).
+Alter table [ShipmentInfor] add Content nvarchar(300)--o	Nội dung hàng(Content); 
+Alter table [ShipmentInfor] add NumberPackage int default 1--o	Số kiện(mặc định là 1); 
+
+alter table [dbo].[Manifest] add DeclarationNo varchar(15)

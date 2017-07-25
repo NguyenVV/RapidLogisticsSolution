@@ -12,6 +12,7 @@ namespace RapidWarehouse
         {
             InitializeComponent();
             _shipmentServices = shipmentServices;
+            txtShipmentNo.Focus();
         }
 
         private void txtShipmentNo_KeyDown(object sender, KeyEventArgs e)
