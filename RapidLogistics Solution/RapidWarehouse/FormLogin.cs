@@ -67,7 +67,15 @@ namespace RapidWarehouse
                     if (mEmployee != null)
                     {
                         lblError.Text = "";
-                        Program.Container.GetInstance<FormHome>().Show();
+                        if(mEmployee.Role=="Hải Quan")
+                        {
+                            Program.Container.GetInstance<FormHaiQuanView>().Show();
+                        }
+                        else
+                        {
+                            Program.Container.GetInstance<FormHome>().Show();
+                        }
+
                         this.Hide();
                     }
                     else

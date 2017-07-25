@@ -152,7 +152,8 @@
             this.cbbRole.FormattingEnabled = true;
             this.cbbRole.Items.AddRange(new object[] {
             "Nhân Viên",
-            "Administrator"});
+            "Administrator",
+            "Hải Quan"});
             this.cbbRole.Location = new System.Drawing.Point(281, 172);
             this.cbbRole.Name = "cbbRole";
             this.cbbRole.Size = new System.Drawing.Size(353, 34);

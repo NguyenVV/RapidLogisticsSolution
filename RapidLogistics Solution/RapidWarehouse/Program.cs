@@ -32,9 +32,9 @@ namespace RapidWarehouse
                 Application.Run(container.GetInstance<FormLogin>());
                 //Application.Run(container.GetInstance<FormNhap>());
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Ultilities.FileHelper.WriteLog(Ultilities.ExceptionLevel.Function, "static void Main()", e);
+                Ultilities.FileHelper.WriteLog(Ultilities.ExceptionLevel.Function, "static void Main()", ex);
                 MessageBox.Show("Đã có lỗi xảy ra khi xử lý chương trình !\nChúng tôi đã ghi nhận\nVui lòng thử lại sau!", "Có lỗi xảy ra", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -66,6 +66,7 @@ namespace RapidWarehouse
             container.Register<FormChoThongQuan>();
             container.Register<FormBaoCao>();
             container.Register<FormMangeWarehouses>();
+            container.Register<FormHaiQuanView>();
 
             // Optionally verify the container.
             //container.Verify();

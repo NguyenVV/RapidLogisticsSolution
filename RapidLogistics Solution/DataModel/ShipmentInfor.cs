@@ -26,6 +26,13 @@ namespace DataModel
         public string Status { get; set; }
         public Nullable<int> EmployeeId { get; set; }
         public Nullable<int> WarehouseId { get; set; }
+        public Nullable<bool> IsSyncOms { get; set; }
+        public string DeclarationNo { get; set; }
+        public string Country { get; set; }
+        public string Address { get; set; }
+        public string Consignee { get; set; }
+        public string Content { get; set; }
+        public Nullable<int> NumberPackage { get; set; }
     
         public virtual BoxInfo BoxInfo { get; set; }
         public virtual Employee Employee { get; set; }

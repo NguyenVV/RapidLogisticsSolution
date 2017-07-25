@@ -27,6 +27,20 @@ namespace RapidWarehouse
         private readonly IBoxInforServices _boxInforServices;
         private readonly IShipmentWaitToConfirmedServices _shipmentWaitConfirmedServices;
         private readonly IShipmentOutTempServices _shipmentOutTempServices;
+        private readonly string SHIPMENT_NO = "Shipment No";
+        private readonly string MAWB = "MAWB";
+        private readonly string STT = "STT";
+        private readonly string ID = "Id";
+        private readonly string DECLARATIONNO = "Số tờ khai";
+        private readonly string COMPANYNAME = "Người gửi";
+        private readonly string COUNTRY = "Nước gửi";
+        private readonly string CONTACTNAME = "Người nhận";
+        private readonly string ADDRESS = "Địa chỉ nhận";
+        private readonly string CONSIGNEE = "Consignee";
+        private readonly string CONTENT = "Nội dung hàng";
+        private readonly string PACKAGE = "Số kiện";
+        private readonly string WEIGHT = "Khối lượng";
+        private readonly string DATE_CREATED = "Ngày nhập kho";
         public FormXuat(IMasterBillServices masterBillServices, IShipmentServices shipmentServices
             , IBoxInforServices boxInforServices, IShipmentOutServices shipmentOutServices
             , IShipmentWaitToConfirmedServices shipmentWaitToConfirmedServices
@@ -40,13 +54,9 @@ namespace RapidWarehouse
             _shipmentWaitConfirmedServices = shipmentWaitToConfirmedServices;
             _shipmentOutTempServices = shipmentOutTempServices;
             currentEmployee = FormLogin.mEmployee;
-            grvShipmentListOut.ColumnCount = 2;
-            grvShipmentListOut.Columns[0].Name = "STT";
-            grvShipmentListOut.Columns[0].ValueType = typeof(int);
-            grvShipmentListOut.Columns[1].Name = "Shipment Id";
-            
+            BuildingGridviewRow();
             AddDeleteButtonToGridView(grvShipmentListOut);
-            
+
             dtpNgayXuat.CustomFormat = "dd/MM/yyyy";
             grvShipmentListOut.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             ResetHardCodeText();
@@ -56,8 +66,39 @@ namespace RapidWarehouse
             dtpNgayXuat.Focus();
             this.Text = "Xuất kho - " + FormUltils.getInstance().GetVersionInfo();
         }
-        
+
         #region Xuất kho
+        private void BuildingGridviewRow()
+        {
+            grvShipmentListOut.ColumnCount = 13;
+            grvShipmentListOut.Columns[0].Name = STT;
+            grvShipmentListOut.Columns[0].ValueType = typeof(int);
+            grvShipmentListOut.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            grvShipmentListOut.Columns[1].Name = MAWB;
+            grvShipmentListOut.Columns[1].ValueType = typeof(string);
+            grvShipmentListOut.Columns[2].Name = DATE_CREATED;
+            grvShipmentListOut.Columns[2].ValueType = typeof(string);
+            grvShipmentListOut.Columns[3].Name = SHIPMENT_NO;
+            grvShipmentListOut.Columns[3].ValueType = typeof(string);
+            grvShipmentListOut.Columns[4].Name = DECLARATIONNO;
+            grvShipmentListOut.Columns[4].ValueType = typeof(string);
+            grvShipmentListOut.Columns[5].Name = COMPANYNAME;
+            grvShipmentListOut.Columns[5].ValueType = typeof(string);
+            grvShipmentListOut.Columns[6].Name = COUNTRY;
+            grvShipmentListOut.Columns[6].ValueType = typeof(string);
+            grvShipmentListOut.Columns[7].Name = CONTACTNAME;
+            grvShipmentListOut.Columns[7].ValueType = typeof(string);
+            grvShipmentListOut.Columns[8].Name = ADDRESS;
+            grvShipmentListOut.Columns[8].ValueType = typeof(string);
+            grvShipmentListOut.Columns[9].Name = CONSIGNEE;
+            grvShipmentListOut.Columns[9].ValueType = typeof(string);
+            grvShipmentListOut.Columns[10].Name = CONTENT;
+            grvShipmentListOut.Columns[10].ValueType = typeof(string);
+            grvShipmentListOut.Columns[11].Name = PACKAGE;
+            grvShipmentListOut.Columns[11].ValueType = typeof(int);
+            grvShipmentListOut.Columns[12].Name = WEIGHT;
+            grvShipmentListOut.Columns[12].ValueType = typeof(float);
+        }
         private void FillInforOut()
         {
             lblMasterBillOut.Text = cbbMasterBillOut.Text;
@@ -74,7 +115,7 @@ namespace RapidWarehouse
             txtShipmentIdOut.Enabled = true;
             grvShipmentListOut.Enabled = true;
             txtShipmentIdOut.Focus();
-            
+
             lblShipmentScanedOut.Text = (grvShipmentListOut.Rows.Count).ToString();
         }
 
@@ -86,7 +127,29 @@ namespace RapidWarehouse
                 List<ShipmentOutEntity> listShipment = new List<ShipmentOutEntity>();
                 for (int i = 0; i < rowCount; i++)
                 {
-                    string shipmentId = grvShipmentListOut["Shipment Id", i].Value.ToString();
+                    string shipmentId = Convert.ToString(grvShipmentListOut[SHIPMENT_NO, i].Value);
+
+                    ShipmentEntity shipment = new ShipmentEntity();
+                    shipment.ShipmentId = shipmentId;
+                    shipment.BoxId = currentBoxOut.Id;
+                    shipment.DateCreated = DateTime.Now;
+                    shipment.WarehouseId = FormLogin.mWarehouse.Id;
+                    shipment.EmployeeId = currentEmployee.Id;
+                    shipment.NumberPackage = Int32.Parse(Convert.ToString(grvShipmentListOut[PACKAGE, i].Value));
+                    shipment.Sender = Convert.ToString(grvShipmentListOut[COMPANYNAME, i].Value);
+                    shipment.DeclarationNo = Convert.ToString(grvShipmentListOut[DECLARATIONNO, i].Value);
+                    shipment.Address = Convert.ToString(grvShipmentListOut[ADDRESS, i].Value);
+                    shipment.Content = Convert.ToString(grvShipmentListOut[CONTENT, i].Value);
+                    shipment.Destination = Convert.ToString(grvShipmentListOut[CONSIGNEE, i].Value);
+                    shipment.Receiver = Convert.ToString(grvShipmentListOut[CONTACTNAME, i].Value);
+                    shipment.Weight = float.Parse(Convert.ToString(grvShipmentListOut[WEIGHT, i].Value));
+                    shipment.Country = Convert.ToString(grvShipmentListOut[COUNTRY, i].Value);
+                    try
+                    {
+                        _shipmentServices.Create(shipment);
+                    }
+                    catch(Exception ex) { }
+
                     if (!_shipmentOutServices.IsExist(shipmentId))
                     {
                         ShipmentOutEntity shipmentOut = new ShipmentOutEntity();
@@ -295,7 +358,7 @@ namespace RapidWarehouse
 
                 if (IsExistsOnTheGridView(grvShipmentListOut, txtShipmentIdOut.Text))
                 {
-                    MessageBox.Show("Tìm thấy đơn hàng vừa nhập đã có trên lưới", "Đơn hàng trùng lặp");
+                    MessageBox.Show("Tìm thấy đơn hàng vừa nhập đã có trên lưới", "Đơn hàng trùng lặp", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txtShipmentIdOut.Text = String.Empty;
                     return;
                 }
@@ -311,7 +374,7 @@ namespace RapidWarehouse
                         try
                         {
                             ////xóa trên gridview
-                            //grvShipmentsWaitConfirmed.Rows.RemoveAt(indexWaitConfirmedDeleted);
+                            //grvShipmentListOutWaitConfirmed.Rows.RemoveAt(indexWaitConfirmedDeleted);
                             //xóa trong db
                             _shipmentWaitConfirmedServices.Delete(txtShipmentIdOut.Text);
                         }
@@ -342,21 +405,6 @@ namespace RapidWarehouse
                             return;
                         }
                     }
-
-                    ShipmentEntity shipment = new ShipmentEntity
-                    {
-                        ShipmentId = txtShipmentIdOut.Text,
-                        BoxId = currentBoxOut.Id,
-                        EmployeeId = currentEmployee.Id,
-                        WarehouseId = FormLogin.mWarehouse.Id,
-                        DateCreated = DateTime.Now
-                    };
-
-                    try
-                    {
-                        shipment.Id = _shipmentServices.Create(shipment);
-                    }
-                    catch (Exception ex) { Ultilities.FileHelper.WriteLog(Ultilities.ExceptionLevel.Function, "private void txtShipmentIdOut_KeyDown(object sender, KeyEventArgs e)", ex); }
                 }
 
                 if (_shipmentOutServices.IsExist(txtShipmentIdOut.Text))
@@ -414,12 +462,12 @@ namespace RapidWarehouse
             grv.Columns.Add(deleteButton);
             grv.Columns["dataGridViewDeleteButton"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
         }
-        
+
         private void LoadAllMasterBillByDateToCombobox(DateTime date, ComboBox cbbMaster)
         {
             cbbMaster.DataSource = null;
             cbbMaster.Items.Clear();
-            
+
             List<MasterAirwayBillEntity> masterBillList = _shipmentOutServices.GetAllMasterBillByDate(date).ToList();
             //List<ShipmentOutEntity> listOut = (List < ShipmentOutEntity > )_shipmentOutServices.GetByDate(dtpNgayXuat.Value);
             if (masterBillList != null && masterBillList.Count > 0)
@@ -443,7 +491,7 @@ namespace RapidWarehouse
             {
                 //for (int j = 0; j < grv.Columns.Count; j++)
                 //{
-                if (grv.Rows[i].Cells["Shipment Id"].Value != null && shipmentId.Equals(grv.Rows[i].Cells["Shipment Id"].Value.ToString(), StringComparison.CurrentCultureIgnoreCase))
+                if (grv.Rows[i].Cells[SHIPMENT_NO].Value != null && shipmentId.Equals(grv.Rows[i].Cells[SHIPMENT_NO].Value.ToString(), StringComparison.CurrentCultureIgnoreCase))
                 {
                     grv.ClearSelection();
                     grv.Rows[i].Selected = true;
@@ -457,7 +505,7 @@ namespace RapidWarehouse
 
             return false;
         }
-        
+
         private void DeleteRowFromGridview(DataGridView grv, DataGridViewCellEventArgs e, int grvType)
         {
             //if click is on new row or header row
@@ -467,7 +515,7 @@ namespace RapidWarehouse
             //Check if click is on specific column 
             if (e.ColumnIndex == grv.Columns["dataGridViewDeleteButton"].Index)
             {
-                DialogResult result = MessageBox.Show("Bạn muốn xóa đơn hàng : " + grv.Rows[e.RowIndex].Cells["Shipment Id"].Value, "Xóa đơn hàng", MessageBoxButtons.YesNo);
+                DialogResult result = MessageBox.Show("Bạn muốn xóa đơn hàng : " + grv.Rows[e.RowIndex].Cells[SHIPMENT_NO].Value, "Xóa đơn hàng", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.No)
                     return;
 
@@ -475,7 +523,7 @@ namespace RapidWarehouse
                 {
                     if (grvType == 2)
                     {
-                        _shipmentOutServices.Delete(grv.Rows[e.RowIndex].Cells["Shipment Id"].Value.ToString());
+                        _shipmentOutServices.Delete(grv.Rows[e.RowIndex].Cells[SHIPMENT_NO].Value.ToString());
                         lblShipmentScanedOut.Text = (grv.Rows.Count - 1) + "";
                     }
                 }
@@ -500,15 +548,16 @@ namespace RapidWarehouse
         [System.Runtime.InteropServices.DllImport("kernel32.dll")]
         public static extern bool Beep(int freq, int duration);
 
-        private void AddShipmentListToGrid(List<ShipmentOutEntity> listShipment, DataGridView grv)
+        private void AddShipmentListToGrid(List<ShipmentEntity> listShipment, DataGridView grv)
         {
             if (grv != null && listShipment != null)
             {
                 int index = 1;
                 grv.Rows.Clear();
-                foreach (ShipmentOutEntity item in listShipment)
+                foreach (ShipmentEntity item in listShipment)
                 {
-                    grv.Rows.Add(index, item.ShipmentId);
+                    grv.Rows.Add(index, cbbMasterBillOut.Text, item.DateCreated.ToString("dd-MM-yyyy"), item.ShipmentId, item.DeclarationNo, item.Sender
+                        , item.Country, item.Receiver, item.Address, item.Destination, item.Content, 1, item.Weight);
                     index++;
                 }
                 // setting up value count on gridview
@@ -524,11 +573,11 @@ namespace RapidWarehouse
                 return false;
             }
 
-            List<ShipmentOutEntity> listShipment = (List<ShipmentOutEntity>)_shipmentOutServices.GetByBoxId(boxEntity.Id);
-            List<ShipmentOutEntity> listShipmentOutTemp = (List<ShipmentOutEntity>)_shipmentOutTempServices.GetByBoxId(boxEntity.Id);
+            List<ShipmentEntity> listShipment = (List<ShipmentEntity>)_shipmentOutServices.GetByBoxIdToDisplay(boxEntity.Id);
+            List<ShipmentEntity> listShipmentOutTemp = (List<ShipmentEntity>)_shipmentOutTempServices.GetByBoxIdToDisplay(boxEntity.Id);
             string text = "Bạn có chắc chắn muốn xử lý mã thùng là " + boxEntity.BoxId;
 
-            if (listShipment!=null && listShipment.Count > 0)
+            if (listShipment != null && listShipment.Count > 0)
             {
                 text += "\nvới tổng số đơn hàng đã xuất kho là " + listShipment.Count;
             }
@@ -567,7 +616,7 @@ namespace RapidWarehouse
         {
             if (masterBillId <= 0)
                 return;
-            
+
             List<BoxInforEntity> listBoxInfo = _shipmentOutServices.GetAllBoxByMasterBill(masterBillId).ToList();
             if (listBoxInfo != null && listBoxInfo.Count > 0)
             {
@@ -678,7 +727,7 @@ namespace RapidWarehouse
         {
             GoHome();
         }
- 
+
         private void txtSearchOut_Enter(object sender, EventArgs e)
         {
             if (txtSearchOut.Text.Equals("NHẬP MÃ ĐỂ TÌM KIẾM"))
@@ -721,7 +770,7 @@ namespace RapidWarehouse
             }
             else
             {
-                MessageBox.Show("Chưa có đơn hàng của mã thùng này nào được xuất kho!","Không có dữ liệu", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Chưa có đơn hàng của mã thùng này nào được xuất kho!", "Không có dữ liệu", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 

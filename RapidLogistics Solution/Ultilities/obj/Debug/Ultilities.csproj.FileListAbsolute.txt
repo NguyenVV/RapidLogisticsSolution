@@ -12,8 +12,3 @@ D:\MVC\Rapid\warehouse.rapid\WareHouseSoft\RapidLogisticsSolution\RapidLogistics
 D:\MVC\Rapid\warehouse.rapid\WareHouseSoft\RapidLogisticsSolution\RapidLogistics Solution\Ultilities\obj\Debug\Ultilities.csprojResolveAssemblyReference.cache
 D:\MVC\Rapid\warehouse.rapid\WareHouseSoft\RapidLogisticsSolution\RapidLogistics Solution\Ultilities\obj\Debug\Ultilities.dll
 D:\MVC\Rapid\warehouse.rapid\WareHouseSoft\RapidLogisticsSolution\RapidLogistics Solution\Ultilities\obj\Debug\Ultilities.pdb
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\Ultilities\bin\Debug\Ultilities.dll
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\Ultilities\bin\Debug\Ultilities.pdb
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\Ultilities\obj\Debug\Ultilities.csprojResolveAssemblyReference.cache
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\Ultilities\obj\Debug\Ultilities.dll
-C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\Ultilities\obj\Debug\Ultilities.pdb

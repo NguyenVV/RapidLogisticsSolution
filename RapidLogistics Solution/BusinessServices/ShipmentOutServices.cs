@@ -61,6 +61,20 @@ namespace BusinessServices
             return null;
         }
 
+        public IEnumerable<ShipmentEntity> GetByBoxIdToDisplay(int boxId)
+        {
+            var shipmentListId = _unitOfWork.ShipmentOutRepository.GetMany(t => t.BoxIdRef == boxId).OrderByDescending(t => t.DateOut).Select(p=>p.ShipmentId);
+            if (shipmentListId != null && shipmentListId.Any())
+            {
+                var listShipment = _unitOfWork.ShipmentRepository.GetMany(t => shipmentListId.Contains(t.ShipmentId));
+                Mapper.CreateMap<ShipmentInfor, ShipmentEntity>();
+                var shipmentListModel = Mapper.Map<List<ShipmentInfor>, List<ShipmentEntity>>(listShipment.ToList());
+                return shipmentListModel;
+            }
+
+            return null;
+        }
+
         public IEnumerable<ShipmentOutEntity> GetByMasterBillId(int masterBillId)
         {
             var shipmentList = _unitOfWork.ShipmentOutRepository.GetMany(t => t.MasterBillId == masterBillId).OrderByDescending(t => t.DateOut);

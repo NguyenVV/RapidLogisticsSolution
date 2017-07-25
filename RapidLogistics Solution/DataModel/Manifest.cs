@@ -37,5 +37,6 @@ namespace DataModel
         public string Country { get; set; }
         public string CompanyName { get; set; }
         public Nullable<System.DateTime> CreationDate { get; set; }
+        public string DeclarationNo { get; set; }
     }
 }

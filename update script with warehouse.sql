@@ -19,8 +19,18 @@ Alter table [ShipmentOutTemp] add WarehouseId int references Warehouse(Id)
 go
 Alter table [Employee] add WarehouseId int references Warehouse(Id)
 go
-Alter table [Warehouse] add [Description] nvarchar(500)
+Alter table [ShipmentInfor] add IsSyncOms bit
 go
-Insert into Warehouse values('HNW',N'Kho hàng Hà Nội',N'Lô 6 kho hàng sân bay Nội Bài','')
+Alter table [ShipmentOut] add IsSyncOms bit
 go
-Insert into Warehouse values('SGW',N'Kho hàng Hồ Chí Minh',N'Lô 6 kho hàng sân bay Tân Sơn Nhất','')
+Insert into Warehouse values('HNW',N'Kho hàng Hà Nội',N'Lô 6 kho hàng sân bay Nội Bài','', getdate())
+go
+Insert into Warehouse values('SGW',N'Kho hàng Hồ Chí Minh',N'Lô 6 kho hàng sân bay Tân Sơn Nhất','', getdate())
+go
+update [ShipmentInfor] set IsSyncOms = 0
+go
+update [ShipmentOut] set IsSyncOms = 0
+go
+update [ShipmentInfor] set WarehouseId = 1
+go
+update [ShipmentOut] set WarehouseId = 1

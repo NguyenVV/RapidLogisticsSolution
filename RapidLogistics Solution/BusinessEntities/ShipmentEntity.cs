@@ -14,6 +14,24 @@ namespace BusinessEntities
         int boxId;
         DateTime dateCreated;
         int employeeId, warehouseId;
+        string content,
+            destination,
+            address,
+            country;
+        int numberPackage;
+        private string declarationNo;
+        public string DeclarationNo
+        {
+            get
+            {
+                return declarationNo;
+            }
+
+            set
+            {
+                declarationNo = value;
+            }
+        }
         public int WarehouseId
         {
             get
@@ -155,6 +173,71 @@ namespace BusinessEntities
             set
             {
                 boxId = value;
+            }
+        }
+
+        public string Content
+        {
+            get
+            {
+                return content;
+            }
+
+            set
+            {
+                content = value;
+            }
+        }
+
+        public string Destination
+        {
+            get
+            {
+                return destination;
+            }
+
+            set
+            {
+                destination = value;
+            }
+        }
+
+        public string Address
+        {
+            get
+            {
+                return address;
+            }
+
+            set
+            {
+                address = value;
+            }
+        }
+
+        public string Country
+        {
+            get
+            {
+                return country;
+            }
+
+            set
+            {
+                country = value;
+            }
+        }
+
+        public int NumberPackage
+        {
+            get
+            {
+                return numberPackage;
+            }
+
+            set
+            {
+                numberPackage = value;
             }
         }
 

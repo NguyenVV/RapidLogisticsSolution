@@ -42,7 +42,17 @@ namespace BusinessServices
             {
                 Mapper.CreateMap<ShipmentEntity, ShipmentInfor>();
                 var shipmentDataModel = Mapper.Map<ShipmentEntity, ShipmentInfor>(shipmentEntity);
-                _unitOfWork.ShipmentRepository.Insert(shipmentDataModel);
+                var original = _unitOfWork.ShipmentRepository.Get(t => t.ShipmentId == shipmentDataModel.ShipmentId);
+                if(original != null)
+                {
+                    shipmentDataModel.Id = original.Id;
+                    _unitOfWork.ShipmentRepository.Update(original, shipmentDataModel);
+                }
+                else
+                {
+                    _unitOfWork.ShipmentRepository.Insert(shipmentDataModel);
+                }
+                
                 _unitOfWork.SaveWinform();
                 scope.Complete();
                 return shipmentDataModel.Id;

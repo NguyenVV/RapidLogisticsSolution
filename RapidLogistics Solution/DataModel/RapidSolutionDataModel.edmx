@@ -70,6 +70,7 @@
           <Property Name="Country" Type="nvarchar" MaxLength="100" />
           <Property Name="CompanyName" Type="nvarchar" MaxLength="200" />
           <Property Name="CreationDate" Type="datetime" />
+          <Property Name="DeclarationNo" Type="varchar" MaxLength="15" />
         </EntityType>
         <EntityType Name="MasterBill">
           <Key>
@@ -97,6 +98,13 @@
           <Property Name="Status" Type="nvarchar" MaxLength="100" />
           <Property Name="EmployeeId" Type="int" />
           <Property Name="WarehouseId" Type="int" />
+          <Property Name="IsSyncOms" Type="bit" />
+          <Property Name="DeclarationNo" Type="varchar" MaxLength="15" />
+          <Property Name="Country" Type="nvarchar" MaxLength="100" />
+          <Property Name="Address" Type="nvarchar" MaxLength="500" />
+          <Property Name="Consignee" Type="nvarchar" MaxLength="200" />
+          <Property Name="Content" Type="nvarchar" MaxLength="300" />
+          <Property Name="NumberPackage" Type="int" />
         </EntityType>
         <EntityType Name="ShipmentInforTemp">
           <Key>
@@ -128,6 +136,7 @@
           <Property Name="DateOut" Type="datetime" />
           <Property Name="EmployeeId" Type="int" />
           <Property Name="WarehouseId" Type="int" />
+          <Property Name="IsSyncOms" Type="bit" />
         </EntityType>
         <EntityType Name="ShipmentOutTemp">
           <Key>
@@ -592,6 +601,7 @@ warning 6035: The relationship 'FK__ShipmentO__Shipm__4BAC3F29' has columns that
           <NavigationProperty Name="MasterBill" Relationship="RapidSolutionModel.FK__ShipmentO__Maste__1BFD2C07" FromRole="ShipmentOut" ToRole="MasterBill" />
           <Property Name="WarehouseId" Type="Int32" />
           <NavigationProperty Name="Warehouse" Relationship="RapidSolutionModel.FK__ShipmentO__Wareh__5FB337D6" FromRole="ShipmentOut" ToRole="Warehouse" />
+          <Property Name="IsSyncOms" Type="Boolean" />
         </EntityType>
         <EntityType Name="Manifest">
           <Key>
@@ -620,6 +630,7 @@ warning 6035: The relationship 'FK__ShipmentO__Shipm__4BAC3F29' has columns that
           <Property Name="Country" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="CompanyName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="DeclarationNo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="ShipmentWaitToConfirm">
           <Key>
@@ -715,6 +726,13 @@ warning 6035: The relationship 'FK__ShipmentO__Shipm__4BAC3F29' has columns that
           <NavigationProperty Name="Employee" Relationship="RapidSolutionModel.FK__ShipmentI__Emplo__44FF419A" FromRole="ShipmentInfor" ToRole="Employee" />
           <Property Name="WarehouseId" Type="Int32" />
           <NavigationProperty Name="Warehouse" Relationship="RapidSolutionModel.FK__ShipmentI__Wareh__5EBF139D" FromRole="ShipmentInfor" ToRole="Warehouse" />
+          <Property Name="IsSyncOms" Type="Boolean" />
+          <Property Name="DeclarationNo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Consignee" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Content" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="NumberPackage" Type="Int32" />
         </EntityType>
         <Association Name="FK__BoxInfo__Employe__45F365D3">
           <End Type="RapidSolutionModel.Employee" Role="Employee" Multiplicity="0..1" />
@@ -1006,6 +1024,7 @@ warning 6035: The relationship 'FK__ShipmentO__Shipm__4BAC3F29' has columns that
           <EntitySetMapping Name="ShipmentOuts">
             <EntityTypeMapping TypeName="RapidSolutionModel.ShipmentOut">
               <MappingFragment StoreEntitySet="ShipmentOut">
+                <ScalarProperty Name="IsSyncOms" ColumnName="IsSyncOms" />
                 <ScalarProperty Name="WarehouseId" ColumnName="WarehouseId" />
                 <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
                 <ScalarProperty Name="MasterBillIdString" ColumnName="MasterBillIdString" />
@@ -1020,6 +1039,7 @@ warning 6035: The relationship 'FK__ShipmentO__Shipm__4BAC3F29' has columns that
           <EntitySetMapping Name="Manifests">
             <EntityTypeMapping TypeName="RapidSolutionModel.Manifest">
               <MappingFragment StoreEntitySet="Manifest">
+                <ScalarProperty Name="DeclarationNo" ColumnName="DeclarationNo" />
                 <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
                 <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
                 <ScalarProperty Name="Country" ColumnName="Country" />
@@ -1088,6 +1108,13 @@ warning 6035: The relationship 'FK__ShipmentO__Shipm__4BAC3F29' has columns that
           <EntitySetMapping Name="ShipmentInfors">
             <EntityTypeMapping TypeName="RapidSolutionModel.ShipmentInfor">
               <MappingFragment StoreEntitySet="ShipmentInfor">
+                <ScalarProperty Name="NumberPackage" ColumnName="NumberPackage" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Consignee" ColumnName="Consignee" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="DeclarationNo" ColumnName="DeclarationNo" />
+                <ScalarProperty Name="IsSyncOms" ColumnName="IsSyncOms" />
                 <ScalarProperty Name="WarehouseId" ColumnName="WarehouseId" />
                 <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
                 <ScalarProperty Name="Status" ColumnName="Status" />

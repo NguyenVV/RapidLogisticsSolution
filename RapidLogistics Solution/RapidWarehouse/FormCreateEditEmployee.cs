@@ -69,6 +69,7 @@ namespace RapidWarehouse
                     employeeCreateOrUpdate.Role = cbbRole.Text;
                     employeeCreateOrUpdate.Status = true;
                     employeeCreateOrUpdate.UserName = txtUserName.Text;
+                    employeeCreateOrUpdate.WarehouseId = FormLogin.mWarehouse.Id;
                     mEmployeeService.CreateOrUpdateEmployee(employeeCreateOrUpdate);
                     MessageBox.Show("Tạo " + cbbRole.Text + " thành công !");
                 }
@@ -85,6 +86,7 @@ namespace RapidWarehouse
                     employeeCreateOrUpdate.Role = cbbRole.Text;
                     employeeCreateOrUpdate.Status = true;
                     employeeCreateOrUpdate.UserName = txtUserName.Text;
+                    employeeCreateOrUpdate.WarehouseId = FormLogin.mWarehouse.Id;
                     mEmployeeService.CreateOrUpdateEmployee(employeeCreateOrUpdate);
                     MessageBox.Show("Cập nhật " + cbbRole.Text + " thành công !");
                 }

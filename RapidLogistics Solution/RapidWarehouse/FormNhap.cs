@@ -31,6 +31,19 @@ namespace RapidWarehouse
         private readonly IManifestServices _manifestServices;
         private readonly IShipmentWaitToConfirmedServices _shipmentWaitConfirmedServices;
         private readonly IShipmentOutTempServices _shipmentOutTempServices;
+        private readonly string SHIPMENT_NO = "Shipment No";
+        private readonly string MAWB = "MAWB";
+        private readonly string STT = "STT";
+        private readonly string ID = "Id";
+        private readonly string DECLARATIONNO = "Số tờ khai";
+        private readonly string COMPANYNAME = "Người gửi";
+        private readonly string COUNTRY = "Nước gửi";
+        private readonly string CONTACTNAME = "Người nhận";
+        private readonly string ADDRESS = "Địa chỉ nhận";
+        private readonly string CONSIGNEE = "Consignee";
+        private readonly string CONTENT = "Nội dung hàng";
+        private readonly string PACKAGE = "Số kiện";
+        private readonly string WEIGHT = "Khối lượng";
         public FormNhap(IMasterBillServices masterBillServices, IShipmentServices shipmentServices
             , IBoxInforServices boxInforServices, IShipmentOutServices shipmentOutServices
             , IManifestServices manifestServices, IShipmentWaitToConfirmedServices shipmentWaitToConfirmedServices
@@ -45,14 +58,7 @@ namespace RapidWarehouse
             _shipmentWaitConfirmedServices = shipmentWaitToConfirmedServices;
             _shipmentOutTempServices = shipmentOutTempServices;
             currentEmployee = FormLogin.mEmployee;
-            grvShipments.ColumnCount = 3;
-            grvShipments.Columns[0].Name = "STT";
-            grvShipments.Columns[0].ValueType = typeof(int);
-            grvShipments.Columns[2].Name = "Id";
-            grvShipments.Columns[2].ValueType = typeof(int);
-            grvShipments.Columns[2].Visible = false;
-            grvShipments.Columns[1].Name = "Shipment Id";
-            grvShipments.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            BuildingTheGridviewRowStrure();
 
             AddDeleteButtonToGridView(grvShipments);
 
@@ -74,6 +80,38 @@ namespace RapidWarehouse
         }
 
         #region Xác nhận đến
+        private void BuildingTheGridviewRowStrure()
+        {
+            grvShipments.ColumnCount = 13;
+            grvShipments.Columns[0].Name = STT;
+            grvShipments.Columns[0].ValueType = typeof(int);
+            grvShipments.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            grvShipments.Columns[1].Name = MAWB;
+            grvShipments.Columns[1].ValueType = typeof(string);
+            grvShipments.Columns[2].Name = ID;
+            grvShipments.Columns[2].ValueType = typeof(int);
+            grvShipments.Columns[2].Visible = false;
+            grvShipments.Columns[3].Name = SHIPMENT_NO;
+            grvShipments.Columns[3].ValueType = typeof(string);
+            grvShipments.Columns[4].Name = DECLARATIONNO;
+            grvShipments.Columns[4].ValueType = typeof(string);
+            grvShipments.Columns[5].Name = COMPANYNAME;
+            grvShipments.Columns[5].ValueType = typeof(string);
+            grvShipments.Columns[6].Name = COUNTRY;
+            grvShipments.Columns[6].ValueType = typeof(string);
+            grvShipments.Columns[7].Name = CONTACTNAME;
+            grvShipments.Columns[7].ValueType = typeof(string);
+            grvShipments.Columns[8].Name = ADDRESS;
+            grvShipments.Columns[8].ValueType = typeof(string);
+            grvShipments.Columns[9].Name = CONSIGNEE;
+            grvShipments.Columns[9].ValueType = typeof(string);
+            grvShipments.Columns[10].Name = CONTENT;
+            grvShipments.Columns[10].ValueType = typeof(string);
+            grvShipments.Columns[11].Name = PACKAGE;
+            grvShipments.Columns[11].ValueType = typeof(int);
+            grvShipments.Columns[12].Name = WEIGHT;
+            grvShipments.Columns[12].ValueType = typeof(int);
+        }
         private void btnOpenClose_Click(object sender, EventArgs e)
         {
             if (btnOpenClose.Text.Equals("Mở", StringComparison.CurrentCultureIgnoreCase))
@@ -224,13 +262,22 @@ namespace RapidWarehouse
                     List<ShipmentEntity> listShipment = new List<ShipmentEntity>();
                     for (int i = 0; i < rowCount; i++)
                     {
-                        string shipmentId = grvShipments["Shipment Id", i].Value.ToString();
+                        string shipmentId = Convert.ToString(grvShipments[SHIPMENT_NO, i].Value);
                         ShipmentEntity shipment = new ShipmentEntity();
                         shipment.ShipmentId = shipmentId;
                         shipment.BoxId = currentBoxIdInt;
                         shipment.DateCreated = DateTime.Now;
                         shipment.WarehouseId = FormLogin.mWarehouse.Id;
                         shipment.EmployeeId = currentEmployee.Id;
+                        shipment.NumberPackage = Int32.Parse(grvShipments[PACKAGE, i].Value.ToString());
+                        shipment.Sender = Convert.ToString(grvShipments[COMPANYNAME, i].Value);
+                        shipment.DeclarationNo = Convert.ToString(grvShipments[DECLARATIONNO, i].Value);
+                        shipment.Address = Convert.ToString(grvShipments[ADDRESS, i].Value);
+                        shipment.Content = Convert.ToString(grvShipments[CONTENT, i].Value);
+                        shipment.Destination = Convert.ToString(grvShipments[CONSIGNEE, i].Value);
+                        shipment.Receiver = Convert.ToString(grvShipments[CONTACTNAME, i].Value);
+                        shipment.Weight = float.Parse(Convert.ToString(grvShipments[WEIGHT, i].Value));
+                        shipment.Country = Convert.ToString(grvShipments[COUNTRY, i].Value);
                         try
                         {
                             if (!_shipmentServices.Exists(shipmentId))
@@ -440,7 +487,8 @@ namespace RapidWarehouse
                 grv.Rows.Clear();
                 foreach (ManifestEntity item in listShipment)
                 {
-                    grv.Rows.Add(index, item.ShipmentNo, item.ShipmentNo);
+                    grv.Rows.Add(index, item.MasterAirWayBill, item.ShipmentNo, item.ShipmentNo, item.DeclarationNo, item.Company
+                        ,item.Country, item.ContactName, item.Address, item.Destination, item.Content, 1, item.Weight);
                     index++;
                 }
                 // setting up value count on gridview
@@ -623,7 +671,7 @@ namespace RapidWarehouse
             {
                 //for (int j = 0; j < grv.Columns.Count; j++)
                 //{
-                if (grv.Rows[i].Cells["Shipment Id"].Value != null && shipmentId.Equals(grv.Rows[i].Cells["Shipment Id"].Value.ToString(), StringComparison.CurrentCultureIgnoreCase))
+                if (grv.Rows[i].Cells[SHIPMENT_NO].Value != null && shipmentId.Equals(grv.Rows[i].Cells[SHIPMENT_NO].Value.ToString(), StringComparison.CurrentCultureIgnoreCase))
                 {
                     grv.ClearSelection();
                     grv.Rows[i].Selected = true;
@@ -659,7 +707,7 @@ namespace RapidWarehouse
             //Check if click is on specific column 
             if (e.ColumnIndex == grv.Columns["dataGridViewDeleteButton"].Index)
             {
-                DialogResult result = MessageBox.Show("Bạn muốn xóa đơn hàng : " + grv.Rows[e.RowIndex].Cells["Shipment Id"].Value, "Xóa đơn hàng", MessageBoxButtons.YesNo);
+                DialogResult result = MessageBox.Show("Bạn muốn xóa đơn hàng : " + grv.Rows[e.RowIndex].Cells[SHIPMENT_NO].Value, "Xóa đơn hàng", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.No)
                     return;
 
@@ -680,7 +728,7 @@ namespace RapidWarehouse
                         }
                         else
                         {
-                            _shipmentServices.Delete(grv.Rows[e.RowIndex].Cells["Shipment Id"].Value.ToString());
+                            _shipmentServices.Delete(grv.Rows[e.RowIndex].Cells[SHIPMENT_NO].Value.ToString());
                         }
                         lblShipmentScaned.Text = (grv.Rows.Count - 1) + "";
                     }

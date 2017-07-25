@@ -23,9 +23,22 @@ using System.Text;
         private int quantity;
         private double unitPrice, totalValue, weight;
         private DateTime creationDate;
-        //public DateTime DateCreated;
-        //public Boolean Active;
-        public double UnitPrice
+    private string declarationNo;
+    //public DateTime DateCreated;
+    //public Boolean Active;
+    public string DeclarationNo
+    {
+        get
+        {
+            return declarationNo;
+        }
+
+        set
+        {
+            declarationNo = value;
+        }
+    }
+    public double UnitPrice
         {
             get
             {

@@ -184,3 +184,58 @@ Exception stacktrace : SimpleInjector; at SimpleInjector.InstanceProducer.GetIns
    at SimpleInjector.Container.GetInstance[TService]()
    at RapidWarehouse.Program.Main() in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\Program.cs:line 32
 ============================================================================================
+Exception at : static void Main() on :2017-07-26 01:36:54
+Exception message : System.Windows.Forms; Column named Shipment Id cannot be found.
+Parameter name: columnName
+Exception stacktrace : System.Windows.Forms; at System.Windows.Forms.DataGridViewCellCollection.get_Item(String columnName)
+   at RapidWarehouse.FormXuat.DeleteRowFromGridview(DataGridView grv, DataGridViewCellEventArgs e, Int32 grvType) in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\FormXuat.cs:line 511
+   at RapidWarehouse.FormXuat.grvShipmentListOut_CellClick(Object sender, DataGridViewCellEventArgs e) in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\FormXuat.cs:line 170
+   at System.Windows.Forms.DataGridView.OnCellClick(DataGridViewCellEventArgs e)
+   at System.Windows.Forms.DataGridView.OnMouseClick(MouseEventArgs e)
+   at System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   at System.Windows.Forms.Control.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.DebuggableCallback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+   at System.Windows.Forms.UnsafeNativeMethods.DispatchMessageW(MSG& msg)
+   at System.Windows.Forms.Application.ComponentManager.System.Windows.Forms.UnsafeNativeMethods.IMsoComponentManager.FPushMessageLoop(IntPtr dwComponentID, Int32 reason, Int32 pvLoopData)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(Int32 reason, ApplicationContext context)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoop(Int32 reason, ApplicationContext context)
+   at RapidWarehouse.Program.Main() in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\Program.cs:line 32
+============================================================================================
+Exception at : static void Main() on :2017-07-26 02:37:04
+Exception message : RapidWarehouse; Object reference not set to an instance of an object.
+Exception stacktrace : RapidWarehouse; at RapidWarehouse.FormXuat.SaveShipmentOut() in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\FormXuat.cs:line 142
+   at RapidWarehouse.FormXuat.btnOpenBoxOut_Click(Object sender, EventArgs e) in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\FormXuat.cs:line 336
+   at System.Windows.Forms.Control.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.OnMouseUp(MouseEventArgs mevent)
+   at System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   at System.Windows.Forms.Control.WndProc(Message& m)
+   at System.Windows.Forms.ButtonBase.WndProc(Message& m)
+   at System.Windows.Forms.Button.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.DebuggableCallback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+   at System.Windows.Forms.UnsafeNativeMethods.DispatchMessageW(MSG& msg)
+   at System.Windows.Forms.Application.ComponentManager.System.Windows.Forms.UnsafeNativeMethods.IMsoComponentManager.FPushMessageLoop(IntPtr dwComponentID, Int32 reason, Int32 pvLoopData)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(Int32 reason, ApplicationContext context)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoop(Int32 reason, ApplicationContext context)
+   at RapidWarehouse.Program.Main() in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\Program.cs:line 32
+============================================================================================
+Exception at : static void Main() on :2017-07-26 04:11:47
+Exception message : EntityFramework; An error occurred while updating the entries. See the inner exception for details.
+Exception stacktrace : EntityFramework; at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   at DataModel.UnitOfWork.UnitOfWork.SaveWinform() in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\DataModel\UnitOfWork\UnitOfWork.cs:line 236
+   at BusinessServices.EmployeeServices.CreateOrUpdateEmployee(EmployeeEntity employee) in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessServices\EmployeeServices.cs:line 49
+   at RapidWarehouse.FormCreateEditEmployee.btnSave_Click(Object sender, EventArgs e) in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\FormCreateEditEmployee.cs:line 88
+   at System.Windows.Forms.Control.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.OnMouseUp(MouseEventArgs mevent)
+   at System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   at System.Windows.Forms.Control.WndProc(Message& m)
+   at System.Windows.Forms.ButtonBase.WndProc(Message& m)
+   at System.Windows.Forms.Button.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.DebuggableCallback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+   at System.Windows.Forms.UnsafeNativeMethods.DispatchMessageW(MSG& msg)
+   at System.Windows.Forms.Application.ComponentManager.System.Windows.Forms.UnsafeNativeMethods.IMsoComponentManager.FPushMessageLoop(IntPtr dwComponentID, Int32 reason, Int32 pvLoopData)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(Int32 reason, ApplicationContext context)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoop(Int32 reason, ApplicationContext context)
+   at RapidWarehouse.Program.Main() in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\Program.cs:line 32
+============================================================================================

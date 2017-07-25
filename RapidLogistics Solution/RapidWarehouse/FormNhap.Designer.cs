@@ -375,6 +375,7 @@
             this.grvShipments.RowTemplate.Height = 33;
             this.grvShipments.Size = new System.Drawing.Size(1644, 744);
             this.grvShipments.TabIndex = 9;
+            this.grvShipments.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grvShipments_CellClick);
             // 
             // lblMaVuaNhap
             // 

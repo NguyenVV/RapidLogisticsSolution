@@ -137,6 +137,12 @@
     <Compile Include="FormCreateEditEmployee.Designer.cs">
       <DependentUpon>FormCreateEditEmployee.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormHaiQuanView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormHaiQuanView.Designer.cs">
+      <DependentUpon>FormHaiQuanView.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormHome.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -184,6 +190,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormCreateEditEmployee.resx">
       <DependentUpon>FormCreateEditEmployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormHaiQuanView.resx">
+      <DependentUpon>FormHaiQuanView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormHome.resx">
       <DependentUpon>FormHome.cs</DependentUpon>

@@ -26,16 +26,23 @@ Create table ShipmentInfor
 	Id int identity primary key,
 	ShipmentId varchar(100) unique,
 	DateCreated DateTime default getdate(),
-	Sender nvarchar(300),
-	Receiver nvarchar(300),
+	Sender nvarchar(300),--o	Người gửi(CompanyName); 
+	Receiver nvarchar(300),--o	Người nhận(ContactName); 
 	TelReceiver varchar(50),
 	TotalValue float,
 	Descrition nvarchar(1000),
 	BoxId int references BoxInfo(Id),
-	[Weight] float,
+	[Weight] float,--o	Khối lượng(Weight) 
 	[Status] nvarchar(100),
 	EmployeeId int references Employee(Id),
-	WarehouseId int references Warehouse(Id)
+	WarehouseId int references Warehouse(Id),
+	DeclarationNo varchar(15),
+	Country nvarchar(100),--o	Nước gửi(Country)
+	[Address] nvarchar(500),--o	Địa chỉ nhận(Address)
+	Consignee nvarchar(200),--o	Consignee (Destination).
+	Content nvarchar(300),--o	Nội dung hàng(Content); 
+	NumberPackage int default 1,--o	Số kiện(mặc định là 1); 
+	IsSyncOms bit
 )
 go
 Create table Warehouse
@@ -55,7 +62,8 @@ Create table ShipmentOut
 	MasterBillIdString varchar(100),
 	DateOut DateTime default getdate(),
 	EmployeeId int references Employee(Id),
-	WarehouseId int references Warehouse(Id)
+	WarehouseId int references Warehouse(Id),
+	IsSyncOms bit
 )
 go
 Create table ShipmentInforTemp

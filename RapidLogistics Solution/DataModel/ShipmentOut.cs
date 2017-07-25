@@ -22,6 +22,7 @@ namespace DataModel
         public string MasterBillIdString { get; set; }
         public Nullable<int> EmployeeId { get; set; }
         public Nullable<int> WarehouseId { get; set; }
+        public Nullable<bool> IsSyncOms { get; set; }
     
         public virtual Employee Employee { get; set; }
         public virtual BoxInfo BoxInfo { get; set; }
