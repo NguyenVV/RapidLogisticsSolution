@@ -2,6 +2,30 @@
 go
 use RapidSolution
 go
+Create table Warehouse
+(
+	Id int identity primary key,
+	IdCode varchar(50),
+	Name nvarchar(200),
+	Location nvarchar(500)
+)
+go
+Create table Employee
+(
+	Id int identity primary key,
+	FullName nvarchar (150),
+	UserName nvarchar(150) unique,
+	Pasword nvarchar(500),
+	[Role] nvarchar(100),
+	DateCreated DateTime default getdate(),
+	BirthDate DateTime,
+	Phone varchar(30),
+	Email varchar(150),
+	[Address] nvarchar(200),
+	[Status] bit,
+	WarehouseId int references Warehouse(Id)
+)
+go
 Create table [MasterBill]
 (
 	Id int identity primary key,
@@ -45,14 +69,6 @@ Create table ShipmentInfor
 	IsSyncOms bit
 )
 go
-Create table Warehouse
-(
-	Id int identity primary key,
-	IdCode varchar(50),
-	Name nvarchar(200),
-	Location nvarchar(500)
-)
-go
 Create table ShipmentOut
 (
 	ShipmentId varchar(100) references ShipmentInfor(ShipmentId) primary key,
@@ -61,6 +77,7 @@ Create table ShipmentOut
 	MasterBillId int references [MasterBill](Id),
 	MasterBillIdString varchar(100),
 	DateOut DateTime default getdate(),
+	DateCreated DateTime default getdate(),
 	EmployeeId int references Employee(Id),
 	WarehouseId int references Warehouse(Id),
 	IsSyncOms bit
@@ -85,7 +102,7 @@ Create table ShipmentInforTemp
 go
 Create table ShipmentOutTemp
 (
-	ShipmentId varchar(100) references ShipmentInfor(ShipmentId) primary key,
+	ShipmentId varchar(100) unique,
 	BoxIdRef int references BoxInfo(Id),
 	BoxIdString varchar(100),
 	MasterBillId int references [MasterBill](Id),
@@ -103,22 +120,6 @@ Create table ShipmentWaitToConfirm
 	EmployeeId int references Employee(Id)
 )
 
-go
-Create table Employee
-(
-	Id int identity primary key,
-	FullName nvarchar (150),
-	UserName nvarchar(150) unique,
-	Pasword nvarchar(500),
-	[Role] nvarchar(100),
-	DateCreated DateTime default getdate(),
-	BirthDate DateTime,
-	Phone varchar(30),
-	Email varchar(150),
-	[Address] nvarchar(200),
-	[Status] bit,
-	WarehouseId int references Warehouse(Id)
-)
 go
 CREATE TABLE ErrorLog(
 	[Id] [int] IDENTITY(1,1) primary key,
@@ -151,7 +152,8 @@ CREATE TABLE [dbo].[Manifest](
 	[Destination] [nvarchar](100) NULL,
 	[Country] [nvarchar](100) NULL,
 	[CompanyName] [nvarchar](200) NULL,
-	[CreationDate] [datetime] NULL
+	[CreationDate] [datetime] NULL,
+	DeclarationNo varchar(15)
 )
 --Alter table ShipmentOut add BoxId int references BoxInfo(Id)
 --go
@@ -160,7 +162,7 @@ CREATE TABLE [dbo].[Manifest](
 --Alter table ShipmentOut add BoxIdString  varchar(100) 
 --go
 --Alter table ShipmentOut add MasterBillIdString varchar(100)
---go
+go
 CREATE proc [dbo].[InsertManifest]
 (
 @MasterAirWayBill varchar(100),
@@ -235,3 +237,9 @@ Select @ParamReturn;
 END;
 
 GO
+Insert into Warehouse values('HNW',N'Kho hàng Hà Nội',N'Lô 6 kho hàng sân bay Nội Bài','', getdate())
+go
+Insert into Warehouse values('SGW',N'Kho hàng Hồ Chí Minh',N'Lô 6 kho hàng sân bay Tân Sơn Nhất','', getdate())
+go
+GO
+INSERT [dbo].[Employee] ([FullName], [UserName], [Pasword], [Role], [DateCreated], [BirthDate], [Phone], [Email], [Address], [Status]) VALUES (N'admin', N'admin', N'AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAka8GbBLIgUu0GBdToiS0egQAAAACAAAAAAAQZgAAAAEAACAAAAACe9ndbi3DhCVm41mfyD/xPZ/VIWh2IzXe+Sdf8bCHNAAAAAAOgAAAAAIAACAAAABxUH8KkL7QQn40zlFUpVyzRE2cUU/JwVLLR6SLdV7pvzAAAAA8j1wsZmqPuy5M/jgLID16ly0vGoMRy62GwyEBDRMi08EXWvvKOFC/zIxT0MC7YphAAAAA0Nd5aTtBorr9AX3YNizfOjbJe9JrPsbMq0Wm3SIleGtv+DkWsCo+Xf7JBdoZmeGQTFncfV4jsfpe6W0WzgLxuQ==', N'Administrator', CAST(N'2017-06-21 03:58:22.063' AS DateTime), CAST(N'2017-06-21 03:57:50.273' AS DateTime), N'1234567890', N'dsfdgjdh', N'fdsgfh', NULL)

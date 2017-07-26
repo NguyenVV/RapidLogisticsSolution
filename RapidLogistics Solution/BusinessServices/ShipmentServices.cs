@@ -85,10 +85,56 @@ namespace BusinessServices
                 }
                 Mapper.CreateMap<ShipmentInfor, ShipmentEntity>();
                 var shipmentData = Mapper.Map<ShipmentInfor, ShipmentEntity>(shipmentDataModel);
+                shipmentData.Mawb = shipmentDataModel.BoxInfo.MasterBill.MasterAirWayBill;
+                shipmentData.BoxIdString = shipmentDataModel.BoxInfo.BoxId;
                 scope.Complete();
                 return shipmentData;
             }
         }
+
+        public ShipmentEntity SearchByConditions(string shipmentId, string sotk, string sender, string receiver)
+        {
+            if (string.IsNullOrEmpty(shipmentId) && string.IsNullOrEmpty(sotk) && string.IsNullOrEmpty(sender) && string.IsNullOrEmpty(receiver))
+                return null;
+
+            using (var scope = new TransactionScope())
+            {
+                var result = _unitOfWork.ShipmentRepository.GetAll();
+
+                if (!string.IsNullOrEmpty(shipmentId))
+                {
+                    result = result.Where(t => t.ShipmentId.Equals(shipmentId, StringComparison.CurrentCultureIgnoreCase));
+                }
+                if (!string.IsNullOrEmpty(sotk))
+                {
+                    result = result.Where(t => sotk.Equals(t.DeclarationNo, StringComparison.CurrentCultureIgnoreCase));
+                }
+                if (!string.IsNullOrEmpty(sender))
+                {
+                    result = result.Where(t => sender.Equals(t.Sender, StringComparison.CurrentCultureIgnoreCase));
+                }
+                if (!string.IsNullOrEmpty(receiver))
+                {
+                    result = result.Where(t => receiver.Equals(t.Receiver, StringComparison.CurrentCultureIgnoreCase));
+                }
+
+                var shipmentDataModel = result == null ? null: result.First();
+
+                if (shipmentDataModel == null)
+                {
+                    scope.Complete();
+                    return null;
+                }
+                
+                Mapper.CreateMap<ShipmentInfor, ShipmentEntity>();
+                var shipmentData = Mapper.Map<ShipmentInfor, ShipmentEntity>(shipmentDataModel);
+                shipmentData.Mawb = shipmentDataModel.BoxInfo.MasterBill.MasterAirWayBill;
+                shipmentData.BoxIdString = shipmentDataModel.BoxInfo.BoxId;
+                scope.Complete();
+                return shipmentData;
+            }
+        }
+
         public string[] GetReferenceOfShipment(string shipmentId)
         {
             using (var scope = new TransactionScope())

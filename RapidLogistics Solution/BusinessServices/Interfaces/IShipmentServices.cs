@@ -17,5 +17,6 @@ namespace BusinessServices.Interfaces
         void Delete(int shipmentId);
         void Delete(string shipmentId);
         ReportDetailEntity SearchByShipmentId(string shipmentId);
+        ShipmentEntity SearchByConditions(string shipmentId, string sotk, string sender, string receiver);
     }
 }

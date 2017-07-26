@@ -20,8 +20,7 @@ namespace RapidWarehouse
             InitializeComponent();
             mEmployeeService = employeeServices;
             mWarehouseService = warehouseService;
-            //CheckConnection();
-            LoadAllWarehouses();
+            CheckConnection();
             this.Text = "Đăng Nhập - " + FormUltils.getInstance().GetVersionInfo();
             lblVersion.Text = FormUltils.getInstance().GetVersionInfo();
         }
@@ -30,11 +29,13 @@ namespace RapidWarehouse
         {
             try
             {
-                mEmployeeService.IsExist("Admin");
+                LoadAllWarehouses();
                 lblError.Text = "Đã có kết nối, mời bạn đăng nhập!";
+                lblError.ForeColor = System.Drawing.Color.Green;
             }
             catch
             {
+                lblError.ForeColor = System.Drawing.Color.Red;
                 ShowDialogQuestionConnectToDb();
             }
         }

@@ -137,6 +137,7 @@
           <Property Name="EmployeeId" Type="int" />
           <Property Name="WarehouseId" Type="int" />
           <Property Name="IsSyncOms" Type="bit" />
+          <Property Name="DateCreated" Type="datetime" />
         </EntityType>
         <EntityType Name="ShipmentOutTemp">
           <Key>
@@ -364,9 +365,6 @@
         <!--Errors Found During Generation:
 warning 6035: The relationship 'FK__ShipmentO__Shipm__1A14E395' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
         <Association Name="FK__ShipmentO__Shipm__1A14E395" />-->
-        <!--Errors Found During Generation:
-warning 6035: The relationship 'FK__ShipmentO__Shipm__4BAC3F29' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="FK__ShipmentO__Shipm__4BAC3F29" />-->
         <Association Name="FK__ShipmentO__Wareh__5FB337D6">
           <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="0..1" />
           <End Role="ShipmentOut" Type="Self.ShipmentOut" Multiplicity="*" />
@@ -602,6 +600,7 @@ warning 6035: The relationship 'FK__ShipmentO__Shipm__4BAC3F29' has columns that
           <Property Name="WarehouseId" Type="Int32" />
           <NavigationProperty Name="Warehouse" Relationship="RapidSolutionModel.FK__ShipmentO__Wareh__5FB337D6" FromRole="ShipmentOut" ToRole="Warehouse" />
           <Property Name="IsSyncOms" Type="Boolean" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Manifest">
           <Key>
@@ -1024,6 +1023,7 @@ warning 6035: The relationship 'FK__ShipmentO__Shipm__4BAC3F29' has columns that
           <EntitySetMapping Name="ShipmentOuts">
             <EntityTypeMapping TypeName="RapidSolutionModel.ShipmentOut">
               <MappingFragment StoreEntitySet="ShipmentOut">
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
                 <ScalarProperty Name="IsSyncOms" ColumnName="IsSyncOms" />
                 <ScalarProperty Name="WarehouseId" ColumnName="WarehouseId" />
                 <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />

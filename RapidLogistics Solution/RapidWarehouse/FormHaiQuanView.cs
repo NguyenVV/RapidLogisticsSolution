@@ -1,4 +1,5 @@
-﻿using BusinessServices.Interfaces;
+﻿using BusinessEntities;
+using BusinessServices.Interfaces;
 using System;
 using System.Windows.Forms;
 
@@ -8,10 +9,12 @@ namespace RapidWarehouse
     {
 
         private readonly IShipmentServices _shipmentServices;
-        public FormHaiQuanView(IShipmentServices shipmentServices)
+        private readonly IShipmentOutServices _shipmentOutServices;
+        public FormHaiQuanView(IShipmentServices shipmentServices, IShipmentOutServices shipmentOutServices)
         {
             InitializeComponent();
             _shipmentServices = shipmentServices;
+            _shipmentOutServices = shipmentOutServices;
             txtShipmentNo.Focus();
         }
 
@@ -24,30 +27,77 @@ namespace RapidWarehouse
             {
                 lblShipmentNo.Text = txtShipmentNo.Text;
                 var shipment = _shipmentServices.GetByShipmentId(txtShipmentNo.Text);
-                if(shipment != null)
+                var shipmentOut = _shipmentOutServices.GetByShipmentId(txtShipmentNo.Text);
+
+                if (shipment != null)
                 {
-                    txtContent.Text = shipment.Content;
-                    txtCountry.Text = shipment.Country;
-                    txtPackage.Text = shipment.NumberPackage + "";
-                    txtReceiveer.Text = shipment.Receiver;
-                    txtSender.Text = shipment.Sender;
-                    txtSoTk.Text = shipment.DeclarationNo;
-                    txtWeight.Text = shipment.Weight + "";
-                    txtAddressReceiver.Text = shipment.Address;
-                    lblWarehouseName.Text = shipment.Destination;
-                    lblWarehouseCode.Text = FormLogin.mWarehouse.IdCode;
-                    txtDateIn.Text = shipment.DateCreated.ToString("dd-MM-yyyy");
+                    FillForm(shipment, shipmentOut);
                 }
                 else
                 {
                     MessageBox.Show("Không tìm thấy đơn hàng vừa nhập", "Không tìm thấy", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+
+                txtShipmentNo.Text = "";
             }
         }
 
         private void FormHaiQuanView_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            lblMawb.Text = "";
+            lblShipmentNo.Text = "";
+            txtAddressReceiver.Text = "";
+            txtContent.Text = "";
+            txtCountry.Text = "";
+            txtDateClearance.Text = "";
+            txtDateIn.Text = "";
+            txtDateOut.Text = "";
+            txtPackage.Text = "";
+            txtReceiveer.Text = "";
+            txtSender.Text = "";
+            txtSoTk.Text = "";
+            txtWeight.Text = "";
+            txtBoxIdString.Text = "";
+        }
+
+        private void FillForm(ShipmentEntity shipment, ShipmentOutEntity shipmentOut)
+        {
+            txtDateOut.Text = shipmentOut != null ? shipmentOut.DateOut.ToString("dd-MM-yyyy") : "";
+            txtDateClearance.Text = shipmentOut != null ? shipmentOut.DateCreated.ToString("dd-MM-yyyy") : "";
+
+            if (shipment != null)
+            {
+                txtContent.Text = shipment.Content;
+                txtCountry.Text = shipment.Country;
+                txtPackage.Text = shipment.NumberPackage + "";
+                txtReceiveer.Text = shipment.Receiver;
+                txtSender.Text = shipment.Sender;
+                txtSoTk.Text = shipment.DeclarationNo;
+                txtWeight.Text = shipment.Weight + "";
+                txtAddressReceiver.Text = shipment.Address;
+                lblMawb.Text = shipment.Mawb;
+                txtDateIn.Text = shipment.DateCreated != null ? shipment.DateCreated.ToString("dd-MM-yyyy") : "";
+                txtBoxIdString.Text = shipment.BoxIdString;
+            }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            var shipment = _shipmentServices.SearchByConditions(txtShipmentNoSearch.Text, txtSoToKhaiSearch.Text, txtSenderSearch.Text, txtReceiverSearch.Text);
+            if(shipment == null)
+            {
+                MessageBox.Show("Không tìm thấy đơn hàng nào! ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            var shipmentOut = _shipmentOutServices.GetByShipmentId(shipment.ShipmentId);
+            lblShipmentNo.Text = shipment.ShipmentId;
+            FillForm(shipment, shipmentOut);
         }
     }
 }

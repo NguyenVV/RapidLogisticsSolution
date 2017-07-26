@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using BusinessEntities;
+﻿using System.Collections.Generic;
 
 namespace BusinessServices.Interfaces
 {
     public interface IManifestServices
     {
         ManifestEntity GetManifestById(int manifestId);
+        ManifestEntity GetManifestByShipmentId(string shipmentId);
         IEnumerable<ManifestEntity> GetAllManifests();
         int CreateManifest(ManifestEntity manifestEntity);
         int CreateManifest(IEnumerable<ManifestEntity> manifestList);

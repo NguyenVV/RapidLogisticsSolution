@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using BusinessEntities;
 using DataModel.UnitOfWork;
 using DataModel;
 using AutoMapper;
@@ -98,6 +96,19 @@ namespace BusinessServices
                 var manifestModel = Mapper.Map<Manifest, ManifestEntity>(manifest);
                 return manifestModel;
             }
+            return null;
+        }
+
+        public ManifestEntity GetManifestByShipmentId(string shipmentId)
+        {
+            var manifest = _unitOfWork.ManifestRepository.GetFirst(t=>t.ShipmentNo.Equals(shipmentId,StringComparison.CurrentCultureIgnoreCase));
+            if (manifest != null)
+            {
+                Mapper.CreateMap<Manifest, ManifestEntity>();
+                var manifestModel = Mapper.Map<Manifest, ManifestEntity>(manifest);
+                return manifestModel;
+            }
+
             return null;
         }
 

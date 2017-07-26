@@ -239,3 +239,25 @@ Exception stacktrace : EntityFramework; at System.Data.Entity.Internal.InternalC
    at System.Windows.Forms.Application.ThreadContext.RunMessageLoop(Int32 reason, ApplicationContext context)
    at RapidWarehouse.Program.Main() in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\Program.cs:line 32
 ============================================================================================
+Exception at : static void Main() on :2017-07-27 02:13:38
+Exception message : BusinessServices; Object reference not set to an instance of an object.
+Exception stacktrace : BusinessServices; at BusinessServices.ShipmentServices.<>c__DisplayClass7_0.<SearchByConditions>b__0(ShipmentInfor t) in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessServices\ShipmentServices.cs:line 99
+   at System.Linq.Enumerable.WhereEnumerableIterator`1.MoveNext()
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   at DataModel.GenericRepository.GenericRepository`1.Get(Func`2 where) in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\DataModel\GenericRepository\GenericRepository.cs:line 179
+   at BusinessServices.ShipmentServices.SearchByConditions(String shipmentId, String sotk, String sender, String receiver) in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessServices\ShipmentServices.cs:line 99
+   at RapidWarehouse.FormHaiQuanView.btnSearch_Click(Object sender, EventArgs e) in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\FormHaiQuanView.cs:line 90
+   at System.Windows.Forms.Control.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.OnMouseUp(MouseEventArgs mevent)
+   at System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   at System.Windows.Forms.Control.WndProc(Message& m)
+   at System.Windows.Forms.ButtonBase.WndProc(Message& m)
+   at System.Windows.Forms.Button.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.DebuggableCallback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+   at System.Windows.Forms.UnsafeNativeMethods.DispatchMessageW(MSG& msg)
+   at System.Windows.Forms.Application.ComponentManager.System.Windows.Forms.UnsafeNativeMethods.IMsoComponentManager.FPushMessageLoop(IntPtr dwComponentID, Int32 reason, Int32 pvLoopData)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(Int32 reason, ApplicationContext context)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoop(Int32 reason, ApplicationContext context)
+   at RapidWarehouse.Program.Main() in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\Program.cs:line 32
+============================================================================================

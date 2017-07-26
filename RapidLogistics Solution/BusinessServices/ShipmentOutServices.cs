@@ -136,5 +136,18 @@ namespace BusinessServices
                 return shipmentOutEntity;
             }
         }
+
+        public ShipmentOutEntity GetByShipmentId(string shipId)
+        {
+            var shipment = _unitOfWork.ShipmentOutRepository.GetByID(shipId);
+            if (shipment != null)
+            {
+                Mapper.CreateMap<ShipmentOut, ShipmentOutEntity>();
+                var shipmentModel = Mapper.Map<ShipmentOut, ShipmentOutEntity>(shipment);
+                return shipmentModel;
+            }
+
+            return null;
+        }
     }
 }

@@ -380,7 +380,6 @@
             this.grvShipmentListOut.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.grvShipmentListOut.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.grvShipmentListOut.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grvShipmentListOut.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2;
             this.grvShipmentListOut.Location = new System.Drawing.Point(11, 67);
             this.grvShipmentListOut.Name = "grvShipmentListOut";
             this.grvShipmentListOut.RowTemplate.Height = 33;

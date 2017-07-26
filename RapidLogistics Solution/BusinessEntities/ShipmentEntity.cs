@@ -20,6 +20,8 @@ namespace BusinessEntities
             country;
         int numberPackage;
         private string declarationNo;
+        private string mawb;
+        private string boxIdString;
         public string DeclarationNo
         {
             get
@@ -238,6 +240,32 @@ namespace BusinessEntities
             set
             {
                 numberPackage = value;
+            }
+        }
+
+        public string Mawb
+        {
+            get
+            {
+                return mawb;
+            }
+
+            set
+            {
+                mawb = value;
+            }
+        }
+
+        public string BoxIdString
+        {
+            get
+            {
+                return boxIdString;
+            }
+
+            set
+            {
+                boxIdString = value;
             }
         }
 

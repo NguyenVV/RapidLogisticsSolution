@@ -1,8 +1,6 @@
 ﻿using BusinessEntities;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace BusinessServices.Interfaces
 {
@@ -20,5 +18,6 @@ namespace BusinessServices.Interfaces
         int GetTotalByMasterBill(int id);
         IEnumerable<ShipmentOutEntity> GetByDate(DateTime value);
         IEnumerable<ShipmentOutEntity> GetByDateRange(DateTime value1, DateTime value2);
+        ShipmentOutEntity GetByShipmentId(string shipId);
     }
 }
