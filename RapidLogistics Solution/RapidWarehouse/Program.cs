@@ -35,7 +35,10 @@ namespace RapidWarehouse
             catch (Exception ex)
             {
                 Ultilities.FileHelper.WriteLog(Ultilities.ExceptionLevel.Function, "static void Main()", ex);
-                MessageBox.Show("Đã có lỗi xảy ra khi xử lý chương trình !\nChúng tôi đã ghi nhận\nVui lòng thử lại sau!", "Có lỗi xảy ra", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (!(ex.Message.Contains("Cannot access a disposed object.") && ex.Message.Contains("FormLogin")))
+                {
+                    MessageBox.Show("Đã có lỗi xảy ra khi xử lý chương trình !\nChúng tôi đã ghi nhận\nVui lòng thử lại sau!", "Có lỗi xảy ra", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 

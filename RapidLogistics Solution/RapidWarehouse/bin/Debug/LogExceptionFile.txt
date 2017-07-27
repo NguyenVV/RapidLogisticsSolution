@@ -261,3 +261,40 @@ Exception stacktrace : BusinessServices; at BusinessServices.ShipmentServices.<>
    at System.Windows.Forms.Application.ThreadContext.RunMessageLoop(Int32 reason, ApplicationContext context)
    at RapidWarehouse.Program.Main() in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\Program.cs:line 32
 ============================================================================================
+Exception at : Test connection on :2017-07-27 09:09:33
+Exception message : System.Data.Entity; The underlying provider failed on Open.
+Exception stacktrace : System.Data.Entity; at System.Data.EntityClient.EntityConnection.OpenStoreConnectionIf(Boolean openCondition, DbConnection storeConnectionToOpen, DbConnection originalConnection, String exceptionCode, String attemptedOperation, Boolean& closeStoreConnectionOnFailure)
+   at System.Data.EntityClient.EntityConnection.Open()
+   at System.Data.Objects.ObjectContext.EnsureConnection()
+   at System.Data.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   at System.Data.Objects.ObjectQuery`1.System.Collections.Generic.IEnumerable<T>.GetEnumerator()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at DataModel.GenericRepository.GenericRepository`1.GetAll() in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\DataModel\GenericRepository\GenericRepository.cs:line 200
+   at BusinessServices.EmployeeServices.GetAll() in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessServices\EmployeeServices.cs:line 103
+   at RapidWarehouse.FormConfigDB.btnTestConnection_Click(Object sender, EventArgs e) in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\FormConfigDB.cs:line 38
+============================================================================================
+Exception at : static void Main() on :2017-07-27 10:56:15
+Exception message : System.Windows.Forms; Cannot access a disposed object.
+Object name: 'FormLogin'.
+Exception stacktrace : System.Windows.Forms; at System.Windows.Forms.Control.CreateHandle()
+   at System.Windows.Forms.Form.CreateHandle()
+   at System.Windows.Forms.Control.get_Handle()
+   at System.Windows.Forms.Control.SetVisibleCore(Boolean value)
+   at System.Windows.Forms.Form.SetVisibleCore(Boolean value)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(Int32 reason, ApplicationContext context)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoop(Int32 reason, ApplicationContext context)
+   at RapidWarehouse.Program.Main() in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\Program.cs:line 32
+============================================================================================
+Exception at : static void Main() on :2017-07-27 11:03:22
+Exception message : System.Windows.Forms; Cannot access a disposed object.
+Object name: 'FormLogin'.
+Exception stacktrace : System.Windows.Forms; at System.Windows.Forms.Control.CreateHandle()
+   at System.Windows.Forms.Form.CreateHandle()
+   at System.Windows.Forms.Control.get_Handle()
+   at System.Windows.Forms.Control.SetVisibleCore(Boolean value)
+   at System.Windows.Forms.Form.SetVisibleCore(Boolean value)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(Int32 reason, ApplicationContext context)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoop(Int32 reason, ApplicationContext context)
+   at RapidWarehouse.Program.Main() in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\Program.cs:line 32
+============================================================================================

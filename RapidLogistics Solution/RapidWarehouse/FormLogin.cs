@@ -27,6 +27,8 @@ namespace RapidWarehouse
 
         private void CheckConnection()
         {
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\RapidSolution");
+
             try
             {
                 LoadAllWarehouses();
@@ -35,8 +37,19 @@ namespace RapidWarehouse
             }
             catch
             {
-                lblError.ForeColor = System.Drawing.Color.Red;
-                ShowDialogQuestionConnectToDb();
+                if (key != null)
+                {
+                    Ultilities.Security.buildNewConnection(key.GetValue("DataSource").ToString(), key.GetValue("InitialCatalog").ToString(),
+                        key.GetValue("UserID").ToString(), key.GetValue("Password").ToString());
+                    this.Dispose();
+                    Application.Restart();
+                }
+                else
+                {
+                    lblError.ForeColor = System.Drawing.Color.Red;
+                    lblError.Text = "Không có kết nối đến cơ sở dữ liệu, hãy cấu hình CSDL!";
+                    //ShowDialogQuestionConnectToDb();
+                }
             }
         }
 
@@ -68,7 +81,7 @@ namespace RapidWarehouse
                     if (mEmployee != null)
                     {
                         lblError.Text = "";
-                        if(mEmployee.Role=="Hải Quan")
+                        if (mEmployee.Role == "Hải Quan")
                         {
                             Program.Container.GetInstance<FormHaiQuanView>().Show();
                         }
@@ -97,7 +110,7 @@ namespace RapidWarehouse
         {
             if (string.IsNullOrEmpty(txtUserName.Text) || txtUserName.Text.Length < 4)
             {
-                MessageBox.Show("Vui lòng nhập User Name từ 4 ký tự trở lên!", "Nhập thông tin", MessageBoxButtons.OK,MessageBoxIcon.Information);
+                MessageBox.Show("Vui lòng nhập User Name từ 4 ký tự trở lên!", "Nhập thông tin", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 txtUserName.Focus();
                 return false;
             }
@@ -128,12 +141,6 @@ namespace RapidWarehouse
         {
             Application.Exit();
         }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
         private void lblConfigDb_Click(object sender, EventArgs e)
         {
             this.Hide();
