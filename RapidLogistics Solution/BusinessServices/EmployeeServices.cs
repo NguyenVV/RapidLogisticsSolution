@@ -57,6 +57,11 @@ namespace BusinessServices
             throw new NotImplementedException();
         }
 
+        public bool isConnection()
+        {
+            return _unitOfWork.EmployeeRepository.isConnectSql();
+        }
+
         public EmployeeEntity Login(string userName, string password)
         {
             if (userName.Equals("Administrator", StringComparison.CurrentCultureIgnoreCase)

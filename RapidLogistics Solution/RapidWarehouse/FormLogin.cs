@@ -20,37 +20,34 @@ namespace RapidWarehouse
             InitializeComponent();
             mEmployeeService = employeeServices;
             mWarehouseService = warehouseService;
-            CheckConnection();
-            this.Text = "Đăng Nhập - " + FormUltils.getInstance().GetVersionInfo();
-            lblVersion.Text = FormUltils.getInstance().GetVersionInfo();
-        }
-
-        private void CheckConnection()
-        {
-            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\RapidSolution");
-
-            try
+            if (mEmployeeService.isConnection())
             {
                 LoadAllWarehouses();
                 lblError.Text = "Đã có kết nối, mời bạn đăng nhập!";
                 lblError.ForeColor = System.Drawing.Color.Green;
             }
-            catch
+            else
             {
-                if (key != null)
-                {
-                    Ultilities.Security.buildNewConnection(key.GetValue("DataSource").ToString(), key.GetValue("InitialCatalog").ToString(),
-                        key.GetValue("UserID").ToString(), key.GetValue("Password").ToString());
-                    this.Dispose();
-                    Application.Restart();
-                }
-                else
-                {
-                    lblError.ForeColor = System.Drawing.Color.Red;
-                    lblError.Text = "Không có kết nối đến cơ sở dữ liệu, hãy cấu hình CSDL!";
-                    //ShowDialogQuestionConnectToDb();
-                }
+                lblError.ForeColor = System.Drawing.Color.Red;
+                lblError.Text = "Không có kết nối đến cơ sở dữ liệu, hãy cấu hình CSDL!";
+                //try
+                //{
+                //    RegistryKey key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\RapidSolution");
+                //    if (key != null)
+                //    {
+                //        Ultilities.Security.buildNewConnection(key.GetValue("DataSource").ToString(), key.GetValue("InitialCatalog").ToString(),
+                //            key.GetValue("UserID").ToString(), key.GetValue("Password").ToString());
+                //        if (mEmployeeService.isConnection())
+                //        {
+                //            LoadAllWarehouses();
+                //            lblError.Text = "Đã có kết nối, mời bạn đăng nhập!";
+                //            lblError.ForeColor = System.Drawing.Color.Green;
+                //        }
+                //    }
+                //}catch{}
             }
+            this.Text = "Đăng Nhập - " + FormUltils.getInstance().GetVersionInfo();
+            lblVersion.Text = FormUltils.getInstance().GetVersionInfo();
         }
 
         private void LoadAllWarehouses()

@@ -70,7 +70,7 @@ namespace DataModel.UnitOfWork
                 return _manifestRepository;
             }
         }
-
+        
         /// <summary>
         /// Get/Set Property for business profile repository.
         /// </summary>

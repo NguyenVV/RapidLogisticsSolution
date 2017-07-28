@@ -2,8 +2,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.Entity;
+using System.Data.EntityClient;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -35,6 +38,32 @@ namespace DataModel.GenericRepository
         #endregion
 
         #region Public member methods...
+
+        public bool isConnectSql()
+        {
+            EntityConnectionStringBuilder b = new EntityConnectionStringBuilder();
+            ConnectionStringSettings entityConString = ConfigurationManager.ConnectionStrings["RapidSolutionEntities"];
+            b.ConnectionString = entityConString.ConnectionString;
+            string providerConnectionString = b.ProviderConnectionString;
+
+            SqlConnectionStringBuilder conStringBuilder = new SqlConnectionStringBuilder();
+            conStringBuilder.ConnectionString = providerConnectionString;
+            conStringBuilder.ConnectTimeout = 1;
+            string constr = conStringBuilder.ConnectionString;
+
+            using (SqlConnection conn = new SqlConnection(constr))
+            {
+                try
+                {
+                    conn.Open();
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+        }
         public void DisposeContext()
         {
             if (Context == null)

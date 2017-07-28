@@ -35,17 +35,21 @@ namespace RapidWarehouse
             try
             {
                 Ultilities.Security.buildNewConnection(txtServer.Text, txtDbName.Text, txtUserName.Text, txtPassword.Text);
-                _employeeServices.GetAll();
+                _employeeServices.isConnection();
+                lblMessage.ForeColor = System.Drawing.Color.Green;
                 lblMessage.Text = "Kết nối đến CSDL thành công!";
             }
             catch(Exception ex)
             {
                 Ultilities.FileHelper.WriteLog(Ultilities.ExceptionLevel.Application, "Test connection", ex);
                 Ultilities.Security.SaveToRegedit(txtServer.Text, txtDbName.Text, txtUserName.Text, txtPassword.Text);
-                if (MessageBox.Show("Kết nối đến CSDL thất bại, thử lại ngay bây giờ!", "Kết nối thất bại", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
-                {
-                    Application.Restart();
-                }
+                lblMessage.ForeColor = System.Drawing.Color.Red;
+                lblMessage.Text = "Kết nối đến CSDL thất bại!";
+                //if (MessageBox.Show("Kết nối đến CSDL thất bại, thử lại ngay bây giờ!", "Kết nối thất bại", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                //{
+                //    this.Dispose();
+                //    Application.Restart();
+                //}
             }
         }
 
@@ -53,6 +57,7 @@ namespace RapidWarehouse
         {
             Ultilities.Security.buildNewConnection(txtServer.Text, txtDbName.Text, txtUserName.Text, txtPassword.Text);
             Ultilities.Security.SaveToRegedit(txtServer.Text, txtDbName.Text, txtUserName.Text, txtPassword.Text);
+            this.Dispose();
             Application.Restart();
         }
 
