@@ -193,6 +193,7 @@ namespace RapidWarehouse
                                     item.DateCreated = DateTime.Now;
                                     item.EmployeeId = currentEmployee.Id;
                                     item.DateOut = DateTime.Now;
+                                    item.WarehouseId = FormLogin.mWarehouse.Id;
                                     listXuat.Add(item);
                                     listShipmentId.Add(item.ShipmentId);
                                     rowDeletedList.Add(row);
@@ -202,7 +203,7 @@ namespace RapidWarehouse
 
                         if (rowDeletedList.Count > 0)
                         {
-                            _shipmentOutServices.Create(listXuat);
+                            _shipmentOutServices.CreateOrUpdate(listXuat);
                             _shipmentWaitConfirmedServices.Delete(listShipmentId);
                             MessageBox.Show("Xuất Kho thành công " + listXuat.Count + " shipment", "Xuất kho shipment chờ thông quan", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

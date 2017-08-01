@@ -24,20 +24,45 @@ namespace BusinessServices
             using (var scope = new TransactionScope())
             {
                 Mapper.CreateMap<ShipmentOutEntity, ShipmentOut>();
-                var shipmentOutEntity = Mapper.Map<ShipmentOutEntity, ShipmentOut>(shipmentOut);
-                _unitOfWork.ShipmentOutRepository.Insert(shipmentOutEntity);
+                var ship = Mapper.Map<ShipmentOutEntity, ShipmentOut>(shipmentOut);
+                var original = _unitOfWork.ShipmentOutRepository.Get(t => t.ShipmentId == ship.ShipmentId);
+                if (original != null)
+                {
+                    ship.ShipmentId = original.ShipmentId;
+                    ship.DateCreated = original.DateCreated;
+                    _unitOfWork.ShipmentOutRepository.Update(original, ship);
+                }
+                else
+                {
+                    _unitOfWork.ShipmentOutRepository.Insert(ship);
+                }
                 _unitOfWork.SaveWinform();
                 scope.Complete();
-                return shipmentOutEntity.ShipmentId;
+                return ship.ShipmentId;
             }
         }
-        public int Create(List<ShipmentOutEntity> shipmentOutList)
+        public int CreateOrUpdate(List<ShipmentOutEntity> shipmentOutList)
         {
             using (var scope = new TransactionScope())
             {
                 Mapper.CreateMap<ShipmentOutEntity, ShipmentOut>();
                 var shipmentOutEntityList = Mapper.Map<List<ShipmentOutEntity>, List<ShipmentOut>>(shipmentOutList);
-                int numberInsert = _unitOfWork.ShipmentOutRepository.Insert(shipmentOutEntityList);
+                int numberInsert = 0;
+                foreach (ShipmentOut ship in shipmentOutEntityList)
+                {
+                    var original = _unitOfWork.ShipmentOutRepository.Get(t => t.ShipmentId == ship.ShipmentId);
+                    if (original != null)
+                    {
+                        ship.ShipmentId = original.ShipmentId;
+                        ship.DateCreated = original.DateCreated;
+                        _unitOfWork.ShipmentOutRepository.Update(original, ship);
+                    }
+                    else
+                    {
+                        _unitOfWork.ShipmentOutRepository.Insert(ship);
+                        numberInsert++;
+                    }
+                }
                 _unitOfWork.SaveWinform();
                 scope.Complete();
                 return numberInsert;

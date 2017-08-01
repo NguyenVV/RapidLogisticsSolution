@@ -11,6 +11,8 @@ Create table Warehouse
 go
 Alter table [ShipmentInfor] add WarehouseId int references Warehouse(Id)
 go
+Alter table [ShipmentInfor] add [Weight] float
+go
 Alter table [ShipmentOut] add WarehouseId int references Warehouse(Id)
 go
 Alter table [ShipmentInforTemp] add WarehouseId int references Warehouse(Id)

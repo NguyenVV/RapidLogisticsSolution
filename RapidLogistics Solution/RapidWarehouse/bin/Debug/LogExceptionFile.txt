@@ -38035,3 +38035,135 @@ Exception stacktrace : System.Data.Entity; at System.Data.EntityClient.EntityCom
    at System.Windows.Forms.Application.ThreadContext.RunMessageLoop(Int32 reason, ApplicationContext context)
    at RapidWarehouse.Program.Main() in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\Program.cs:line 32
 ============================================================================================
+Exception at : static void Main() on :2017-08-01 23:56:38
+Exception message : EntityFramework; An error occurred while updating the entries. See the inner exception for details.
+Exception stacktrace : EntityFramework; at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   at DataModel.UnitOfWork.UnitOfWork.SaveWinform() in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\DataModel\UnitOfWork\UnitOfWork.cs:line 236
+   at BusinessServices.ShipmentServices.Create(List`1 shipmentList) in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessServices\ShipmentServices.cs:line 30
+   at RapidWarehouse.FormNhap.SaveBoxInfor() in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\FormNhap.cs:line 283
+   at RapidWarehouse.FormNhap.btnOpenClose_Click(Object sender, EventArgs e) in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\FormNhap.cs:line 136
+   at System.Windows.Forms.Control.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.OnMouseUp(MouseEventArgs mevent)
+   at System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   at System.Windows.Forms.Control.WndProc(Message& m)
+   at System.Windows.Forms.ButtonBase.WndProc(Message& m)
+   at System.Windows.Forms.Button.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.DebuggableCallback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+   at System.Windows.Forms.UnsafeNativeMethods.DispatchMessageW(MSG& msg)
+   at System.Windows.Forms.Application.ComponentManager.System.Windows.Forms.UnsafeNativeMethods.IMsoComponentManager.FPushMessageLoop(IntPtr dwComponentID, Int32 reason, Int32 pvLoopData)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(Int32 reason, ApplicationContext context)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoop(Int32 reason, ApplicationContext context)
+   at RapidWarehouse.Program.Main() in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\Program.cs:line 32
+============================================================================================
+Exception at : private void DeleteRowFromGridview(DataGridView grv, DataGridViewCellEventArgs e, int grvType) on :2017-08-02 00:53:10
+Exception message : RapidWarehouse; Object reference not set to an instance of an object.
+Exception stacktrace : RapidWarehouse; at RapidWarehouse.FormNhap.DeleteRowFromGridview(DataGridView grv, DataGridViewCellEventArgs e, Int32 grvType) in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\FormNhap.cs:line 729
+============================================================================================
+Exception at : static void Main() on :2017-08-02 01:08:57
+Exception message : RapidWarehouse; Object reference not set to an instance of an object.
+Exception stacktrace : RapidWarehouse; at RapidWarehouse.FormXuat.LoadShipmentsByBoxId(BoxInforEntity boxEntity, DataGridView shipmentGrid) in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\FormXuat.cs:line 587
+   at RapidWarehouse.FormXuat.btnOpenBoxOut_Click(Object sender, EventArgs e) in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\FormXuat.cs:line 322
+   at System.Windows.Forms.Control.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.OnMouseUp(MouseEventArgs mevent)
+   at System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   at System.Windows.Forms.Control.WndProc(Message& m)
+   at System.Windows.Forms.ButtonBase.WndProc(Message& m)
+   at System.Windows.Forms.Button.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.DebuggableCallback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+   at System.Windows.Forms.UnsafeNativeMethods.DispatchMessageW(MSG& msg)
+   at System.Windows.Forms.Application.ComponentManager.System.Windows.Forms.UnsafeNativeMethods.IMsoComponentManager.FPushMessageLoop(IntPtr dwComponentID, Int32 reason, Int32 pvLoopData)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(Int32 reason, ApplicationContext context)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoop(Int32 reason, ApplicationContext context)
+   at RapidWarehouse.Program.Main() in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\Program.cs:line 32
+============================================================================================
+Exception at : static void Main() on :2017-08-02 01:43:20
+Exception message : AutoMapper; Missing type map configuration or unsupported mapping.
+
+Mapping types:
+Single -> Nullable`1
+System.Single -> System.Nullable`1[[System.Double, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
+
+Destination path:
+List`1[0].Weight.Weight
+
+Source value:
+0.072
+Exception stacktrace : AutoMapper; at BusinessServices.ShipmentServices.CreateOrUpdate(List`1 shipmentList) in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessServices\ShipmentServices.cs:line 28
+   at RapidWarehouse.FormNhap.SaveBoxInfor() in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\FormNhap.cs:line 283
+   at RapidWarehouse.FormNhap.btnOpenClose_Click(Object sender, EventArgs e) in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\FormNhap.cs:line 136
+   at System.Windows.Forms.Control.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.OnMouseUp(MouseEventArgs mevent)
+   at System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   at System.Windows.Forms.Control.WndProc(Message& m)
+   at System.Windows.Forms.ButtonBase.WndProc(Message& m)
+   at System.Windows.Forms.Button.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.DebuggableCallback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+   at System.Windows.Forms.UnsafeNativeMethods.DispatchMessageW(MSG& msg)
+   at System.Windows.Forms.Application.ComponentManager.System.Windows.Forms.UnsafeNativeMethods.IMsoComponentManager.FPushMessageLoop(IntPtr dwComponentID, Int32 reason, Int32 pvLoopData)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(Int32 reason, ApplicationContext context)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoop(Int32 reason, ApplicationContext context)
+   at RapidWarehouse.Program.Main() in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\Program.cs:line 32
+============================================================================================
+Exception at : static void Main() on :2017-08-02 02:34:07
+Exception message : mscorlib; Input string was not in a correct format.
+Exception stacktrace : mscorlib; at System.Number.ParseSingle(String value, NumberStyles options, NumberFormatInfo numfmt)
+   at System.Single.Parse(String s)
+   at RapidWarehouse.FormXuat.SaveShipmentOut() in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\FormXuat.cs:line 146
+   at RapidWarehouse.FormXuat.btnOpenBoxOut_Click(Object sender, EventArgs e) in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\FormXuat.cs:line 330
+   at System.Windows.Forms.Control.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.OnMouseUp(MouseEventArgs mevent)
+   at System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   at System.Windows.Forms.Control.WndProc(Message& m)
+   at System.Windows.Forms.ButtonBase.WndProc(Message& m)
+   at System.Windows.Forms.Button.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.DebuggableCallback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+   at System.Windows.Forms.UnsafeNativeMethods.DispatchMessageW(MSG& msg)
+   at System.Windows.Forms.Application.ComponentManager.System.Windows.Forms.UnsafeNativeMethods.IMsoComponentManager.FPushMessageLoop(IntPtr dwComponentID, Int32 reason, Int32 pvLoopData)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(Int32 reason, ApplicationContext context)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoop(Int32 reason, ApplicationContext context)
+   at RapidWarehouse.Program.Main() in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\Program.cs:line 32
+============================================================================================
+Exception at : static void Main() on :2017-08-02 02:47:02
+Exception message : mscorlib; Input string was not in a correct format.
+Exception stacktrace : mscorlib; at System.Number.ParseDouble(String value, NumberStyles options, NumberFormatInfo numfmt)
+   at System.Double.Parse(String s)
+   at RapidWarehouse.FormXuat.SaveShipmentOut() in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\FormXuat.cs:line 146
+   at RapidWarehouse.FormXuat.btnOpenBoxOut_Click(Object sender, EventArgs e) in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\FormXuat.cs:line 330
+   at System.Windows.Forms.Control.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.OnMouseUp(MouseEventArgs mevent)
+   at System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   at System.Windows.Forms.Control.WndProc(Message& m)
+   at System.Windows.Forms.ButtonBase.WndProc(Message& m)
+   at System.Windows.Forms.Button.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.DebuggableCallback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+   at System.Windows.Forms.UnsafeNativeMethods.DispatchMessageW(MSG& msg)
+   at System.Windows.Forms.Application.ComponentManager.System.Windows.Forms.UnsafeNativeMethods.IMsoComponentManager.FPushMessageLoop(IntPtr dwComponentID, Int32 reason, Int32 pvLoopData)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(Int32 reason, ApplicationContext context)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoop(Int32 reason, ApplicationContext context)
+   at RapidWarehouse.Program.Main() in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\Program.cs:line 32
+============================================================================================
+Exception at : static void Main() on :2017-08-02 03:57:56
+Exception message : mscorlib; Input string was not in a correct format.
+Exception stacktrace : mscorlib; at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at RapidWarehouse.FormXuat.SaveShipmentOut() in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\FormXuat.cs:line 141
+   at RapidWarehouse.FormXuat.btnOpenBoxOut_Click(Object sender, EventArgs e) in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\FormXuat.cs:line 345
+   at System.Windows.Forms.Control.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.OnMouseUp(MouseEventArgs mevent)
+   at System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   at System.Windows.Forms.Control.WndProc(Message& m)
+   at System.Windows.Forms.ButtonBase.WndProc(Message& m)
+   at System.Windows.Forms.Button.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.DebuggableCallback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+   at System.Windows.Forms.UnsafeNativeMethods.DispatchMessageW(MSG& msg)
+   at System.Windows.Forms.Application.ComponentManager.System.Windows.Forms.UnsafeNativeMethods.IMsoComponentManager.FPushMessageLoop(IntPtr dwComponentID, Int32 reason, Int32 pvLoopData)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(Int32 reason, ApplicationContext context)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoop(Int32 reason, ApplicationContext context)
+   at RapidWarehouse.Program.Main() in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\Program.cs:line 32
+============================================================================================

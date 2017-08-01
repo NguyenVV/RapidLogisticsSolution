@@ -144,7 +144,7 @@ namespace RapidWarehouse
             if (itemMaster != null)
             {
                 lblThungDaQuet.Text = "" + _boxInforServices.GetTotalByMasterBill(itemMaster.Id);
-                lblDonDaQuet.Text = "" + _boxInforServices.GetTotalShipmentByMasterBill(itemMaster.Id)+"("+_shipmentServices.GetTotalShipmentByMasterBill(itemMaster.Id) + ")";
+                lblDonDaQuet.Text = "" + _boxInforServices.GetTotalShipmentByMasterBill(itemMaster.Id);// +"("+_shipmentServices.GetTotalShipmentByMasterBill(itemMaster.Id) + ")";
             }
         }
 
@@ -269,25 +269,36 @@ namespace RapidWarehouse
                         shipment.DateCreated = DateTime.Now;
                         shipment.WarehouseId = FormLogin.mWarehouse.Id;
                         shipment.EmployeeId = currentEmployee.Id;
-                        shipment.NumberPackage = Int32.Parse(grvShipments[PACKAGE, i].Value.ToString());
+                        string package = Convert.ToString(grvShipments[PACKAGE, i].Value);
+                        if (string.IsNullOrEmpty(package))
+                        {
+                            shipment.NumberPackage = 1;
+                        }
+                        else
+                        {
+                            shipment.NumberPackage = Int32.Parse(Convert.ToString(grvShipments[PACKAGE, i].Value));
+                        }
+
                         shipment.Sender = Convert.ToString(grvShipments[COMPANYNAME, i].Value);
                         shipment.DeclarationNo = Convert.ToString(grvShipments[DECLARATIONNO, i].Value);
                         shipment.Address = Convert.ToString(grvShipments[ADDRESS, i].Value);
                         shipment.Content = Convert.ToString(grvShipments[CONTENT, i].Value);
                         shipment.Destination = Convert.ToString(grvShipments[CONSIGNEE, i].Value);
                         shipment.Receiver = Convert.ToString(grvShipments[CONTACTNAME, i].Value);
-                        shipment.Weight = float.Parse(Convert.ToString(grvShipments[WEIGHT, i].Value));
-                        shipment.Country = Convert.ToString(grvShipments[COUNTRY, i].Value);
-                        try
+                        shipment.Weight = double.Parse(Convert.ToString(grvShipments[WEIGHT, i].Value));
+                        string weight = Convert.ToString(grvShipments[WEIGHT, i].Value);
+                        if (string.IsNullOrEmpty(weight))
                         {
-                            if (!_shipmentServices.Exists(shipmentId))
-                            {
-                                listShipment.Add(shipment);
-                            }
+                            shipment.Weight = 0d;
                         }
-                        catch (Exception e) { Ultilities.FileHelper.WriteLog(Ultilities.ExceptionLevel.Function, "private void SaveBoxInfor()", e); }
+                        else
+                        {
+                            shipment.Weight = Double.Parse(Convert.ToString(grvShipments[WEIGHT, i].Value));
+                        }
+                        shipment.Country = Convert.ToString(grvShipments[COUNTRY, i].Value);
+                        listShipment.Add(shipment);
                     }
-                    _shipmentServices.Create(listShipment);
+                    _shipmentServices.CreateOrUpdate(listShipment);
                 }
             }
         }
@@ -370,7 +381,7 @@ namespace RapidWarehouse
                                     catch (Exception e) { Ultilities.FileHelper.WriteLog(Ultilities.ExceptionLevel.Function, "private void LuuXacNhanDen()", e); }
                                 }
 
-                                int count = _shipmentServices.Create(listShipment);
+                                int count = _shipmentServices.CreateOrUpdate(listShipment);
                             }
                         }
                     }

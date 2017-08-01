@@ -61,7 +61,7 @@ namespace RapidWarehouse
             grvShipmentListOut.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             ResetHardCodeText();
             LoadAllMasterBillByDateToCombobox(DateTime.Today, cbbMasterBillOut);
-            FillInforOut();
+            //FillInforOut();
             CloseBoxOut();
             dtpNgayXuat.Focus();
             this.Text = "Xuất kho - " + FormUltils.getInstance().GetVersionInfo();
@@ -124,49 +124,67 @@ namespace RapidWarehouse
             int rowCount = grvShipmentListOut.Rows.Count;
             if (rowCount > 0)
             {
-                List<ShipmentOutEntity> listShipment = new List<ShipmentOutEntity>();
+                List<ShipmentOutEntity> listShipmentOut = new List<ShipmentOutEntity>();
+                List<ShipmentEntity> listShipment = new List<ShipmentEntity>();
+
                 for (int i = 0; i < rowCount; i++)
                 {
                     string shipmentId = Convert.ToString(grvShipmentListOut[SHIPMENT_NO, i].Value);
-
-                    ShipmentEntity shipment = new ShipmentEntity();
-                    shipment.ShipmentId = shipmentId;
-                    shipment.BoxId = currentBoxOut.Id;
-                    shipment.DateCreated = DateTime.Now;
-                    shipment.WarehouseId = FormLogin.mWarehouse.Id;
-                    shipment.EmployeeId = currentEmployee.Id;
-                    shipment.NumberPackage = Int32.Parse(Convert.ToString(grvShipmentListOut[PACKAGE, i].Value));
-                    shipment.Sender = Convert.ToString(grvShipmentListOut[COMPANYNAME, i].Value);
-                    shipment.DeclarationNo = Convert.ToString(grvShipmentListOut[DECLARATIONNO, i].Value);
-                    shipment.Address = Convert.ToString(grvShipmentListOut[ADDRESS, i].Value);
-                    shipment.Content = Convert.ToString(grvShipmentListOut[CONTENT, i].Value);
-                    shipment.Destination = Convert.ToString(grvShipmentListOut[CONSIGNEE, i].Value);
-                    shipment.Receiver = Convert.ToString(grvShipmentListOut[CONTACTNAME, i].Value);
-                    shipment.Weight = float.Parse(Convert.ToString(grvShipmentListOut[WEIGHT, i].Value));
-                    shipment.Country = Convert.ToString(grvShipmentListOut[COUNTRY, i].Value);
-                    try
+                    if (nhapMoiKhongCanXacNhan)
                     {
-                        _shipmentServices.Create(shipment);
-                    }
-                    catch(Exception ex) { }
+                        ShipmentEntity shipment = new ShipmentEntity();
+                        shipment.ShipmentId = shipmentId;
+                        shipment.BoxId = currentBoxOut.Id;
+                        shipment.DateCreated = DateTime.Now;
+                        shipment.WarehouseId = FormLogin.mWarehouse.Id;
+                        shipment.EmployeeId = currentEmployee.Id;
+                        string package = Convert.ToString(grvShipmentListOut[PACKAGE, i].Value);
+                        if (string.IsNullOrEmpty(package))
+                        {
+                            shipment.NumberPackage = 1;
+                        }
+                        else
+                        {
+                            shipment.NumberPackage = Int32.Parse(Convert.ToString(grvShipmentListOut[PACKAGE, i].Value));
+                        }
 
-                    if (!_shipmentOutServices.IsExist(shipmentId))
-                    {
-                        ShipmentOutEntity shipmentOut = new ShipmentOutEntity();
-                        shipmentOut.ShipmentId = shipmentId;
-                        shipmentOut.BoxIdRef = currentBoxOut.Id;
-                        shipmentOut.BoxIdString = currentBoxOut.BoxId;
-                        shipmentOut.MasterBillId = currentMasterOut.Id;
-                        shipmentOut.MasterBillIdString = currentMasterOut.MasterAirwayBill;
-                        shipmentOut.DateOut = dtpNgayXuat.Value;
-                        shipmentOut.DateCreated = DateTime.Now;
-                        shipmentOut.EmployeeId = currentEmployee.Id;
-                        shipmentOut.WarehouseId = FormLogin.mWarehouse.Id;
-                        listShipment.Add(shipmentOut);
+                        shipment.Sender = Convert.ToString(grvShipmentListOut[COMPANYNAME, i].Value);
+                        shipment.DeclarationNo = Convert.ToString(grvShipmentListOut[DECLARATIONNO, i].Value);
+                        shipment.Address = Convert.ToString(grvShipmentListOut[ADDRESS, i].Value);
+                        shipment.Content = Convert.ToString(grvShipmentListOut[CONTENT, i].Value);
+                        shipment.Destination = Convert.ToString(grvShipmentListOut[CONSIGNEE, i].Value);
+                        shipment.Receiver = Convert.ToString(grvShipmentListOut[CONTACTNAME, i].Value);
+                        string weight = Convert.ToString(grvShipmentListOut[WEIGHT, i].Value);
+                        if (string.IsNullOrEmpty(weight))
+                        {
+                            shipment.Weight = 0d;
+                        }
+                        else
+                        {
+                            shipment.Weight = Double.Parse(Convert.ToString(grvShipmentListOut[WEIGHT, i].Value));
+                        }
+                        shipment.Country = Convert.ToString(grvShipmentListOut[COUNTRY, i].Value);
+                        listShipment.Add(shipment);
                     }
+
+                    ShipmentOutEntity shipmentOut = new ShipmentOutEntity();
+                    shipmentOut.ShipmentId = shipmentId;
+                    shipmentOut.BoxIdRef = currentBoxOut.Id;
+                    shipmentOut.BoxIdString = currentBoxOut.BoxId;
+                    shipmentOut.MasterBillId = currentMasterOut.Id;
+                    shipmentOut.MasterBillIdString = currentMasterOut.MasterAirwayBill;
+                    shipmentOut.DateOut = dtpNgayXuat.Value;
+                    shipmentOut.DateCreated = DateTime.Now;
+                    shipmentOut.EmployeeId = currentEmployee.Id;
+                    shipmentOut.WarehouseId = FormLogin.mWarehouse.Id;
+                    listShipmentOut.Add(shipmentOut);
+                }
+                if (nhapMoiKhongCanXacNhan)
+                {
+                    _shipmentServices.CreateOrUpdate(listShipment);
                 }
 
-                _shipmentOutServices.Create(listShipment);
+                _shipmentOutServices.CreateOrUpdate(listShipmentOut);
                 _shipmentOutTempServices.DeleteByEmployeeId(currentEmployee.Id);
             }
         }
@@ -387,8 +405,15 @@ namespace RapidWarehouse
                     }
                 }
 
+                if (_shipmentOutServices.IsExist(txtShipmentIdOut.Text))
+                {
+                    MessageBox.Show("Mã đơn hàng vừa nhập đã được xuất rồi nên không thể xuất kho", "Nhập thông tin", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtShipmentIdOut.Text = String.Empty;
+                    return;
+                }
+                var shipment = _shipmentServices.GetByShipmentIdAndBoxId(txtShipmentIdOut.Text, currentBoxOut.Id);
                 //Check chưa có trong bảng ShipmentInfor thì thêm mới vào trong trường hợp xuất không cần xác nhận
-                if (_shipmentServices.GetByShipmentIdAndBoxId(txtShipmentIdOut.Text, currentBoxOut.Id) == null)
+                if (shipment == null)
                 {
                     if (!nhapMoiKhongCanXacNhan)
                     {
@@ -405,16 +430,14 @@ namespace RapidWarehouse
                             return;
                         }
                     }
-                }
 
-                if (_shipmentOutServices.IsExist(txtShipmentIdOut.Text))
+                    grvShipmentListOut.Rows.Add(grvShipmentListOut.Rows.Count + 1, cbbMasterBillOut.Text, DateTime.Now.ToString("dd/MM/yyyy"), txtShipmentIdOut.Text);
+                }
+                else
                 {
-                    MessageBox.Show("Mã đơn hàng vừa nhập đã được xuất rồi nên không thể xuất kho", "Nhập thông tin", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    txtShipmentIdOut.Text = String.Empty;
-                    return;
+                    AddOneShipmentToGridView(grvShipmentListOut.Rows.Count + 1, shipment, grvShipmentListOut);
                 }
 
-                grvShipmentListOut.Rows.Add(grvShipmentListOut.Rows.Count + 1, txtShipmentIdOut.Text);
                 lblShipmentScanedOut.Text = "" + grvShipmentListOut.Rows.Count;
                 numberShipmentOut++;
                 grvShipmentListOut.ClearSelection();
@@ -556,13 +579,17 @@ namespace RapidWarehouse
                 grv.Rows.Clear();
                 foreach (ShipmentEntity item in listShipment)
                 {
-                    grv.Rows.Add(index, cbbMasterBillOut.Text, item.DateCreated.ToString("dd-MM-yyyy"), item.ShipmentId, item.DeclarationNo, item.Sender
-                        , item.Country, item.Receiver, item.Address, item.Destination, item.Content, 1, item.Weight);
+                    AddOneShipmentToGridView(index, item, grv);
                     index++;
                 }
                 // setting up value count on gridview
                 numberShipmentOut = index;
             }
+        }
+        private void AddOneShipmentToGridView(int index, ShipmentEntity item, DataGridView grv)
+        {
+            grv.Rows.Add(index, cbbMasterBillOut.Text, item.DateCreated.ToString("dd-MM-yyyy"), item.ShipmentId, item.DeclarationNo, item.Sender
+                        , item.Country, item.Receiver, item.Address, item.Destination, item.Content, 1, String.Format("{0:0.000}", item.Weight));
         }
         private bool LoadShipmentsByBoxId(BoxInforEntity boxEntity, DataGridView shipmentGrid)
         {
@@ -590,6 +617,9 @@ namespace RapidWarehouse
 
                     if (result == DialogResult.Yes)
                     {
+                        if (listShipment == null)
+                            listShipment = new List<ShipmentEntity>();
+
                         listShipment.AddRange(listShipmentOutTemp);
                     }
                     else
@@ -762,7 +792,7 @@ namespace RapidWarehouse
             }
 
             List<ShipmentOutEntity> listDetail = (List<ShipmentOutEntity>)_shipmentOutServices.GetByBoxId(box.Id);
-            int totalThung = 0;
+           
             int totalShipment;
             if (listDetail != null && listDetail.Count > 0)
             {

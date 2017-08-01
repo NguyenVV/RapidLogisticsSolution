@@ -12,7 +12,7 @@
         <AssociationConnector Association="RapidSolutionModel.FK__ShipmentO__Emplo__4316F928" />
         <AssociationConnector Association="RapidSolutionModel.FK__ShipmentW__Emplo__440B1D61" />
         <EntityTypeShape EntityType="RapidSolutionModel.BoxInfo" Width="1.5" PointX="3.125" PointY="1.375" />
-        <EntityTypeShape EntityType="RapidSolutionModel.ShipmentInfor" Width="1.5" PointX="5.25" PointY="0.625" IsExpanded="false" />
+        <EntityTypeShape EntityType="RapidSolutionModel.ShipmentInfor" Width="1.5" PointX="5.25" PointY="0.625" IsExpanded="true" />
         <AssociationConnector Association="RapidSolutionModel.FK__BoxInfo__Employe__45F365D3" />
         <AssociationConnector Association="RapidSolutionModel.FK__ShipmentI__BoxId__15502E78" />
         <AssociationConnector Association="RapidSolutionModel.FK__ShipmentO__BoxId__1B0907CE" />

@@ -262,7 +262,7 @@ namespace DataModel.GenericRepository
         /// <returns></returns>
         public virtual IEnumerable<TEntity> GetMany(Func<TEntity, bool> where)
         {
-            return DbSet.Where(where);
+            return DbSet.Where(where).ToList();
         }
 
         /// <summary>

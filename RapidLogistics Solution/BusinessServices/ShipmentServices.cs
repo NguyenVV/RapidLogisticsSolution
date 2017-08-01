@@ -18,15 +18,31 @@ namespace BusinessServices
         {
             _unitOfWork = unitOfWork;
         }
-        public int Create(List<ShipmentEntity> shipmentList)
+        public int CreateOrUpdate(List<ShipmentEntity> shipmentList)
         {
-            using (var scope = new TransactionScope())
+            if (shipmentList != null && shipmentList.Any())
             {
-                if (shipmentList.Any())
+                using (var scope = new TransactionScope())
                 {
                     Mapper.CreateMap<ShipmentEntity, ShipmentInfor>();
                     var shipmentListModel = Mapper.Map<List<ShipmentEntity>, List<ShipmentInfor>>(shipmentList);
-                    int count = _unitOfWork.ShipmentRepository.Insert(shipmentListModel);
+                    int count = 0;
+                    foreach (ShipmentInfor ship in shipmentListModel)
+                    {
+                        var original = _unitOfWork.ShipmentRepository.Get(t => t.ShipmentId == ship.ShipmentId);
+                        if (original != null)
+                        {
+                            ship.Id = original.Id;
+                            ship.DateCreated = original.DateCreated;
+                            _unitOfWork.ShipmentRepository.Update(original, ship);
+                        }
+                        else
+                        {
+                            _unitOfWork.ShipmentRepository.Insert(ship);
+                            count++;
+                        }
+                    }
+                    
                     _unitOfWork.SaveWinform();
                     scope.Complete();
 
@@ -36,7 +52,7 @@ namespace BusinessServices
 
             return 0;
         }
-        public int Create(ShipmentEntity shipmentEntity)
+        public int CreateOrUpdate(ShipmentEntity shipmentEntity)
         {
             using (var scope = new TransactionScope())
             {
@@ -46,6 +62,7 @@ namespace BusinessServices
                 if (original != null)
                 {
                     shipmentDataModel.Id = original.Id;
+                    shipmentDataModel.DateCreated = original.DateCreated;
                     _unitOfWork.ShipmentRepository.Update(original, shipmentDataModel);
                 }
                 else
@@ -105,7 +122,7 @@ namespace BusinessServices
         public int GetTotalShipmentByMasterBill(int masterBillId)
         {
             int total = 0;
-            var list = _unitOfWork.ShipmentRepository.GetMany(t => t.BoxInfo.MasterBillId == masterBillId);
+            var list = _unitOfWork.ShipmentRepository.GetMany(t => t.BoxInfo != null && t.BoxInfo.MasterBillId == masterBillId);
             if (list != null && list.Any())
             {
                 total = list.Count();
@@ -124,7 +141,7 @@ namespace BusinessServices
 
             if (list != null && list.Rows.Count > 0)
             {
-                foreach(System.Data.DataRow row in list.Rows)
+                foreach (System.Data.DataRow row in list.Rows)
                 {
                     string result = Convert.ToString(row["SOTK"]);
                     if (!string.IsNullOrEmpty(result))
