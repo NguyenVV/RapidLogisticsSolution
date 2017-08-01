@@ -19,7 +19,7 @@ using System.Text;
             original,
             destination,
             country,
-            company;
+            companyName;
         private int quantity;
         private double unitPrice, totalValue, weight;
         private DateTime creationDate;
@@ -285,16 +285,16 @@ using System.Text;
         }
     }
 
-    public string Company
+    public string CompanyName
     {
         get
         {
-            return company;
+            return companyName;
         }
 
         set
         {
-            company = value;
+            companyName = value;
         }
     }
 

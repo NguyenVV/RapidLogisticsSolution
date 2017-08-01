@@ -492,7 +492,7 @@ namespace RapidWarehouse
                         item.DeclarationNo = _shipmentServices.GetDeclarationNo(item.ShipmentNo);
                     }
 
-                    grv.Rows.Add(index, item.MasterAirWayBill, item.ShipmentNo, item.ShipmentNo, item.DeclarationNo, item.Company
+                    grv.Rows.Add(index, item.MasterAirWayBill, item.ShipmentNo, item.ShipmentNo, item.DeclarationNo, item.CompanyName
                         ,item.Country, item.ContactName, item.Address, item.Destination, item.Content, 1, String.Format("{0:0.000}", item.Weight));
                     index++;
                 }
