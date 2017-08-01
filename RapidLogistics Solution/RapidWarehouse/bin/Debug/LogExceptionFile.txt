@@ -37907,3 +37907,131 @@ Exception stacktrace : System.Data.Entity; at System.Data.EntityClient.EntityCon
    at BusinessServices.EmployeeServices.GetAll() in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessServices\EmployeeServices.cs:line 108
    at RapidWarehouse.FormConfigDB.btnTestConnection_Click(Object sender, EventArgs e) in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\FormConfigDB.cs:line 38
 ============================================================================================
+Exception at : static void Main() on :2017-07-30 14:26:15
+Exception message : RapidWarehouse; Unable to cast object of type 'System.ComponentModel.BindingList`1[BusinessEntities.ReportDetailEntity]' to type 'System.Data.DataTable'.
+Exception stacktrace : RapidWarehouse; at RapidWarehouse.FormBaoCao.ChiTietSanLuongNhapKho() in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\FormBaoCao.cs:line 240
+   at RapidWarehouse.FormBaoCao.btnChiTietSanLuong_Click(Object sender, EventArgs e) in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\FormBaoCao.cs:line 154
+   at System.Windows.Forms.Control.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.OnMouseUp(MouseEventArgs mevent)
+   at System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   at System.Windows.Forms.Control.WndProc(Message& m)
+   at System.Windows.Forms.ButtonBase.WndProc(Message& m)
+   at System.Windows.Forms.Button.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.DebuggableCallback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+   at System.Windows.Forms.UnsafeNativeMethods.DispatchMessageW(MSG& msg)
+   at System.Windows.Forms.Application.ComponentManager.System.Windows.Forms.UnsafeNativeMethods.IMsoComponentManager.FPushMessageLoop(IntPtr dwComponentID, Int32 reason, Int32 pvLoopData)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(Int32 reason, ApplicationContext context)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoop(Int32 reason, ApplicationContext context)
+   at RapidWarehouse.Program.Main() in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\Program.cs:line 32
+============================================================================================
+Exception at : static void Main() on :2017-08-01 09:27:36
+Exception message : SimpleInjector; An error occurred while executing the command definition. See the inner exception for details.
+Exception stacktrace : SimpleInjector; at SimpleInjector.InstanceProducer.GetInstance()
+   at SimpleInjector.Container.GetInstanceForRootType[TService]()
+   at SimpleInjector.Container.GetInstance[TService]()
+   at RapidWarehouse.FormHome.btnInventory_Click(Object sender, EventArgs e) in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\FormHome.cs:line 57
+   at System.Windows.Forms.Control.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.OnMouseUp(MouseEventArgs mevent)
+   at System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   at System.Windows.Forms.Control.WndProc(Message& m)
+   at System.Windows.Forms.ButtonBase.WndProc(Message& m)
+   at System.Windows.Forms.Button.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.DebuggableCallback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+   at System.Windows.Forms.UnsafeNativeMethods.DispatchMessageW(MSG& msg)
+   at System.Windows.Forms.Application.ComponentManager.System.Windows.Forms.UnsafeNativeMethods.IMsoComponentManager.FPushMessageLoop(IntPtr dwComponentID, Int32 reason, Int32 pvLoopData)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(Int32 reason, ApplicationContext context)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoop(Int32 reason, ApplicationContext context)
+   at RapidWarehouse.Program.Main() in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\Program.cs:line 32
+============================================================================================
+Exception at : static void Main() on :2017-08-01 09:30:20
+Exception message : SimpleInjector; An error occurred while executing the command definition. See the inner exception for details.
+Exception stacktrace : SimpleInjector; at SimpleInjector.InstanceProducer.GetInstance()
+   at SimpleInjector.Container.GetInstanceForRootType[TService]()
+   at SimpleInjector.Container.GetInstance[TService]()
+   at RapidWarehouse.FormHome.btnInventory_Click(Object sender, EventArgs e) in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\FormHome.cs:line 57
+   at System.Windows.Forms.Control.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.PerformClick()
+   at System.Windows.Forms.Form.ProcessDialogKey(Keys keyData)
+   at System.Windows.Forms.Control.PreProcessMessage(Message& msg)
+   at System.Windows.Forms.Control.PreProcessControlMessageInternal(Control target, Message& msg)
+   at System.Windows.Forms.Application.ThreadContext.PreTranslateMessage(MSG& msg)
+   at System.Windows.Forms.Application.ComponentManager.System.Windows.Forms.UnsafeNativeMethods.IMsoComponentManager.FPushMessageLoop(IntPtr dwComponentID, Int32 reason, Int32 pvLoopData)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(Int32 reason, ApplicationContext context)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoop(Int32 reason, ApplicationContext context)
+   at RapidWarehouse.Program.Main() in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\Program.cs:line 32
+============================================================================================
+Exception at : static void Main() on :2017-08-01 09:33:19
+Exception message : SimpleInjector; An error occurred while executing the command definition. See the inner exception for details.
+Exception stacktrace : SimpleInjector; at SimpleInjector.InstanceProducer.GetInstance()
+   at SimpleInjector.Container.GetInstanceForRootType[TService]()
+   at SimpleInjector.Container.GetInstance[TService]()
+   at RapidWarehouse.FormHome.btnInventory_Click(Object sender, EventArgs e) in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\FormHome.cs:line 57
+   at System.Windows.Forms.Control.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.PerformClick()
+   at System.Windows.Forms.Form.ProcessDialogKey(Keys keyData)
+   at System.Windows.Forms.Control.PreProcessMessage(Message& msg)
+   at System.Windows.Forms.Control.PreProcessControlMessageInternal(Control target, Message& msg)
+   at System.Windows.Forms.Application.ThreadContext.PreTranslateMessage(MSG& msg)
+   at System.Windows.Forms.Application.ComponentManager.System.Windows.Forms.UnsafeNativeMethods.IMsoComponentManager.FPushMessageLoop(IntPtr dwComponentID, Int32 reason, Int32 pvLoopData)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(Int32 reason, ApplicationContext context)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoop(Int32 reason, ApplicationContext context)
+   at RapidWarehouse.Program.Main() in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\Program.cs:line 32
+============================================================================================
+Exception at : static void Main() on :2017-08-01 09:34:07
+Exception message : System.Data.Entity; An error occurred while executing the command definition. See the inner exception for details.
+Exception stacktrace : System.Data.Entity; at System.Data.EntityClient.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+   at System.Data.Objects.Internal.ObjectQueryExecutionPlan.Execute[TResultType](ObjectContext context, ObjectParameterCollection parameterValues)
+   at System.Data.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   at System.Data.Objects.ObjectQuery`1.System.Collections.Generic.IEnumerable<T>.GetEnumerator()
+   at System.Linq.Enumerable.WhereEnumerableIterator`1.MoveNext()
+   at System.Linq.Lookup`2.Create[TSource](IEnumerable`1 source, Func`2 keySelector, Func`2 elementSelector, IEqualityComparer`1 comparer)
+   at System.Linq.GroupedEnumerable`3.GetEnumerator()
+   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   at System.Linq.Enumerable.Count[TSource](IEnumerable`1 source)
+   at BusinessServices.BoxInforServices.GetTotalShipmentByMasterBill(Int32 masterBillId) in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessServices\BoxInforServices.cs:line 71
+   at RapidWarehouse.FormNhap.btnOpenClose_Click(Object sender, EventArgs e) in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\FormNhap.cs:line 147
+   at System.Windows.Forms.Control.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.OnMouseUp(MouseEventArgs mevent)
+   at System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   at System.Windows.Forms.Control.WndProc(Message& m)
+   at System.Windows.Forms.ButtonBase.WndProc(Message& m)
+   at System.Windows.Forms.Button.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.DebuggableCallback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+   at System.Windows.Forms.UnsafeNativeMethods.DispatchMessageW(MSG& msg)
+   at System.Windows.Forms.Application.ComponentManager.System.Windows.Forms.UnsafeNativeMethods.IMsoComponentManager.FPushMessageLoop(IntPtr dwComponentID, Int32 reason, Int32 pvLoopData)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(Int32 reason, ApplicationContext context)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoop(Int32 reason, ApplicationContext context)
+   at RapidWarehouse.Program.Main() in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\Program.cs:line 32
+============================================================================================
+Exception at : static void Main() on :2017-08-01 09:39:06
+Exception message : System.Data.Entity; An error occurred while executing the command definition. See the inner exception for details.
+Exception stacktrace : System.Data.Entity; at System.Data.EntityClient.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+   at System.Data.Objects.Internal.ObjectQueryExecutionPlan.Execute[TResultType](ObjectContext context, ObjectParameterCollection parameterValues)
+   at System.Data.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   at System.Data.Objects.ObjectQuery`1.System.Collections.Generic.IEnumerable<T>.GetEnumerator()
+   at System.Linq.Enumerable.WhereEnumerableIterator`1.MoveNext()
+   at System.Linq.Lookup`2.Create[TSource](IEnumerable`1 source, Func`2 keySelector, Func`2 elementSelector, IEqualityComparer`1 comparer)
+   at System.Linq.GroupedEnumerable`3.GetEnumerator()
+   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   at System.Linq.Enumerable.Count[TSource](IEnumerable`1 source)
+   at BusinessServices.BoxInforServices.GetTotalShipmentByMasterBill(Int32 masterBillId) in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessServices\BoxInforServices.cs:line 71
+   at RapidWarehouse.FormNhap.btnOpenClose_Click(Object sender, EventArgs e) in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\FormNhap.cs:line 147
+   at System.Windows.Forms.Control.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.OnMouseUp(MouseEventArgs mevent)
+   at System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   at System.Windows.Forms.Control.WndProc(Message& m)
+   at System.Windows.Forms.ButtonBase.WndProc(Message& m)
+   at System.Windows.Forms.Button.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.DebuggableCallback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+   at System.Windows.Forms.UnsafeNativeMethods.DispatchMessageW(MSG& msg)
+   at System.Windows.Forms.Application.ComponentManager.System.Windows.Forms.UnsafeNativeMethods.IMsoComponentManager.FPushMessageLoop(IntPtr dwComponentID, Int32 reason, Int32 pvLoopData)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(Int32 reason, ApplicationContext context)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoop(Int32 reason, ApplicationContext context)
+   at RapidWarehouse.Program.Main() in C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\Program.cs:line 32
+============================================================================================

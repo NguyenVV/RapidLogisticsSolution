@@ -12,11 +12,14 @@ namespace BusinessServices.Interfaces
         string[] GetReferenceOfShipment(string shipmentId);
         ShipmentEntity GetByShipmentIdAndBoxId(string shipmentId, int boxId);
         IEnumerable<ShipmentEntity> GetByDate(string shipmentId);
+        IEnumerable<ShipmentEntity> GetByMasterBillId(int masterBillId);
         IEnumerable<ShipmentEntity> GetByBoxId(int boxId);
+        int GetTotalShipmentByMasterBill(int masterBillId);
         bool Exists(string shipmentId);
         void Delete(int shipmentId);
         void Delete(string shipmentId);
         ReportDetailEntity SearchByShipmentId(string shipmentId);
         ShipmentEntity SearchByConditions(string shipmentId, string sotk, string sender, string receiver);
+        string GetDeclarationNo(string shipmentId);
     }
 }

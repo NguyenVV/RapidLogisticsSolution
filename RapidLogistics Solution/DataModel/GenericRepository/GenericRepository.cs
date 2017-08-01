@@ -38,7 +38,12 @@ namespace DataModel.GenericRepository
         #endregion
 
         #region Public member methods...
-
+        public void RefreshConnection()
+        {
+            DbContext context = new DbContext(ConfigurationManager.ConnectionStrings["RapidSolutionEntities"].ConnectionString);
+            this.Context = context;
+            this.DbSet = context.Set<TEntity>();
+        }
         public bool isConnectSql()
         {
             EntityConnectionStringBuilder b = new EntityConnectionStringBuilder();
@@ -70,6 +75,78 @@ namespace DataModel.GenericRepository
                 return;
             Context.Dispose();
         }
+        public int ExecuteUpdateQuery(string _query)
+        {
+            string connStr = ConfigurationManager.ConnectionStrings["dbConnectionStringECUS5VNACCS"].ConnectionString;
+
+            using (SqlConnection connection = new SqlConnection(connStr))
+            {
+                if (connection.State == ConnectionState.Closed || connection.State ==
+                        ConnectionState.Broken)
+                {
+                    connection.Open();
+                }
+
+                using (var myAdapter = new SqlDataAdapter(_query, connection))
+                {
+                    try
+                    {
+                        SqlCommand myCommand = new SqlCommand();
+                        myCommand.Connection = connection;
+                        myCommand.CommandText = _query;
+                        myAdapter.UpdateCommand = myCommand;
+
+                        return myCommand.ExecuteNonQuery();
+                    }
+                    catch (SqlException e)
+                    {
+                        Console.Write("Error - Connection.executeUpdateQuery - Query: " + _query + " \nException: " + e.StackTrace.ToString());
+                        return 0;
+                    }
+                    finally
+                    {
+                        //CloseConnection();
+                    }
+                }
+            }
+        }
+
+        public DataTable ExecuteSelectQueryFromECUS5VNACCS(string _query)
+        {
+            string connStr = ConfigurationManager.ConnectionStrings["dbConnectionStringECUS5VNACCS"].ConnectionString;
+
+            using (SqlConnection connection = new SqlConnection(connStr))
+            {
+                if (connection.State == ConnectionState.Closed || connection.State ==
+                        ConnectionState.Broken)
+                {
+                    connection.Open();
+                }
+
+                using (var myAdapter = new SqlDataAdapter(_query, connection))
+                {
+                    try
+                    {
+                        SqlCommand myCommand = new SqlCommand();
+                        myCommand.Connection = connection;
+                        myCommand.CommandText = _query;
+                        myAdapter.SelectCommand = myCommand;
+                        DataTable result = new DataTable();
+                        myAdapter.Fill(result);
+                        return result;
+                    }
+                    catch (SqlException e)
+                    {
+                        Console.Write("Error - Connection.executeUpdateQuery - Query: " + _query + " \nException: " + e.StackTrace.ToString());
+                        return null;
+                    }
+                    finally
+                    {
+                        //CloseConnection();
+                    }
+                }
+            }
+        }
 
         /// <summary>
         /// generic Get method for Entities
@@ -78,7 +155,7 @@ namespace DataModel.GenericRepository
         public virtual IEnumerable<TEntity> Get()
         {
             IQueryable<TEntity> query = DbSet;
-            return query.ToList();
+            return query.AsEnumerable();
         }
 
         /// <summary>
@@ -185,7 +262,7 @@ namespace DataModel.GenericRepository
         /// <returns></returns>
         public virtual IEnumerable<TEntity> GetMany(Func<TEntity, bool> where)
         {
-            return DbSet.Where(where).ToList();
+            return DbSet.Where(where);
         }
 
         /// <summary>
@@ -226,7 +303,7 @@ namespace DataModel.GenericRepository
         /// <returns></returns>
         public virtual IEnumerable<TEntity> GetAll()
         {
-            return DbSet.ToList();
+            return DbSet.AsEnumerable();
         }
 
         /// <summary>

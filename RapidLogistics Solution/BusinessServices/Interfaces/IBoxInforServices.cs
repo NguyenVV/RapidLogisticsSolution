@@ -13,5 +13,6 @@ namespace BusinessServices.Interfaces
         BoxInforEntity GetByBoxId(int boxId);
         int GetTotalByMasterBill(int masterBillId);
         int GetTotalShipmentByMasterBill(int masterBillId);
+        int GetTotalCountByMasterId(int masterId);
     }
 }

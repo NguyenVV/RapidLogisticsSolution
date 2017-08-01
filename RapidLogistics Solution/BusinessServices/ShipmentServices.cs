@@ -25,7 +25,7 @@ namespace BusinessServices
                 if (shipmentList.Any())
                 {
                     Mapper.CreateMap<ShipmentEntity, ShipmentInfor>();
-                    var shipmentListModel = Mapper.Map<List<ShipmentEntity>, List< ShipmentInfor> >(shipmentList);
+                    var shipmentListModel = Mapper.Map<List<ShipmentEntity>, List<ShipmentInfor>>(shipmentList);
                     int count = _unitOfWork.ShipmentRepository.Insert(shipmentListModel);
                     _unitOfWork.SaveWinform();
                     scope.Complete();
@@ -43,7 +43,7 @@ namespace BusinessServices
                 Mapper.CreateMap<ShipmentEntity, ShipmentInfor>();
                 var shipmentDataModel = Mapper.Map<ShipmentEntity, ShipmentInfor>(shipmentEntity);
                 var original = _unitOfWork.ShipmentRepository.Get(t => t.ShipmentId == shipmentDataModel.ShipmentId);
-                if(original != null)
+                if (original != null)
                 {
                     shipmentDataModel.Id = original.Id;
                     _unitOfWork.ShipmentRepository.Update(original, shipmentDataModel);
@@ -52,11 +52,22 @@ namespace BusinessServices
                 {
                     _unitOfWork.ShipmentRepository.Insert(shipmentDataModel);
                 }
-                
+
                 _unitOfWork.SaveWinform();
                 scope.Complete();
                 return shipmentDataModel.Id;
             }
+        }
+        public IEnumerable<ShipmentEntity> GetByMasterBillId(int masterBillId)
+        {
+            var shipmentList = _unitOfWork.ShipmentRepository.GetMany(t => t.BoxInfo.MasterBillId == masterBillId);
+            if (shipmentList != null && shipmentList.Any())
+            {
+                Mapper.CreateMap<ShipmentInfor, ShipmentEntity>();
+                var shipmentListModel = Mapper.Map<List<ShipmentInfor>, List<ShipmentEntity>>(shipmentList.ToList());
+                return shipmentListModel;
+            }
+            return null;
         }
         public IEnumerable<ShipmentEntity> GetByBoxId(int boxId)
         {
@@ -77,7 +88,7 @@ namespace BusinessServices
         {
             using (var scope = new TransactionScope())
             {
-                ShipmentInfor shipmentDataModel = _unitOfWork.ShipmentRepository.Get(t=> t.ShipmentId.Equals(shipmentId,StringComparison.CurrentCultureIgnoreCase));
+                ShipmentInfor shipmentDataModel = _unitOfWork.ShipmentRepository.Get(t => t.ShipmentId.Equals(shipmentId, StringComparison.CurrentCultureIgnoreCase));
                 if (shipmentDataModel == null)
                 {
                     scope.Complete();
@@ -91,7 +102,40 @@ namespace BusinessServices
                 return shipmentData;
             }
         }
+        public int GetTotalShipmentByMasterBill(int masterBillId)
+        {
+            int total = 0;
+            var list = _unitOfWork.ShipmentRepository.GetMany(t => t.BoxInfo.MasterBillId == masterBillId);
+            if (list != null && list.Any())
+            {
+                total = list.Count();
+            }
 
+            return total;
+        }
+        public string GetDeclarationNo(string shipmentId)
+        {
+            string query = @"SELECT TOP 30
+            a.[Msgxml].value('(/Root/ShipmentID)[1]', 'VARCHAR(MAX)') AS 'ShipmentNo',
+            a.[Msgxml].value('(/Root/Declaration/DeclarationNo)[1]', 'VARCHAR(MAX)') AS 'SOTK'
+            FROM    (SELECT CAST(Msgxml AS XML) AS xmlMsgxml FROM CPN_OutputMSG where ShipmentID='" + shipmentId + @"') s
+            CROSS APPLY xmlMsgxml.nodes('/') a ( Msgxml )";
+            var list = _unitOfWork.ShipmentRepository.ExecuteSelectQueryFromECUS5VNACCS(query);
+
+            if (list != null && list.Rows.Count > 0)
+            {
+                foreach(System.Data.DataRow row in list.Rows)
+                {
+                    string result = Convert.ToString(row["SOTK"]);
+                    if (!string.IsNullOrEmpty(result))
+                    {
+                        return result;
+                    }
+                }
+            }
+
+            return null;
+        }
         public ShipmentEntity SearchByConditions(string shipmentId, string sotk, string sender, string receiver)
         {
             if (string.IsNullOrEmpty(shipmentId) && string.IsNullOrEmpty(sotk) && string.IsNullOrEmpty(sender) && string.IsNullOrEmpty(receiver))
@@ -118,14 +162,14 @@ namespace BusinessServices
                     result = result.Where(t => receiver.Equals(t.Receiver, StringComparison.CurrentCultureIgnoreCase));
                 }
 
-                var shipmentDataModel = result == null ? null: result.First();
+                var shipmentDataModel = result == null ? null : result.First();
 
                 if (shipmentDataModel == null)
                 {
                     scope.Complete();
                     return null;
                 }
-                
+
                 Mapper.CreateMap<ShipmentInfor, ShipmentEntity>();
                 var shipmentData = Mapper.Map<ShipmentInfor, ShipmentEntity>(shipmentDataModel);
                 shipmentData.Mawb = shipmentDataModel.BoxInfo.MasterBill.MasterAirWayBill;
@@ -141,8 +185,8 @@ namespace BusinessServices
             {
                 string[] arr = new string[6];
                 ShipmentInfor shipmentDataModel = _unitOfWork.ShipmentRepository.Get(t => t.ShipmentId.Equals(shipmentId, StringComparison.CurrentCultureIgnoreCase));
-                
-                if(shipmentDataModel != null)
+
+                if (shipmentDataModel != null)
                 {
                     arr[0] = shipmentDataModel.Id.ToString();
                     arr[1] = shipmentDataModel.ShipmentId;
@@ -172,7 +216,7 @@ namespace BusinessServices
         {
             using (var scope = new TransactionScope())
             {
-                ShipmentInfor shipmentDataModel = _unitOfWork.ShipmentRepository.Get(t => t.ShipmentId.Equals(shipmentId, StringComparison.CurrentCultureIgnoreCase) && t.BoxId==boxId);
+                ShipmentInfor shipmentDataModel = _unitOfWork.ShipmentRepository.Get(t => t.ShipmentId.Equals(shipmentId, StringComparison.CurrentCultureIgnoreCase) && t.BoxId == boxId);
                 if (shipmentDataModel == null)
                 {
                     scope.Complete();
@@ -189,7 +233,7 @@ namespace BusinessServices
             ReportDetailEntity reportEntity = new ReportDetailEntity();
             var result = _unitOfWork.ShipmentRepository.Get(t => t.ShipmentId.Equals(shipmentId, StringComparison.CurrentCultureIgnoreCase));
             if (result != null)
-            {   
+            {
                 reportEntity.ShipmentId = result.ShipmentId;
 
                 if (result.BoxInfo != null)
@@ -207,7 +251,7 @@ namespace BusinessServices
         }
         public void Delete(string shipmentId)
         {
-            _unitOfWork.ShipmentRepository.Delete(t=>t.ShipmentId==shipmentId);
+            _unitOfWork.ShipmentRepository.Delete(t => t.ShipmentId == shipmentId);
             _unitOfWork.SaveWinform();
         }
     }

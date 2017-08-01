@@ -144,7 +144,7 @@ namespace RapidWarehouse
             if (itemMaster != null)
             {
                 lblThungDaQuet.Text = "" + _boxInforServices.GetTotalByMasterBill(itemMaster.Id);
-                lblDonDaQuet.Text = "" + _boxInforServices.GetTotalShipmentByMasterBill(itemMaster.Id);
+                lblDonDaQuet.Text = "" + _boxInforServices.GetTotalShipmentByMasterBill(itemMaster.Id)+"("+_shipmentServices.GetTotalShipmentByMasterBill(itemMaster.Id) + ")";
             }
         }
 
@@ -487,8 +487,13 @@ namespace RapidWarehouse
                 grv.Rows.Clear();
                 foreach (ManifestEntity item in listShipment)
                 {
+                    if (string.IsNullOrEmpty(item.DeclarationNo))
+                    {
+                        item.DeclarationNo = _shipmentServices.GetDeclarationNo(item.ShipmentNo);
+                    }
+
                     grv.Rows.Add(index, item.MasterAirWayBill, item.ShipmentNo, item.ShipmentNo, item.DeclarationNo, item.Company
-                        ,item.Country, item.ContactName, item.Address, item.Destination, item.Content, 1, item.Weight);
+                        ,item.Country, item.ContactName, item.Address, item.Destination, item.Content, 1, String.Format("{0:0.000}", item.Weight));
                     index++;
                 }
                 // setting up value count on gridview

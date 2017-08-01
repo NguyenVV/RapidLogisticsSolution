@@ -98,7 +98,7 @@ namespace RapidWarehouse
                 {
                     Ultilities.FileHelper.WriteLog(Ultilities.ExceptionLevel.Function, "Đã có lỗi xảy ra khi đăng nhập, vui lòng thử lại sau", ex);
                     lblError.Text = "Đã có lỗi xảy ra khi đăng nhập, vui lòng thử lại sau!";
-                    ShowDialogQuestionConnectToDb();
+                    //ShowDialogQuestionConnectToDb();
                 }
             }
         }

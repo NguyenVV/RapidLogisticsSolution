@@ -15,7 +15,7 @@ namespace BusinessServices.Interfaces
         int Delete(int employeeId);
         bool IsExist(string userName);
         List<EmployeeEntity> GetAll();
-
+        void RefreshConnection();
         bool isConnection();
     }
 }

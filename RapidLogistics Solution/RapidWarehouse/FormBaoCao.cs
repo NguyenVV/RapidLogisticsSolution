@@ -3,6 +3,8 @@ using BusinessServices.Interfaces;
 using Novacode;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
@@ -151,7 +153,41 @@ namespace RapidWarehouse
         {
             ChiTietSanLuongNhapKho();
         }
+        private DataGridView SetupDataGridView()
+        {
+            DataGridView songsDataGridView = new DataGridView();
 
+            songsDataGridView.ColumnCount = 5;
+
+            songsDataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.Navy;
+            songsDataGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            songsDataGridView.ColumnHeadersDefaultCellStyle.Font =
+                new Font(songsDataGridView.Font, FontStyle.Bold);
+
+            songsDataGridView.Name = "songsDataGridView";
+            songsDataGridView.AutoSizeRowsMode =
+                DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
+            songsDataGridView.ColumnHeadersBorderStyle =
+                DataGridViewHeaderBorderStyle.Single;
+            songsDataGridView.CellBorderStyle = DataGridViewCellBorderStyle.Single;
+            songsDataGridView.GridColor = Color.Black;
+            songsDataGridView.RowHeadersVisible = true;
+
+            songsDataGridView.Columns[0].Name = "Release Date";
+            songsDataGridView.Columns[1].Name = "Track";
+            songsDataGridView.Columns[2].Name = "Title";
+            songsDataGridView.Columns[3].Name = "Artist";
+            //songsDataGridView.Columns[4].Name = "Album";
+            //songsDataGridView.Columns[4].DefaultCellStyle.Font =
+            //    new Font(songsDataGridView.DefaultCellStyle.Font, FontStyle.Italic);
+
+            songsDataGridView.SelectionMode =
+                DataGridViewSelectionMode.FullRowSelect;
+            songsDataGridView.MultiSelect = false;
+            songsDataGridView.Dock = DockStyle.Fill;
+
+            return songsDataGridView;
+        }
         private void ChiTietSanLuongNhapKho()
         {
             List<ReportDetailEntity> listDetail = new List<ReportDetailEntity>();
@@ -190,7 +226,9 @@ namespace RapidWarehouse
                 MessageBox.Show("Không có hàng nhập về vào ngày đã chọn");
                 return;
             }
-
+            string fileNameExcel = Environment.CurrentDirectory + @"\ChiTietSanLuongNhapKho" + DateTime.Now.ToString("ddMMyyyHHmmss") + ".xls";
+            //FormUltils.getInstance().ExcelExport(listDetail, fileNameExcel, true);
+            
             string fileName = Environment.CurrentDirectory + @"\ChiTietSanLuongNhapKho" + DateTime.Now.ToString("ddMMyyyHHmmss") + ".doc";
             string companyName = "CÔNG TY CP CÔNG NGHỆ THẦN TỐC\t\t\t\t\t\tIMW02";
             string headlineText = "BẢNG KÊ CHI TIẾT SẢN LƯỢNG NHẬP KHO";

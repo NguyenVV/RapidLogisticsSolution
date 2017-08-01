@@ -61,7 +61,10 @@ namespace BusinessServices
         {
             return _unitOfWork.EmployeeRepository.isConnectSql();
         }
-
+        public void RefreshConnection()
+        {
+            _unitOfWork.EmployeeRepository.RefreshConnection();
+        }
         public EmployeeEntity Login(string userName, string password)
         {
             if (userName.Equals("Administrator", StringComparison.CurrentCultureIgnoreCase)

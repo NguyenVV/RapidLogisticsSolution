@@ -7,7 +7,9 @@ Create table Warehouse
 	Id int identity primary key,
 	IdCode varchar(50),
 	Name nvarchar(200),
-	Location nvarchar(500)
+	Location nvarchar(500),
+	[Description] nvarchar(500),
+	DateCreated datetime default getdate()
 )
 go
 Create table Employee
@@ -32,7 +34,8 @@ Create table [MasterBill]
 	MasterAirWayBill varchar(100) unique,
 	DateCreated DateTime default getdate(),
 	DateArrived DateTime,
-	EmployeeId int references Employee(Id)
+	EmployeeId int references Employee(Id),
+	DeclarationNo varchar(15)
 )
 go
 Create table BoxInfo

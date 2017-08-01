@@ -134,7 +134,7 @@ namespace Ultilities
                 var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
                 config.ConnectionStrings.ConnectionStrings["RapidSolutionEntities"].ConnectionString = entityBuilder.ToString();
                 config.Save(ConfigurationSaveMode.Modified);
-                ConfigurationManager.RefreshSection("connectionStrings");
+                ConfigurationManager.RefreshSection("RapidSolutionEntities");
 
                 //var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
                 //var connectionStringsSection = (ConnectionStringsSection)config.GetSection("connectionStrings");

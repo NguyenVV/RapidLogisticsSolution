@@ -91,5 +91,9 @@ namespace BusinessServices
             }
             return null;
         }
+        public int GetTotalCountByMasterId(int masterId)
+        {
+            return _unitOfWork.BoxInforRepository.GetMany(t => t.MasterBillId == masterId).Count();
+        }
     }
 }

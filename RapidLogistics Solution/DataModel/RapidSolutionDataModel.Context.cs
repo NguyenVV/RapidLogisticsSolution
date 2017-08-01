@@ -19,7 +19,12 @@ namespace DataModel
             : base("name=RapidSolutionEntities")
         {
         }
-    
+
+        public RapidSolutionEntities(string connectrionString)
+            : base(System.Configuration.ConfigurationManager.ConnectionStrings[connectrionString].ConnectionString)
+        {
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();

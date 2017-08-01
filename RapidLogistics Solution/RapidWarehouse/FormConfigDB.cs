@@ -36,10 +36,11 @@ namespace RapidWarehouse
             {
                 Ultilities.Security.buildNewConnection(txtServer.Text, txtDbName.Text, txtUserName.Text, txtPassword.Text);
                 _employeeServices.isConnection();
+                //_employeeServices.RefreshConnection();
                 lblMessage.ForeColor = System.Drawing.Color.Green;
                 lblMessage.Text = "Kết nối đến CSDL thành công!";
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Ultilities.FileHelper.WriteLog(Ultilities.ExceptionLevel.Application, "Test connection", ex);
                 Ultilities.Security.SaveToRegedit(txtServer.Text, txtDbName.Text, txtUserName.Text, txtPassword.Text);
@@ -57,6 +58,9 @@ namespace RapidWarehouse
         {
             Ultilities.Security.buildNewConnection(txtServer.Text, txtDbName.Text, txtUserName.Text, txtPassword.Text);
             Ultilities.Security.SaveToRegedit(txtServer.Text, txtDbName.Text, txtUserName.Text, txtPassword.Text);
+            //_employeeServices.RefreshConnection();
+            lblMessage.ForeColor = System.Drawing.Color.Green;
+            lblMessage.Text = "Lưu cấu hình thành công!";
             this.Dispose();
             Application.Restart();
         }
