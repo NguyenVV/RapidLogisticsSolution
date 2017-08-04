@@ -41,6 +41,7 @@ namespace RapidWarehouse
         private readonly string PACKAGE = "Số kiện";
         private readonly string WEIGHT = "Khối lượng";
         private readonly string DATE_CREATED = "Ngày nhập kho";
+        private readonly string DATEOFCOMPLETION = "Ngày thông quan";
         public FormXuat(IMasterBillServices masterBillServices, IShipmentServices shipmentServices
             , IBoxInforServices boxInforServices, IShipmentOutServices shipmentOutServices
             , IShipmentWaitToConfirmedServices shipmentWaitToConfirmedServices
@@ -70,7 +71,7 @@ namespace RapidWarehouse
         #region Xuất kho
         private void BuildingGridviewRow()
         {
-            grvShipmentListOut.ColumnCount = 13;
+            grvShipmentListOut.ColumnCount = 14;
             grvShipmentListOut.Columns[0].Name = STT;
             grvShipmentListOut.Columns[0].ValueType = typeof(int);
             grvShipmentListOut.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
@@ -98,6 +99,8 @@ namespace RapidWarehouse
             grvShipmentListOut.Columns[11].ValueType = typeof(int);
             grvShipmentListOut.Columns[12].Name = WEIGHT;
             grvShipmentListOut.Columns[12].ValueType = typeof(float);
+            grvShipmentListOut.Columns[13].Name = DATEOFCOMPLETION;
+            grvShipmentListOut.Columns[13].ValueType = typeof(string);
         }
         private void FillInforOut()
         {
@@ -153,6 +156,7 @@ namespace RapidWarehouse
                         shipment.Address = Convert.ToString(grvShipmentListOut[ADDRESS, i].Value);
                         shipment.Content = Convert.ToString(grvShipmentListOut[CONTENT, i].Value);
                         shipment.Destination = Convert.ToString(grvShipmentListOut[CONSIGNEE, i].Value);
+                        shipment.Consignee = Convert.ToString(grvShipmentListOut[CONSIGNEE, i].Value);
                         shipment.Receiver = Convert.ToString(grvShipmentListOut[CONTACTNAME, i].Value);
                         string weight = Convert.ToString(grvShipmentListOut[WEIGHT, i].Value);
                         if (string.IsNullOrEmpty(weight))
@@ -164,6 +168,7 @@ namespace RapidWarehouse
                             shipment.Weight = Double.Parse(Convert.ToString(grvShipmentListOut[WEIGHT, i].Value));
                         }
                         shipment.Country = Convert.ToString(grvShipmentListOut[COUNTRY, i].Value);
+                        shipment.DateOfCompletion = Convert.ToDateTime(grvShipmentListOut[DATEOFCOMPLETION, i].Value);
                         listShipment.Add(shipment);
                     }
 
@@ -589,7 +594,7 @@ namespace RapidWarehouse
         private void AddOneShipmentToGridView(int index, ShipmentEntity item, DataGridView grv)
         {
             grv.Rows.Add(index, cbbMasterBillOut.Text, item.DateCreated.ToString("dd-MM-yyyy"), item.ShipmentId, item.DeclarationNo, item.Sender
-                        , item.Country, item.Receiver, item.Address, item.Destination, item.Content, 1, String.Format("{0:0.000}", item.Weight));
+                        , item.Country, item.Receiver, item.Address, item.Destination, item.Content, 1, String.Format("{0:0.000}", item.Weight), item.DateOfCompletion);
         }
         private bool LoadShipmentsByBoxId(BoxInforEntity boxEntity, DataGridView shipmentGrid)
         {

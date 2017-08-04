@@ -21,5 +21,6 @@ namespace BusinessServices.Interfaces
         ReportDetailEntity SearchByShipmentId(string shipmentId);
         ShipmentEntity SearchByConditions(string shipmentId, string sotk, string sender, string receiver);
         string GetDeclarationNo(string shipmentId);
+        string GetDateOfCompletion(string shipmentId);
     }
 }

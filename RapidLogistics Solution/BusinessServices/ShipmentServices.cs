@@ -153,6 +153,38 @@ namespace BusinessServices
 
             return null;
         }
+
+        public string GetDateOfCompletion(string shipmentId)
+        {
+            string query = @"SELECT TOP 30
+            a.[Msgxml].value('(/Root/Declaration/DateOfCompletion)[1]', 'VARCHAR(MAX)') AS 'DateOfCompletion',
+            a.[Msgxml].value('(/Root/Declaration/TimeCompletion)[1]', 'VARCHAR(MAX)') AS 'TimeCompletion'
+            FROM    (SELECT CAST(Msgxml AS XML) AS xmlMsgxml FROM CPN_OutputMSG where ShipmentID='" + shipmentId + @"') s
+            CROSS APPLY xmlMsgxml.nodes('/') a ( Msgxml )";
+            var list = _unitOfWork.ShipmentRepository.ExecuteSelectQueryFromECUS5VNACCS(query);
+
+            if (list != null && list.Rows.Count > 0)
+            {
+                foreach (System.Data.DataRow row in list.Rows)
+                {
+                    string resultDate = Convert.ToString(row["DateOfCompletion"]);
+                    
+                    if (!string.IsNullOrEmpty(resultDate))
+                    {
+                        string fromTimeString = "";
+                        if (row["TimeCompletion"] != null)
+                        {
+                            int resultTime = Convert.ToInt32(row["TimeCompletion"]);
+                            TimeSpan result = TimeSpan.FromHours(resultTime);
+                            fromTimeString = result.ToString("hh':'mm");
+                        }
+                        return resultDate + " " + fromTimeString;
+                    }
+                }
+            }
+
+            return null;
+        }
         public ShipmentEntity SearchByConditions(string shipmentId, string sotk, string sender, string receiver)
         {
             if (string.IsNullOrEmpty(shipmentId) && string.IsNullOrEmpty(sotk) && string.IsNullOrEmpty(sender) && string.IsNullOrEmpty(receiver))

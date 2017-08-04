@@ -1,6 +1,7 @@
 ﻿using BusinessEntities;
 using BusinessServices.Interfaces;
 using System;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace RapidWarehouse
@@ -83,6 +84,7 @@ namespace RapidWarehouse
                 lblMawb.Text = shipment.Mawb;
                 txtDateIn.Text = shipment.DateCreated != null ? shipment.DateCreated.ToString("dd-MM-yyyy") : "";
                 txtBoxIdString.Text = shipment.BoxIdString;
+                txtDateClearance.Text = shipment.DateOfCompletion.ToString("dd-MM-yyyy hh:mm");
             }
         }
 

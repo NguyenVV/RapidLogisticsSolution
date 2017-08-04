@@ -22,6 +22,8 @@ namespace BusinessEntities
         private string declarationNo;
         private string mawb;
         private string boxIdString;
+        private DateTime dateOfCompletion;
+        private string consignee;
         public string DeclarationNo
         {
             get
@@ -266,6 +268,32 @@ namespace BusinessEntities
             set
             {
                 boxIdString = value;
+            }
+        }
+
+        public DateTime DateOfCompletion
+        {
+            get
+            {
+                return dateOfCompletion;
+            }
+
+            set
+            {
+                dateOfCompletion = value;
+            }
+        }
+
+        public string Consignee
+        {
+            get
+            {
+                return consignee;
+            }
+
+            set
+            {
+                consignee = value;
             }
         }
 

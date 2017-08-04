@@ -106,6 +106,7 @@
           <Property Name="Content" Type="nvarchar" MaxLength="300" />
           <Property Name="NumberPackage" Type="int" />
           <Property Name="Weight" Type="float" />
+          <Property Name="DateOfCompletion" Type="datetime" />
         </EntityType>
         <EntityType Name="ShipmentInforTemp">
           <Key>
@@ -735,6 +736,7 @@ warning 6035: The relationship 'FK__ShipmentO__Shipm__1A14E395' has columns that
           <Property Name="Content" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="NumberPackage" Type="Int32" />
           <Property Name="Weight" Type="Double" />
+          <Property Name="DateOfCompletion" Type="DateTime" />
         </EntityType>
         <Association Name="FK__BoxInfo__Employe__45F365D3">
           <End Type="RapidSolutionModel.Employee" Role="Employee" Multiplicity="0..1" />
@@ -1112,6 +1114,7 @@ warning 6035: The relationship 'FK__ShipmentO__Shipm__1A14E395' has columns that
           <EntitySetMapping Name="ShipmentInfors">
             <EntityTypeMapping TypeName="RapidSolutionModel.ShipmentInfor">
               <MappingFragment StoreEntitySet="ShipmentInfor">
+                <ScalarProperty Name="DateOfCompletion" ColumnName="DateOfCompletion" />
                 <ScalarProperty Name="Weight" ColumnName="Weight" />
                 <ScalarProperty Name="NumberPackage" ColumnName="NumberPackage" />
                 <ScalarProperty Name="Content" ColumnName="Content" />

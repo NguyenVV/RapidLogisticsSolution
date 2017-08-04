@@ -44,6 +44,7 @@ namespace RapidWarehouse
         private readonly string CONTENT = "Nội dung hàng";
         private readonly string PACKAGE = "Số kiện";
         private readonly string WEIGHT = "Khối lượng";
+        private readonly string DATEOFCOMPLETION = "Ngày thông quan";
         public FormNhap(IMasterBillServices masterBillServices, IShipmentServices shipmentServices
             , IBoxInforServices boxInforServices, IShipmentOutServices shipmentOutServices
             , IManifestServices manifestServices, IShipmentWaitToConfirmedServices shipmentWaitToConfirmedServices
@@ -82,7 +83,7 @@ namespace RapidWarehouse
         #region Xác nhận đến
         private void BuildingTheGridviewRowStrure()
         {
-            grvShipments.ColumnCount = 13;
+            grvShipments.ColumnCount = 14;
             grvShipments.Columns[0].Name = STT;
             grvShipments.Columns[0].ValueType = typeof(int);
             grvShipments.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
@@ -110,7 +111,9 @@ namespace RapidWarehouse
             grvShipments.Columns[11].Name = PACKAGE;
             grvShipments.Columns[11].ValueType = typeof(int);
             grvShipments.Columns[12].Name = WEIGHT;
-            grvShipments.Columns[12].ValueType = typeof(int);
+            grvShipments.Columns[12].ValueType = typeof(float);
+            grvShipments.Columns[13].Name = DATEOFCOMPLETION;
+            grvShipments.Columns[13].ValueType = typeof(string);
         }
         private void btnOpenClose_Click(object sender, EventArgs e)
         {
@@ -284,6 +287,7 @@ namespace RapidWarehouse
                         shipment.Address = Convert.ToString(grvShipments[ADDRESS, i].Value);
                         shipment.Content = Convert.ToString(grvShipments[CONTENT, i].Value);
                         shipment.Destination = Convert.ToString(grvShipments[CONSIGNEE, i].Value);
+                        shipment.Consignee = Convert.ToString(grvShipments[CONSIGNEE, i].Value);
                         shipment.Receiver = Convert.ToString(grvShipments[CONTACTNAME, i].Value);
                         shipment.Weight = double.Parse(Convert.ToString(grvShipments[WEIGHT, i].Value));
                         string weight = Convert.ToString(grvShipments[WEIGHT, i].Value);
@@ -296,6 +300,7 @@ namespace RapidWarehouse
                             shipment.Weight = Double.Parse(Convert.ToString(grvShipments[WEIGHT, i].Value));
                         }
                         shipment.Country = Convert.ToString(grvShipments[COUNTRY, i].Value);
+                        shipment.DateOfCompletion = Convert.ToDateTime(grvShipments[DATEOFCOMPLETION, i].Value);
                         listShipment.Add(shipment);
                     }
                     _shipmentServices.CreateOrUpdate(listShipment);
@@ -312,85 +317,92 @@ namespace RapidWarehouse
             txtShipmentId.Text = String.Empty;
             grvShipments.Rows.Clear();
         }
-        private void LuuXacNhanDen()
-        {
-            var masterBillList = manifestList.GroupBy(t => t.MasterAirWayBill).Select(p => p.First()).ToList();
+        //private void LuuXacNhanDen()
+        //{
+        //    var masterBillList = manifestList.GroupBy(t => t.MasterAirWayBill).Select(p => p.First()).ToList();
 
-            if (masterBillList != null && masterBillList.Count > 0)
-            {
-                foreach (var manifest in masterBillList)
-                {
-                    MasterAirwayBillEntity masterBill = _masterBillServices.GetByMasterBillId(manifest.MasterAirWayBill);
-                    if (masterBill == null)
-                    {
-                        masterBill = new MasterAirwayBillEntity();
-                        masterBill.MasterAirwayBill = manifest.MasterAirWayBill;
-                        masterBill.DateArrived = dtpNgayDen.Value;
-                        masterBill.DateCreated = DateTime.Now;
-                        masterBill.EmployeeId = currentEmployee.Id;
-                        currentMasterBillId = _masterBillServices.CreateMasterAirwayBill(masterBill);
-                        currentMasterBill = masterBill.MasterAirwayBill;
-                        masterBill.Id = currentMasterBillId;
-                    }
+        //    if (masterBillList != null && masterBillList.Count > 0)
+        //    {
+        //        foreach (var manifest in masterBillList)
+        //        {
+        //            MasterAirwayBillEntity masterBill = _masterBillServices.GetByMasterBillId(manifest.MasterAirWayBill);
+        //            if (masterBill == null)
+        //            {
+        //                masterBill = new MasterAirwayBillEntity();
+        //                masterBill.MasterAirwayBill = manifest.MasterAirWayBill;
+        //                masterBill.DateArrived = dtpNgayDen.Value;
+        //                masterBill.DateCreated = DateTime.Now;
+        //                masterBill.EmployeeId = currentEmployee.Id;
+        //                currentMasterBillId = _masterBillServices.CreateMasterAirwayBill(masterBill);
+        //                currentMasterBill = masterBill.MasterAirwayBill;
+        //                masterBill.Id = currentMasterBillId;
+        //            }
 
-                    List<ManifestEntity> listBoxInfo = manifestList.Where(t => t.MasterAirWayBill == cbbMasterBill.Text).GroupBy(t => t.BoxID).Select(p => p.First()).ToList();
-                    if (listBoxInfo != null && listBoxInfo.Count > 0)
-                    {
-                        foreach (var itemBoxID in listBoxInfo)
-                        {
-                            BoxInforEntity boxEntity = _boxInforServices.GetByBoxId(itemBoxID.BoxID);
-                            if (boxEntity == null)
-                            {
-                                boxEntity = new BoxInforEntity();
-                                boxEntity.BoxId = itemBoxID.BoxID;
-                                boxEntity.DateCreated = DateTime.Now;
-                                boxEntity.EmployeeId = currentEmployee.Id;
-                                boxEntity.ShipmentQuantity = manifestList.Where(t => t.BoxID == itemBoxID.BoxID).Count();
-                                boxEntity.MasterBillId = currentMasterBillId;
-                                currentBoxIdInt = _boxInforServices.CreateBoxInfor(boxEntity);
-                                boxEntity.Id = currentBoxIdInt;
-                                currentBoxId = boxEntity.BoxId;
-                            }
-                            else
-                            {
-                                currentBoxIdInt = boxEntity.Id;
-                                currentBoxId = boxEntity.BoxId;
-                            }
+        //            List<ManifestEntity> listBoxInfo = manifestList.Where(t => t.MasterAirWayBill == cbbMasterBill.Text).GroupBy(t => t.BoxID).Select(p => p.First()).ToList();
+        //            if (listBoxInfo != null && listBoxInfo.Count > 0)
+        //            {
+        //                foreach (var itemBoxID in listBoxInfo)
+        //                {
+        //                    BoxInforEntity boxEntity = _boxInforServices.GetByBoxId(itemBoxID.BoxID);
+        //                    if (boxEntity == null)
+        //                    {
+        //                        boxEntity = new BoxInforEntity();
+        //                        boxEntity.BoxId = itemBoxID.BoxID;
+        //                        boxEntity.DateCreated = DateTime.Now;
+        //                        boxEntity.EmployeeId = currentEmployee.Id;
+        //                        boxEntity.ShipmentQuantity = manifestList.Where(t => t.BoxID == itemBoxID.BoxID).Count();
+        //                        boxEntity.MasterBillId = currentMasterBillId;
+        //                        currentBoxIdInt = _boxInforServices.CreateBoxInfor(boxEntity);
+        //                        boxEntity.Id = currentBoxIdInt;
+        //                        currentBoxId = boxEntity.BoxId;
+        //                    }
+        //                    else
+        //                    {
+        //                        currentBoxIdInt = boxEntity.Id;
+        //                        currentBoxId = boxEntity.BoxId;
+        //                    }
 
-                            // Add shipment here
-                            List<ManifestEntity> listShipmentNo = manifestList.Where(t => t.BoxID == itemBoxID.BoxID).GroupBy(t => t.ShipmentNo).Select(p => p.First()).ToList();
-                            if (listShipmentNo != null && listShipmentNo.Count > 0)
-                            {
-                                List<ShipmentEntity> listShipment = new List<ShipmentEntity>();
+        //                    // Add shipment here
+        //                    List<ManifestEntity> listShipmentNo = manifestList.Where(t => t.BoxID == itemBoxID.BoxID).GroupBy(t => t.ShipmentNo).Select(p => p.First()).ToList();
+        //                    if (listShipmentNo != null && listShipmentNo.Count > 0)
+        //                    {
+        //                        List<ShipmentEntity> listShipment = new List<ShipmentEntity>();
 
-                                foreach (var item in listShipmentNo)
-                                {
-                                    ShipmentEntity shipment = new ShipmentEntity();
-                                    shipment.ShipmentId = item.ShipmentNo;
-                                    shipment.BoxId = currentBoxIdInt;
-                                    shipment.DateCreated = DateTime.Now;
-                                    shipment.EmployeeId = currentEmployee.Id;
-                                    shipment.WarehouseId = FormLogin.mWarehouse.Id;
-                                    try
-                                    {
-                                        if (!_shipmentServices.Exists(shipment.ShipmentId))
-                                        {
-                                            listShipment.Add(shipment);
-                                        }
-                                    }
-                                    catch (Exception e) { Ultilities.FileHelper.WriteLog(Ultilities.ExceptionLevel.Function, "private void LuuXacNhanDen()", e); }
-                                }
+        //                        foreach (var item in listShipmentNo)
+        //                        {
+        //                            ShipmentEntity shipment = new ShipmentEntity();
+        //                            shipment.ShipmentId = item.ShipmentNo;
+        //                            shipment.BoxId = currentBoxIdInt;
+        //                            shipment.DateCreated = DateTime.Now;
+        //                            shipment.EmployeeId = currentEmployee.Id;
+        //                            shipment.WarehouseId = FormLogin.mWarehouse.Id;
+        //                            shipment.Address = item.Address;
+        //                            shipment.BoxIdString = item.BoxID;
+        //                            shipment.Content = item.Content;
+        //                            shipment.Country = item.Country;
+        //                            shipment.DeclarationNo = item.DeclarationNo;
+        //                            shipment.Destination = item.Destination;
+        //                            shipment.NumberPackage = 1;
+        //                            try
+        //                            {
+        //                                if (!_shipmentServices.Exists(shipment.ShipmentId))
+        //                                {
+        //                                    listShipment.Add(shipment);
+        //                                }
+        //                            }
+        //                            catch (Exception e) { Ultilities.FileHelper.WriteLog(Ultilities.ExceptionLevel.Function, "private void LuuXacNhanDen()", e); }
+        //                        }
 
-                                int count = _shipmentServices.CreateOrUpdate(listShipment);
-                            }
-                        }
-                    }
-                }
+        //                        int count = _shipmentServices.CreateOrUpdate(listShipment);
+        //                    }
+        //                }
+        //            }
+        //        }
 
-                MessageBox.Show("Đã lưu xác nhận đến thành công!");
-                //btnXacNhan.Enabled = false;
-            }
-        }
+        //        MessageBox.Show("Đã lưu xác nhận đến thành công!");
+        //        //btnXacNhan.Enabled = false;
+        //    }
+        //}
         private void LoadAllMasterBillByDateToComboboxXacNhanDen(DateTime date)
         {
             manifestList = (List<ManifestEntity>)_manifestServices.GetManifestByDateString(dtpNgayDen.Value.ToString("yyyy-MM-dd"));
@@ -475,16 +487,16 @@ namespace RapidWarehouse
             lblMasterBill.Text = cbbMasterBill.Text;
         }
 
-        private void btnXacNhan_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(cbbMasterBill.Text))
-            {
-                MessageBox.Show("Hãy chọn một mã MAWB để xác nhận");
-                return;
-            }
+        //private void btnXacNhan_Click(object sender, EventArgs e)
+        //{
+        //    if (string.IsNullOrEmpty(cbbMasterBill.Text))
+        //    {
+        //        MessageBox.Show("Hãy chọn một mã MAWB để xác nhận");
+        //        return;
+        //    }
 
-            LuuXacNhanDen();
-        }
+        //    //LuuXacNhanDen();
+        //}
 
         private void cbbBoxId_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -502,9 +514,10 @@ namespace RapidWarehouse
                     {
                         item.DeclarationNo = _shipmentServices.GetDeclarationNo(item.ShipmentNo);
                     }
-
-                    grv.Rows.Add(index, item.MasterAirWayBill, item.ShipmentNo, item.ShipmentNo, item.DeclarationNo, item.CompanyName
-                        ,item.Country, item.ContactName, item.Address, item.Destination, item.Content, 1, String.Format("{0:0.000}", item.Weight));
+                    
+                    string dateOfCreation = _shipmentServices.GetDateOfCompletion(item.ShipmentNo);
+                    grv.Rows.Add(index, item.MasterAirWayBill, 0, item.ShipmentNo, item.DeclarationNo, item.CompanyName
+                        ,item.Country, item.ContactName, item.Address, item.Destination, item.Content, 1, String.Format("{0:0.000}", item.Weight), dateOfCreation);
                     index++;
                 }
                 // setting up value count on gridview
@@ -520,7 +533,8 @@ namespace RapidWarehouse
                 grv.Rows.Clear();
                 foreach (ShipmentEntity item in listShipment)
                 {
-                    grv.Rows.Add(index, item.ShipmentId, item.Id);
+                    grv.Rows.Add(index, cbbMasterBill.Text, item.Id, item.ShipmentId, item.DeclarationNo, item.Sender
+                        , item.Country, item.Receiver, item.Address, item.Destination, item.Content, 1, String.Format("{0:0.000}", item.Weight), item.DateOfCompletion);
                     index++;
                 }
                 // setting up value count on gridview

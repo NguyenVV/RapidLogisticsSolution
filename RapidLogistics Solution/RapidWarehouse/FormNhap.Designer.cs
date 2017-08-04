@@ -91,7 +91,7 @@
             // 
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnExit.Location = new System.Drawing.Point(1473, 60);
+            this.btnExit.Location = new System.Drawing.Point(1473, 61);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(104, 83);
             this.btnExit.TabIndex = 6;
@@ -103,7 +103,7 @@
             // 
             this.btnPrint.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrint.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.btnPrint.Location = new System.Drawing.Point(1366, 60);
+            this.btnPrint.Location = new System.Drawing.Point(1366, 61);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(94, 83);
             this.btnPrint.TabIndex = 5;
@@ -144,7 +144,7 @@
             this.btnOpenClose.BackColor = System.Drawing.Color.Transparent;
             this.btnOpenClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
             this.btnOpenClose.ForeColor = System.Drawing.Color.Red;
-            this.btnOpenClose.Location = new System.Drawing.Point(1094, 60);
+            this.btnOpenClose.Location = new System.Drawing.Point(1094, 61);
             this.btnOpenClose.Name = "btnOpenClose";
             this.btnOpenClose.Size = new System.Drawing.Size(260, 83);
             this.btnOpenClose.TabIndex = 4;

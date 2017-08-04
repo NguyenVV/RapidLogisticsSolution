@@ -64,7 +64,7 @@ namespace RapidWarehouse
                 this.Hide();
                 Program.Container.GetInstance<FormConfigDB>().Show();
             }
-
+            lblError.ForeColor = System.Drawing.Color.Red;
             lblError.Text = "Không có kết nối đến cơ sở dữ liệu!";
         }
 
@@ -91,6 +91,7 @@ namespace RapidWarehouse
                     }
                     else
                     {
+                        lblError.ForeColor = System.Drawing.Color.Red;
                         lblError.Text = "Bạn đã nhập sai User name hoặc Password, hãy thử lại!";
                     }
                 }

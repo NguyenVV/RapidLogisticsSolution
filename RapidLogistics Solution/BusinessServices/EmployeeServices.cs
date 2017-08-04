@@ -42,7 +42,6 @@ namespace BusinessServices
                 }
                 else
                 {
-                    employeeModel.Pasword = Security.Encrypt(employee.Pasword);
                     _unitOfWork.EmployeeRepository.Insert(employeeModel);
                 }
                 

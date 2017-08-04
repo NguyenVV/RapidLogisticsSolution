@@ -57,21 +57,24 @@ namespace RapidWarehouse
                         return;
                     }
 
+                    employeeCreateOrUpdate.Id = 0;
                     employeeCreateOrUpdate = new EmployeeEntity();
                     employeeCreateOrUpdate.Address = txtAddress.Text;
                     employeeCreateOrUpdate.BirthDate = dtpBirthDate.Value;
                     employeeCreateOrUpdate.DateCreated = DateTime.Now;
                     employeeCreateOrUpdate.Email = txtEmail.Text;
                     employeeCreateOrUpdate.FullName = txtFullName.Text;
-                    employeeCreateOrUpdate.Id = 0;
                     employeeCreateOrUpdate.Pasword = Security.Encrypt(txtPassword.Text);
                     employeeCreateOrUpdate.Phone = txtPhone.Text;
                     employeeCreateOrUpdate.Role = cbbRole.Text;
                     employeeCreateOrUpdate.Status = true;
                     employeeCreateOrUpdate.UserName = txtUserName.Text;
                     employeeCreateOrUpdate.WarehouseId = FormLogin.mWarehouse.Id;
-                    mEmployeeService.CreateOrUpdateEmployee(employeeCreateOrUpdate);
-                    MessageBox.Show("Tạo " + cbbRole.Text + " thành công !");
+
+                    if (mEmployeeService.CreateOrUpdateEmployee(employeeCreateOrUpdate) > 0)
+                        MessageBox.Show("Tạo " + txtUserName.Text + " với role " + cbbRole.Text + " thành công !");
+                    else
+                        MessageBox.Show("Tạo user name "+ txtUserName.Text + " với role " + cbbRole.Text + " thất bại !");
                 }
                 else
                 {

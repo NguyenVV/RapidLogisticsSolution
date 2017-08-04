@@ -34,6 +34,7 @@ namespace DataModel
         public string Content { get; set; }
         public Nullable<int> NumberPackage { get; set; }
         public Nullable<double> Weight { get; set; }
+        public Nullable<System.DateTime> DateOfCompletion { get; set; }
     
         public virtual BoxInfo BoxInfo { get; set; }
         public virtual Employee Employee { get; set; }
