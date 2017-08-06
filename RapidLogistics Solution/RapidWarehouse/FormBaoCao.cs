@@ -500,14 +500,14 @@ namespace RapidWarehouse
             table.Columns.Add(StringHeaderReports.NUMBER_PACKAGE);
             table.Columns.Add(StringHeaderReports.WEIGHT);
 
-            int totalThung = 0, index = 0;
+            int totalThung = 0, index = 1;
             int totalShipment;
             if (listDetail != null && listDetail.Count > 0)
             {
                 totalShipment = listDetail.Count;
-                totalThung = 1;
-                int boxId = listDetail[0].BoxIdRef;
-                for (int i = 1; i < totalShipment; i++)
+                totalThung = listDetail.Select(t=>t.BoxIdRef).Distinct().Count();
+
+                for (int i = 0; i < totalShipment; i++)
                 {
                     var shipment = listShipDetail.Find(t => t.ShipmentId == listDetail[i].ShipmentId);
                     DataRow row = table.NewRow();
@@ -521,12 +521,6 @@ namespace RapidWarehouse
                     row[StringHeaderReports.DECLARATION_NO] = "'" + shipment.DeclarationNo;
                     table.Rows.Add(row);
                     index++;
-
-                    if (boxId != listDetail[i].BoxIdRef)
-                    {
-                        totalThung++;
-                        boxId = listDetail[i].BoxIdRef;
-                    }
                 }
             }
             else

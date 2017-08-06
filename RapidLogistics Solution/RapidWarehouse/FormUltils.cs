@@ -180,6 +180,9 @@ namespace RapidWarehouse
                 worksheet.Range[worksheet.Cells[cellRowIndex, cellColumnIndex], worksheet.Cells[cellRowIndex, numberOfTableColumn]].VerticalAlignment = Microsoft.Office.Interop.Excel.XlVAlign.xlVAlignCenter;
                 worksheet.Range[worksheet.Cells[cellRowIndex, cellColumnIndex], worksheet.Cells[cellRowIndex, numberOfTableColumn]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
                 worksheet.Range[worksheet.Cells[cellRowIndex, cellColumnIndex], worksheet.Cells[cellRowIndex, numberOfTableColumn]].RowHeight = 40;
+                // set border
+                worksheet.Range[worksheet.Cells[cellRowIndex, cellColumnIndex], worksheet.Cells[cellRowIndex + numberOfTableRows, numberOfTableColumn]].Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                worksheet.Range[worksheet.Cells[cellRowIndex, cellColumnIndex], worksheet.Cells[cellRowIndex + numberOfTableRows, numberOfTableColumn]].Borders.Weight = Microsoft.Office.Interop.Excel.XlBorderWeight.xlThin;
                 for (int i = 0; i < numberOfTableColumn; i++)
                 {
                     worksheet.Cells[cellRowIndex, i + 1] = tableData.Columns[i].Caption;
@@ -187,10 +190,8 @@ namespace RapidWarehouse
                 }
                 //End headers
                 cellRowIndex++;
-                //Loop through each row and read value from each column. 
-                worksheet.Range[worksheet.Cells[cellRowIndex, cellColumnIndex], worksheet.Cells[cellRowIndex + numberOfTableRows, numberOfTableColumn + numberOfTableRows]].Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
-                worksheet.Range[worksheet.Cells[cellRowIndex, cellColumnIndex], worksheet.Cells[cellRowIndex + numberOfTableRows, numberOfTableColumn + numberOfTableRows]].Borders.Weight = Microsoft.Office.Interop.Excel.XlBorderWeight.xlThin;
-                for (int i = 0; i < numberOfTableRows - 1; i++)
+                //Loop through each row and read value from each column.
+                for (int i = 0; i < numberOfTableRows; i++)
                 {
                     for (int j = 0; j < numberOfTableColumn; j++)
                     {
