@@ -9,7 +9,7 @@ namespace BusinessEntities
     {
         string shipmentId, masterId, boxId;
         int totalShipment;
-
+        int index;
         public string BoxId
         {
             get
@@ -59,6 +59,19 @@ namespace BusinessEntities
             set
             {
                 totalShipment = value;
+            }
+        }
+
+        public int Index
+        {
+            get
+            {
+                return index;
+            }
+
+            set
+            {
+                index = value;
             }
         }
     }

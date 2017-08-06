@@ -190,10 +190,20 @@ namespace RapidWarehouse
         }
         private void ChiTietSanLuongNhapKho()
         {
-            List<ReportDetailEntity> listDetail = new List<ReportDetailEntity>();
+            DataTable table = new DataTable();
+            table.Columns.Add(StringHeaderReports.STT);
+            table.Columns.Add(StringHeaderReports.MAWB);
+            table.Columns.Add(StringHeaderReports.SHIPMENTNO);
+            table.Columns.Add(StringHeaderReports.DECLARATION_NO);
+            table.Columns.Add(StringHeaderReports.BOXID);
+            table.Columns.Add(StringHeaderReports.CONTENT);
+            table.Columns.Add(StringHeaderReports.NUMBER_PACKAGE);
+            table.Columns.Add(StringHeaderReports.WEIGHT);
+            //List<ReportDetailEntity> listDetail = new List<ReportDetailEntity>();
             List<MasterAirwayBillEntity> listMaster = (List<MasterAirwayBillEntity>)_masterBillServices.GetByDateArrived(dtpNgayBaoCao.Value);
             int totalThung = 0;
             int totalShipment = 0;
+            int index = 1;
             if (listMaster != null && listMaster.Count > 0)
             {
                 foreach (var item in listMaster)
@@ -208,11 +218,17 @@ namespace RapidWarehouse
                             {
                                 foreach (var ship in listShipment)
                                 {
-                                    ReportDetailEntity entity = new ReportDetailEntity();
-                                    entity.MasterId = item.MasterAirwayBill;
-                                    entity.BoxId = box.BoxId;
-                                    entity.ShipmentId = ship.ShipmentId;
-                                    listDetail.Add(entity);
+                                    DataRow row = table.NewRow();
+                                    row[StringHeaderReports.STT] = index;
+                                    row[StringHeaderReports.MAWB] = item.MasterAirwayBill;
+                                    row[StringHeaderReports.SHIPMENTNO] = ship.ShipmentId;
+                                    row[StringHeaderReports.DECLARATION_NO] = ship.DeclarationNo;
+                                    row[StringHeaderReports.BOXID] = box.BoxId;
+                                    row[StringHeaderReports.CONTENT] = ship.Content;
+                                    row[StringHeaderReports.NUMBER_PACKAGE] = ship.NumberPackage;
+                                    row[StringHeaderReports.WEIGHT] = ship.Weight;
+                                    table.Rows.Add(row);
+                                    index++;
                                 }
                                 totalShipment += listShipment.Count;
                             }
@@ -226,91 +242,99 @@ namespace RapidWarehouse
                 MessageBox.Show("Không có hàng nhập về vào ngày đã chọn");
                 return;
             }
+            Dictionary<string, string> first = new Dictionary<string, string>();
+            first.Add("NGÀY ĐẾN : ", dtpNgayBaoCao.Value.ToString("dd/MM/yyyy"));
+            Dictionary<string, string> second = new Dictionary<string, string>();
+            second.Add("TỔNG SỐ THÙNG: ", totalThung+"");
+            second.Add("TỔNG SỐ ĐƠN HÀNG: ",""+ totalShipment);
+            
             string fileNameExcel = Environment.CurrentDirectory + @"\ChiTietSanLuongNhapKho" + DateTime.Now.ToString("ddMMyyyHHmmss") + ".xls";
             //FormUltils.getInstance().ExcelExport(listDetail, fileNameExcel, true);
-            
-            string fileName = Environment.CurrentDirectory + @"\ChiTietSanLuongNhapKho" + DateTime.Now.ToString("ddMMyyyHHmmss") + ".doc";
-            string companyName = "CÔNG TY CP CÔNG NGHỆ THẦN TỐC\t\t\t\t\t\tIMW02";
-            string headlineText = "BẢNG KÊ CHI TIẾT SẢN LƯỢNG NHẬP KHO";
-            string ngayDen = "NGÀY ĐẾN : " + dtpNgayBaoCao.Value.ToString("dd/MM/yyyy") + "\n"
+            FormUltils.getInstance().ExportToExcel(table, fileNameExcel, StringHeaderReports.REPORTS_NAME_CHI_TIET_NHAP_KHO,StringHeaderReports.REPORT_CODE_02, first,second);
+            #region export to word
+            //string fileName = Environment.CurrentDirectory + @"\ChiTietSanLuongNhapKho" + DateTime.Now.ToString("ddMMyyyHHmmss") + ".doc";
+            //string companyName = "CÔNG TY CP CÔNG NGHỆ THẦN TỐC\t\t\t\t\t\tIMW02";
+            //string headlineText = "BẢNG KÊ CHI TIẾT SẢN LƯỢNG NHẬP KHO";
+            //string ngayDen = "NGÀY ĐẾN : " + dtpNgayBaoCao.Value.ToString("dd/MM/yyyy") + "\n"
 
-                            + "TỔNG SỐ THÙNG: " + totalThung
-                            + "\t\t\tTỔNG SỐ ĐƠN HÀNG: " + totalShipment;
-            string boPhanGiaoNhan = "BỘ PHẬN KHO\t\t\t\t\t\tBỘ PHẬN GIAO NHẬN";
+            //                + "TỔNG SỐ THÙNG: " + totalThung
+            //                + "\t\t\tTỔNG SỐ ĐƠN HÀNG: " + totalShipment;
+            //string boPhanGiaoNhan = "BỘ PHẬN KHO\t\t\t\t\t\tBỘ PHẬN GIAO NHẬN";
 
-            // A formatting object for our headline:
-            var headLineFormat = new Formatting();
-            headLineFormat.FontFamily = new System.Drawing.FontFamily("Times New Roman");
-            headLineFormat.Size = 18D;
-            headLineFormat.Position = 12;
-            headLineFormat.Bold = true;
+            //// A formatting object for our headline:
+            //var headLineFormat = new Formatting();
+            //headLineFormat.FontFamily = new System.Drawing.FontFamily("Times New Roman");
+            //headLineFormat.Size = 18D;
+            //headLineFormat.Position = 12;
+            //headLineFormat.Bold = true;
 
-            // A formatting object for our normal paragraph text:
-            var paraFormat = new Formatting();
-            paraFormat.FontFamily = new System.Drawing.FontFamily("Times New Roman");
-            paraFormat.Size = 12D;
-            paraFormat.Position = 10;
-            paraFormat.Bold = false;
-
-
-            var paraRightFormat = new Formatting();
-            paraRightFormat.FontFamily = new System.Drawing.FontFamily("Times New Roman");
-            paraRightFormat.Size = 12D;
-            paraRightFormat.Position = 12;
-            paraRightFormat.Bold = true;
-
-            // Create the document in memory:
-            var doc = DocX.Create(fileName);
-
-            Table table = doc.AddTable(listDetail.Count + 1, 7);
-
-            //table.ColumnWidths.Add(100); table.ColumnWidths.Add(500); table.ColumnWidths.Add(100);
-
-            table.Rows[0].Cells[0].Paragraphs.First().Append("STT").Font(new FontFamily("Times New Roman"));
-            //table.Rows[0].Cells[0].Width = 50;
-            table.Rows[0].Cells[1].Paragraphs.First().Append("Vận đơn chủ (MAWB)").Font(new FontFamily("Times New Roman")).Alignment = Alignment.center;
-            //table.Rows[0].Cells[1].Width = 800;
-            table.Rows[0].Cells[2].Paragraphs.First().Append("Mã đơn hàng (ShipmentNo)").Font(new FontFamily("Times New Roman")).Alignment = Alignment.center;
-            table.Rows[0].Cells[3].Paragraphs.First().Append("Mã thùng (BoxId)").Font(new FontFamily("Times New Roman")).Alignment = Alignment.center;
-            table.Rows[0].Cells[4].Paragraphs.First().Append("Nội dung (Content)").Font(new FontFamily("Times New Roman")).Alignment = Alignment.center;
-            table.Rows[0].Cells[5].Paragraphs.First().Append("Số lượng (Quantity)").Font(new FontFamily("Times New Roman")).Alignment = Alignment.center;
-            table.Rows[0].Cells[6].Paragraphs.First().Append("Trọng lượng (Weight)").Font(new FontFamily("Times New Roman")).Alignment = Alignment.center;
-            //table.Rows[0].Cells[2].Width = 100;
-            table.Rows[0].Cells[0].FillColor = Color.FromName("DarkGray");
-            table.Rows[0].Cells[1].FillColor = Color.FromName("DarkGray");
-            table.Rows[0].Cells[2].FillColor = Color.FromName("DarkGray");
-            table.Rows[0].Cells[3].FillColor = Color.FromName("DarkGray");
-            table.Rows[0].Cells[4].FillColor = Color.FromName("DarkGray");
-            table.Rows[0].Cells[5].FillColor = Color.FromName("DarkGray");
-            table.Rows[0].Cells[6].FillColor = Color.FromName("DarkGray");
+            //// A formatting object for our normal paragraph text:
+            //var paraFormat = new Formatting();
+            //paraFormat.FontFamily = new System.Drawing.FontFamily("Times New Roman");
+            //paraFormat.Size = 12D;
+            //paraFormat.Position = 10;
+            //paraFormat.Bold = false;
 
 
-            for (int i = 0; i < totalShipment; i++)
-            {
-                table.Rows[i + 1].Cells[0].Paragraphs.First().Append((i + 1) + "").Font(new FontFamily("Times New Roman"));
-                table.Rows[i + 1].Cells[1].Paragraphs.First().Append(listDetail[i].MasterId).Font(new FontFamily("Times New Roman"));
-                table.Rows[i + 1].Cells[2].Paragraphs.First().Append(listDetail[i].ShipmentId).Font(new FontFamily("Times New Roman"));
-                table.Rows[i + 1].Cells[3].Paragraphs.First().Append(listDetail[i].BoxId).Font(new FontFamily("Times New Roman"));
-                table.Rows[i + 1].Cells[4].Paragraphs.First().Append("").Font(new FontFamily("Times New Roman"));
-                table.Rows[i + 1].Cells[5].Paragraphs.First().Append("").Font(new FontFamily("Times New Roman"));
-                table.Rows[i + 1].Cells[6].Paragraphs.First().Append("").Font(new FontFamily("Times New Roman"));
-            }
+            //var paraRightFormat = new Formatting();
+            //paraRightFormat.FontFamily = new System.Drawing.FontFamily("Times New Roman");
+            //paraRightFormat.Size = 12D;
+            //paraRightFormat.Position = 12;
+            //paraRightFormat.Bold = true;
 
-            doc.InsertParagraph(companyName, false, paraFormat);
-            doc.InsertParagraph(Environment.NewLine);
-            // Insert the now text obejcts;
-            Paragraph title = doc.InsertParagraph(headlineText, false, headLineFormat);
-            title.Alignment = Alignment.center;
-            doc.InsertParagraph(ngayDen, false, paraFormat);
-            doc.InsertTable(table);
-            doc.InsertParagraph(Environment.NewLine);
-            Paragraph giaoNhan = doc.InsertParagraph(boPhanGiaoNhan, false, paraRightFormat);
-            giaoNhan.Alignment = Alignment.center;
-            // Save to the output directory:
+            //// Create the document in memory:
+            //var doc = DocX.Create(fileName);
 
-            doc.SaveAs(fileName);
-            // Open in Word:
-            Process.Start("WINWORD.EXE", "\"" + fileName + "\"");
+            //Table table = doc.AddTable(listDetail.Count + 1, 7);
+
+            ////table.ColumnWidths.Add(100); table.ColumnWidths.Add(500); table.ColumnWidths.Add(100);
+
+            //table.Rows[0].Cells[0].Paragraphs.First().Append("STT").Font(new FontFamily("Times New Roman"));
+            ////table.Rows[0].Cells[0].Width = 50;
+            //table.Rows[0].Cells[1].Paragraphs.First().Append("Vận đơn chủ (MAWB)").Font(new FontFamily("Times New Roman")).Alignment = Alignment.center;
+            ////table.Rows[0].Cells[1].Width = 800;
+            //table.Rows[0].Cells[2].Paragraphs.First().Append("Mã đơn hàng (ShipmentNo)").Font(new FontFamily("Times New Roman")).Alignment = Alignment.center;
+            //table.Rows[0].Cells[3].Paragraphs.First().Append("Mã thùng (BoxId)").Font(new FontFamily("Times New Roman")).Alignment = Alignment.center;
+            //table.Rows[0].Cells[4].Paragraphs.First().Append("Nội dung (Content)").Font(new FontFamily("Times New Roman")).Alignment = Alignment.center;
+            //table.Rows[0].Cells[5].Paragraphs.First().Append("Số lượng (Quantity)").Font(new FontFamily("Times New Roman")).Alignment = Alignment.center;
+            //table.Rows[0].Cells[6].Paragraphs.First().Append("Trọng lượng (Weight)").Font(new FontFamily("Times New Roman")).Alignment = Alignment.center;
+            ////table.Rows[0].Cells[2].Width = 100;
+            //table.Rows[0].Cells[0].FillColor = Color.FromName("DarkGray");
+            //table.Rows[0].Cells[1].FillColor = Color.FromName("DarkGray");
+            //table.Rows[0].Cells[2].FillColor = Color.FromName("DarkGray");
+            //table.Rows[0].Cells[3].FillColor = Color.FromName("DarkGray");
+            //table.Rows[0].Cells[4].FillColor = Color.FromName("DarkGray");
+            //table.Rows[0].Cells[5].FillColor = Color.FromName("DarkGray");
+            //table.Rows[0].Cells[6].FillColor = Color.FromName("DarkGray");
+
+
+            //for (int i = 0; i < totalShipment; i++)
+            //{
+            //    table.Rows[i + 1].Cells[0].Paragraphs.First().Append((i + 1) + "").Font(new FontFamily("Times New Roman"));
+            //    table.Rows[i + 1].Cells[1].Paragraphs.First().Append(listDetail[i].MasterId).Font(new FontFamily("Times New Roman"));
+            //    table.Rows[i + 1].Cells[2].Paragraphs.First().Append(listDetail[i].ShipmentId).Font(new FontFamily("Times New Roman"));
+            //    table.Rows[i + 1].Cells[3].Paragraphs.First().Append(listDetail[i].BoxId).Font(new FontFamily("Times New Roman"));
+            //    table.Rows[i + 1].Cells[4].Paragraphs.First().Append("").Font(new FontFamily("Times New Roman"));
+            //    table.Rows[i + 1].Cells[5].Paragraphs.First().Append("").Font(new FontFamily("Times New Roman"));
+            //    table.Rows[i + 1].Cells[6].Paragraphs.First().Append("").Font(new FontFamily("Times New Roman"));
+            //}
+
+            //doc.InsertParagraph(companyName, false, paraFormat);
+            //doc.InsertParagraph(Environment.NewLine);
+            //// Insert the now text obejcts;
+            //Paragraph title = doc.InsertParagraph(headlineText, false, headLineFormat);
+            //title.Alignment = Alignment.center;
+            //doc.InsertParagraph(ngayDen, false, paraFormat);
+            //doc.InsertTable(table);
+            //doc.InsertParagraph(Environment.NewLine);
+            //Paragraph giaoNhan = doc.InsertParagraph(boPhanGiaoNhan, false, paraRightFormat);
+            //giaoNhan.Alignment = Alignment.center;
+            //// Save to the output directory:
+
+            //doc.SaveAs(fileName);
+            //// Open in Word:
+            //Process.Start("WINWORD.EXE", "\"" + fileName + "\"");
+            #endregion
         }
 
         private void cbbMasterList_SelectedIndexChanged(object sender, EventArgs e)
@@ -459,13 +483,24 @@ namespace RapidWarehouse
 
         private void btnChiTietXuatKho_Click(object sender, EventArgs e)
         {
-            List<ShipmentOutEntity> listDetail = (List<ShipmentOutEntity>)_shipmentOutServices.GetByDate(dtpNgayXuatReport.Value);
-            ChiTietSanLuongXuatKho(listDetail);
+            List<ShipmentOutEntity> listOutDetail = (List<ShipmentOutEntity>)_shipmentOutServices.GetByDate(dtpNgayXuatReport.Value);
+            List<ShipmentEntity> listDetail = (List<ShipmentEntity>)_shipmentOutServices.GetByDateForReport(dtpNgayXuatReport.Value);
+            ChiTietSanLuongXuatKho(listOutDetail, listDetail);
         }
 
-        private void ChiTietSanLuongXuatKho(List<ShipmentOutEntity> listDetail, string masterBillIdString = null, string boxIdString=null)
+        private void ChiTietSanLuongXuatKho(List<ShipmentOutEntity> listDetail, List<ShipmentEntity> listShipDetail, string masterBillIdString = null, string boxIdString=null)
         {
-            int totalThung = 0;
+            DataTable table = new DataTable();
+            table.Columns.Add(StringHeaderReports.STT);
+            table.Columns.Add(StringHeaderReports.MAWB);
+            table.Columns.Add(StringHeaderReports.BOXID);
+            table.Columns.Add(StringHeaderReports.SHIPMENTNO);
+            table.Columns.Add(StringHeaderReports.DECLARATION_NO, typeof(string));
+            table.Columns.Add(StringHeaderReports.CONTENT);
+            table.Columns.Add(StringHeaderReports.NUMBER_PACKAGE);
+            table.Columns.Add(StringHeaderReports.WEIGHT);
+
+            int totalThung = 0, index = 0;
             int totalShipment;
             if (listDetail != null && listDetail.Count > 0)
             {
@@ -474,6 +509,19 @@ namespace RapidWarehouse
                 int boxId = listDetail[0].BoxIdRef;
                 for (int i = 1; i < totalShipment; i++)
                 {
+                    var shipment = listShipDetail.Find(t => t.ShipmentId == listDetail[i].ShipmentId);
+                    DataRow row = table.NewRow();
+                    row[StringHeaderReports.STT] = index;
+                    row[StringHeaderReports.MAWB] = listDetail[i].MasterBillIdString;
+                    row[StringHeaderReports.SHIPMENTNO] = listDetail[i].ShipmentId;
+                    row[StringHeaderReports.BOXID] = listDetail[i].BoxIdString;
+                    row[StringHeaderReports.CONTENT] = shipment.Content;
+                    row[StringHeaderReports.NUMBER_PACKAGE] = shipment.NumberPackage;
+                    row[StringHeaderReports.WEIGHT] = shipment.Weight;
+                    row[StringHeaderReports.DECLARATION_NO] = "'" + shipment.DeclarationNo;
+                    table.Rows.Add(row);
+                    index++;
+
                     if (boxId != listDetail[i].BoxIdRef)
                     {
                         totalThung++;
@@ -487,101 +535,118 @@ namespace RapidWarehouse
                 return;
             }
 
-            string infoHeader = "TỔNG SỐ THÙNG: " + totalThung;
-            if(boxIdString != null)
+            string infoHeader = "TỔNG SỐ THÙNG: ";
+            string value = "" + totalThung;
+            string reportCode = StringHeaderReports.REPORT_CODE_01;
+            if (boxIdString != null)
             {
-                infoHeader = "MÃ THÙNG: " + boxIdString;
+                infoHeader = "MÃ THÙNG: ";
+                value = boxIdString;
+                reportCode = StringHeaderReports.REPORT_CODE_03;
             }
             else
             {
                 if(masterBillIdString!= null)
                 {
-                    infoHeader = "MÃ MAWB: " + masterBillIdString;
+                    infoHeader = "MÃ MAWB: " ;
+                    value = masterBillIdString;
+                    reportCode = StringHeaderReports.REPORT_CODE_02;
                 }
             }
 
-            string fileName = Environment.CurrentDirectory + @"\ChiTietSanLuongXuatKho" + DateTime.Now.ToString("ddMMyyyHHmmss") + ".doc";
-            string companyName = "CÔNG TY CP CÔNG NGHỆ THẦN TỐC\t\t\t\t\t\tEMW01";
-            string headlineText = "BẢNG KÊ CHI TIẾT SẢN LƯỢNG XUẤT KHO";
-            string ngayDen = "NGÀY XUẤT : " + dtpNgayXuatReport.Value.ToString("dd/MM/yyyy") + "\n"
+            Dictionary<string, string> first = new Dictionary<string, string>();
+            first.Add("NGÀY XUẤT : ", dtpNgayXuatReport.Value.ToString("dd/MM/yyyy"));
+            Dictionary<string, string> second = new Dictionary<string, string>();
+            second.Add(infoHeader, value);
+            second.Add("TỔNG SỐ ĐƠN HÀNG: ", "" + totalShipment);
 
-                            + infoHeader
-                            + "\t\t\tTỔNG SỐ ĐƠN HÀNG: " + totalShipment;
-            string boPhanGiaoNhan = "BỘ PHẬN KHO\t\t\t\t\t\tBỘ PHẬN GIAO NHẬN";
+            string fileNameExcel = Environment.CurrentDirectory + @"\ChiTietSanLuongXuatKho" + DateTime.Now.ToString("ddMMyyyHHmmss") + ".xls";
+            //FormUltils.getInstance().ExcelExport(listDetail, fileNameExcel, true);
+            FormUltils.getInstance().ExportToExcel(table, fileNameExcel, StringHeaderReports.REPORTS_NAME_CHI_TIET_XUAT_KHO, reportCode, first, second);
+            #region word export
+            //string fileName = Environment.CurrentDirectory + @"\ChiTietSanLuongXuatKho" + DateTime.Now.ToString("ddMMyyyHHmmss") + ".doc";
+            //string companyName = "CÔNG TY CP CÔNG NGHỆ THẦN TỐC\t\t\t\t\t\tEMW01";
+            //string headlineText = "BẢNG KÊ CHI TIẾT SẢN LƯỢNG XUẤT KHO";
+            //string ngayDen = "NGÀY XUẤT : " + dtpNgayXuatReport.Value.ToString("dd/MM/yyyy") + "\n"
 
-            // A formatting object for our headline:
-            var headLineFormat = new Formatting();
-            headLineFormat.FontFamily = new System.Drawing.FontFamily("Times New Roman");
-            headLineFormat.Size = 18D;
-            headLineFormat.Position = 12;
-            headLineFormat.Bold = true;
+            //                + infoHeader
+            //                + "\t\t\tTỔNG SỐ ĐƠN HÀNG: " + totalShipment;
+            //string boPhanGiaoNhan = "BỘ PHẬN KHO\t\t\t\t\t\tBỘ PHẬN GIAO NHẬN";
 
-            // A formatting object for our normal paragraph text:
-            var paraFormat = new Formatting();
-            paraFormat.FontFamily = new System.Drawing.FontFamily("Times New Roman");
-            paraFormat.Size = 12D;
-            paraFormat.Position = 10;
-            paraFormat.Bold = false;
+            //// A formatting object for our headline:
+            //var headLineFormat = new Formatting();
+            //headLineFormat.FontFamily = new System.Drawing.FontFamily("Times New Roman");
+            //headLineFormat.Size = 18D;
+            //headLineFormat.Position = 12;
+            //headLineFormat.Bold = true;
 
-
-            var paraRightFormat = new Formatting();
-            paraRightFormat.FontFamily = new System.Drawing.FontFamily("Times New Roman");
-            paraRightFormat.Size = 12D;
-            paraRightFormat.Position = 12;
-            paraRightFormat.Bold = true;
-
-            // Create the document in memory:
-            var doc = DocX.Create(fileName);
-
-            Table table = doc.AddTable(listDetail.Count + 1, 7);
-
-            //table.ColumnWidths.Add(100); table.ColumnWidths.Add(500); table.ColumnWidths.Add(100);
-
-            table.Rows[0].Cells[0].Paragraphs.First().Append("STT").Font(new FontFamily("Times New Roman"));
-            //table.Rows[0].Cells[0].Width = 50;
-            table.Rows[0].Cells[1].Paragraphs.First().Append("Vận đơn chủ (MAWB)").Font(new FontFamily("Times New Roman")).Alignment = Alignment.center;
-            //table.Rows[0].Cells[1].Width = 800;
-            table.Rows[0].Cells[2].Paragraphs.First().Append("Mã đơn hàng (ShipmentNo)").Font(new FontFamily("Times New Roman")).Alignment = Alignment.center;
-            table.Rows[0].Cells[3].Paragraphs.First().Append("Mã thùng (BoxId)").Font(new FontFamily("Times New Roman")).Alignment = Alignment.center;
-            table.Rows[0].Cells[4].Paragraphs.First().Append("Nội dung (Content)").Font(new FontFamily("Times New Roman")).Alignment = Alignment.center;
-            table.Rows[0].Cells[5].Paragraphs.First().Append("Số lượng (Quantity)").Font(new FontFamily("Times New Roman")).Alignment = Alignment.center;
-            table.Rows[0].Cells[6].Paragraphs.First().Append("Trọng lượng (Weight)").Font(new FontFamily("Times New Roman")).Alignment = Alignment.center;
-            //table.Rows[0].Cells[2].Width = 100;
-            table.Rows[0].Cells[0].FillColor = Color.FromName("DarkGray");
-            table.Rows[0].Cells[1].FillColor = Color.FromName("DarkGray");
-            table.Rows[0].Cells[2].FillColor = Color.FromName("DarkGray");
-            table.Rows[0].Cells[3].FillColor = Color.FromName("DarkGray");
-            table.Rows[0].Cells[4].FillColor = Color.FromName("DarkGray");
-            table.Rows[0].Cells[5].FillColor = Color.FromName("DarkGray");
-            table.Rows[0].Cells[6].FillColor = Color.FromName("DarkGray");
+            //// A formatting object for our normal paragraph text:
+            //var paraFormat = new Formatting();
+            //paraFormat.FontFamily = new System.Drawing.FontFamily("Times New Roman");
+            //paraFormat.Size = 12D;
+            //paraFormat.Position = 10;
+            //paraFormat.Bold = false;
 
 
-            for (int i = 0; i < totalShipment; i++)
-            {
-                table.Rows[i + 1].Cells[0].Paragraphs.First().Append((i + 1) + "").Font(new FontFamily("Times New Roman"));
-                table.Rows[i + 1].Cells[1].Paragraphs.First().Append(listDetail[i].MasterBillIdString).Font(new FontFamily("Times New Roman"));
-                table.Rows[i + 1].Cells[2].Paragraphs.First().Append(listDetail[i].ShipmentId).Font(new FontFamily("Times New Roman"));
-                table.Rows[i + 1].Cells[3].Paragraphs.First().Append(listDetail[i].BoxIdString).Font(new FontFamily("Times New Roman"));
-                table.Rows[i + 1].Cells[4].Paragraphs.First().Append("").Font(new FontFamily("Times New Roman"));
-                table.Rows[i + 1].Cells[5].Paragraphs.First().Append("").Font(new FontFamily("Times New Roman"));
-                table.Rows[i + 1].Cells[6].Paragraphs.First().Append("").Font(new FontFamily("Times New Roman"));
-            }
+            //var paraRightFormat = new Formatting();
+            //paraRightFormat.FontFamily = new System.Drawing.FontFamily("Times New Roman");
+            //paraRightFormat.Size = 12D;
+            //paraRightFormat.Position = 12;
+            //paraRightFormat.Bold = true;
 
-            doc.InsertParagraph(companyName, false, paraFormat);
-            doc.InsertParagraph(Environment.NewLine);
-            // Insert the now text obejcts;
-            Paragraph title = doc.InsertParagraph(headlineText, false, headLineFormat);
-            title.Alignment = Alignment.center;
-            doc.InsertParagraph(ngayDen, false, paraFormat);
-            doc.InsertTable(table);
-            doc.InsertParagraph(Environment.NewLine);
-            Paragraph giaoNhan = doc.InsertParagraph(boPhanGiaoNhan, false, paraRightFormat);
-            giaoNhan.Alignment = Alignment.center;
-            // Save to the output directory:
+            //// Create the document in memory:
+            //var doc = DocX.Create(fileName);
 
-            doc.SaveAs(fileName);
-            // Open in Word:
-            Process.Start("WINWORD.EXE", "\"" + fileName + "\"");
+            //Table table = doc.AddTable(listDetail.Count + 1, 7);
+
+            ////table.ColumnWidths.Add(100); table.ColumnWidths.Add(500); table.ColumnWidths.Add(100);
+
+            //table.Rows[0].Cells[0].Paragraphs.First().Append("STT").Font(new FontFamily("Times New Roman"));
+            ////table.Rows[0].Cells[0].Width = 50;
+            //table.Rows[0].Cells[1].Paragraphs.First().Append("Vận đơn chủ (MAWB)").Font(new FontFamily("Times New Roman")).Alignment = Alignment.center;
+            ////table.Rows[0].Cells[1].Width = 800;
+            //table.Rows[0].Cells[2].Paragraphs.First().Append("Mã đơn hàng (ShipmentNo)").Font(new FontFamily("Times New Roman")).Alignment = Alignment.center;
+            //table.Rows[0].Cells[3].Paragraphs.First().Append("Mã thùng (BoxId)").Font(new FontFamily("Times New Roman")).Alignment = Alignment.center;
+            //table.Rows[0].Cells[4].Paragraphs.First().Append("Nội dung (Content)").Font(new FontFamily("Times New Roman")).Alignment = Alignment.center;
+            //table.Rows[0].Cells[5].Paragraphs.First().Append("Số lượng (Quantity)").Font(new FontFamily("Times New Roman")).Alignment = Alignment.center;
+            //table.Rows[0].Cells[6].Paragraphs.First().Append("Trọng lượng (Weight)").Font(new FontFamily("Times New Roman")).Alignment = Alignment.center;
+            ////table.Rows[0].Cells[2].Width = 100;
+            //table.Rows[0].Cells[0].FillColor = Color.FromName("DarkGray");
+            //table.Rows[0].Cells[1].FillColor = Color.FromName("DarkGray");
+            //table.Rows[0].Cells[2].FillColor = Color.FromName("DarkGray");
+            //table.Rows[0].Cells[3].FillColor = Color.FromName("DarkGray");
+            //table.Rows[0].Cells[4].FillColor = Color.FromName("DarkGray");
+            //table.Rows[0].Cells[5].FillColor = Color.FromName("DarkGray");
+            //table.Rows[0].Cells[6].FillColor = Color.FromName("DarkGray");
+
+
+            //for (int i = 0; i < totalShipment; i++)
+            //{
+            //    table.Rows[i + 1].Cells[0].Paragraphs.First().Append((i + 1) + "").Font(new FontFamily("Times New Roman"));
+            //    table.Rows[i + 1].Cells[1].Paragraphs.First().Append(listDetail[i].MasterBillIdString).Font(new FontFamily("Times New Roman"));
+            //    table.Rows[i + 1].Cells[2].Paragraphs.First().Append(listDetail[i].ShipmentId).Font(new FontFamily("Times New Roman"));
+            //    table.Rows[i + 1].Cells[3].Paragraphs.First().Append(listDetail[i].BoxIdString).Font(new FontFamily("Times New Roman"));
+            //    table.Rows[i + 1].Cells[4].Paragraphs.First().Append("").Font(new FontFamily("Times New Roman"));
+            //    table.Rows[i + 1].Cells[5].Paragraphs.First().Append("").Font(new FontFamily("Times New Roman"));
+            //    table.Rows[i + 1].Cells[6].Paragraphs.First().Append("").Font(new FontFamily("Times New Roman"));
+            //}
+
+            //doc.InsertParagraph(companyName, false, paraFormat);
+            //doc.InsertParagraph(Environment.NewLine);
+            //// Insert the now text obejcts;
+            //Paragraph title = doc.InsertParagraph(headlineText, false, headLineFormat);
+            //title.Alignment = Alignment.center;
+            //doc.InsertParagraph(ngayDen, false, paraFormat);
+            //doc.InsertTable(table);
+            //doc.InsertParagraph(Environment.NewLine);
+            //Paragraph giaoNhan = doc.InsertParagraph(boPhanGiaoNhan, false, paraRightFormat);
+            //giaoNhan.Alignment = Alignment.center;
+            //// Save to the output directory:
+
+            //doc.SaveAs(fileName);
+            //// Open in Word:
+            //Process.Start("WINWORD.EXE", "\"" + fileName + "\"");
+            #endregion
         }
 
         private void btnSanLuongTonKho_Click(object sender, EventArgs e)
@@ -726,8 +791,7 @@ namespace RapidWarehouse
             // Open in Word:
             Process.Start("WINWORD.EXE", "\"" + fileName + "\"");
         }
-
-
+        
         private void BangKeChiTietSanLuongTonKho()
         {
             List<ReportDetailEntity> listDetail = new List<ReportDetailEntity>();
@@ -960,7 +1024,8 @@ namespace RapidWarehouse
             if (master != null)
             {
                 List<ShipmentOutEntity> listDetail = (List<ShipmentOutEntity>)_shipmentOutServices.GetByMasterBillId(master.Id);
-                ChiTietSanLuongXuatKho(listDetail, master.MasterAirwayBill);
+                List<ShipmentEntity> listShipDetail = (List<ShipmentEntity>)_shipmentOutServices.GetByMasterBillIdForReport(master.Id);
+                ChiTietSanLuongXuatKho(listDetail, listShipDetail, master.MasterAirwayBill);
             }
             else
             {
@@ -974,7 +1039,8 @@ namespace RapidWarehouse
             if (box != null)
             {
                 List<ShipmentOutEntity> listDetail = (List<ShipmentOutEntity>)_shipmentOutServices.GetByBoxId(box.Id);
-                ChiTietSanLuongXuatKho(listDetail, null, box.BoxId);
+                List<ShipmentEntity> listShipDetail = (List<ShipmentEntity>)_shipmentOutServices.GetByBoxIdForReport(box.Id);
+                ChiTietSanLuongXuatKho(listDetail, listShipDetail, box.BoxId);
             }
             else
             {
@@ -985,6 +1051,173 @@ namespace RapidWarehouse
         private void dtpNgayXuatReport_ValueChanged(object sender, EventArgs e)
         {
             LoadAllMasterBillByDateToCombobox(dtpNgayXuatReport.Value, cbbMasterBillOut);
+        }
+
+        private void btnReportQuater_Click(object sender, EventArgs e)
+        {
+            if (ccbQuarter.SelectedIndex < 0)
+            {
+                MessageBox.Show("Hãy chọn quý để làm báo cáo", "Hãy chọn quý", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ccbQuarter.Focus();
+                return;
+            }
+            DateTime start, end;
+            int quarter = 4;
+            switch (ccbQuarter.SelectedIndex)
+            {
+                case 0:
+                    start = new DateTime(DateTime.Now.Year, 1, 1);
+                    end = new DateTime(DateTime.Now.Year, 3, 31);
+                    quarter = 1;
+                    break;
+                case 1:
+                    start = new DateTime(DateTime.Now.Year, 4, 1);
+                    end = new DateTime(DateTime.Now.Year, 6, 30);
+                    quarter = 2;
+                    break;
+                case 2:
+                    start = new DateTime(DateTime.Now.Year, 7, 1);
+                    end = new DateTime(DateTime.Now.Year, 9, 30);
+                    quarter = 3;
+                    break;
+                case 3:
+                    start = new DateTime(DateTime.Now.Year, 10, 1);
+                    end = new DateTime(DateTime.Now.Year, 12, 31);
+                    quarter = 4;
+                    break;
+                default:
+                    start = new DateTime(DateTime.Now.Year - 1, 10, 1);
+                    end = new DateTime(DateTime.Now.Year - 1, 12, 31);
+                    quarter = 4;
+                    break;
+            }
+            BangKeChiTietSanLuongTonKhoTheoQuy(start, end, quarter);
+        }
+        private void BangKeChiTietSanLuongTonKhoTheoQuy(DateTime start, DateTime end, int quarter)
+        {
+            List<ShipmentEntity> listXuatKho = (List<ShipmentEntity>)_shipmentOutServices.GetListNotDeliveryByQuarter(start, end);
+            int totalShipment =0;
+            if (listXuatKho != null && listXuatKho.Count > 0)
+            {
+                totalShipment = listXuatKho.Count;
+            }
+            else
+            {
+                MessageBox.Show("Không có hàng tồn vào quý đã chọn đã chọn");
+                return;
+            }
+
+            string fileName = Environment.CurrentDirectory + @"\BangKeChiTietSanLuongTonKhoTheoQuy" + DateTime.Now.ToString("ddMMyyyHHmmss") + ".doc";
+            string companyName = "CÔNG TY CP CÔNG NGHỆ THẦN TỐC";
+            string headlineText = "MẪU CUNG CẤP THÔNG TIN HÀNG TỒN ĐỌNG";
+            string ngayDen = "Về các vận đơn quá 90 ngày, kể từ ngày hàng đến cửa khẩu nhập chưa có người nhận tại..........................\n"
+
+                            + "(Theo quy định tại Thông tư số 203/2014/TT-BTC)"
+                            + "\n(Kỳ báo cáo: Quý..." + quarter+"... năm..."+start.Year+"...\n\n"
+                            + "Kính gửi: Doanh nghiệp kinh doanh cảng, kho bãi...";
+            string boPhanGiaoNhan = "Nơi nhận\t\t\t\t\t\t\tGIÁM ĐỐC DOANH NGHIỆP";
+            string noiNhan = "Cục Hải quan...\t\t\t\t\t\t(Ký, ghi rõ họ tên, đóng dấu)";
+            string noiNhan1 = "Chi cục Hải quan(quản lý kho)...";
+            string note = "Ghi chú: ";
+            string noteContent = "Ô số (9) ghi rõ: Hàng hóa từ bỏ, quá thời hạn khai hải quan, hàng hóa thu gom không người nhận, hàng hóa ngoài vận đơn, bản khai.";
+
+            // A formatting object for our headline:
+            var headLineFormat = new Formatting();
+            headLineFormat.FontFamily = new System.Drawing.FontFamily("Times New Roman");
+            headLineFormat.Size = 18D;
+            headLineFormat.Position = 12;
+            headLineFormat.Bold = true;
+
+            // A formatting object for our normal paragraph text:
+            var paraFormat = new Formatting();
+            paraFormat.FontFamily = new System.Drawing.FontFamily("Times New Roman");
+            paraFormat.Size = 12D;
+            paraFormat.Position = 10;
+            paraFormat.Bold = false;
+
+
+            var paraRightFormat = new Formatting();
+            paraRightFormat.FontFamily = new System.Drawing.FontFamily("Times New Roman");
+            paraRightFormat.Size = 12D;
+            paraRightFormat.Position = 12;
+            paraRightFormat.Bold = true;
+
+            // Create the document in memory:
+            var doc = DocX.Create(fileName);
+
+            Table table = doc.AddTable(totalShipment + 2, 11);
+
+            //table.ColumnWidths.Add(100); table.ColumnWidths.Add(500); table.ColumnWidths.Add(100);
+
+            table.Rows[0].Cells[0].Paragraphs.First().Append("TT").Font(new FontFamily("Times New Roman")).Bold();
+            //table.Rows[0].Cells[0].Width = 50;
+            table.Rows[0].Cells[1].Paragraphs.First().Append("Tên hàng").Font(new FontFamily("Times New Roman")).Bold().Alignment = Alignment.center;
+            //table.Rows[0].Cells[1].Width = 800;
+            table.Rows[0].Cells[2].Paragraphs.First().Append("Số lượng, trọng lượng").Font(new FontFamily("Times New Roman")).Bold().Alignment = Alignment.center;
+            table.Rows[0].Cells[3].Paragraphs.First().Append("Số, loại cont/số seal").Font(new FontFamily("Times New Roman")).Bold().Alignment = Alignment.center;
+            table.Rows[0].Cells[4].Paragraphs.First().Append("Người gửi, địa chỉ").Font(new FontFamily("Times New Roman")).Bold().Alignment = Alignment.center;
+            table.Rows[0].Cells[5].Paragraphs.First().Append("Người nhận, địa chỉ").Font(new FontFamily("Times New Roman")).Bold().Alignment = Alignment.center;
+            table.Rows[0].Cells[6].Paragraphs.First().Append("Số/ngày vận đơn").Font(new FontFamily("Times New Roman")).Bold().Alignment = Alignment.center;
+            table.Rows[0].Cells[7].Paragraphs.First().Append("Tên PTVT/ngày nhập cảnh").Font(new FontFamily("Times New Roman")).Bold().Alignment = Alignment.center;
+            table.Rows[0].Cells[8].Paragraphs.First().Append("Vị trí/địa điểm lưu giữ hàng").Font(new FontFamily("Times New Roman")).Bold().Alignment = Alignment.center;
+            table.Rows[0].Cells[9].Paragraphs.First().Append("Phân loại tồn đọng").Font(new FontFamily("Times New Roman")).Bold().Alignment = Alignment.center;
+            table.Rows[0].Cells[10].Paragraphs.First().Append("Ghi chú").Font(new FontFamily("Times New Roman")).Bold().Alignment = Alignment.center;
+
+            table.Rows[1].Cells[0].Paragraphs.First().Append("(1)").Font(new FontFamily("Times New Roman"));
+            table.Rows[1].Cells[1].Paragraphs.First().Append("(2)").Font(new FontFamily("Times New Roman")).Alignment = Alignment.center;
+            table.Rows[1].Cells[2].Paragraphs.First().Append("(3)").Font(new FontFamily("Times New Roman")).Alignment = Alignment.center;
+            //table.Rows[1].Cells[3].Paragraphs.First().Append("(2)").Font(new FontFamily("Times New Roman")).Alignment = Alignment.center;
+            table.Rows[1].Cells[4].Paragraphs.First().Append("(4)").Font(new FontFamily("Times New Roman")).Alignment = Alignment.center;
+            table.Rows[1].Cells[5].Paragraphs.First().Append("(5)").Font(new FontFamily("Times New Roman")).Alignment = Alignment.center;
+            table.Rows[1].Cells[6].Paragraphs.First().Append("(6)").Font(new FontFamily("Times New Roman")).Alignment = Alignment.center;
+            table.Rows[1].Cells[7].Paragraphs.First().Append("(7)").Font(new FontFamily("Times New Roman")).Alignment = Alignment.center;
+            table.Rows[1].Cells[8].Paragraphs.First().Append("(8)").Font(new FontFamily("Times New Roman")).Alignment = Alignment.center;
+            table.Rows[1].Cells[9].Paragraphs.First().Append("(9)").Font(new FontFamily("Times New Roman")).Alignment = Alignment.center;
+            table.Rows[1].Cells[10].Paragraphs.First().Append("(10)").Font(new FontFamily("Times New Roman")).Alignment = Alignment.center;
+
+            for (int i = 0; i < totalShipment; i++)
+            {
+                table.Rows[i + 2].Cells[0].Paragraphs.First().Append((i + 1) + "").Font(new FontFamily("Times New Roman"));
+                table.Rows[i + 2].Cells[1].Paragraphs.First().Append(listXuatKho[i].Content).Font(new FontFamily("Times New Roman"));
+                table.Rows[i + 2].Cells[2].Paragraphs.First().Append(Convert.ToString(listXuatKho[i].Weight)).Font(new FontFamily("Times New Roman"));
+                table.Rows[i + 2].Cells[3].Paragraphs.First().Append(_boxInforServices.GetBoxIdStringById(listXuatKho[i].BoxId)).Font(new FontFamily("Times New Roman"));
+                table.Rows[i + 2].Cells[4].Paragraphs.First().Append(listXuatKho[i].Sender != null?listXuatKho[i].Sender + ", ":"" + listXuatKho[i].Country).Font(new FontFamily("Times New Roman"));
+                table.Rows[i + 2].Cells[5].Paragraphs.First().Append(listXuatKho[i].Receiver != null ?listXuatKho[i].Receiver + ", ":"" + listXuatKho[i].Address).Font(new FontFamily("Times New Roman"));
+                table.Rows[i + 2].Cells[6].Paragraphs.First().Append(listXuatKho[i].ShipmentId + "/" + (listXuatKho[i].DateCreated != new DateTime() ? listXuatKho[i].DateCreated.ToString("dd-MM-yyyy"):"")).Font(new FontFamily("Times New Roman"));
+
+                table.Rows[i + 2].Cells[7].Paragraphs.First().Append(listXuatKho[i].DateOfCompletion != new DateTime()?listXuatKho[i].DateOfCompletion.ToString("dd-MM-yyyy"):"").Font(new FontFamily("Times New Roman"));
+                table.Rows[i + 2].Cells[8].Paragraphs.First().Append(listXuatKho[i].Consignee).Font(new FontFamily("Times New Roman"));
+                table.Rows[i + 2].Cells[9].Paragraphs.First().Append("Hàng hóa thu gom không người nhận").Font(new FontFamily("Times New Roman"));
+                table.Rows[i + 2].Cells[10].Paragraphs.First().Append("").Font(new FontFamily("Times New Roman"));
+            }
+
+            doc.InsertParagraph(companyName, false, paraFormat);
+            doc.InsertParagraph(Environment.NewLine);
+            // Insert the now text obejcts;
+            Paragraph title = doc.InsertParagraph(headlineText, false, headLineFormat);
+            title.Alignment = Alignment.center;
+            Paragraph title1 = doc.InsertParagraph(ngayDen, false, paraFormat);
+            title1.Alignment = Alignment.center;
+            doc.InsertTable(table);
+            doc.InsertParagraph(Environment.NewLine);
+            Paragraph giaoNhan = doc.InsertParagraph(boPhanGiaoNhan, false, paraRightFormat);
+            giaoNhan.Alignment = Alignment.center;
+            //doc.InsertParagraph(Environment.NewLine);
+            Paragraph noiNhanPara = doc.InsertParagraph(noiNhan, false, paraFormat);
+            giaoNhan.Alignment = Alignment.center;
+            //doc.InsertParagraph(Environment.NewLine);
+            Paragraph noiNhanPara1 = doc.InsertParagraph(noiNhan1, false, paraFormat);
+            giaoNhan.Alignment = Alignment.center;
+            //doc.InsertParagraph(Environment.NewLine);
+            doc.InsertParagraph(Environment.NewLine);
+            Paragraph ghichuPara = doc.InsertParagraph(note, false, paraRightFormat);
+            giaoNhan.Alignment = Alignment.center;
+            Paragraph ghichuContentPara = doc.InsertParagraph(noteContent, false, paraFormat);
+            giaoNhan.Alignment = Alignment.center;
+            // Save to the output directory:
+            doc.SaveAs(fileName);
+            // Open in Word:
+            Process.Start("WINWORD.EXE", "\"" + fileName + "\"");
         }
     }
 }

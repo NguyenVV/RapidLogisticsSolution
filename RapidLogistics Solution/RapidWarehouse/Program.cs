@@ -39,10 +39,6 @@ namespace RapidWarehouse
                 {
                     MessageBox.Show("Đã có lỗi xảy ra khi xử lý chương trình !\nChúng tôi đã ghi nhận\nVui lòng thử lại sau!", "Có lỗi xảy ra", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                else
-                {
-                    throw ex;
-                }
             }
         }
 

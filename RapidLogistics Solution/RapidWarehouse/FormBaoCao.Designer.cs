@@ -60,6 +60,9 @@
             this.label20 = new System.Windows.Forms.Label();
             this.dtpNgayXuatReport = new System.Windows.Forms.DateTimePicker();
             this.btnChiTietXuatKho = new System.Windows.Forms.Button();
+            this.btnReportQuater = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.ccbQuarter = new System.Windows.Forms.ComboBox();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabNhap.SuspendLayout();
@@ -70,6 +73,9 @@
             // 
             this.tabPage3.AutoScroll = true;
             this.tabPage3.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.tabPage3.Controls.Add(this.ccbQuarter);
+            this.tabPage3.Controls.Add(this.label6);
+            this.tabPage3.Controls.Add(this.btnReportQuater);
             this.tabPage3.Controls.Add(this.label5);
             this.tabPage3.Controls.Add(this.btnKeChiTietSanLuongTonKho);
             this.tabPage3.Controls.Add(this.label23);
@@ -101,7 +107,7 @@
             // btnKeChiTietSanLuongTonKho
             // 
             this.btnKeChiTietSanLuongTonKho.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnKeChiTietSanLuongTonKho.Location = new System.Drawing.Point(896, 183);
+            this.btnKeChiTietSanLuongTonKho.Location = new System.Drawing.Point(681, 196);
             this.btnKeChiTietSanLuongTonKho.Name = "btnKeChiTietSanLuongTonKho";
             this.btnKeChiTietSanLuongTonKho.Size = new System.Drawing.Size(309, 152);
             this.btnKeChiTietSanLuongTonKho.TabIndex = 51;
@@ -113,7 +119,7 @@
             // 
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.label23.Location = new System.Drawing.Point(787, 103);
+            this.label23.Location = new System.Drawing.Point(607, 112);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(155, 31);
             this.label23.TabIndex = 50;
@@ -123,7 +129,7 @@
             // 
             this.dtpTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpTo.Location = new System.Drawing.Point(967, 103);
+            this.dtpTo.Location = new System.Drawing.Point(787, 112);
             this.dtpTo.Name = "dtpTo";
             this.dtpTo.Size = new System.Drawing.Size(203, 35);
             this.dtpTo.TabIndex = 49;
@@ -132,7 +138,7 @@
             // 
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.label22.Location = new System.Drawing.Point(343, 103);
+            this.label22.Location = new System.Drawing.Point(163, 112);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(128, 31);
             this.label22.TabIndex = 48;
@@ -142,7 +148,7 @@
             // 
             this.dtpFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFrom.Location = new System.Drawing.Point(523, 103);
+            this.dtpFrom.Location = new System.Drawing.Point(343, 112);
             this.dtpFrom.Name = "dtpFrom";
             this.dtpFrom.Size = new System.Drawing.Size(203, 35);
             this.dtpFrom.TabIndex = 47;
@@ -150,7 +156,7 @@
             // btnSanLuongTonKho
             // 
             this.btnSanLuongTonKho.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSanLuongTonKho.Location = new System.Drawing.Point(413, 183);
+            this.btnSanLuongTonKho.Location = new System.Drawing.Point(198, 196);
             this.btnSanLuongTonKho.Name = "btnSanLuongTonKho";
             this.btnSanLuongTonKho.Size = new System.Drawing.Size(309, 152);
             this.btnSanLuongTonKho.TabIndex = 46;
@@ -432,6 +438,42 @@
             this.btnChiTietXuatKho.UseVisualStyleBackColor = true;
             this.btnChiTietXuatKho.Click += new System.EventHandler(this.btnChiTietXuatKho_Click);
             // 
+            // btnReportQuater
+            // 
+            this.btnReportQuater.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReportQuater.Location = new System.Drawing.Point(1155, 196);
+            this.btnReportQuater.Name = "btnReportQuater";
+            this.btnReportQuater.Size = new System.Drawing.Size(309, 152);
+            this.btnReportQuater.TabIndex = 60;
+            this.btnReportQuater.Text = "Báo cáo quý đối với hàng tồn kho (chưa có người nhận)";
+            this.btnReportQuater.UseVisualStyleBackColor = true;
+            this.btnReportQuater.Click += new System.EventHandler(this.btnReportQuater_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.label6.Location = new System.Drawing.Point(1104, 108);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(84, 31);
+            this.label6.TabIndex = 61;
+            this.label6.Text = "Qúy :";
+            // 
+            // ccbQuarter
+            // 
+            this.ccbQuarter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ccbQuarter.FormattingEnabled = true;
+            this.ccbQuarter.Items.AddRange(new object[] {
+            "Q1",
+            "Q2",
+            "Q3",
+            "Q4",
+            "Q4 năm trước"});
+            this.ccbQuarter.Location = new System.Drawing.Point(1194, 108);
+            this.ccbQuarter.Name = "ccbQuarter";
+            this.ccbQuarter.Size = new System.Drawing.Size(270, 39);
+            this.ccbQuarter.TabIndex = 62;
+            // 
             // FormBaoCao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -489,5 +531,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox ccbQuarter;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btnReportQuater;
     }
 }

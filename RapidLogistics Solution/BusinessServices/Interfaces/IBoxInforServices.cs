@@ -14,5 +14,6 @@ namespace BusinessServices.Interfaces
         int GetTotalByMasterBill(int masterBillId);
         int GetTotalShipmentByMasterBill(int masterBillId);
         int GetTotalCountByMasterId(int masterId);
+        string GetBoxIdStringById(int id);
     }
 }

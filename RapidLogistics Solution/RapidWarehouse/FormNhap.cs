@@ -21,8 +21,8 @@ namespace RapidWarehouse
         int currentMasterBillId, currentBoxIdInt;
         List<ManifestEntity> manifestList;
         EmployeeEntity currentEmployee;
-        private int xpos = 0, ypos = 0;
-        private int xposX = 0, yposX = 0;
+        //private int xpos = 0, ypos = 0;
+        //private int xposX = 0, yposX = 0;
         private int indexWaitConfirmedDeleted = 0;
         private readonly IMasterBillServices _masterBillServices;
         private readonly IShipmentServices _shipmentServices;

@@ -85,10 +85,24 @@ namespace BusinessServices
 
             return null;
         }
-
+        public IEnumerable<ShipmentEntity> GetByBoxIdForReport(int boxId)
+        {
+            var shipmentIdList = _unitOfWork.ShipmentOutRepository.GetMany(t => t.BoxIdRef == boxId).OrderByDescending(t => t.DateOut).Select(t => t.ShipmentId).Distinct();
+            if (shipmentIdList != null && shipmentIdList.Any())
+            {
+                var shipmentList = _unitOfWork.ShipmentRepository.GetMany(t => shipmentIdList.Contains(t.ShipmentId));
+                if (shipmentList != null && shipmentList.Any())
+                {
+                    Mapper.CreateMap<ShipmentInfor, ShipmentEntity>();
+                    var shipmentListModel = Mapper.Map<List<ShipmentInfor>, List<ShipmentEntity>>(shipmentList.ToList());
+                    return shipmentListModel;
+                }
+            }
+            return null;
+        }
         public IEnumerable<ShipmentEntity> GetByBoxIdToDisplay(int boxId)
         {
-            var shipmentListId = _unitOfWork.ShipmentOutRepository.GetMany(t => t.BoxIdRef == boxId).OrderByDescending(t => t.DateOut).Select(p=>p.ShipmentId);
+            var shipmentListId = _unitOfWork.ShipmentOutRepository.GetMany(t => t.BoxIdRef == boxId).OrderByDescending(t => t.DateOut).Select(p=>p.ShipmentId).Distinct();
             if (shipmentListId != null && shipmentListId.Any())
             {
                 var listShipment = _unitOfWork.ShipmentRepository.GetMany(t => shipmentListId.Contains(t.ShipmentId));
@@ -112,6 +126,21 @@ namespace BusinessServices
 
             return null;
         }
+        public IEnumerable<ShipmentEntity> GetByMasterBillIdForReport(int masterBillId)
+        {
+            var shipmentIdList = _unitOfWork.ShipmentOutRepository.GetMany(t => t.MasterBillId == masterBillId).OrderByDescending(t => t.DateOut).Select(t => t.ShipmentId).Distinct();
+            if (shipmentIdList != null && shipmentIdList.Any())
+            {
+                var shipmentList = _unitOfWork.ShipmentRepository.GetMany(t => shipmentIdList.Contains(t.ShipmentId));
+                if (shipmentList != null && shipmentList.Any())
+                {
+                    Mapper.CreateMap<ShipmentInfor, ShipmentEntity>();
+                    var shipmentListModel = Mapper.Map<List<ShipmentInfor>, List<ShipmentEntity>>(shipmentList.ToList());
+                    return shipmentListModel;
+                }
+            }
+            return null;
+        }
         public IEnumerable<ShipmentOutEntity> GetByDate(DateTime value)
         {
             var shipmentList = _unitOfWork.ShipmentOutRepository.GetMany(t => t.DateOut.Value.Date == value.Date);
@@ -124,6 +153,22 @@ namespace BusinessServices
             return null;
         }
 
+        public IEnumerable<ShipmentEntity> GetByDateForReport(DateTime value)
+        {
+            var shipmentIdList = _unitOfWork.ShipmentOutRepository.GetMany(t => t.DateOut.Value.Date == value.Date).Select(t=>t.ShipmentId).Distinct();
+            if (shipmentIdList != null && shipmentIdList.Any())
+            {
+                var shipmentList = _unitOfWork.ShipmentRepository.GetMany(t => shipmentIdList.Contains(t.ShipmentId));
+                if (shipmentList != null && shipmentList.Any())
+                {
+                    Mapper.CreateMap<ShipmentInfor, ShipmentEntity>();
+                    var shipmentListModel = Mapper.Map<List<ShipmentInfor>, List<ShipmentEntity>>(shipmentList.ToList());
+                    return shipmentListModel;
+                }
+            }
+            return null;
+        }
+
         public IEnumerable<MasterAirwayBillEntity> GetAllMasterBillByDate(DateTime value)
         {
             var list = _unitOfWork.ShipmentOutRepository.GetMany(t => t.DateOut.Value.Date == value.Date).Select(t => new MasterAirwayBillEntity { Id = (int)t.MasterBillId, MasterAirwayBill = t.MasterBillIdString });
@@ -132,7 +177,7 @@ namespace BusinessServices
 
         public IEnumerable<BoxInforEntity> GetAllBoxByMasterBill(int masterBillId)
         {
-            var list = _unitOfWork.ShipmentOutRepository.GetMany(t => t.MasterBillId == masterBillId).Select(t => new BoxInforEntity { Id = (int)t.MasterBillId, BoxId = t.BoxIdString });
+            var list = _unitOfWork.ShipmentOutRepository.GetMany(t => t.MasterBillId == masterBillId).Select(t => new BoxInforEntity { Id = (int)t.BoxIdRef, MasterBillId = (int)t.MasterBillId, BoxId = t.BoxIdString });
             return list.GroupBy(t => t.BoxId).Select(y => y.First());
         }
 
@@ -143,6 +188,18 @@ namespace BusinessServices
             {
                 Mapper.CreateMap<ShipmentOut, ShipmentOutEntity>();
                 var boxInforListModel = Mapper.Map<List<ShipmentOut>, List<ShipmentOutEntity>>(masterList.ToList());
+                return boxInforListModel;
+            }
+            return null;
+        }
+        public IEnumerable<ShipmentEntity> GetListNotDeliveryByQuarter(DateTime start, DateTime end)
+        {
+            var shipIdList = _unitOfWork.ShipmentOutRepository.GetMany(t => t.DateOut.Value.Date >= start.Date && t.DateOut.Value.Date <= end.Date).Select(t=>t.ShipmentId).Distinct();
+            if (shipIdList != null && shipIdList.Any())
+            {
+                var shipmentList = _unitOfWork.ShipmentRepository.GetMany(t => !shipIdList.Contains(t.ShipmentId));
+                Mapper.CreateMap<ShipmentInfor, ShipmentEntity>();
+                var boxInforListModel = Mapper.Map<List<ShipmentInfor>, List<ShipmentEntity>>(shipmentList.ToList());
                 return boxInforListModel;
             }
             return null;
