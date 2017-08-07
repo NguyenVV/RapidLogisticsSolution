@@ -22,7 +22,7 @@ namespace BusinessEntities
         private string declarationNo;
         private string mawb;
         private string boxIdString;
-        private DateTime dateOfCompletion;
+        private DateTime? dateOfCompletion;
         private string consignee;
         public string DeclarationNo
         {
@@ -271,7 +271,7 @@ namespace BusinessEntities
             }
         }
 
-        public DateTime DateOfCompletion
+        public DateTime? DateOfCompletion
         {
             get
             {

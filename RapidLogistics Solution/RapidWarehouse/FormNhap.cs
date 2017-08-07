@@ -300,7 +300,12 @@ namespace RapidWarehouse
                             shipment.Weight = Double.Parse(Convert.ToString(grvShipments[WEIGHT, i].Value));
                         }
                         shipment.Country = Convert.ToString(grvShipments[COUNTRY, i].Value);
-                        shipment.DateOfCompletion = Convert.ToDateTime(grvShipments[DATEOFCOMPLETION, i].Value);
+                        //DateTime completed = Convert.ToDateTime(grvShipments[DATEOFCOMPLETION, i].Value);
+                        if (grvShipments[DATEOFCOMPLETION, i].Value != null && !string.IsNullOrEmpty(grvShipments[DATEOFCOMPLETION, i].Value.ToString()))
+                            shipment.DateOfCompletion = Convert.ToDateTime(grvShipments[DATEOFCOMPLETION, i].Value);
+                        else
+                            shipment.DateOfCompletion = null;
+
                         listShipment.Add(shipment);
                     }
                     _shipmentServices.CreateOrUpdate(listShipment);
@@ -516,8 +521,9 @@ namespace RapidWarehouse
                     }
                     
                     string dateOfCreation = _shipmentServices.GetDateOfCompletion(item.ShipmentNo);
+                    
                     grv.Rows.Add(index, item.MasterAirWayBill, 0, item.ShipmentNo, item.DeclarationNo, item.CompanyName
-                        ,item.Country, item.ContactName, item.Address, item.Destination, item.Content, 1, String.Format("{0:0.000}", item.Weight), dateOfCreation);
+                        ,item.Country, item.ContactName, item.Address, item.Destination, item.Content, 1, String.Format("{0:0.000}", item.Weight), null);
                     index++;
                 }
                 // setting up value count on gridview
@@ -534,7 +540,7 @@ namespace RapidWarehouse
                 foreach (ShipmentEntity item in listShipment)
                 {
                     grv.Rows.Add(index, cbbMasterBill.Text, item.Id, item.ShipmentId, item.DeclarationNo, item.Sender
-                        , item.Country, item.Receiver, item.Address, item.Destination, item.Content, 1, String.Format("{0:0.000}", item.Weight), item.DateOfCompletion);
+                        , item.Country, item.Receiver, item.Address, item.Destination, item.Content, 1, String.Format("{0:0.000}", item.Weight), item.DateOfCompletion == new DateTime()?null: item.DateOfCompletion);
                     index++;
                 }
                 // setting up value count on gridview

@@ -84,7 +84,7 @@ namespace RapidWarehouse
                 lblMawb.Text = shipment.Mawb;
                 txtDateIn.Text = shipment.DateCreated != null ? shipment.DateCreated.ToString("dd-MM-yyyy") : "";
                 txtBoxIdString.Text = shipment.BoxIdString;
-                txtDateClearance.Text = shipment.DateOfCompletion.ToString("dd-MM-yyyy hh:mm");
+                txtDateClearance.Text = Convert.ToDateTime(shipment.DateOfCompletion) == new DateTime()?"": Convert.ToDateTime(shipment.DateOfCompletion).ToString("dd-MM-yyyy hh:mm");
             }
         }
 

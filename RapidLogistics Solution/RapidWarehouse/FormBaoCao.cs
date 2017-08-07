@@ -1179,7 +1179,7 @@ namespace RapidWarehouse
                 table.Rows[i + 2].Cells[5].Paragraphs.First().Append(listXuatKho[i].Receiver != null ?listXuatKho[i].Receiver + ", ":"" + listXuatKho[i].Address).Font(new FontFamily("Times New Roman"));
                 table.Rows[i + 2].Cells[6].Paragraphs.First().Append(listXuatKho[i].ShipmentId + "/" + (listXuatKho[i].DateCreated != new DateTime() ? listXuatKho[i].DateCreated.ToString("dd-MM-yyyy"):"")).Font(new FontFamily("Times New Roman"));
 
-                table.Rows[i + 2].Cells[7].Paragraphs.First().Append(listXuatKho[i].DateOfCompletion != new DateTime()?listXuatKho[i].DateOfCompletion.ToString("dd-MM-yyyy"):"").Font(new FontFamily("Times New Roman"));
+                table.Rows[i + 2].Cells[7].Paragraphs.First().Append(listXuatKho[i].DateOfCompletion != null ?listXuatKho[i].DateOfCompletion != new DateTime()?Convert.ToDateTime(listXuatKho[i].DateOfCompletion).ToString("dd-MM-yyyy"):"":"").Font(new FontFamily("Times New Roman"));
                 table.Rows[i + 2].Cells[8].Paragraphs.First().Append(listXuatKho[i].Consignee).Font(new FontFamily("Times New Roman"));
                 table.Rows[i + 2].Cells[9].Paragraphs.First().Append("Hàng hóa thu gom không người nhận").Font(new FontFamily("Times New Roman"));
                 table.Rows[i + 2].Cells[10].Paragraphs.First().Append("").Font(new FontFamily("Times New Roman"));
