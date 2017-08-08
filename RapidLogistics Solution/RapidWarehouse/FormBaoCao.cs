@@ -41,8 +41,8 @@ namespace RapidWarehouse
             dtpFrom.CustomFormat = "dd/MM/yyyy";
             dtpTo.CustomFormat = "dd/MM/yyyy";
 
-            LoadAllMasterBillByDateToCombobox(dtpNgayXuatReport.Value, cbbMasterBillOut);
-            LoadAllMasterBillByDateToCombobox(dtpNgayBaoCao.Value, cbbMasterList);
+            LoadAllMasterBillOutByDateToCombobox(dtpNgayXuatReport.Value, cbbMasterBillOut);
+            LoadAllMasterBillInByDateToCombobox(dtpNgayBaoCao.Value, cbbMasterList);
             this.Text = "Các báo cáo - " + FormUltils.getInstance().GetVersionInfo();
         }
 
@@ -146,7 +146,7 @@ namespace RapidWarehouse
 
         private void dtpNgayBaoCao_ValueChanged(object sender, EventArgs e)
         {
-            LoadAllMasterBillByDateToCombobox(dtpNgayBaoCao.Value, cbbMasterList);
+            LoadAllMasterBillInByDateToCombobox(dtpNgayBaoCao.Value, cbbMasterList);
         }
 
         private void btnChiTietSanLuong_Click(object sender, EventArgs e)
@@ -222,7 +222,7 @@ namespace RapidWarehouse
                                     row[StringHeaderReports.STT] = index;
                                     row[StringHeaderReports.MAWB] = item.MasterAirwayBill;
                                     row[StringHeaderReports.SHIPMENTNO] = ship.ShipmentId;
-                                    row[StringHeaderReports.DECLARATION_NO] = ship.DeclarationNo;
+                                    row[StringHeaderReports.DECLARATION_NO] = "'" + ship.DeclarationNo;
                                     row[StringHeaderReports.BOXID] = box.BoxId;
                                     row[StringHeaderReports.CONTENT] = ship.Content;
                                     row[StringHeaderReports.NUMBER_PACKAGE] = ship.NumberPackage;
@@ -342,9 +342,8 @@ namespace RapidWarehouse
             if (cbbMasterList.SelectedIndex >= 0)
             {
                 MasterAirwayBillEntity itemMaster = (MasterAirwayBillEntity)cbbMasterList.SelectedItem;
-
-                LoadBoxIdListFromMasterBillId(itemMaster.Id, cbbBoxIdReport);
-                cbbBoxIdReport.SelectedIndex = 0;
+                LoadBoxIdListInFromMasterBillId(itemMaster.Id, cbbBoxIdReport);
+                //cbbBoxIdReport.SelectedIndex = 0;
             }
         }
 
@@ -392,6 +391,8 @@ namespace RapidWarehouse
                     entity.MasterId = cbbMasterList.Text;
                     entity.BoxId = boxSelected.BoxId;
                     entity.ShipmentId = ship.ShipmentId;
+                    entity.Weight = ship.Weight;
+                    entity.Content = ship.Content;
                     listDetail.Add(entity);
                 }
                 totalShipment = listShipment.Count;
@@ -459,9 +460,9 @@ namespace RapidWarehouse
                 table.Rows[i + 1].Cells[1].Paragraphs.First().Append(listDetail[i].MasterId).Font(new FontFamily("Times New Roman"));
                 table.Rows[i + 1].Cells[2].Paragraphs.First().Append(listDetail[i].ShipmentId).Font(new FontFamily("Times New Roman"));
                 table.Rows[i + 1].Cells[3].Paragraphs.First().Append(listDetail[i].BoxId).Font(new FontFamily("Times New Roman"));
-                table.Rows[i + 1].Cells[4].Paragraphs.First().Append("").Font(new FontFamily("Times New Roman"));
+                table.Rows[i + 1].Cells[4].Paragraphs.First().Append(listDetail[i].Content).Font(new FontFamily("Times New Roman"));
                 table.Rows[i + 1].Cells[5].Paragraphs.First().Append("").Font(new FontFamily("Times New Roman"));
-                table.Rows[i + 1].Cells[6].Paragraphs.First().Append("").Font(new FontFamily("Times New Roman"));
+                table.Rows[i + 1].Cells[6].Paragraphs.First().Append(""+ listDetail[i].Weight).Font(new FontFamily("Times New Roman"));
             }
 
             doc.InsertParagraph(companyName, false, paraFormat);
@@ -655,34 +656,34 @@ namespace RapidWarehouse
         {
             List<ReportDetailEntity> listDetail = new List<ReportDetailEntity>();
             //get all MAWB in the duration
-            List<MasterAirwayBillEntity> listMaster = (List<MasterAirwayBillEntity>)_masterBillServices.GetByDateRange(dtpFrom.Value, dtpTo.Value);
+            IEnumerable<MasterAirwayBillEntity> listMaster = _masterBillServices.GetByDateRange(dtpFrom.Value, dtpTo.Value);
             //get all shipment exported in the duration
-            List<ShipmentOutEntity> listXuatKho = (List<ShipmentOutEntity>)_shipmentOutServices.GetByDateRange(dtpFrom.Value, dtpTo.Value);
+            IEnumerable<ShipmentOutEntity> listXuatKho = _shipmentOutServices.GetByDateRange(dtpFrom.Value, dtpTo.Value);
             int totalThung = 0;
             int totalShipment = 0;
-            if (listMaster != null && listMaster.Count > 0)
+            if (listMaster != null && listMaster.Any())
             {
                 foreach (var item in listMaster)
                 {
                     //get all Box in this MAWB
-                    List<BoxInforEntity> listBox = (List<BoxInforEntity>)_boxInforServices.GetByMasterBill(item.Id);
-                    if (listBox != null && listBox.Count > 0)
+                    IEnumerable<BoxInforEntity> listBox = _boxInforServices.GetByMasterBill(item.Id);
+                    if (listBox != null && listBox.Any())
                     {
                         //Count shipment on each box
                         foreach (var box in listBox)
                         {
-                            List<ShipmentEntity> listShipment = (List<ShipmentEntity>)_shipmentServices.GetByBoxId(box.Id);
-                            if (listShipment != null && listShipment.Count > 0)
+                            IEnumerable<ShipmentEntity> listShipment = _shipmentServices.GetByBoxId(box.Id);
+                            if (listShipment != null && listShipment.Any())
                             {
-                                int totalShipmentInStock = 0;
-                                foreach (var ship in listShipment)
-                                {
-                                    //Loc nhung ship da xuat trong khoang thoi gian da chon
-                                    if (!listXuatKho.Any(t => t.ShipmentId.Equals(ship.ShipmentId, StringComparison.CurrentCultureIgnoreCase)))
-                                    {
-                                        totalShipmentInStock += 1;
-                                    }
-                                }
+                                int totalShipmentInStock = listShipment.Count() - listXuatKho.Count(t=>t.BoxIdRef == box.Id);
+                                //foreach (var ship in listShipment)
+                                //{
+                                //    //Loc nhung ship da xuat trong khoang thoi gian da chon
+                                //    if (!listXuatKho.Any(t => t.ShipmentId.Equals(ship.ShipmentId, StringComparison.CurrentCultureIgnoreCase)))
+                                //    {
+                                //        totalShipmentInStock += 1;
+                                //    }
+                                //}
                                 //update total shipment
                                 totalShipment += totalShipmentInStock;
                                 //Nếu các shipment trong box này còn tồn thì mới cho vào báo cáo
@@ -790,23 +791,23 @@ namespace RapidWarehouse
         {
             List<ReportDetailEntity> listDetail = new List<ReportDetailEntity>();
             //get all MAWB in the duration
-            List<MasterAirwayBillEntity> listMaster = (List<MasterAirwayBillEntity>)_masterBillServices.GetByDateRange(dtpFrom.Value, dtpTo.Value);
+            IEnumerable<MasterAirwayBillEntity> listMaster = _masterBillServices.GetByDateRange(dtpFrom.Value, dtpTo.Value);
             //get all shipment exported in the duration
-            List<ShipmentOutEntity> listXuatKho = (List<ShipmentOutEntity>)_shipmentOutServices.GetByDateRange(dtpFrom.Value, dtpTo.Value);
+            IEnumerable<ShipmentOutEntity> listXuatKho = _shipmentOutServices.GetByDateRange(dtpFrom.Value, dtpTo.Value);
             int totalThung = 0;
             int totalShipment = 0;
-            if (listMaster != null && listMaster.Count > 0)
+            if (listMaster != null && listMaster.Any())
             {
                 foreach (var item in listMaster)
                 {
                     //get all Box in this MAWB
-                    List<BoxInforEntity> listBox = (List<BoxInforEntity>)_boxInforServices.GetByMasterBill(item.Id);
-                    if (listBox != null && listBox.Count > 0)
+                    IEnumerable<BoxInforEntity> listBox = _boxInforServices.GetByMasterBill(item.Id);
+                    if (listBox != null && listBox.Any())
                     {
                         foreach (var box in listBox)
                         {
-                            List<ShipmentEntity> listShipment = (List<ShipmentEntity>)_shipmentServices.GetByBoxId(box.Id);
-                            if (listShipment != null && listShipment.Count > 0)
+                            IEnumerable<ShipmentEntity> listShipment = _shipmentServices.GetByBoxId(box.Id);
+                            if (listShipment != null && listShipment.Any())
                             {
                                 int totalShipmentInStock = 0;
                                 foreach (var ship in listShipment)
@@ -818,6 +819,8 @@ namespace RapidWarehouse
                                         entity.MasterId = item.MasterAirwayBill;
                                         entity.BoxId = box.BoxId;
                                         entity.ShipmentId = ship.ShipmentId;
+                                        entity.Weight = ship.Weight;
+                                        entity.Content = ship.Content;
                                         listDetail.Add(entity);
                                         totalShipmentInStock += 1;
                                     }
@@ -902,9 +905,9 @@ namespace RapidWarehouse
                 table.Rows[i + 1].Cells[1].Paragraphs.First().Append(listDetail[i].MasterId).Font(new FontFamily("Times New Roman"));
                 table.Rows[i + 1].Cells[2].Paragraphs.First().Append(listDetail[i].ShipmentId).Font(new FontFamily("Times New Roman"));
                 table.Rows[i + 1].Cells[3].Paragraphs.First().Append(listDetail[i].BoxId).Font(new FontFamily("Times New Roman"));
-                table.Rows[i + 1].Cells[4].Paragraphs.First().Append("").Font(new FontFamily("Times New Roman"));
+                table.Rows[i + 1].Cells[4].Paragraphs.First().Append(listDetail[i].Content).Font(new FontFamily("Times New Roman"));
                 table.Rows[i + 1].Cells[5].Paragraphs.First().Append("").Font(new FontFamily("Times New Roman"));
-                table.Rows[i + 1].Cells[6].Paragraphs.First().Append("").Font(new FontFamily("Times New Roman"));
+                table.Rows[i + 1].Cells[6].Paragraphs.First().Append(""+listDetail[i].Weight).Font(new FontFamily("Times New Roman"));
             }
 
             doc.InsertParagraph(companyName, false, paraFormat);
@@ -960,26 +963,59 @@ namespace RapidWarehouse
 
         #region Dùng chung
 
-        private void LoadAllMasterBillByDateToCombobox(DateTime date, ComboBox cbbMaster)
+        private void LoadAllMasterBillOutByDateToCombobox(DateTime date, ComboBox cbbMaster)
         {
             cbbMaster.DataSource = null;
             cbbMaster.Items.Clear();
 
-            List<MasterAirwayBillEntity> masterBillList = _shipmentOutServices.GetAllMasterBillByDate(date).ToList();
-            if (masterBillList != null && masterBillList.Count > 0)
+            IEnumerable<MasterAirwayBillEntity> masterBillList = _shipmentOutServices.GetAllMasterBillByDate(date);
+            if (masterBillList != null && masterBillList.Any())
+            {
+                cbbMaster.DataSource = masterBillList.ToList();
+                cbbMaster.ValueMember = "Id";
+                cbbMaster.DisplayMember = "MasterAirwayBill";
+            }
+        }
+
+        private void LoadAllMasterBillInByDateToCombobox(DateTime date, ComboBox cbbMaster)
+        {
+            cbbMaster.DataSource = null;
+            cbbMaster.Items.Clear();
+
+            IEnumerable<MasterAirwayBillEntity> masterBillList = _masterBillServices.GetByDateArrived(date);
+            if (masterBillList != null && masterBillList.Any())
             {
                 cbbMaster.DataSource = masterBillList;
                 cbbMaster.ValueMember = "Id";
                 cbbMaster.DisplayMember = "MasterAirwayBill";
             }
         }
-        private void LoadBoxIdListFromMasterBillId(int masterBillId, ComboBox cbbBoxes)
+        private void LoadBoxIdListOutFromMasterBillId(int masterBillId, ComboBox cbbBoxes)
         {
             if (masterBillId <= 0)
                 return;
 
-            List<BoxInforEntity> listBoxInfo = _shipmentOutServices.GetAllBoxByMasterBill(masterBillId).ToList();
-            if (listBoxInfo != null && listBoxInfo.Count > 0)
+            IEnumerable<BoxInforEntity> listBoxInfo = _shipmentOutServices.GetAllBoxByMasterBill(masterBillId);
+            if (listBoxInfo != null && listBoxInfo.Any())
+            {
+                cbbBoxes.DataSource = listBoxInfo.ToList();
+                cbbBoxes.ValueMember = "Id";
+                cbbBoxes.DisplayMember = "BoxId";
+            }
+            else
+            {
+                cbbBoxes.DataSource = null;
+                cbbBoxes.Items.Clear();
+            }
+        }
+
+        private void LoadBoxIdListInFromMasterBillId(int masterBillId, ComboBox cbbBoxes)
+        {
+            if (masterBillId <= 0)
+                return;
+
+            IEnumerable<BoxInforEntity> listBoxInfo = _boxInforServices.GetByMasterBill(masterBillId);
+            if (listBoxInfo != null && listBoxInfo.Any())
             {
                 cbbBoxes.DataSource = listBoxInfo;
                 cbbBoxes.ValueMember = "Id";
@@ -991,7 +1027,7 @@ namespace RapidWarehouse
                 cbbBoxes.Items.Clear();
             }
         }
-        
+
         #endregion
 
         private void FormBaoCao_FormClosed(object sender, FormClosedEventArgs e)
@@ -1007,8 +1043,8 @@ namespace RapidWarehouse
             {
                 MasterAirwayBillEntity itemMaster = (MasterAirwayBillEntity)cbbMasterBillOut.SelectedItem;
 
-                LoadBoxIdListFromMasterBillId(itemMaster.Id, cbbBoxIdOut);
-                cbbBoxIdOut.SelectedIndex = 0;
+                LoadBoxIdListOutFromMasterBillId(itemMaster.Id, cbbBoxIdOut);
+                //cbbBoxIdOut.SelectedIndex = 0;
             }
         }
 
@@ -1044,7 +1080,7 @@ namespace RapidWarehouse
 
         private void dtpNgayXuatReport_ValueChanged(object sender, EventArgs e)
         {
-            LoadAllMasterBillByDateToCombobox(dtpNgayXuatReport.Value, cbbMasterBillOut);
+            LoadAllMasterBillOutByDateToCombobox(dtpNgayXuatReport.Value, cbbMasterBillOut);
         }
 
         private void btnReportQuater_Click(object sender, EventArgs e)

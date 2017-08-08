@@ -10,6 +10,9 @@ namespace BusinessEntities
         string shipmentId, masterId, boxId;
         int totalShipment;
         int index;
+        double? weight;
+        string content;
+        int quantity;
         public string BoxId
         {
             get
@@ -72,6 +75,45 @@ namespace BusinessEntities
             set
             {
                 index = value;
+            }
+        }
+
+        public double? Weight
+        {
+            get
+            {
+                return weight;
+            }
+
+            set
+            {
+                weight = value;
+            }
+        }
+
+        public string Content
+        {
+            get
+            {
+                return content;
+            }
+
+            set
+            {
+                content = value;
+            }
+        }
+
+        public int Quantity
+        {
+            get
+            {
+                return quantity;
+            }
+
+            set
+            {
+                quantity = value;
             }
         }
     }

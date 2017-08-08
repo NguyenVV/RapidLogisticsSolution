@@ -68,7 +68,8 @@ Create table ShipmentInfor
 	[Address] nvarchar(500),--o	Địa chỉ nhận(Address)
 	Consignee nvarchar(200),--o	Consignee (Destination).
 	Content nvarchar(300),--o	Nội dung hàng(Content); 
-	NumberPackage int default 1,--o	Số kiện(mặc định là 1); 
+	NumberPackage int default 1,--o	Số kiện(mặc định là 1);
+	DateOfCompletion DateTime,
 	IsSyncOms bit
 )
 go

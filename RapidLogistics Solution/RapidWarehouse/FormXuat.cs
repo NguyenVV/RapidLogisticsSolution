@@ -846,7 +846,7 @@ namespace RapidWarehouse
                     DataRow row = table.NewRow();
                     row[StringHeaderReports.STT] = index;
                     row[StringHeaderReports.MAWB] = listDetail[i].MasterBillIdString;
-                    row[StringHeaderReports.SHIPMENTNO] = listDetail[i].ShipmentId;
+                    row[StringHeaderReports.SHIPMENTNO] = "'"+listDetail[i].ShipmentId;
                     row[StringHeaderReports.BOXID] = listDetail[i].BoxIdString;
                     row[StringHeaderReports.CONTENT] = shipment.Content;
                     row[StringHeaderReports.NUMBER_PACKAGE] = shipment.NumberPackage;

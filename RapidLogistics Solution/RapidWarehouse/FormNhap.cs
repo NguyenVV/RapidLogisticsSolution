@@ -414,8 +414,8 @@ namespace RapidWarehouse
             List<ManifestEntity> finalList = new List<ManifestEntity>();
             finalList.Add(new ManifestEntity());
 
-            var masterBillList = manifestList.GroupBy(t => t.MasterAirWayBill).Select(p => p.First()).ToList();
-            if (masterBillList != null && masterBillList.Count > 0)
+            var masterBillList = manifestList.GroupBy(t => t.MasterAirWayBill).Select(p => p.First());
+            if (masterBillList != null && masterBillList.Any())
             {
                 finalList.AddRange(masterBillList);
                 cbbMasterBill.DataSource = finalList;
@@ -471,8 +471,8 @@ namespace RapidWarehouse
             MasterAirwayBillEntity masterBill = (MasterAirwayBillEntity)cbbMasterBill.SelectedItem;
             if (masterBill != null)
             {
-                List<BoxInforEntity> listBoxInfo = _boxInforServices.GetByMasterBill(masterBill.Id).ToList();
-                if (listBoxInfo != null && listBoxInfo.Count > 0)
+                IEnumerable<BoxInforEntity> listBoxInfo = _boxInforServices.GetByMasterBill(masterBill.Id);
+                if (listBoxInfo != null && listBoxInfo.Any())
                 {
                     cbbBoxId.DataSource = listBoxInfo;
                     cbbBoxId.ValueMember = "Id";
@@ -507,7 +507,7 @@ namespace RapidWarehouse
         {
 
         }
-        private void AddShipmentListToGrid(List<ManifestEntity> listShipment, DataGridView grv)
+        private void AddShipmentListToGrid(IEnumerable<ManifestEntity> listShipment, DataGridView grv)
         {
             if (grv != null && listShipment != null)
             {
@@ -523,7 +523,7 @@ namespace RapidWarehouse
                     string dateOfCreation = _shipmentServices.GetDateOfCompletion(item.ShipmentNo);
                     
                     grv.Rows.Add(index, item.MasterAirWayBill, 0, item.ShipmentNo, item.DeclarationNo, item.CompanyName
-                        ,item.Country, item.ContactName, item.Address, item.Destination, item.Content, 1, String.Format("{0:0.000}", item.Weight), null);
+                        ,item.Country, item.ContactName, item.Address, item.Destination, item.Content, 1, String.Format("{0:0.000}", item.Weight), dateOfCreation);
                     index++;
                 }
                 // setting up value count on gridview
@@ -531,7 +531,7 @@ namespace RapidWarehouse
             }
         }
 
-        private void AddShipmentListToGrid(List<ShipmentEntity> listShipment, DataGridView grv)
+        private void AddShipmentListToGrid(IEnumerable<ShipmentEntity> listShipment, DataGridView grv)
         {
             if (grv != null && listShipment != null)
             {
@@ -586,7 +586,10 @@ namespace RapidWarehouse
                 }
 
                 // Thêm shipment vào lưới để nhập kho
-                grvShipments.Rows.Add(grvShipments.Rows.Count + 1, txtShipmentId.Text);
+                string dateOfCreation = _shipmentServices.GetDateOfCompletion(txtShipmentId.Text);
+                grvShipments.Rows.Add(grvShipments.Rows.Count + 1, cbbMasterBill.Text, 0, txtShipmentId.Text, _shipmentServices.GetDeclarationNo(txtShipmentId.Text), null
+                    , null, null, null, null, null, 1, null, dateOfCreation);
+
                 grvShipments.ClearSelection();
                 grvShipments.Rows[grvShipments.Rows.Count - 1].Selected = true;
                 grvShipments.FirstDisplayedScrollingRowIndex = grvShipments.Rows.Count - 1;
@@ -600,8 +603,8 @@ namespace RapidWarehouse
             {
                 if (isFromManifest)
                 {
-                    List<ManifestEntity> listShipmentManifest = manifestList.Where(t => t.BoxID == cbbBoxId.Text).GroupBy(t => t.ShipmentNo).Select(p => p.First()).ToList();
-                    if (listShipmentManifest != null && listShipmentManifest.Count > 0)
+                    IEnumerable<ManifestEntity> listShipmentManifest = manifestList.Where(t => t.BoxID == cbbBoxId.Text).GroupBy(t => t.ShipmentNo).Select(p => p.First());
+                    if (listShipmentManifest != null && listShipmentManifest.Any())
                     {
                         AddShipmentListToGrid(listShipmentManifest, shipmentGrid);
                     }
@@ -612,8 +615,8 @@ namespace RapidWarehouse
                 }
                 else
                 {
-                    List<ShipmentEntity> listShipmentDatabase = _shipmentServices.GetByBoxId(_boxInforServices.GetByBoxId(boxId).Id).ToList();
-                    if (listShipmentDatabase != null && listShipmentDatabase.Count > 0)
+                    IEnumerable<ShipmentEntity> listShipmentDatabase = _shipmentServices.GetByBoxId(_boxInforServices.GetByBoxId(boxId).Id);
+                    if (listShipmentDatabase != null && listShipmentDatabase.Any())
                     {
                         AddShipmentListToGrid(listShipmentDatabase, shipmentGrid);
                     }
@@ -787,89 +790,89 @@ namespace RapidWarehouse
             }
         }
 
-        [System.Runtime.InteropServices.DllImport("kernel32.dll")]
-        public static extern bool Beep(int freq, int duration);
+        //[System.Runtime.InteropServices.DllImport("kernel32.dll")]
+        //public static extern bool Beep(int freq, int duration);
 
-        private void AddShipmentListToGrid(List<ShipmentOutEntity> listShipment, DataGridView grv)
-        {
-            if (grv != null && listShipment != null)
-            {
-                int index = 1;
-                grv.Rows.Clear();
-                foreach (ShipmentOutEntity item in listShipment)
-                {
-                    grv.Rows.Add(index, item.ShipmentId);
-                    index++;
-                }
-                // setting up value count on gridview
-                numberShipmentOut = index;
-            }
-        }
-        private void LoadShipmentsByBoxId(BoxInforEntity boxEntity, DataGridView shipmentGrid)
-        {
-            if (boxEntity == null)
-            {
-                shipmentGrid.Rows.Clear();
-                return;
-            }
+        //private void AddShipmentListToGrid(List<ShipmentOutEntity> listShipment, DataGridView grv)
+        //{
+        //    if (grv != null && listShipment != null)
+        //    {
+        //        int index = 1;
+        //        grv.Rows.Clear();
+        //        foreach (ShipmentOutEntity item in listShipment)
+        //        {
+        //            grv.Rows.Add(index, item.ShipmentId);
+        //            index++;
+        //        }
+        //        // setting up value count on gridview
+        //        numberShipmentOut = index;
+        //    }
+        //}
+        //private void LoadShipmentsByBoxId(BoxInforEntity boxEntity, DataGridView shipmentGrid)
+        //{
+        //    if (boxEntity == null)
+        //    {
+        //        shipmentGrid.Rows.Clear();
+        //        return;
+        //    }
 
-            List<ShipmentOutEntity> listShipment = (List<ShipmentOutEntity>)_shipmentOutServices.GetByBoxId(boxEntity.Id);
-            List<ShipmentOutEntity> listShipmentOutTemp = (List<ShipmentOutEntity>)_shipmentOutTempServices.GetByBoxId(boxEntity.Id);
+        //    List<ShipmentOutEntity> listShipment = (List<ShipmentOutEntity>)_shipmentOutServices.GetByBoxId(boxEntity.Id);
+        //    List<ShipmentOutEntity> listShipmentOutTemp = (List<ShipmentOutEntity>)_shipmentOutTempServices.GetByBoxId(boxEntity.Id);
 
-            if (listShipment != null)
-            {
-                if (listShipmentOutTemp != null)
-                {
-                    var result = MessageBox.Show("Có "+listShipmentOutTemp.Count+ " đơn hàng chưa lưu ở phiên làm việc trước, bạn có muốn tiếp tục xử lý hay không ?","Load đơn hàng chưa lưu", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (result == DialogResult.Yes)
-                    {
-                        listShipment.AddRange(listShipmentOutTemp);
-                    }
-                    else
-                    {
-                        _shipmentOutTempServices.DeleteByEmployeeId(currentEmployee.Id);
-                    }
-                }
-            }
-            else
-            {
-                listShipment = listShipmentOutTemp;
-            }
+        //    if (listShipment != null)
+        //    {
+        //        if (listShipmentOutTemp != null)
+        //        {
+        //            var result = MessageBox.Show("Có "+listShipmentOutTemp.Count+ " đơn hàng chưa lưu ở phiên làm việc trước, bạn có muốn tiếp tục xử lý hay không ?","Load đơn hàng chưa lưu", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+        //            if (result == DialogResult.Yes)
+        //            {
+        //                listShipment.AddRange(listShipmentOutTemp);
+        //            }
+        //            else
+        //            {
+        //                _shipmentOutTempServices.DeleteByEmployeeId(currentEmployee.Id);
+        //            }
+        //        }
+        //    }
+        //    else
+        //    {
+        //        listShipment = listShipmentOutTemp;
+        //    }
 
-            if (listShipment != null && listShipment.Count > 0)
-            {
-                AddShipmentListToGrid(listShipment, shipmentGrid);
-            }
-            else
-            {
-                shipmentGrid.Rows.Clear();
-            }
-        }
-        private void LoadBoxIdListFromMasterBillId(int masterBillId, ComboBox cbbBoxes)
-        {
-            if (masterBillId <= 0)
-                return;
+        //    if (listShipment != null && listShipment.Count > 0)
+        //    {
+        //        AddShipmentListToGrid(listShipment, shipmentGrid);
+        //    }
+        //    else
+        //    {
+        //        shipmentGrid.Rows.Clear();
+        //    }
+        //}
+        //private void LoadBoxIdListFromMasterBillId(int masterBillId, ComboBox cbbBoxes)
+        //{
+        //    if (masterBillId <= 0)
+        //        return;
 
-            List<BoxInforEntity> finalList = new List<BoxInforEntity>();
-            var temp = new BoxInforEntity();
-            temp.Id = 0;
-            temp.BoxId = string.Empty;
-            finalList.Add(temp);
+        //    List<BoxInforEntity> finalList = new List<BoxInforEntity>();
+        //    var temp = new BoxInforEntity();
+        //    temp.Id = 0;
+        //    temp.BoxId = string.Empty;
+        //    finalList.Add(temp);
 
-            List<BoxInforEntity> listBoxInfo = (List<BoxInforEntity>)_boxInforServices.GetByMasterBill(masterBillId);
-            if (listBoxInfo != null && listBoxInfo.Count > 0)
-            {
-                finalList.AddRange(listBoxInfo);
-                cbbBoxes.DataSource = finalList;
-                cbbBoxes.ValueMember = "Id";
-                cbbBoxes.DisplayMember = "BoxId";
-            }
-            else
-            {
-                cbbBoxes.DataSource = null;
-                cbbBoxes.Items.Clear();
-            }
-        }
+        //    List<BoxInforEntity> listBoxInfo = (List<BoxInforEntity>)_boxInforServices.GetByMasterBill(masterBillId);
+        //    if (listBoxInfo != null && listBoxInfo.Count > 0)
+        //    {
+        //        finalList.AddRange(listBoxInfo);
+        //        cbbBoxes.DataSource = finalList;
+        //        cbbBoxes.ValueMember = "Id";
+        //        cbbBoxes.DisplayMember = "BoxId";
+        //    }
+        //    else
+        //    {
+        //        cbbBoxes.DataSource = null;
+        //        cbbBoxes.Items.Clear();
+        //    }
+        //}
 
         #endregion
 
@@ -970,43 +973,43 @@ namespace RapidWarehouse
             this.Dispose();
         }
 
-        private void btnDong_Click(object sender, EventArgs e)
-        {
-            Program.Container.GetInstance<FormHome>().Show();
-            this.Dispose();
-        }
+        //private void btnDong_Click(object sender, EventArgs e)
+        //{
+        //    Program.Container.GetInstance<FormHome>().Show();
+        //    this.Dispose();
+        //}
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            //if (tabNhap.SelectedIndex == 0)
-            //{
-            //    //Xac nhan den
-            //    if (xpos <= 0)
-            //    {
-            //        this.label10.Location = new System.Drawing.Point(this.Width, ypos);
-            //        xpos = this.Width;
-            //    }
-            //    else
-            //    {
-            //        this.label10.Location = new System.Drawing.Point(xpos, ypos);
-            //        xpos -= 5;
-            //    }
-            //}
-            //else if (tabNhap.SelectedIndex == 1)
-            //{
-            //    //Nhap kho
-            //    if (xposX >= this.Width)
-            //    {
-            //        //this.lblXuatKho.Location = new System.Drawing.Point(0, yposX);
-            //        xposX = 0;
-            //    }
-            //    else
-            //    {
-            //        //this.lblXuatKho.Location = new System.Drawing.Point(xposX, yposX);
-            //        xposX += 8;
-            //    }
-            //}
-        }
+        //private void timer1_Tick(object sender, EventArgs e)
+        //{
+        //    //if (tabNhap.SelectedIndex == 0)
+        //    //{
+        //    //    //Xac nhan den
+        //    //    if (xpos <= 0)
+        //    //    {
+        //    //        this.label10.Location = new System.Drawing.Point(this.Width, ypos);
+        //    //        xpos = this.Width;
+        //    //    }
+        //    //    else
+        //    //    {
+        //    //        this.label10.Location = new System.Drawing.Point(xpos, ypos);
+        //    //        xpos -= 5;
+        //    //    }
+        //    //}
+        //    //else if (tabNhap.SelectedIndex == 1)
+        //    //{
+        //    //    //Nhap kho
+        //    //    if (xposX >= this.Width)
+        //    //    {
+        //    //        //this.lblXuatKho.Location = new System.Drawing.Point(0, yposX);
+        //    //        xposX = 0;
+        //    //    }
+        //    //    else
+        //    //    {
+        //    //        //this.lblXuatKho.Location = new System.Drawing.Point(xposX, yposX);
+        //    //        xposX += 8;
+        //    //    }
+        //    //}
+        //}
  
         private void txtSearch_Enter(object sender, EventArgs e)
         {
@@ -1043,6 +1046,8 @@ namespace RapidWarehouse
                     entity.MasterId = cbbMasterBill.Text;
                     entity.BoxId = boxSelected.BoxId;
                     entity.ShipmentId = ship.ShipmentId;
+                    entity.Weight = ship.Weight;
+                    entity.Content = ship.Content;
                     listDetail.Add(entity);
                 }
                 totalShipment = listShipment.Count;
@@ -1110,9 +1115,9 @@ namespace RapidWarehouse
                 table.Rows[i + 1].Cells[1].Paragraphs.First().Append(listDetail[i].MasterId).Font(new FontFamily("Times New Roman"));
                 table.Rows[i + 1].Cells[2].Paragraphs.First().Append(listDetail[i].ShipmentId).Font(new FontFamily("Times New Roman"));
                 table.Rows[i + 1].Cells[3].Paragraphs.First().Append(listDetail[i].BoxId).Font(new FontFamily("Times New Roman"));
-                table.Rows[i + 1].Cells[4].Paragraphs.First().Append("").Font(new FontFamily("Times New Roman"));
+                table.Rows[i + 1].Cells[4].Paragraphs.First().Append(listDetail[i].Content).Font(new FontFamily("Times New Roman"));
                 table.Rows[i + 1].Cells[5].Paragraphs.First().Append("").Font(new FontFamily("Times New Roman"));
-                table.Rows[i + 1].Cells[6].Paragraphs.First().Append("").Font(new FontFamily("Times New Roman"));
+                table.Rows[i + 1].Cells[6].Paragraphs.First().Append(""+ listDetail[i].Weight).Font(new FontFamily("Times New Roman"));
             }
 
             doc.InsertParagraph(companyName, false, paraFormat);
