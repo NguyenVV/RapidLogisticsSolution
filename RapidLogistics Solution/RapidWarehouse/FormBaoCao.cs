@@ -121,7 +121,8 @@ namespace RapidWarehouse
             {
                 table.Rows[i + 2].Cells[0].Paragraphs.First().Append((i + 1) + "").Font(new FontFamily("Times New Roman"));
                 table.Rows[i + 2].Cells[1].Paragraphs.First().Append(listBox[i].BoxId).Bold().Font(new FontFamily("Times New Roman"));
-                int totalInBox = _shipmentServices.GetByBoxId(listBox[i].Id).Count();
+                var listItemInBox = _shipmentServices.GetByBoxId(listBox[i].Id);
+                int totalInBox = listItemInBox != null? listItemInBox.Count():0;
                 total += totalInBox;
                 table.Rows[i + 2].Cells[2].Paragraphs.First().Append(totalInBox + "").Bold().Font(new FontFamily("Times New Roman"));
             }
@@ -200,21 +201,21 @@ namespace RapidWarehouse
             table.Columns.Add(StringHeaderReports.NUMBER_PACKAGE);
             table.Columns.Add(StringHeaderReports.WEIGHT);
             //List<ReportDetailEntity> listDetail = new List<ReportDetailEntity>();
-            List<MasterAirwayBillEntity> listMaster = (List<MasterAirwayBillEntity>)_masterBillServices.GetByDateArrived(dtpNgayBaoCao.Value);
+            IEnumerable<MasterAirwayBillEntity> listMaster = _masterBillServices.GetByDateArrived(dtpNgayBaoCao.Value);
             int totalThung = 0;
             int totalShipment = 0;
             int index = 1;
-            if (listMaster != null && listMaster.Count > 0)
+            if (listMaster != null && listMaster.Any())
             {
                 foreach (var item in listMaster)
                 {
-                    List<BoxInforEntity> listBox = (List<BoxInforEntity>)_boxInforServices.GetByMasterBill(item.Id);
-                    if (listBox != null && listBox.Count > 0)
+                    IEnumerable<BoxInforEntity> listBox = _boxInforServices.GetByMasterBill(item.Id);
+                    if (listBox != null && listBox.Any())
                     {
                         foreach (var box in listBox)
                         {
-                            List<ShipmentEntity> listShipment = (List<ShipmentEntity>)_shipmentServices.GetByBoxId(box.Id);
-                            if (listShipment != null & listShipment.Count > 0)
+                            IEnumerable<ShipmentEntity> listShipment = _shipmentServices.GetByBoxId(box.Id);
+                            if (listShipment != null && listShipment.Any())
                             {
                                 foreach (var ship in listShipment)
                                 {
@@ -230,10 +231,10 @@ namespace RapidWarehouse
                                     table.Rows.Add(row);
                                     index++;
                                 }
-                                totalShipment += listShipment.Count;
+                                totalShipment += listShipment.Count();
                             }
                         }
-                        totalThung += listBox.Count;
+                        totalThung += listBox.Count();
                     }
                 }
             }
@@ -381,9 +382,9 @@ namespace RapidWarehouse
 
             int totalShipment = 0;
 
-            List<ShipmentEntity> listShipment = (List<ShipmentEntity>)_shipmentServices.GetByBoxId(boxSelected.Id);
+            IEnumerable<ShipmentEntity> listShipment = _shipmentServices.GetByBoxId(boxSelected.Id);
 
-            if (listShipment != null & listShipment.Count > 0)
+            if (listShipment != null && listShipment.Any())
             {
                 foreach (var ship in listShipment)
                 {
@@ -395,7 +396,7 @@ namespace RapidWarehouse
                     entity.Content = ship.Content;
                     listDetail.Add(entity);
                 }
-                totalShipment = listShipment.Count;
+                totalShipment = listShipment.Count();
             }
 
             string fileName = Environment.CurrentDirectory + @"\ChiTietSanLuongNhapKhoTheoThung" + DateTime.Now.ToString("ddMMyyyHHmmss") + ".doc";
