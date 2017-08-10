@@ -38,11 +38,11 @@ namespace RapidWarehouse
         {
             Version versionInfo = Assembly.GetExecutingAssembly().GetName().Version;
 
-            //Assembly assembly = Assembly.GetExecutingAssembly();
-            //FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
-            //string version = fvi.FileVersion==null ?"1.0.0.0": fvi.FileVersion;
-
-            return string.Format("Rapid Warehouse v{0}.{1} (build {2})", versionInfo.Major, versionInfo.Minor, versionInfo.Build);
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
+            string version = fvi.FileVersion == null ? "1.0.0" : fvi.FileVersion;
+            return string.Format("Rapid Warehouse v{0} (build {1})", version, versionInfo.Build);
+            //return string.Format("Rapid Warehouse v{0}.{1} (build {2})", versionInfo.Major, versionInfo.Minor, versionInfo.Build);
         }
 
         public void ExcelExport<T>(List<T> items, String fileName, string nameReport)

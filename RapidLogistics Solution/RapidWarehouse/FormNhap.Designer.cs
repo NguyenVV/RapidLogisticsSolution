@@ -64,10 +64,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.grvShipments)).BeginInit();
             this.SuspendLayout();
             // 
-            // timer1
-            // 
-            //this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.btnExit);
@@ -356,7 +352,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(37, 607);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1663, 842);
+            this.groupBox1.Size = new System.Drawing.Size(1601, 842);
             this.groupBox1.TabIndex = 36;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Danh sách đơn hàng";
@@ -373,7 +369,7 @@
             this.grvShipments.Location = new System.Drawing.Point(11, 61);
             this.grvShipments.Name = "grvShipments";
             this.grvShipments.RowTemplate.Height = 33;
-            this.grvShipments.Size = new System.Drawing.Size(1644, 744);
+            this.grvShipments.Size = new System.Drawing.Size(1582, 744);
             this.grvShipments.TabIndex = 9;
             this.grvShipments.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grvShipments_CellClick);
             // 

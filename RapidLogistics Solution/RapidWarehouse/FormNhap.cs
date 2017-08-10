@@ -87,6 +87,7 @@ namespace RapidWarehouse
             grvShipments.Columns[0].Name = STT;
             grvShipments.Columns[0].ValueType = typeof(int);
             grvShipments.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            grvShipments.Columns[0].ReadOnly = true;
             grvShipments.Columns[1].Name = MAWB;
             grvShipments.Columns[1].ValueType = typeof(string);
             grvShipments.Columns[2].Name = ID;

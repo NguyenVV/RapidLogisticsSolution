@@ -30,6 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormBaoCao));
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.ccbQuarter = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.btnReportQuater = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.btnKeChiTietSanLuongTonKho = new System.Windows.Forms.Button();
             this.label23 = new System.Windows.Forms.Label();
@@ -60,9 +63,6 @@
             this.label20 = new System.Windows.Forms.Label();
             this.dtpNgayXuatReport = new System.Windows.Forms.DateTimePicker();
             this.btnChiTietXuatKho = new System.Windows.Forms.Button();
-            this.btnReportQuater = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
-            this.ccbQuarter = new System.Windows.Forms.ComboBox();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabNhap.SuspendLayout();
@@ -89,6 +89,42 @@
             this.tabPage3.Size = new System.Drawing.Size(1659, 961);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "       Báo Cáo Tồn Kho, Đối Soát Ca        ";
+            // 
+            // ccbQuarter
+            // 
+            this.ccbQuarter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ccbQuarter.FormattingEnabled = true;
+            this.ccbQuarter.Items.AddRange(new object[] {
+            "Q1",
+            "Q2",
+            "Q3",
+            "Q4",
+            "Q4 năm trước"});
+            this.ccbQuarter.Location = new System.Drawing.Point(1194, 108);
+            this.ccbQuarter.Name = "ccbQuarter";
+            this.ccbQuarter.Size = new System.Drawing.Size(270, 39);
+            this.ccbQuarter.TabIndex = 62;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.label6.Location = new System.Drawing.Point(1104, 108);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(84, 31);
+            this.label6.TabIndex = 61;
+            this.label6.Text = "Qúy :";
+            // 
+            // btnReportQuater
+            // 
+            this.btnReportQuater.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReportQuater.Location = new System.Drawing.Point(1155, 196);
+            this.btnReportQuater.Name = "btnReportQuater";
+            this.btnReportQuater.Size = new System.Drawing.Size(309, 152);
+            this.btnReportQuater.TabIndex = 60;
+            this.btnReportQuater.Text = "Báo cáo quý đối với hàng tồn kho (chưa có người nhận)";
+            this.btnReportQuater.UseVisualStyleBackColor = true;
+            this.btnReportQuater.Click += new System.EventHandler(this.btnReportQuater_Click);
             // 
             // label5
             // 
@@ -437,42 +473,6 @@
             this.btnChiTietXuatKho.Text = "Bảng kê chi tiết sản lượng xuất kho";
             this.btnChiTietXuatKho.UseVisualStyleBackColor = true;
             this.btnChiTietXuatKho.Click += new System.EventHandler(this.btnChiTietXuatKho_Click);
-            // 
-            // btnReportQuater
-            // 
-            this.btnReportQuater.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReportQuater.Location = new System.Drawing.Point(1155, 196);
-            this.btnReportQuater.Name = "btnReportQuater";
-            this.btnReportQuater.Size = new System.Drawing.Size(309, 152);
-            this.btnReportQuater.TabIndex = 60;
-            this.btnReportQuater.Text = "Báo cáo quý đối với hàng tồn kho (chưa có người nhận)";
-            this.btnReportQuater.UseVisualStyleBackColor = true;
-            this.btnReportQuater.Click += new System.EventHandler(this.btnReportQuater_Click);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.label6.Location = new System.Drawing.Point(1104, 108);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(84, 31);
-            this.label6.TabIndex = 61;
-            this.label6.Text = "Qúy :";
-            // 
-            // ccbQuarter
-            // 
-            this.ccbQuarter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ccbQuarter.FormattingEnabled = true;
-            this.ccbQuarter.Items.AddRange(new object[] {
-            "Q1",
-            "Q2",
-            "Q3",
-            "Q4",
-            "Q4 năm trước"});
-            this.ccbQuarter.Location = new System.Drawing.Point(1194, 108);
-            this.ccbQuarter.Name = "ccbQuarter";
-            this.ccbQuarter.Size = new System.Drawing.Size(270, 39);
-            this.ccbQuarter.TabIndex = 62;
             // 
             // FormBaoCao
             // 

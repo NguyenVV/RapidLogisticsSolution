@@ -76,6 +76,7 @@ namespace RapidWarehouse
             grvShipmentListOut.Columns[0].Name = STT;
             grvShipmentListOut.Columns[0].ValueType = typeof(int);
             grvShipmentListOut.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            grvShipmentListOut.Columns[0].ReadOnly = true;
             grvShipmentListOut.Columns[1].Name = MAWB;
             grvShipmentListOut.Columns[1].ValueType = typeof(string);
             grvShipmentListOut.Columns[2].Name = DATE_CREATED;
@@ -387,6 +388,7 @@ namespace RapidWarehouse
                 {
                     MessageBox.Show("Tìm thấy đơn hàng vừa nhập đã có trên lưới", "Đơn hàng trùng lặp", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txtShipmentIdOut.Text = String.Empty;
+                    startProcessing = false;
                     return;
                 }
 
@@ -410,6 +412,7 @@ namespace RapidWarehouse
                     else
                     {
                         txtShipmentIdOut.Text = String.Empty;
+                        startProcessing = false;
                         return;
                     }
                 }
@@ -418,6 +421,7 @@ namespace RapidWarehouse
                 {
                     MessageBox.Show("Mã đơn hàng vừa nhập đã được xuất rồi nên không thể xuất kho", "Nhập thông tin", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txtShipmentIdOut.Text = String.Empty;
+                    startProcessing = false;
                     return;
                 }
                 var shipment = _shipmentServices.GetByShipmentIdAndBoxId(txtShipmentIdOut.Text, currentBoxOut.Id);
@@ -428,6 +432,7 @@ namespace RapidWarehouse
                     {
                         MessageBox.Show("Mã đơn hàng vừa nhập hiện không có trong kho hoặc trong mã thùng này nên không thể xuất kho", "Nhập thông tin", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         txtShipmentIdOut.Text = String.Empty;
+                        startProcessing = false;
                         return;
                     }
                     else
@@ -436,6 +441,7 @@ namespace RapidWarehouse
                         {
                             MessageBox.Show("Không thể xuất kho\nMã đơn hàng vừa nhập thuộc mã thùng khác nên không thể xuất kho", "Không thể xuất kho", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             txtShipmentIdOut.Text = String.Empty;
+                            startProcessing = false;
                             return;
                         }
                     }
