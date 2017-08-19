@@ -170,7 +170,8 @@ namespace RapidWarehouse
                             shipment.Weight = Double.Parse(Convert.ToString(grvShipmentListOut[WEIGHT, i].Value));
                         }
                         shipment.Country = Convert.ToString(grvShipmentListOut[COUNTRY, i].Value);
-                        shipment.DateOfCompletion = Convert.ToDateTime(grvShipmentListOut[DATEOFCOMPLETION, i].Value);
+                        if(grvShipmentListOut[DATEOFCOMPLETION, i].Value != null)
+                            shipment.DateOfCompletion = Convert.ToDateTime(grvShipmentListOut[DATEOFCOMPLETION, i].Value);
                         listShipment.Add(shipment);
                     }
 
@@ -615,7 +616,7 @@ namespace RapidWarehouse
                 item.DeclarationNo = _shipmentServices.GetDeclarationNo(item.ShipmentId);
             }
             
-            string dateOfCreation = null;
+            string dateOfCreation = item.DateOfCompletion!= null ? Convert.ToDateTime(item.DateOfCompletion).ToString("dd-MM-yyyy"):null;
             if(item.DateOfCompletion == new DateTime())
             {
                 dateOfCreation = _shipmentServices.GetDateOfCompletion(item.ShipmentId);

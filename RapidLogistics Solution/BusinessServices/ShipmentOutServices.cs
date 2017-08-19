@@ -51,10 +51,15 @@ namespace BusinessServices
                 foreach (ShipmentOut ship in shipmentOutEntityList)
                 {
                     var original = _unitOfWork.ShipmentOutRepository.Get(t => t.ShipmentId == ship.ShipmentId);
+
                     if (original != null)
                     {
                         ship.ShipmentId = original.ShipmentId;
                         ship.DateCreated = original.DateCreated;
+
+                        if (IsEquals(original, ship))
+                            continue;
+
                         _unitOfWork.ShipmentOutRepository.Update(original, ship);
                     }
                     else
@@ -67,6 +72,20 @@ namespace BusinessServices
                 scope.Complete();
                 return numberInsert;
             }
+        }
+        private static bool IsEquals(ShipmentOut first, ShipmentOut second)
+        {
+            if (first == null && second == null)
+                return true;
+            if (first == null || second == null)
+                return false;
+            if (first.BoxIdRef == second.BoxIdRef && String.Equals(first.BoxIdString, second.BoxIdString)
+                && first.EmployeeId == second.EmployeeId && first.IsSyncOms == second.IsSyncOms
+                && first.MasterBillId == second.MasterBillId && String.Equals(first.MasterBillIdString, second.MasterBillIdString)
+                && first.ShipmentId == second.ShipmentId && first.WarehouseId == second.WarehouseId)
+                return true;
+
+            return false;
         }
         public void Delete(string shipmentId)
         {

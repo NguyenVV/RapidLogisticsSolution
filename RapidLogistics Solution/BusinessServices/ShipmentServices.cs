@@ -18,22 +18,28 @@ namespace BusinessServices
         {
             _unitOfWork = unitOfWork;
         }
-        public int CreateOrUpdate(List<ShipmentEntity> shipmentList)
+        public int CreateOrUpdate(IEnumerable<ShipmentEntity> shipmentList)
         {
             if (shipmentList != null && shipmentList.Any())
             {
                 using (var scope = new TransactionScope())
                 {
                     Mapper.CreateMap<ShipmentEntity, ShipmentInfor>();
-                    var shipmentListModel = Mapper.Map<List<ShipmentEntity>, List<ShipmentInfor>>(shipmentList);
+                    var shipmentListModel = Mapper.Map<IEnumerable<ShipmentEntity>, IEnumerable<ShipmentInfor>>(shipmentList);
                     int count = 0;
                     foreach (ShipmentInfor ship in shipmentListModel)
                     {
                         var original = _unitOfWork.ShipmentRepository.Get(t => t.ShipmentId == ship.ShipmentId);
+
                         if (original != null)
                         {
+
                             ship.Id = original.Id;
                             ship.DateCreated = original.DateCreated;
+
+                            if (IsEquals(original, ship))
+                                continue;
+
                             _unitOfWork.ShipmentRepository.Update(original, ship);
                         }
                         else
@@ -42,7 +48,7 @@ namespace BusinessServices
                             count++;
                         }
                     }
-                    
+
                     _unitOfWork.SaveWinform();
                     scope.Complete();
 
@@ -52,6 +58,24 @@ namespace BusinessServices
 
             return 0;
         }
+
+        private static bool IsEquals(ShipmentInfor first, ShipmentInfor second)
+        {
+            if (first == null && second == null)
+                return true;
+            if (first == null || second == null)
+                return false;
+            if (String.Equals(first.Address, second.Address) && first.BoxId == second.BoxId && String.Equals(first.Consignee, second.Consignee) && String.Equals(first.Content, second.Content)
+                && String.Equals(first.Country, second.Country) && String.Equals(first.DateOfCompletion, second.DateOfCompletion)
+                && String.Equals(first.DeclarationNo, second.DeclarationNo) && String.Equals(first.Descrition, second.Descrition) && first.EmployeeId == second.EmployeeId
+                && first.Id == second.Id && first.NumberPackage == second.NumberPackage && String.Equals(first.Receiver, second.Receiver) && String.Equals(first.Sender, second.Sender)
+                && String.Equals(first.ShipmentId, second.ShipmentId) && String.Equals(first.Status, second.Status) && String.Equals(first.TelReceiver, second.TelReceiver) && first.TotalValue == second.TotalValue
+                && first.WarehouseId == second.WarehouseId && first.Weight == second.Weight && first.IsSyncOms == second.IsSyncOms)
+                return true;
+
+            return false;
+        }
+
         public int CreateOrUpdate(ShipmentEntity shipmentEntity)
         {
             using (var scope = new TransactionScope())
@@ -81,7 +105,7 @@ namespace BusinessServices
             if (shipmentList != null && shipmentList.Any())
             {
                 Mapper.CreateMap<ShipmentInfor, ShipmentEntity>();
-                var shipmentListModel = Mapper.Map<List<ShipmentInfor>, List<ShipmentEntity>>(shipmentList.ToList());
+                var shipmentListModel = Mapper.Map<IEnumerable<ShipmentInfor>, IEnumerable<ShipmentEntity>>(shipmentList.ToList());
                 return shipmentListModel;
             }
             return null;
@@ -92,7 +116,7 @@ namespace BusinessServices
             if (shipmentList != null && shipmentList.Any())
             {
                 Mapper.CreateMap<ShipmentInfor, ShipmentEntity>();
-                var shipmentListModel = Mapper.Map<List<ShipmentInfor>, List<ShipmentEntity>>(shipmentList.ToList());
+                var shipmentListModel = Mapper.Map<IEnumerable<ShipmentInfor>, IEnumerable<ShipmentEntity>>(shipmentList.ToList());
                 return shipmentListModel;
             }
             return null;
@@ -168,7 +192,7 @@ namespace BusinessServices
                 foreach (System.Data.DataRow row in list.Rows)
                 {
                     string resultDate = Convert.ToString(row["DateOfCompletion"]);
-                    
+
                     if (!string.IsNullOrEmpty(resultDate))
                     {
                         string fromTimeString = "";

@@ -7,7 +7,7 @@ namespace BusinessServices.Interfaces
     public interface IShipmentServices
     {
         int CreateOrUpdate(ShipmentEntity shipmentEntity);
-        int CreateOrUpdate(List<ShipmentEntity> shipmentList);
+        int CreateOrUpdate(IEnumerable<ShipmentEntity> shipmentList);
         ShipmentEntity GetByShipmentId(string shipmentId);
         string[] GetReferenceOfShipment(string shipmentId);
         ShipmentEntity GetByShipmentIdAndBoxId(string shipmentId, int boxId);
