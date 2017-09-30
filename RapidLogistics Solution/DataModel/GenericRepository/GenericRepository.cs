@@ -43,6 +43,8 @@ namespace DataModel.GenericRepository
             DbContext context = new DbContext(ConfigurationManager.ConnectionStrings["RapidSolutionEntities"].ConnectionString);
             this.Context = context;
             this.DbSet = context.Set<TEntity>();
+            Context.Configuration.LazyLoadingEnabled = true;
+            Context.Configuration.ProxyCreationEnabled = true;
         }
         public bool isConnectSql()
         {
@@ -77,7 +79,7 @@ namespace DataModel.GenericRepository
         }
         public int ExecuteUpdateQuery(string _query)
         {
-            string connStr = ConfigurationManager.ConnectionStrings["dbConnectionStringECUS5VNACCS"].ConnectionString;
+            string connStr = ConfigurationManager.ConnectionStrings["dbConnectionStringRapidSolution"].ConnectionString;
 
             using (SqlConnection connection = new SqlConnection(connStr))
             {
@@ -102,10 +104,6 @@ namespace DataModel.GenericRepository
                     {
                         Console.Write("Error - Connection.executeUpdateQuery - Query: " + _query + " \nException: " + e.StackTrace.ToString());
                         return 0;
-                    }
-                    finally
-                    {
-                        //CloseConnection();
                     }
                 }
             }
@@ -189,7 +187,7 @@ namespace DataModel.GenericRepository
                 foreach (TEntity entity in entityList)
                 {
                     try
-                    {
+                    {   
                         DbSet.Add(entity);
                         numberInsert++;
                     }catch(Exception ex)
@@ -327,6 +325,10 @@ namespace DataModel.GenericRepository
         public bool Exists(object primaryKey)
         {
             return DbSet.Find(primaryKey) != null;
+        }
+        public bool Exists(Func<TEntity, bool> predicate)
+        {
+            return DbSet.Any(predicate);
         }
 
         /// <summary>

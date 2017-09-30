@@ -19,7 +19,8 @@ namespace BusinessServices
         {
             _unitOfWork = unitOfWork;
         }
-        public string Create(ShipmentOutEntity shipmentOut)
+        
+        public string CreateOrUpdate(ShipmentOutEntity shipmentOut)
         {
             using (var scope = new TransactionScope())
             {
@@ -40,6 +41,10 @@ namespace BusinessServices
                 scope.Complete();
                 return ship.ShipmentId;
             }
+        }
+        public int CreateOrUpdateByQuery(ShipmentOutEntity shipmentOut)
+        {
+            return _unitOfWork.ShipmentOutRepository.ExecuteUpdateQuery(string.Format("INSERT[dbo].[ShipmentOut] ([ShipmentId], [BoxIdRef], [BoxIdString], [MasterBillId], [MasterBillIdString], [DateOut], [EmployeeId], [WarehouseId], [IsSyncOms]) VALUES(N'{0}', {1}, N'{2}', {3}, {4}, CAST(N'{5}' AS DateTime), {6}, {7}, {8})", shipmentOut.ShipmentId, shipmentOut.BoxIdRef, shipmentOut.BoxIdString, shipmentOut.MasterBillId, shipmentOut.MasterBillIdString, shipmentOut.DateOut, shipmentOut.EmployeeId, shipmentOut.WarehouseId, 0));
         }
         public int CreateOrUpdate(List<ShipmentOutEntity> shipmentOutList)
         {
@@ -231,7 +236,7 @@ namespace BusinessServices
         {
             using (var scope = new TransactionScope())
             {
-                var shipmentOutEntity = _unitOfWork.ShipmentOutRepository.Exists(shipmentId);
+                var shipmentOutEntity = _unitOfWork.ShipmentOutRepository.Exists(s => s.ShipmentId == shipmentId);
                
                 scope.Complete();
                 return shipmentOutEntity;
@@ -249,6 +254,26 @@ namespace BusinessServices
             }
 
             return null;
+        }
+        public bool GetStatusCompletion(string shipmentId)
+        {
+            string query = "SELECT MSGCODE FROM CPN_OutputMSG where ShipmentID='" + shipmentId + "'";
+            var list = _unitOfWork.ShipmentOutRepository.ExecuteSelectQueryFromECUS5VNACCS(query);
+
+            if (list != null && list.Rows.Count > 0)
+            {
+                foreach (System.Data.DataRow row in list.Rows)
+                {
+                    string resultCode = Convert.ToString(row["MSGCODE"]);
+
+                    if (!string.IsNullOrEmpty(resultCode) && (resultCode == "VAD1FG" || resultCode == "VAD2FG"))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
     }
 }

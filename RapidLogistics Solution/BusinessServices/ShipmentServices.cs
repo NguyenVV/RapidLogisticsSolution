@@ -7,6 +7,7 @@ using DataModel;
 using System.Transactions;
 using AutoMapper;
 using BusinessServices.Interfaces;
+using System.Text;
 
 namespace BusinessServices
 {
@@ -25,30 +26,9 @@ namespace BusinessServices
                 using (var scope = new TransactionScope())
                 {
                     Mapper.CreateMap<ShipmentEntity, ShipmentInfor>();
-                    var shipmentListModel = Mapper.Map<IEnumerable<ShipmentEntity>, IEnumerable<ShipmentInfor>>(shipmentList);
+                    var shipmentListModel = Mapper.Map<IEnumerable<ShipmentEntity>, IEnumerable<ShipmentInfor>>(shipmentList).ToList();
                     int count = 0;
-                    foreach (ShipmentInfor ship in shipmentListModel)
-                    {
-                        var original = _unitOfWork.ShipmentRepository.Get(t => t.ShipmentId == ship.ShipmentId);
-
-                        if (original != null)
-                        {
-
-                            ship.Id = original.Id;
-                            ship.DateCreated = original.DateCreated;
-
-                            if (IsEquals(original, ship))
-                                continue;
-
-                            _unitOfWork.ShipmentRepository.Update(original, ship);
-                        }
-                        else
-                        {
-                            _unitOfWork.ShipmentRepository.Insert(ship);
-                            count++;
-                        }
-                    }
-
+                    count = _unitOfWork.ShipmentRepository.Insert(shipmentListModel);
                     _unitOfWork.SaveWinform();
                     scope.Complete();
 
@@ -98,6 +78,38 @@ namespace BusinessServices
                 scope.Complete();
                 return shipmentDataModel.Id;
             }
+        }
+        public int CreateOrUpdateByQuery(ShipmentEntity shipmentEntity)
+        {
+            try
+            {
+                return _unitOfWork.ShipmentRepository.ExecuteUpdateQuery(string.Format("INSERT [dbo].[ShipmentInfor] ([ShipmentId], [Sender], [Receiver], [TelReceiver], [TotalValue], [Descrition], [BoxId], [Status], [EmployeeId], [WarehouseId], [IsSyncOms], [Weight], [DeclarationNo], [Country], [Address], [Consignee], [Content], [NumberPackage], [DateOfCompletion]) VALUES (N'{0}', N'{1}', N'{2}', N'{3}', N'{4}', N'{5}', {6}, N'{7}', {8}, {9}, N'{10}', N'{11}', N'{12}', N'{13}',N'{14}', N'{15}', N'{16}', {17}, N'{18}')", shipmentEntity.ShipmentId, shipmentEntity.Sender, shipmentEntity.Receiver, shipmentEntity.ReceiverTel, null, shipmentEntity.Description, shipmentEntity.BoxId, null, shipmentEntity.EmployeeId, shipmentEntity.WarehouseId, null, shipmentEntity.Weight, shipmentEntity.DeclarationNo, shipmentEntity.Country, shipmentEntity.Address, shipmentEntity.Consignee, shipmentEntity.Content, shipmentEntity.NumberPackage, shipmentEntity.DateOfCompletion));
+            }
+            catch
+            {
+                return _unitOfWork.ShipmentRepository.ExecuteUpdateQuery(string.Format("Update [dbo].[ShipmentInfor] set [ShipmentId]=N'{0}', [Sender]=N'{1}', [Receiver]=N'{2}', [TelReceiver]=N'{3}', [TotalValue]={4}, [Descrition]=N'{5}', [BoxId]={6}, [Status]=N'{7}', [EmployeeId]={8}, [WarehouseId]={9}, [IsSyncOms]=N'{10}', [Weight]={11}, [DeclarationNo]=N'{12}', [Country]=N'{13}', [Address]=N'{14}', [Consignee]=N'{15}', [Content]=N'{16}', [NumberPackage]={17}, [DateOfCompletion]=N'{18}' where  Id = {19})", shipmentEntity.ShipmentId, shipmentEntity.Sender, shipmentEntity.Receiver, shipmentEntity.ReceiverTel, null, shipmentEntity.Description, shipmentEntity.BoxId, null, shipmentEntity.EmployeeId, shipmentEntity.WarehouseId, null, shipmentEntity.Weight, shipmentEntity.DeclarationNo, shipmentEntity.Country, shipmentEntity.Address, shipmentEntity.Consignee, shipmentEntity.Content, shipmentEntity.NumberPackage, shipmentEntity.DateOfCompletion, shipmentEntity.Id));
+            }
+        }
+
+        public int CreateOrUpdateByQuery(List<ShipmentEntity> shipmentList)
+        {
+                StringBuilder data = new StringBuilder();
+            try
+            {
+                foreach(ShipmentEntity shipmentEntity in shipmentList)
+                {
+                    data.Append(string.Format("INSERT [dbo].[ShipmentInfor] ([ShipmentId], [Sender], [Receiver], [TelReceiver], [TotalValue], [Descrition], [BoxId], [Status], [EmployeeId], [WarehouseId], [IsSyncOms], [Weight], [DeclarationNo], [Country], [Address], [Consignee], [Content], [NumberPackage], [DateOfCompletion]) VALUES (N'{0}', N'{1}', N'{2}', N'{3}', N'{4}', N'{5}', {6}, N'{7}', {8}, {9}, N'{10}', {11}, N'{12}', N'{13}',N'{14}', N'{15}', N'{16}', {17}, N'{18}')", shipmentEntity.ShipmentId, shipmentEntity.Sender, shipmentEntity.Receiver, shipmentEntity.ReceiverTel, null, shipmentEntity.Description, shipmentEntity.BoxId, null, shipmentEntity.EmployeeId, shipmentEntity.WarehouseId, null, shipmentEntity.Weight, shipmentEntity.DeclarationNo, shipmentEntity.Country, shipmentEntity.Address, shipmentEntity.Consignee, shipmentEntity.Content, shipmentEntity.NumberPackage, shipmentEntity.DateOfCompletion));
+                }
+            }
+            catch
+            {
+                foreach (ShipmentEntity shipmentEntity in shipmentList)
+                {
+                    data.Append(string.Format("Update [dbo].[ShipmentInfor] set [ShipmentId]=N'{0}', [Sender]=N'{1}', [Receiver]=N'{2}', [TelReceiver]=N'{3}', [TotalValue]={4}, [Descrition]=N'{5}', [BoxId]={6}, [Status]=N'{7}', [EmployeeId]={8}, [WarehouseId]={9}, [IsSyncOms]=N'{10}', [Weight]={11}, [DeclarationNo]=N'{12}', [Country]=N'{13}', [Address]=N'{14}', [Consignee]=N'{15}', [Content]=N'{16}', [NumberPackage]={17}, [DateOfCompletion]=N'{18}' where  Id = {19})", shipmentEntity.ShipmentId, shipmentEntity.Sender, shipmentEntity.Receiver, shipmentEntity.ReceiverTel, null, shipmentEntity.Description, shipmentEntity.BoxId, null, shipmentEntity.EmployeeId, shipmentEntity.WarehouseId, null, shipmentEntity.Weight, shipmentEntity.DeclarationNo, shipmentEntity.Country, shipmentEntity.Address, shipmentEntity.Consignee, shipmentEntity.Content, shipmentEntity.NumberPackage, shipmentEntity.DateOfCompletion, shipmentEntity.Id));
+                }
+            }
+
+            return _unitOfWork.ShipmentRepository.ExecuteUpdateQuery(data.ToString());
         }
         public IEnumerable<ShipmentEntity> GetByMasterBillId(int masterBillId)
         {
@@ -299,6 +311,16 @@ namespace BusinessServices
                 var shipmentData = Mapper.Map<ShipmentInfor, ShipmentEntity>(shipmentDataModel);
                 scope.Complete();
                 return shipmentData;
+            }
+        }
+        public bool IsExistByShipmentIdAndBoxId(string shipmentId, int boxId)
+        {
+            using (var scope = new TransactionScope())
+            {
+                bool shipmentDataModel = _unitOfWork.ShipmentRepository.Exists(t => t.ShipmentId.Equals(shipmentId, StringComparison.CurrentCultureIgnoreCase) && t.BoxId == boxId);
+                
+                scope.Complete();
+                return shipmentDataModel;
             }
         }
         public ReportDetailEntity SearchByShipmentId(string shipmentId)

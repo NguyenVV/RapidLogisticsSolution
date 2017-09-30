@@ -15,7 +15,7 @@ namespace RapidWarehouse
     {
         //public DataTable tblShipments = new DataTable();
         int numberShipment = 1;
-        int numberShipmentOut = 1;
+        //int numberShipmentOut = 1;
         string currentMasterBill = String.Empty;
         string currentBoxId = String.Empty;
         int currentMasterBillId, currentBoxIdInt;
@@ -123,6 +123,47 @@ namespace RapidWarehouse
                 if (!ValidateInputDataConfirmArrived())
                     return;
 
+                MasterAirwayBillEntity masterBill = _masterBillServices.GetByMasterBillId(cbbMasterBill.Text);
+                if (masterBill == null)
+                {
+                    masterBill = new MasterAirwayBillEntity();
+                    masterBill.MasterAirwayBill = cbbMasterBill.Text;
+                    masterBill.DateArrived = dtpNgayDen.Value;
+                    masterBill.DateCreated = DateTime.Now;
+                    masterBill.EmployeeId = currentEmployee.Id;
+                    currentMasterBillId = _masterBillServices.CreateMasterAirwayBill(masterBill);
+                    currentMasterBill = masterBill.MasterAirwayBill;
+                    masterBill.Id = currentMasterBillId;
+                    //cbbMasterBill.Items.Add(masterBill);
+                    LoadAllMasterBillByDateToCombobox(dtpNgayDen.Value, cbbMasterBill);
+                    cbbMasterBill.SelectedText = masterBill.MasterAirwayBill;
+                }
+                else
+                {
+                    currentMasterBillId = masterBill.Id;
+                    currentMasterBill = masterBill.MasterAirwayBill;
+                }
+
+                BoxInforEntity boxEntity = _boxInforServices.GetByBoxId(cbbBoxId.Text);
+                if (boxEntity == null)
+                {
+                    boxEntity = new BoxInforEntity();
+                    boxEntity.BoxId = cbbBoxId.Text;
+                    boxEntity.ShipmentQuantity = numberShipment;
+                    boxEntity.MasterBillId = currentMasterBillId;
+                    boxEntity.DateCreated = DateTime.Now;
+                    boxEntity.EmployeeId = currentEmployee.Id;
+                    currentBoxIdInt = _boxInforServices.CreateBoxInfor(boxEntity);
+                    boxEntity.Id = currentBoxIdInt;
+                    currentBoxId = boxEntity.BoxId;
+                    //cbbBoxId.Items.Add(boxEntity);
+                }
+                else
+                {
+                    currentBoxIdInt = boxEntity.Id;
+                    currentBoxId = boxEntity.BoxId;
+                }
+
                 OpenBox();
                 LoadShipmentsByBoxIdInXacNhanDen(cbbBoxId.Text, grvShipments);
                 btnOpenClose.Text = "Đóng";
@@ -137,7 +178,8 @@ namespace RapidWarehouse
             }
             else
             {
-                SaveBoxInfor();
+                if(!isConfirmed)
+                    SaveBoxInfor();
                 CloseBox();
                 btnOpenClose.Text = "Mở";
             }
@@ -173,9 +215,10 @@ namespace RapidWarehouse
             grvShipments.Enabled = true;
             txtShipmentId.Focus();
         }
-
+        private bool isConfirmed;
         private bool ValidateInputDataConfirmArrived()
         {
+            isConfirmed = false;
             if (String.IsNullOrWhiteSpace(cbbMasterBill.Text) || String.IsNullOrWhiteSpace(cbbBoxId.Text))
             {
                 MessageBox.Show("Bạn cần phải nhập Master airway bill (MAWB) và Mã thùng trước", "Nhập thông tin", MessageBoxButtons.OK);
@@ -197,12 +240,27 @@ namespace RapidWarehouse
             }
 
             BoxInforEntity box = _boxInforServices.GetByBoxId(cbbBoxId.Text);
-            int shipmentAmount = manifestList.Where(m => m.BoxID.Equals(cbbBoxId.Text, StringComparison.CurrentCultureIgnoreCase)).GroupBy(t => t.ShipmentNo).Select(p => p.First()).Count();
+            IEnumerable<ShipmentEntity> listItem =null;
+            if(box!=null)
+                listItem = _shipmentServices.GetByBoxId(box.Id);
+
+            int shipmentAmount = 0;
+            //if (listItem != null && listItem.Any())
+            //{
+            //    shipmentAmount = listItem.Count();
+            //}
+            //else
+            //{
+                shipmentAmount = manifestList.Where(m => m.BoxID.Equals(cbbBoxId.Text, StringComparison.CurrentCultureIgnoreCase)).GroupBy(t => t.ShipmentNo).Select(p => p.First()).Count();
+            //}
 
             if (box != null)
             {
                 var resultBox = MessageBox.Show("Mã thùng này đã được xác nhận rồi, có " + shipmentAmount + " đơn hàng\nBạn có muốn mở không ?", "Mã thùng đã được xác nhận", MessageBoxButtons.YesNo);
                 cbbBoxId.Focus();
+                //var listItem = _shipmentServices.GetByBoxId(box.Id);
+                if (listItem != null && listItem.Any())
+                    isConfirmed = true;
                 return resultBox == DialogResult.Yes;
             }
 
@@ -290,7 +348,6 @@ namespace RapidWarehouse
                         shipment.Destination = Convert.ToString(grvShipments[CONSIGNEE, i].Value);
                         shipment.Consignee = Convert.ToString(grvShipments[CONSIGNEE, i].Value);
                         shipment.Receiver = Convert.ToString(grvShipments[CONTACTNAME, i].Value);
-                        shipment.Weight = double.Parse(Convert.ToString(grvShipments[WEIGHT, i].Value));
                         string weight = Convert.ToString(grvShipments[WEIGHT, i].Value);
                         if (string.IsNullOrEmpty(weight))
                         {
@@ -312,6 +369,34 @@ namespace RapidWarehouse
                     _shipmentServices.CreateOrUpdate(listShipment);
                 }
             }
+        }
+
+        private ShipmentEntity convertFromManifest(ManifestEntity manifest)
+        {
+            ShipmentEntity shipment = new ShipmentEntity();
+            shipment.ShipmentId = manifest.ShipmentNo;
+            shipment.BoxId = currentBoxIdInt;
+            shipment.DateCreated = DateTime.Now;
+            shipment.WarehouseId = FormLogin.mWarehouse.Id;
+            shipment.EmployeeId = currentEmployee.Id;
+            shipment.NumberPackage = manifest.Quantity;
+
+            shipment.Sender = manifest.CompanyName;
+            shipment.DeclarationNo = manifest.DeclarationNo;
+            shipment.Address = manifest.Address;
+            shipment.Content = manifest.Content;
+            shipment.Destination = manifest.Destination;
+            shipment.Consignee = manifest.Destination;
+            shipment.Receiver = manifest.ContactName;
+            shipment.Weight = manifest.Weight;
+            shipment.Country = manifest.Country;
+            //shipment.DateOfCompletion = "";
+            //DateTime completed = Convert.ToDateTime(grvShipments[DATEOFCOMPLETION, i].Value);
+            //if (grvShipments[DATEOFCOMPLETION, i].Value != null && !string.IsNullOrEmpty(grvShipments[DATEOFCOMPLETION, i].Value.ToString()))
+            //    shipment.DateOfCompletion = Convert.ToDateTime(grvShipments[DATEOFCOMPLETION, i].Value);
+            //else
+            //    shipment.DateOfCompletion = null;
+            return shipment;
         }
         private void CloseBox()
         {
@@ -516,16 +601,18 @@ namespace RapidWarehouse
                 grv.Rows.Clear();
                 foreach (ManifestEntity item in listShipment)
                 {
-                    if (string.IsNullOrEmpty(item.DeclarationNo))
-                    {
-                        item.DeclarationNo = _shipmentServices.GetDeclarationNo(item.ShipmentNo);
-                    }
+                    //if (string.IsNullOrEmpty(item.DeclarationNo))
+                    //{
+                    //    item.DeclarationNo = _shipmentServices.GetDeclarationNo(item.ShipmentNo);
+                    //}
                     
-                    string dateOfCreation = _shipmentServices.GetDateOfCompletion(item.ShipmentNo);
+                    //string dateOfCreation = _shipmentServices.GetDateOfCompletion(item.ShipmentNo);
                     
                     grv.Rows.Add(index, item.MasterAirWayBill, 0, item.ShipmentNo, item.DeclarationNo, item.CompanyName
-                        ,item.Country, item.ContactName, item.Address, item.Destination, item.Content, 1, String.Format("{0:0.000}", item.Weight), dateOfCreation);
+                        ,item.Country, item.ContactName, item.Address, item.Destination, item.Content, 1, String.Format("{0:0.000}", item.Weight), "");
                     index++;
+                    //if(!isConfirmed)
+                    //    _shipmentServices.CreateOrUpdate(convertFromManifest(item));
                 }
                 // setting up value count on gridview
                 numberShipment = index;
@@ -543,6 +630,8 @@ namespace RapidWarehouse
                     grv.Rows.Add(index, cbbMasterBill.Text, item.Id, item.ShipmentId, item.DeclarationNo, item.Sender
                         , item.Country, item.Receiver, item.Address, item.Destination, item.Content, 1, String.Format("{0:0.000}", item.Weight), item.DateOfCompletion == new DateTime()?null: item.DateOfCompletion);
                     index++;
+                    //if (!isConfirmed)
+                    //    _shipmentServices.CreateOrUpdate(item);
                 }
                 // setting up value count on gridview
                 numberShipment = index;
@@ -587,10 +676,16 @@ namespace RapidWarehouse
                 }
 
                 // Thêm shipment vào lưới để nhập kho
-                string dateOfCreation = _shipmentServices.GetDateOfCompletion(txtShipmentId.Text);
-                grvShipments.Rows.Add(grvShipments.Rows.Count + 1, cbbMasterBill.Text, 0, txtShipmentId.Text, _shipmentServices.GetDeclarationNo(txtShipmentId.Text), null
+                string dateOfCreation = _shipmentServices.GetDateOfCompletion(txtShipmentId.Text);//_shipmentServices.GetDeclarationNo(txtShipmentId.Text)
+                grvShipments.Rows.Add(grvShipments.Rows.Count + 1, cbbMasterBill.Text, 0, txtShipmentId.Text, null, null
                     , null, null, null, null, null, 1, null, dateOfCreation);
+                ShipmentEntity item = new ShipmentEntity();
+                item.BoxId = currentBoxIdInt;
+                item.BoxIdString = currentBoxId;
+                item.ShipmentId = txtShipmentId.Text;
+                item.Mawb = cbbMasterBill.Text;
 
+                _shipmentServices.CreateOrUpdate(item);
                 grvShipments.ClearSelection();
                 grvShipments.Rows[grvShipments.Rows.Count - 1].Selected = true;
                 grvShipments.FirstDisplayedScrollingRowIndex = grvShipments.Rows.Count - 1;

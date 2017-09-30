@@ -6,7 +6,8 @@ namespace BusinessServices.Interfaces
 {
     public interface IShipmentOutServices
     {
-        string Create(ShipmentOutEntity shipmentOut);
+        string CreateOrUpdate(ShipmentOutEntity shipmentOut);
+        int CreateOrUpdateByQuery(ShipmentOutEntity shipmentOut);
         int CreateOrUpdate(List<ShipmentOutEntity> shipmentOutList);
         bool IsExist(string shipmentOutId);
         IEnumerable<ShipmentOutEntity> GetByBoxId(int boxId);
@@ -23,5 +24,6 @@ namespace BusinessServices.Interfaces
         IEnumerable<ShipmentOutEntity> GetByDateRange(DateTime value1, DateTime value2);
         IEnumerable<ShipmentEntity> GetListNotDeliveryByQuarter(DateTime start, DateTime end);
         ShipmentOutEntity GetByShipmentId(string shipId);
+        bool GetStatusCompletion(string shipmentId);
     }
 }

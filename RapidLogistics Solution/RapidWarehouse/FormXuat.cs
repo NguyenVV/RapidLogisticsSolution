@@ -7,10 +7,13 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace RapidWarehouse
 {
+    public delegate void SaveDataDelegate(object position);
+    public delegate string SaveShipmentOutDelegate(ShipmentOutEntity shipmentOut);
     public partial class FormXuat : Form
     {
         int numberShipmentOut = 1;
@@ -65,7 +68,7 @@ namespace RapidWarehouse
             LoadAllMasterBillByDateToCombobox(DateTime.Today, cbbMasterBillOut);
             //FillInforOut();
             CloseBoxOut();
-            dtpNgayXuat.Focus();
+            cbbMasterBillOut.Focus();
             this.Text = "Xuất kho - " + FormUltils.getInstance().GetVersionInfo();
         }
 
@@ -124,7 +127,7 @@ namespace RapidWarehouse
             lblShipmentScanedOut.Text = (grvShipmentListOut.Rows.Count).ToString();
         }
 
-        private void SaveShipmentOut()
+        private void SaveShipmentOut(DataGridView grvShipmentListOut)
         {
             int rowCount = grvShipmentListOut.Rows.Count;
             if (rowCount > 0)
@@ -197,6 +200,69 @@ namespace RapidWarehouse
             }
         }
 
+        private void SaveShipmentOut(object position)
+        {
+            int rowIndex = (int)position;
+            if (grvShipmentListOut != null && grvShipmentListOut.Rows.Count > 0)
+            {
+                string shipmentId = Convert.ToString(grvShipmentListOut[SHIPMENT_NO, rowIndex - 1].Value);
+                if (nhapMoiKhongCanXacNhan)
+                {
+                    ShipmentEntity shipment = new ShipmentEntity();
+                    shipment.ShipmentId = shipmentId;
+                    shipment.BoxId = currentBoxOut.Id;
+                    shipment.DateCreated = DateTime.Now;
+                    shipment.WarehouseId = FormLogin.mWarehouse.Id;
+                    shipment.EmployeeId = currentEmployee.Id;
+                    string package = Convert.ToString(grvShipmentListOut[PACKAGE, rowIndex - 1].Value);
+                    if (string.IsNullOrEmpty(package))
+                    {
+                        shipment.NumberPackage = 1;
+                    }
+                    else
+                    {
+                        shipment.NumberPackage = Int32.Parse(Convert.ToString(grvShipmentListOut[PACKAGE,rowIndex - 1].Value));
+                    }
+
+                    shipment.Sender = Convert.ToString(grvShipmentListOut[COMPANYNAME,rowIndex - 1].Value);
+                    shipment.DeclarationNo = Convert.ToString(grvShipmentListOut[DECLARATIONNO,rowIndex - 1].Value);
+                    shipment.Address = Convert.ToString(grvShipmentListOut[ADDRESS,rowIndex - 1].Value);
+                    shipment.Content = Convert.ToString(grvShipmentListOut[CONTENT,rowIndex - 1].Value);
+                    shipment.Destination = Convert.ToString(grvShipmentListOut[CONSIGNEE,rowIndex - 1].Value);
+                    shipment.Consignee = Convert.ToString(grvShipmentListOut[CONSIGNEE,rowIndex - 1].Value);
+                    shipment.Receiver = Convert.ToString(grvShipmentListOut[CONTACTNAME,rowIndex - 1].Value);
+                    string weight = Convert.ToString(grvShipmentListOut[WEIGHT,rowIndex - 1].Value);
+                    if (string.IsNullOrEmpty(weight))
+                    {
+                        shipment.Weight = 0d;
+                    }
+                    else
+                    {
+                        shipment.Weight = Double.Parse(Convert.ToString(grvShipmentListOut[WEIGHT,rowIndex - 1].Value));
+                    }
+                    shipment.Country = Convert.ToString(grvShipmentListOut[COUNTRY,rowIndex - 1].Value);
+                    shipment.DateOfCompletion = null;
+                    if (grvShipmentListOut[DATEOFCOMPLETION,rowIndex - 1].Value != null)
+                        shipment.DateOfCompletion = Convert.ToDateTime(grvShipmentListOut[DATEOFCOMPLETION,rowIndex - 1].Value);
+
+                    _shipmentServices.CreateOrUpdateByQuery(shipment);
+                }
+
+                ShipmentOutEntity shipmentOut = new ShipmentOutEntity();
+                shipmentOut.ShipmentId = shipmentId;
+                shipmentOut.BoxIdRef = currentBoxOut.Id;
+                shipmentOut.BoxIdString = currentBoxOut.BoxId;
+                shipmentOut.MasterBillId = currentMasterOut.Id;
+                shipmentOut.MasterBillIdString = currentMasterOut.MasterAirwayBill;
+                shipmentOut.DateOut = dtpNgayXuat.Value;
+                shipmentOut.DateCreated = DateTime.Now;
+                shipmentOut.EmployeeId = currentEmployee.Id;
+                shipmentOut.WarehouseId = FormLogin.mWarehouse.Id;
+
+                _shipmentOutServices.CreateOrUpdateByQuery(shipmentOut);
+            }
+        }
+
         private void CloseBoxOut()
         {
             dtpNgayXuat.Enabled = true;
@@ -266,6 +332,7 @@ namespace RapidWarehouse
         private bool CheckBoxIdProcessingByAnother(int boxId)
         {
             var shipmentOut = _shipmentOutTempServices.GetByBoxId(boxId);
+            //var shipmentOut = _shipmentOutServices.GetByBoxId(boxId);
             if (shipmentOut != null && shipmentOut.First().EmployeeId != currentEmployee.Id)
             {
                 MessageBox.Show("Mã thùng này đang được xử lý bởi người khác, vui lòng chọn mã thùng khác! ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -359,7 +426,8 @@ namespace RapidWarehouse
             }
             else
             {
-                SaveShipmentOut();
+                _shipmentOutTempServices.DeleteByEmployeeId(currentEmployee.Id);
+                //SaveShipmentOut();
                 CloseBoxOut();
                 btnOpenBoxOut.Text = "Mở";
                 //ResetFormInfoXuat();
@@ -371,6 +439,16 @@ namespace RapidWarehouse
                 lblThungDaQuetOut.Text = "" + _boxInforServices.GetByMasterBill(currentMasterOut.Id).Count();
                 lblDonDaXuat.Text = "" + _shipmentOutServices.GetTotalByMasterBill(currentMasterOut.Id);
             }
+        }
+        private void SaveShipmentOutThread(object position)
+        {
+            new SaveDataDelegate(SaveShipmentOut).Invoke(position);
+            //save.Invoke(position);
+            //Invoke(new SaveDataDelegate(SaveShipmentOut), new object[] { position });
+        }
+        private void SaveShipmentOutTempThread(object shipmentOut)
+        {
+            _shipmentOutTempServices.Create((ShipmentOutEntity)shipmentOut);
         }
         bool startProcessing = false;
         private void txtShipmentIdOut_KeyDown(object sender, KeyEventArgs e)
@@ -387,10 +465,20 @@ namespace RapidWarehouse
 
                 if (IsExistsOnTheGridView(grvShipmentListOut, txtShipmentIdOut.Text))
                 {
-                    MessageBox.Show("Tìm thấy đơn hàng vừa nhập đã có trên lưới", "Đơn hàng trùng lặp", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Tìm thấy đơn hàng vừa nhập đã có trên lưới", "Đơn hàng trùng lặp", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     txtShipmentIdOut.Text = String.Empty;
+                    txtShipmentIdOut.Focus();
                     startProcessing = false;
                     return;
+                }
+
+                if (!_shipmentOutServices.GetStatusCompletion(txtShipmentIdOut.Text))
+                {
+                    if(MessageBox.Show("Hàng chưa được phép thông quan\nBạn có muốn tiếp tục không ?", "Hàng chưa được phép thông quan", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                    {
+                        startProcessing = false;
+                        return;
+                    }
                 }
 
                 if (_shipmentWaitConfirmedServices.IsExist(txtShipmentIdOut.Text))
@@ -465,7 +553,7 @@ namespace RapidWarehouse
                 grvShipmentListOut.ClearSelection();
                 grvShipmentListOut.Rows[grvShipmentListOut.Rows.Count - 1].Selected = true;
                 grvShipmentListOut.FirstDisplayedScrollingRowIndex = grvShipmentListOut.Rows.Count - 1;
-
+                
                 // Create object temp
                 ShipmentOutEntity shipmentOut = new ShipmentOutEntity();
                 shipmentOut.ShipmentId = txtShipmentIdOut.Text;
@@ -477,7 +565,16 @@ namespace RapidWarehouse
                 shipmentOut.DateCreated = DateTime.Now;
                 shipmentOut.EmployeeId = currentEmployee.Id;
                 shipmentOut.WarehouseId = FormLogin.mWarehouse.Id;
+                //Thread t = new Thread(new ParameterizedThreadStart(SaveShipmentOutThread), 0);
+                //t.IsBackground = true;
+                //t.Start(grvShipmentListOut.Rows.Count);
+                //Thread thread = new Thread(() => SaveShipmentOut(grvShipmentListOut.Rows.Count));
+                //thread.IsBackground = true;
+                //thread.Start();
+                SaveShipmentOut(grvShipmentListOut.Rows.Count);
                 _shipmentOutTempServices.Create(shipmentOut);
+                //_shipmentOutTempServices.Create(shipmentOut);
+                //_shipmentOutServices.Create(shipmentOut);
                 // Clear text box after process
                 txtShipmentIdOut.Text = String.Empty;
                 startProcessing = false;
@@ -490,7 +587,7 @@ namespace RapidWarehouse
                 //}
             }
         }
-
+        
         #endregion
 
         #region Dùng chung
@@ -648,7 +745,7 @@ namespace RapidWarehouse
             text += " không ?";
             if (MessageBox.Show(text, "Chọn xử lý", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                if (listShipmentOutTemp != null)
+                if (listShipmentOutTemp != null && listShipmentOutTemp.Any())
                 {
                     var result = MessageBox.Show("Có " + listShipmentOutTemp.Count + " đơn hàng chưa lưu ở phiên làm việc trước, bạn có muốn tiếp tục xử lý hay không ?", "Load đơn hàng chưa lưu", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -819,6 +916,12 @@ namespace RapidWarehouse
         {
             ChiTietSanLuongXuatKho();
         }
+
+        private void grvShipmentListOut_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            SaveShipmentOut(e.RowIndex + 1);
+        }
+
         private void ChiTietSanLuongXuatKho()
         {
             BoxInforEntity box = (BoxInforEntity)cbbBoxIdOut.SelectedItem;

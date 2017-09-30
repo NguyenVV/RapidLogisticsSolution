@@ -18,7 +18,7 @@ namespace DataModel.UnitOfWork
     {
         #region Private member variables...
 
-        private readonly WebApiDbEntities _contextWebApi = null;
+        //private readonly WebApiDbEntities _contextWebApi = null;
         private readonly RapidSolutionEntities _contextWinform = null;
         private GenericRepository<User> _userRepository;
         //private GenericRepository<Product> _productRepository;
@@ -39,8 +39,11 @@ namespace DataModel.UnitOfWork
 
         public UnitOfWork()
         {
-            _contextWebApi = new WebApiDbEntities();
+            //_contextWebApi = new WebApiDbEntities();
             _contextWinform = new RapidSolutionEntities();
+            _contextWinform.Configuration.LazyLoadingEnabled = true;
+            _contextWinform.Configuration.ProxyCreationEnabled = true;
+            _contextWinform.Configuration.AutoDetectChangesEnabled = true;
         }
 
         #region Public Repository Creation properties...
@@ -78,8 +81,8 @@ namespace DataModel.UnitOfWork
         {
             get
             {
-                if (this._businessProfileRepository == null)
-                    this._businessProfileRepository = new GenericRepository<Business_profile>(_contextWebApi);
+                //if (this._businessProfileRepository == null)
+                //    this._businessProfileRepository = new GenericRepository<Business_profile>(_contextWebApi);
                 return _businessProfileRepository;
             }
         }
@@ -91,8 +94,8 @@ namespace DataModel.UnitOfWork
         {
             get
             {
-                if (this._userRepository == null)
-                    this._userRepository = new GenericRepository<User>(_contextWebApi);
+                //if (this._userRepository == null)
+                //    this._userRepository = new GenericRepository<User>(_contextWebApi);
                 return _userRepository;
             }
         }
@@ -104,8 +107,8 @@ namespace DataModel.UnitOfWork
         {
             get
             {
-                if (this._tokenRepository == null)
-                    this._tokenRepository = new GenericRepository<Token>(_contextWebApi);
+                //if (this._tokenRepository == null)
+                //    this._tokenRepository = new GenericRepository<Token>(_contextWebApi);
                 return _tokenRepository;
             }
         }
@@ -209,7 +212,7 @@ namespace DataModel.UnitOfWork
         {
             try
             {
-                _contextWebApi.SaveChanges();
+                //_contextWebApi.SaveChanges();
             }
             catch (DbEntityValidationException e)
             {

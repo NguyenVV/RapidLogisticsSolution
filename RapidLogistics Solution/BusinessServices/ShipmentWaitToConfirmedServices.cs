@@ -60,7 +60,7 @@ namespace BusinessServices
         {
             using (var scope = new TransactionScope())
             {
-                var shipmentEntity = _unitOfWork.ShipmentWaitConfirmedRepository.Exists(shipmentId);
+                var shipmentEntity = _unitOfWork.ShipmentWaitConfirmedRepository.Exists(s=>s.ShipmentId == shipmentId);
 
                 scope.Complete();
                 return shipmentEntity;

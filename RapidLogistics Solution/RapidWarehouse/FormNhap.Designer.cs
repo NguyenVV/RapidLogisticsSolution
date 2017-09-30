@@ -260,7 +260,7 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.DarkGray;
-            this.label12.Location = new System.Drawing.Point(995, 192);
+            this.label12.Location = new System.Drawing.Point(1227, 192);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(158, 36);
             this.label12.TabIndex = 32;
@@ -293,7 +293,7 @@
             this.lblShipmentScaned.AutoSize = true;
             this.lblShipmentScaned.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblShipmentScaned.ForeColor = System.Drawing.Color.Magenta;
-            this.lblShipmentScaned.Location = new System.Drawing.Point(1150, 151);
+            this.lblShipmentScaned.Location = new System.Drawing.Point(1383, 151);
             this.lblShipmentScaned.Name = "lblShipmentScaned";
             this.lblShipmentScaned.Size = new System.Drawing.Size(129, 91);
             this.lblShipmentScaned.TabIndex = 29;

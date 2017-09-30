@@ -21,3 +21,28 @@ C:\Users\Nguyen\Desktop\RapidLogisticsAPI\BusinessServices\bin\Release\Microsoft
 C:\Users\Nguyen\Desktop\RapidLogisticsAPI\BusinessServices\obj\Release\BusinessServices.csprojResolveAssemblyReference.cache
 C:\Users\Nguyen\Desktop\RapidLogisticsAPI\BusinessServices\obj\Release\BusinessServices.dll
 C:\Users\Nguyen\Desktop\RapidLogisticsAPI\BusinessServices\obj\Release\BusinessServices.pdb
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessServices\bin\Release\AutoMapper.Net4.dll
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessServices\bin\Release\BusinessServices.dll
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessServices\bin\Release\BusinessServices.pdb
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessServices\bin\Release\AutoMapper.dll
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessServices\bin\Release\BusinessEntities.dll
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessServices\bin\Release\DataModel.dll
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessServices\bin\Release\Resolver.dll
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessServices\bin\Release\Ultilities.dll
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessServices\bin\Release\EntityFramework.dll
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessServices\bin\Release\Microsoft.Practices.Unity.dll
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessServices\bin\Release\Microsoft.Practices.ServiceLocation.dll
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessServices\bin\Release\BusinessEntities.pdb
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessServices\bin\Release\DataModel.pdb
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessServices\bin\Release\Resolver.pdb
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessServices\bin\Release\Ultilities.pdb
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessServices\bin\Release\AutoMapper.pdb
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessServices\bin\Release\AutoMapper.xml
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessServices\bin\Release\AutoMapper.Net4.pdb
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessServices\bin\Release\EntityFramework.xml
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessServices\bin\Release\Microsoft.Practices.Unity.xml
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessServices\bin\Release\Microsoft.Practices.ServiceLocation.pdb
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessServices\bin\Release\Microsoft.Practices.ServiceLocation.xml
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessServices\obj\Release\BusinessServices.csprojResolveAssemblyReference.cache
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessServices\obj\Release\BusinessServices.dll
+C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\BusinessServices\obj\Release\BusinessServices.pdb

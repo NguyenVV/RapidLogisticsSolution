@@ -275,7 +275,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.DarkGray;
-            this.label11.Location = new System.Drawing.Point(1055, 191);
+            this.label11.Location = new System.Drawing.Point(1239, 191);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(158, 36);
             this.label11.TabIndex = 32;
@@ -308,7 +308,7 @@
             this.lblShipmentScanedOut.AutoSize = true;
             this.lblShipmentScanedOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblShipmentScanedOut.ForeColor = System.Drawing.Color.Red;
-            this.lblShipmentScanedOut.Location = new System.Drawing.Point(1229, 150);
+            this.lblShipmentScanedOut.Location = new System.Drawing.Point(1413, 150);
             this.lblShipmentScanedOut.Name = "lblShipmentScanedOut";
             this.lblShipmentScanedOut.Size = new System.Drawing.Size(129, 91);
             this.lblShipmentScanedOut.TabIndex = 29;
@@ -360,14 +360,15 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.AutoSize = true;
             this.groupBox2.Controls.Add(this.grvShipmentListOut);
             this.groupBox2.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(31, 652);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1612, 776);
+            this.groupBox2.Size = new System.Drawing.Size(1644, 776);
             this.groupBox2.TabIndex = 49;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Danh sách đơn hàng";
@@ -375,17 +376,17 @@
             // grvShipmentListOut
             // 
             this.grvShipmentListOut.AllowUserToAddRows = false;
-            this.grvShipmentListOut.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.grvShipmentListOut.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.grvShipmentListOut.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.grvShipmentListOut.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grvShipmentListOut.Location = new System.Drawing.Point(11, 67);
+            this.grvShipmentListOut.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grvShipmentListOut.Location = new System.Drawing.Point(3, 36);
             this.grvShipmentListOut.Name = "grvShipmentListOut";
             this.grvShipmentListOut.RowTemplate.Height = 33;
-            this.grvShipmentListOut.Size = new System.Drawing.Size(1586, 670);
+            this.grvShipmentListOut.Size = new System.Drawing.Size(1638, 737);
             this.grvShipmentListOut.TabIndex = 9;
             this.grvShipmentListOut.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grvShipmentListOut_CellClick);
+            this.grvShipmentListOut.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.grvShipmentListOut_CellEndEdit);
             // 
             // lblXuatKho
             // 

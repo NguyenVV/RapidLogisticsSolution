@@ -113,3 +113,5 @@
 /RapidLogistics Solution/DataModel/obj/Debug/TempPE
 /RapidLogistics Solution/RapidWarehouse/bin/Release pm kho 1.1.2.zip
 *.zip
+/RapidLogistics Solution/packages
+/RapidLogistics Solution/WarehouseSystem

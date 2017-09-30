@@ -102,7 +102,7 @@ namespace BusinessServices
         {
             using (var scope = new TransactionScope())
             {
-                var shipmentOutEntity = _unitOfWork.ShipmentOutTempRepository.Exists(shipmentId);
+                var shipmentOutEntity = _unitOfWork.ShipmentOutTempRepository.Exists(s => s.ShipmentId == shipmentId);
 
                 scope.Complete();
                 return shipmentOutEntity;
