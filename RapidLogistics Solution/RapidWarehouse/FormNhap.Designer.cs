@@ -58,6 +58,7 @@
             this.grvShipments = new System.Windows.Forms.DataGridView();
             this.lblMaVuaNhap = new System.Windows.Forms.Label();
             this.txtShipmentId = new System.Windows.Forms.TextBox();
+            this.btnXNĐ = new System.Windows.Forms.Button();
             this.groupBox3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -66,6 +67,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.btnXNĐ);
             this.groupBox3.Controls.Add(this.btnExit);
             this.groupBox3.Controls.Add(this.btnPrint);
             this.groupBox3.Controls.Add(this.cbbBoxId);
@@ -87,10 +89,10 @@
             // 
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnExit.Location = new System.Drawing.Point(1473, 61);
+            this.btnExit.Location = new System.Drawing.Point(1473, 24);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(104, 83);
-            this.btnExit.TabIndex = 6;
+            this.btnExit.Size = new System.Drawing.Size(104, 120);
+            this.btnExit.TabIndex = 7;
             this.btnExit.Text = "Thoát";
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnThoat_Click);
@@ -99,10 +101,10 @@
             // 
             this.btnPrint.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrint.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.btnPrint.Location = new System.Drawing.Point(1366, 61);
+            this.btnPrint.Location = new System.Drawing.Point(1366, 24);
             this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(94, 83);
-            this.btnPrint.TabIndex = 5;
+            this.btnPrint.Size = new System.Drawing.Size(94, 120);
+            this.btnPrint.TabIndex = 6;
             this.btnPrint.Text = "In";
             this.btnPrint.UseVisualStyleBackColor = true;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
@@ -119,6 +121,7 @@
             this.cbbBoxId.Size = new System.Drawing.Size(363, 33);
             this.cbbBoxId.TabIndex = 3;
             this.cbbBoxId.SelectedIndexChanged += new System.EventHandler(this.cbbBoxId_SelectedIndexChanged);
+            this.cbbBoxId.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbbBoxId_KeyDown);
             this.cbbBoxId.Leave += new System.EventHandler(this.cbbBoxId_Leave);
             // 
             // cbbMasterBill
@@ -133,6 +136,7 @@
             this.cbbMasterBill.Size = new System.Drawing.Size(321, 33);
             this.cbbMasterBill.TabIndex = 2;
             this.cbbMasterBill.SelectedIndexChanged += new System.EventHandler(this.cbbMasterBill_SelectedIndexChanged);
+            this.cbbMasterBill.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbbMasterBill_KeyDown);
             this.cbbMasterBill.Leave += new System.EventHandler(this.cbbMasterBill_Leave);
             // 
             // btnOpenClose
@@ -140,10 +144,10 @@
             this.btnOpenClose.BackColor = System.Drawing.Color.Transparent;
             this.btnOpenClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
             this.btnOpenClose.ForeColor = System.Drawing.Color.Red;
-            this.btnOpenClose.Location = new System.Drawing.Point(1094, 61);
+            this.btnOpenClose.Location = new System.Drawing.Point(1182, 24);
             this.btnOpenClose.Name = "btnOpenClose";
-            this.btnOpenClose.Size = new System.Drawing.Size(260, 83);
-            this.btnOpenClose.TabIndex = 4;
+            this.btnOpenClose.Size = new System.Drawing.Size(172, 120);
+            this.btnOpenClose.TabIndex = 5;
             this.btnOpenClose.Text = "Mở";
             this.btnOpenClose.UseVisualStyleBackColor = false;
             this.btnOpenClose.Click += new System.EventHandler(this.btnOpenClose_Click);
@@ -194,7 +198,7 @@
             this.txtSearch.Location = new System.Drawing.Point(1219, 557);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(395, 31);
-            this.txtSearch.TabIndex = 8;
+            this.txtSearch.TabIndex = 9;
             this.txtSearch.Text = "NHẬP MÃ ĐỂ TÌM KIẾM";
             this.txtSearch.Enter += new System.EventHandler(this.txtSearch_Enter);
             this.txtSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearch_KeyDown);
@@ -360,16 +364,15 @@
             // grvShipments
             // 
             this.grvShipments.AllowUserToAddRows = false;
-            this.grvShipments.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.grvShipments.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.grvShipments.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.grvShipments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grvShipments.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grvShipments.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.grvShipments.Location = new System.Drawing.Point(11, 61);
+            this.grvShipments.Location = new System.Drawing.Point(3, 34);
             this.grvShipments.Name = "grvShipments";
             this.grvShipments.RowTemplate.Height = 33;
-            this.grvShipments.Size = new System.Drawing.Size(1582, 744);
+            this.grvShipments.Size = new System.Drawing.Size(1595, 805);
             this.grvShipments.TabIndex = 9;
             this.grvShipments.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grvShipments_CellClick);
             // 
@@ -391,8 +394,21 @@
             this.txtShipmentId.Location = new System.Drawing.Point(37, 555);
             this.txtShipmentId.Name = "txtShipmentId";
             this.txtShipmentId.Size = new System.Drawing.Size(395, 31);
-            this.txtShipmentId.TabIndex = 7;
+            this.txtShipmentId.TabIndex = 8;
             this.txtShipmentId.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtShipmentId_KeyPress);
+            // 
+            // btnXNĐ
+            // 
+            this.btnXNĐ.BackColor = System.Drawing.Color.Transparent;
+            this.btnXNĐ.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold);
+            this.btnXNĐ.ForeColor = System.Drawing.Color.Green;
+            this.btnXNĐ.Location = new System.Drawing.Point(960, 24);
+            this.btnXNĐ.Name = "btnXNĐ";
+            this.btnXNĐ.Size = new System.Drawing.Size(216, 120);
+            this.btnXNĐ.TabIndex = 4;
+            this.btnXNĐ.Text = "XN Đến";
+            this.btnXNĐ.UseVisualStyleBackColor = false;
+            this.btnXNĐ.Click += new System.EventHandler(this.btnXNĐ_Click);
             // 
             // FormNhap
             // 
@@ -455,6 +471,7 @@
         private System.Windows.Forms.DataGridView grvShipments;
         private System.Windows.Forms.Label lblMaVuaNhap;
         private System.Windows.Forms.TextBox txtShipmentId;
+        private System.Windows.Forms.Button btnXNĐ;
     }
 }
 
