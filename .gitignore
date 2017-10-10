@@ -1,6 +1,8 @@
 ﻿################################################################################
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
+/*/*/bin/
+/*/*/obj/
 
 /RapidLogistics Solution/BusinessEntities/bin/Debug
 /RapidLogistics Solution/BusinessServices/bin/Debug
@@ -78,6 +80,7 @@
 /RapidLogistics Solution/RapidWarehouse/obj/Debug/RapidWarehouse.FormCreateEditEmployee.resources
 /RapidLogistics Solution/Resolver/bin/Debug
 /RapidLogistics Solution/Resolver/bin/Release
+/RapidLogistics Solution/Resolver/obj
 /RapidLogistics Solution/Resolver/obj/Debug/Resolver.pdb
 /RapidLogistics Solution/Resolver/obj/Debug/Resolver.dll
 /RapidLogistics Solution/Resolver/obj/Debug/Resolver.csprojResolveAssemblyReference.cache
@@ -114,4 +117,4 @@
 /RapidLogistics Solution/RapidWarehouse/bin/Release pm kho 1.1.2.zip
 *.zip
 /RapidLogistics Solution/packages
-/RapidLogistics Solution/WarehouseSystem
+UpgradeLog.htm
