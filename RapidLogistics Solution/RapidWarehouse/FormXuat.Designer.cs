@@ -78,7 +78,7 @@
             this.groupBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox6.Location = new System.Drawing.Point(31, 104);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(1612, 201);
+            this.groupBox6.Size = new System.Drawing.Size(1612, 174);
             this.groupBox6.TabIndex = 51;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Nhập thông tin";
@@ -87,9 +87,9 @@
             // 
             this.btnPrint.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrint.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.btnPrint.Location = new System.Drawing.Point(1393, 66);
+            this.btnPrint.Location = new System.Drawing.Point(1393, 29);
             this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(94, 87);
+            this.btnPrint.Size = new System.Drawing.Size(94, 124);
             this.btnPrint.TabIndex = 5;
             this.btnPrint.Text = "In";
             this.btnPrint.UseVisualStyleBackColor = true;
@@ -113,9 +113,9 @@
             // 
             this.btnThoat.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnThoat.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.btnThoat.Location = new System.Drawing.Point(1499, 66);
+            this.btnThoat.Location = new System.Drawing.Point(1499, 29);
             this.btnThoat.Name = "btnThoat";
-            this.btnThoat.Size = new System.Drawing.Size(98, 87);
+            this.btnThoat.Size = new System.Drawing.Size(98, 124);
             this.btnThoat.TabIndex = 6;
             this.btnThoat.Text = "Thoát";
             this.btnThoat.UseVisualStyleBackColor = true;
@@ -141,9 +141,9 @@
             this.btnOpenBoxOut.BackColor = System.Drawing.Color.Gainsboro;
             this.btnOpenBoxOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold);
             this.btnOpenBoxOut.ForeColor = System.Drawing.Color.Red;
-            this.btnOpenBoxOut.Location = new System.Drawing.Point(1117, 66);
+            this.btnOpenBoxOut.Location = new System.Drawing.Point(1117, 29);
             this.btnOpenBoxOut.Name = "btnOpenBoxOut";
-            this.btnOpenBoxOut.Size = new System.Drawing.Size(264, 87);
+            this.btnOpenBoxOut.Size = new System.Drawing.Size(264, 124);
             this.btnOpenBoxOut.TabIndex = 4;
             this.btnOpenBoxOut.Text = "Mở";
             this.btnOpenBoxOut.UseVisualStyleBackColor = false;
@@ -188,6 +188,8 @@
             this.dtpNgayXuat.Size = new System.Drawing.Size(186, 35);
             this.dtpNgayXuat.TabIndex = 1;
             this.dtpNgayXuat.ValueChanged += new System.EventHandler(this.dtpNgayXuat_ValueChanged);
+            this.dtpNgayXuat.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dtpNgayXuat_KeyDown);
+            this.dtpNgayXuat.Leave += new System.EventHandler(this.dtpNgayXuat_Leave);
             // 
             // txtSearchOut
             // 
@@ -368,7 +370,7 @@
             this.groupBox2.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(31, 652);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1644, 776);
+            this.groupBox2.Size = new System.Drawing.Size(1644, 806);
             this.groupBox2.TabIndex = 49;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Danh sách đơn hàng";
@@ -376,14 +378,16 @@
             // grvShipmentListOut
             // 
             this.grvShipmentListOut.AllowUserToAddRows = false;
+            this.grvShipmentListOut.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.grvShipmentListOut.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.grvShipmentListOut.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.grvShipmentListOut.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grvShipmentListOut.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grvShipmentListOut.Location = new System.Drawing.Point(3, 36);
             this.grvShipmentListOut.Name = "grvShipmentListOut";
             this.grvShipmentListOut.RowTemplate.Height = 33;
-            this.grvShipmentListOut.Size = new System.Drawing.Size(1638, 737);
+            this.grvShipmentListOut.Size = new System.Drawing.Size(1635, 731);
             this.grvShipmentListOut.TabIndex = 9;
             this.grvShipmentListOut.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grvShipmentListOut_CellClick);
             this.grvShipmentListOut.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.grvShipmentListOut_CellEndEdit);

@@ -44,7 +44,7 @@ namespace BusinessServices
         }
         public int CreateOrUpdateByQuery(ShipmentOutEntity shipmentOut)
         {
-            return _unitOfWork.ShipmentOutRepository.ExecuteUpdateQuery(string.Format("INSERT[dbo].[ShipmentOut] ([ShipmentId], [BoxIdRef], [BoxIdString], [MasterBillId], [MasterBillIdString], [DateOut], [EmployeeId], [WarehouseId], [IsSyncOms]) VALUES(N'{0}', {1}, N'{2}', {3}, {4}, CAST(N'{5}' AS DateTime), {6}, {7}, {8})", shipmentOut.ShipmentId, shipmentOut.BoxIdRef, shipmentOut.BoxIdString, shipmentOut.MasterBillId, shipmentOut.MasterBillIdString, shipmentOut.DateOut, shipmentOut.EmployeeId, shipmentOut.WarehouseId, 0));
+            return _unitOfWork.ShipmentOutRepository.ExecuteUpdateQuery(string.Format("INSERT[dbo].[ShipmentOut] ([ShipmentId], [BoxIdRef], [BoxIdString], [MasterBillId], [MasterBillIdString], [DateOut], [EmployeeId], [WarehouseId], [IsSyncOms]) VALUES(N'{0}', {1}, N'{2}', {3}, N'{4}', CAST(N'{5}' AS DateTime), {6}, {7}, {8})", shipmentOut.ShipmentId, shipmentOut.BoxIdRef, shipmentOut.BoxIdString, shipmentOut.MasterBillId, shipmentOut.MasterBillIdString, shipmentOut.DateOut, shipmentOut.EmployeeId, shipmentOut.WarehouseId, 0));
         }
         public int CreateOrUpdate(List<ShipmentOutEntity> shipmentOutList)
         {

@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormHome));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnManageWarehouse = new System.Windows.Forms.Button();
             this.btnWaitToConfirm = new System.Windows.Forms.Button();
             this.btnExportInventory = new System.Windows.Forms.Button();
             this.lblTime = new System.Windows.Forms.Label();
@@ -44,7 +44,8 @@
             this.btnManageEmployee = new System.Windows.Forms.Button();
             this.btnInventory = new System.Windows.Forms.Button();
             this.timerMinute = new System.Windows.Forms.Timer(this.components);
-            this.btnManageWarehouse = new System.Windows.Forms.Button();
+            this.btnXndTheoMawb = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -52,6 +53,7 @@
             // groupBox1
             // 
             this.groupBox1.AutoSize = true;
+            this.groupBox1.Controls.Add(this.btnXndTheoMawb);
             this.groupBox1.Controls.Add(this.btnManageWarehouse);
             this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.Controls.Add(this.btnWaitToConfirm);
@@ -77,16 +79,16 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Các Chức Năng";
             // 
-            // pictureBox1
+            // btnManageWarehouse
             // 
-            this.pictureBox1.Image = global::RapidWarehouse.Properties.Resources.logo;
-            this.pictureBox1.InitialImage = global::RapidWarehouse.Properties.Resources.logo;
-            this.pictureBox1.Location = new System.Drawing.Point(1074, 35);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(307, 243);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 42;
-            this.pictureBox1.TabStop = false;
+            this.btnManageWarehouse.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnManageWarehouse.Location = new System.Drawing.Point(635, 402);
+            this.btnManageWarehouse.Name = "btnManageWarehouse";
+            this.btnManageWarehouse.Size = new System.Drawing.Size(259, 97);
+            this.btnManageWarehouse.TabIndex = 43;
+            this.btnManageWarehouse.Text = "Quản lý kho hàng";
+            this.btnManageWarehouse.UseVisualStyleBackColor = true;
+            this.btnManageWarehouse.Click += new System.EventHandler(this.btnManageWarehouse_Click);
             // 
             // btnWaitToConfirm
             // 
@@ -161,7 +163,7 @@
             this.btnExit.Location = new System.Drawing.Point(1099, 487);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(266, 47);
-            this.btnExit.TabIndex = 7;
+            this.btnExit.TabIndex = 8;
             this.btnExit.Text = "Thoát";
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
@@ -173,7 +175,7 @@
             this.btnLogout.Location = new System.Drawing.Point(1099, 429);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(266, 48);
-            this.btnLogout.TabIndex = 6;
+            this.btnLogout.TabIndex = 7;
             this.btnLogout.Text = "Đổi người dùng";
             this.btnLogout.UseVisualStyleBackColor = true;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
@@ -215,16 +217,27 @@
             this.timerMinute.Interval = 1000;
             this.timerMinute.Tick += new System.EventHandler(this.timerMinute_Tick);
             // 
-            // btnManageWarehouse
+            // btnXndTheoMawb
             // 
-            this.btnManageWarehouse.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnManageWarehouse.Location = new System.Drawing.Point(635, 402);
-            this.btnManageWarehouse.Name = "btnManageWarehouse";
-            this.btnManageWarehouse.Size = new System.Drawing.Size(259, 97);
-            this.btnManageWarehouse.TabIndex = 43;
-            this.btnManageWarehouse.Text = "Quản lý kho hàng";
-            this.btnManageWarehouse.UseVisualStyleBackColor = true;
-            this.btnManageWarehouse.Click += new System.EventHandler(this.btnManageWarehouse_Click);
+            this.btnXndTheoMawb.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnXndTheoMawb.Location = new System.Drawing.Point(35, 402);
+            this.btnXndTheoMawb.Name = "btnXndTheoMawb";
+            this.btnXndTheoMawb.Size = new System.Drawing.Size(259, 97);
+            this.btnXndTheoMawb.TabIndex = 6;
+            this.btnXndTheoMawb.Text = "Xác nhận đến theo MAWB";
+            this.btnXndTheoMawb.UseVisualStyleBackColor = true;
+            this.btnXndTheoMawb.Click += new System.EventHandler(this.btnXndTheoMawb_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::RapidWarehouse.Properties.Resources.logo;
+            this.pictureBox1.InitialImage = global::RapidWarehouse.Properties.Resources.logo;
+            this.pictureBox1.Location = new System.Drawing.Point(1074, 35);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(307, 243);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 42;
+            this.pictureBox1.TabStop = false;
             // 
             // FormHome
             // 
@@ -267,5 +280,6 @@
         private System.Windows.Forms.Timer timerMinute;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnManageWarehouse;
+        private System.Windows.Forms.Button btnXndTheoMawb;
     }
 }

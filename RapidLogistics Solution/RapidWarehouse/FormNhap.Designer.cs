@@ -58,7 +58,6 @@
             this.grvShipments = new System.Windows.Forms.DataGridView();
             this.lblMaVuaNhap = new System.Windows.Forms.Label();
             this.txtShipmentId = new System.Windows.Forms.TextBox();
-            this.btnXNĐ = new System.Windows.Forms.Button();
             this.groupBox3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -67,7 +66,6 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.btnXNĐ);
             this.groupBox3.Controls.Add(this.btnExit);
             this.groupBox3.Controls.Add(this.btnPrint);
             this.groupBox3.Controls.Add(this.cbbBoxId);
@@ -144,9 +142,9 @@
             this.btnOpenClose.BackColor = System.Drawing.Color.Transparent;
             this.btnOpenClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
             this.btnOpenClose.ForeColor = System.Drawing.Color.Red;
-            this.btnOpenClose.Location = new System.Drawing.Point(1182, 24);
+            this.btnOpenClose.Location = new System.Drawing.Point(1119, 24);
             this.btnOpenClose.Name = "btnOpenClose";
-            this.btnOpenClose.Size = new System.Drawing.Size(172, 120);
+            this.btnOpenClose.Size = new System.Drawing.Size(223, 120);
             this.btnOpenClose.TabIndex = 5;
             this.btnOpenClose.Text = "Mở";
             this.btnOpenClose.UseVisualStyleBackColor = false;
@@ -190,7 +188,8 @@
             this.dtpNgayDen.Name = "dtpNgayDen";
             this.dtpNgayDen.Size = new System.Drawing.Size(172, 33);
             this.dtpNgayDen.TabIndex = 1;
-            this.dtpNgayDen.ValueChanged += new System.EventHandler(this.dtpNgayDen_ValueChanged);
+            this.dtpNgayDen.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dtpNgayDen_KeyDown);
+            this.dtpNgayDen.Leave += new System.EventHandler(this.dtpNgayDen_Leave);
             // 
             // txtSearch
             // 
@@ -356,7 +355,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(37, 607);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1601, 842);
+            this.groupBox1.Size = new System.Drawing.Size(1580, 870);
             this.groupBox1.TabIndex = 36;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Danh sách đơn hàng";
@@ -364,15 +363,17 @@
             // grvShipments
             // 
             this.grvShipments.AllowUserToAddRows = false;
+            this.grvShipments.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.grvShipments.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.grvShipments.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.grvShipments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grvShipments.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grvShipments.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.grvShipments.Location = new System.Drawing.Point(3, 34);
             this.grvShipments.Name = "grvShipments";
             this.grvShipments.RowTemplate.Height = 33;
-            this.grvShipments.Size = new System.Drawing.Size(1595, 805);
+            this.grvShipments.Size = new System.Drawing.Size(1571, 799);
             this.grvShipments.TabIndex = 9;
             this.grvShipments.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grvShipments_CellClick);
             // 
@@ -396,19 +397,6 @@
             this.txtShipmentId.Size = new System.Drawing.Size(395, 31);
             this.txtShipmentId.TabIndex = 8;
             this.txtShipmentId.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtShipmentId_KeyPress);
-            // 
-            // btnXNĐ
-            // 
-            this.btnXNĐ.BackColor = System.Drawing.Color.Transparent;
-            this.btnXNĐ.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold);
-            this.btnXNĐ.ForeColor = System.Drawing.Color.Green;
-            this.btnXNĐ.Location = new System.Drawing.Point(960, 24);
-            this.btnXNĐ.Name = "btnXNĐ";
-            this.btnXNĐ.Size = new System.Drawing.Size(216, 120);
-            this.btnXNĐ.TabIndex = 4;
-            this.btnXNĐ.Text = "XN Đến";
-            this.btnXNĐ.UseVisualStyleBackColor = false;
-            this.btnXNĐ.Click += new System.EventHandler(this.btnXNĐ_Click);
             // 
             // FormNhap
             // 
@@ -471,7 +459,6 @@
         private System.Windows.Forms.DataGridView grvShipments;
         private System.Windows.Forms.Label lblMaVuaNhap;
         private System.Windows.Forms.TextBox txtShipmentId;
-        private System.Windows.Forms.Button btnXNĐ;
     }
 }
 

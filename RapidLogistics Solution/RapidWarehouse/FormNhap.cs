@@ -66,8 +66,8 @@ namespace RapidWarehouse
             dtpNgayDen.CustomFormat = "dd/MM/yyyy";
             ResetHardCodeText();
             manifestList = (List<ManifestEntity>)_manifestServices.GetManifestByDateString(dtpNgayDen.Value.ToString("yyyy-MM-dd"));
-            LoadAllMasterBillByDateToComboboxXacNhanDen(dtpNgayDen.Value);
-            //LoadAllMasterBillByDateToCombobox(dtpNgayDen.Value, cbbMasterBill);
+            //LoadAllMasterBillByDateToComboboxXacNhanDen(dtpNgayDen.Value);
+            LoadAllMasterBillByDateToCombobox(dtpNgayDen.Value, cbbMasterBill);
 
             cbbMasterBill.SelectedText = "";
             FillInforXacNhanDen();
@@ -135,7 +135,7 @@ namespace RapidWarehouse
                     currentMasterBill = masterBill.MasterAirwayBill;
                     masterBill.Id = currentMasterBillId;
                     //cbbMasterBill.Items.Add(masterBill);
-                    //LoadAllMasterBillByDateToCombobox(dtpNgayDen.Value, cbbMasterBill);
+                    LoadAllMasterBillByDateToCombobox(dtpNgayDen.Value, cbbMasterBill);
                     cbbMasterBill.SelectedText = masterBill.MasterAirwayBill;
                 }
                 else
@@ -290,7 +290,7 @@ namespace RapidWarehouse
                     currentMasterBill = masterBill.MasterAirwayBill;
                     masterBill.Id = currentMasterBillId;
                     //cbbMasterBill.Items.Add(masterBill);
-                    //LoadAllMasterBillByDateToCombobox(dtpNgayDen.Value, cbbMasterBill);
+                    LoadAllMasterBillByDateToCombobox(dtpNgayDen.Value, cbbMasterBill);
                     cbbMasterBill.SelectedText = masterBill.MasterAirwayBill;
                 }
                 else
@@ -655,10 +655,7 @@ namespace RapidWarehouse
 
         private void dtpNgayDen_ValueChanged(object sender, EventArgs e)
         {
-            manifestList = (List<ManifestEntity>)_manifestServices.GetManifestByDateString(dtpNgayDen.Value.ToString("yyyy-MM-dd"));
-            lblNgayDen.Text = dtpNgayDen.Value.ToString("dd/MM/yyyy");
-            LoadAllMasterBillByDateToComboboxXacNhanDen(dtpNgayDen.Value);
-            //LoadAllMasterBillByDateToCombobox(dtpNgayDen.Value, cbbMasterBill);
+            
         }
         private void UpdateValueOverviewNhapKho()
         {
@@ -805,6 +802,8 @@ namespace RapidWarehouse
             {
                 cbbMaster.DataSource = null;
                 cbbMaster.Items.Clear();
+                cbbBoxId.DataSource = null;
+                cbbBoxId.Items.Clear();
             }
         }
 
@@ -1276,7 +1275,7 @@ namespace RapidWarehouse
                 currentMasterBill = masterBill.MasterAirwayBill;
                 masterBill.Id = currentMasterBillId;
                 //cbbMasterBill.Items.Add(masterBill);
-                //LoadAllMasterBillByDateToCombobox(dtpNgayDen.Value, cbbMasterBill);
+                LoadAllMasterBillByDateToCombobox(dtpNgayDen.Value, cbbMasterBill);
                 //cbbMasterBill.SelectedText = masterBill.MasterAirwayBill;
             }
             else
@@ -1288,6 +1287,19 @@ namespace RapidWarehouse
             }
 
             LuuXacNhanDen();
+        }
+
+        private void dtpNgayDen_KeyDown(object sender, KeyEventArgs e)
+        {
+            ClickKeyTab(e);
+        }
+
+        private void dtpNgayDen_Leave(object sender, EventArgs e)
+        {
+            manifestList = (List<ManifestEntity>)_manifestServices.GetManifestByDateString(dtpNgayDen.Value.ToString("yyyy-MM-dd"));
+            lblNgayDen.Text = dtpNgayDen.Value.ToString("dd/MM/yyyy");
+            //LoadAllMasterBillByDateToComboboxXacNhanDen(dtpNgayDen.Value);
+            LoadAllMasterBillByDateToCombobox(dtpNgayDen.Value, cbbMasterBill);
         }
 
         private void txtSearch_Leave(object sender, EventArgs e)

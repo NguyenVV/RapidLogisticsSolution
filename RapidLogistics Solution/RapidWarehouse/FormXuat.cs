@@ -517,21 +517,28 @@ namespace RapidWarehouse
                 //Check chưa có trong bảng ShipmentInfor thì thêm mới vào trong trường hợp xuất không cần xác nhận
                 if (shipment == null)
                 {
-                    if (!nhapMoiKhongCanXacNhan)
+                    if (_shipmentServices.Exists(txtShipmentIdOut.Text))
                     {
-                        MessageBox.Show("Mã đơn hàng vừa nhập hiện không có trong kho hoặc trong mã thùng này nên không thể xuất kho", "Nhập thông tin", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        txtShipmentIdOut.Text = String.Empty;
-                        startProcessing = false;
-                        return;
-                    }
-                    else
-                    {
-                        if (_shipmentServices.Exists(txtShipmentIdOut.Text))
+                        if (MessageBox.Show("Mã đơn hàng vừa nhập thuộc mã thùng khác, bạn có muốn tiếp tục không ?", "Đơn hàng thuộc thùng khác", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                         {
-                            MessageBox.Show("Không thể xuất kho\nMã đơn hàng vừa nhập thuộc mã thùng khác nên không thể xuất kho", "Không thể xuất kho", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             txtShipmentIdOut.Text = String.Empty;
                             startProcessing = false;
                             return;
+                        }
+                        else
+                        {
+                            shipment = _shipmentServices.GetByShipmentId(txtShipmentIdOut.Text);
+                        }
+                    }
+                    else {
+                        if (!nhapMoiKhongCanXacNhan)
+                        {
+                            if (MessageBox.Show("Mã đơn hàng vừa nhập hiện không có trong kho, bạn có muốn tiếp tục không ?", "Nhập thông tin", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                            {
+                                txtShipmentIdOut.Text = String.Empty;
+                                startProcessing = false;
+                                return;
+                            }
                         }
                     }
 
@@ -572,7 +579,6 @@ namespace RapidWarehouse
                 //thread.IsBackground = true;
                 //thread.Start();
                 SaveShipmentOut(grvShipmentListOut.Rows.Count);
-                _shipmentOutTempServices.Create(shipmentOut);
                 //_shipmentOutTempServices.Create(shipmentOut);
                 //_shipmentOutServices.Create(shipmentOut);
                 // Clear text box after process
@@ -737,13 +743,15 @@ namespace RapidWarehouse
             List<ShipmentEntity> listShipment = (List<ShipmentEntity>)_shipmentOutServices.GetByBoxIdToDisplay(boxEntity.Id);
             List<ShipmentEntity> listShipmentOutTemp = (List<ShipmentEntity>)_shipmentOutTempServices.GetByBoxIdToDisplay(boxEntity.Id);
             string text = "Bạn có chắc chắn muốn xử lý mã thùng là " + boxEntity.BoxId;
-
+            DialogResult process = DialogResult.Yes;
             if (listShipment != null && listShipment.Count > 0)
             {
                 text += "\nvới tổng số đơn hàng đã xuất kho là " + listShipment.Count;
+                text += " không ?";
+                process = MessageBox.Show(text, "Chọn xử lý", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             }
-            text += " không ?";
-            if (MessageBox.Show(text, "Chọn xử lý", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+
+            if (process == DialogResult.Yes)
             {
                 if (listShipmentOutTemp != null && listShipmentOutTemp.Any())
                 {
@@ -846,8 +854,8 @@ namespace RapidWarehouse
         }
         private void dtpNgayXuat_ValueChanged(object sender, EventArgs e)
         {
-            LoadAllMasterBillByDateToCombobox(dtpNgayXuat.Value, cbbMasterBillOut);
-            lblNgayXuat.Text = dtpNgayXuat.Value.ToString("dd/MM/yyyy");
+            //LoadAllMasterBillByDateToCombobox(dtpNgayXuat.Value, cbbMasterBillOut);
+            //lblNgayXuat.Text = dtpNgayXuat.Value.ToString("dd/MM/yyyy");
         }
 
         private void txtSearchOut_KeyDown(object sender, KeyEventArgs e)
@@ -920,6 +928,17 @@ namespace RapidWarehouse
         private void grvShipmentListOut_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             SaveShipmentOut(e.RowIndex + 1);
+        }
+
+        private void dtpNgayXuat_KeyDown(object sender, KeyEventArgs e)
+        {
+            ClickKeyTab(e);
+        }
+
+        private void dtpNgayXuat_Leave(object sender, EventArgs e)
+        {
+            LoadAllMasterBillByDateToCombobox(dtpNgayXuat.Value, cbbMasterBillOut);
+            lblNgayXuat.Text = dtpNgayXuat.Value.ToString("dd/MM/yyyy");
         }
 
         private void ChiTietSanLuongXuatKho()

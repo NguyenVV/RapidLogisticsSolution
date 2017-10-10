@@ -1,0 +1,7 @@
+C:\Users\Nguyen\Desktop\WaitWindow\WaitWindow\bin\Debug\WaitWindow.dll
+C:\Users\Nguyen\Desktop\WaitWindow\WaitWindow\bin\Debug\WaitWindow.pdb
+C:\Users\Nguyen\Desktop\WaitWindow\WaitWindow\obj\x86\Debug\WaitWindow.csprojResolveAssemblyReference.cache
+C:\Users\Nguyen\Desktop\WaitWindow\WaitWindow\obj\x86\Debug\Jacksonsoft.WaitWindowGUI.resources
+C:\Users\Nguyen\Desktop\WaitWindow\WaitWindow\obj\x86\Debug\WaitWindow.csproj.GenerateResource.Cache
+C:\Users\Nguyen\Desktop\WaitWindow\WaitWindow\obj\x86\Debug\WaitWindow.dll
+C:\Users\Nguyen\Desktop\WaitWindow\WaitWindow\obj\x86\Debug\WaitWindow.pdb

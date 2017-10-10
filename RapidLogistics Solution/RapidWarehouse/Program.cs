@@ -3,6 +3,7 @@ using System;
 using System.Windows.Forms;
 using SimpleInjector;
 using BusinessServices;
+using Jacksonsoft;
 
 namespace RapidWarehouse
 {
@@ -70,6 +71,8 @@ namespace RapidWarehouse
             container.Register<FormBaoCao>();
             container.Register<FormMangeWarehouses>();
             container.Register<FormHaiQuanView>();
+            container.Register<FormXnDenMawb>();
+            container.Register<WaitWindowGUI>();
 
             // Optionally verify the container.
             //container.Verify();

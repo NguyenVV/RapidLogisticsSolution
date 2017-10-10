@@ -20,11 +20,11 @@ namespace DataModel.UnitOfWork
 
         //private readonly WebApiDbEntities _contextWebApi = null;
         private readonly RapidSolutionEntities _contextWinform = null;
-        private GenericRepository<User> _userRepository;
+        //private GenericRepository<User> _userRepository;
         //private GenericRepository<Product> _productRepository;
-        private GenericRepository<Token> _tokenRepository;
+        //private GenericRepository<Token> _tokenRepository;
         private GenericRepository<Manifest> _manifestRepository;
-        private GenericRepository<Business_profile> _businessProfileRepository;
+        //private GenericRepository<Business_profile> _businessProfileRepository;
         private GenericRepository<MasterBill> _masterBillRepository;
         private GenericRepository<BoxInfo> _boxInforRepository;
         private GenericRepository<ShipmentInfor> _shipmentRepository; 
@@ -83,7 +83,8 @@ namespace DataModel.UnitOfWork
             {
                 //if (this._businessProfileRepository == null)
                 //    this._businessProfileRepository = new GenericRepository<Business_profile>(_contextWebApi);
-                return _businessProfileRepository;
+                //return _businessProfileRepository;
+                return null;
             }
         }
 
@@ -96,7 +97,8 @@ namespace DataModel.UnitOfWork
             {
                 //if (this._userRepository == null)
                 //    this._userRepository = new GenericRepository<User>(_contextWebApi);
-                return _userRepository;
+                //return _userRepository;
+                return null;
             }
         }
 
@@ -109,7 +111,8 @@ namespace DataModel.UnitOfWork
             {
                 //if (this._tokenRepository == null)
                 //    this._tokenRepository = new GenericRepository<Token>(_contextWebApi);
-                return _tokenRepository;
+                //return _tokenRepository;
+                return null;
             }
         }
 

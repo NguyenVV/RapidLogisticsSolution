@@ -1,0 +1,4 @@
+C:\Users\Nguyen\Desktop\WaitWindow\WaitWindow\bin\Release\WaitWindow.dll
+C:\Users\Nguyen\Desktop\WaitWindow\WaitWindow\obj\x86\Release\Jacksonsoft.WaitWindowGUI.resources
+C:\Users\Nguyen\Desktop\WaitWindow\WaitWindow\obj\x86\Release\WaitWindow.csproj.GenerateResource.Cache
+C:\Users\Nguyen\Desktop\WaitWindow\WaitWindow\obj\x86\Release\WaitWindow.dll

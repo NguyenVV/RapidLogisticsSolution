@@ -124,5 +124,11 @@ namespace RapidWarehouse
             Program.Container.GetInstance<FormMangeWarehouses>().Show();
             this.Dispose();
         }
+
+        private void btnXndTheoMawb_Click(object sender, EventArgs e)
+        {
+            Program.Container.GetInstance<FormXnDenMawb>().Show();
+            this.Dispose();
+        }
     }
 }
