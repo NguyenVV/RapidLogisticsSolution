@@ -10,3 +10,16 @@ C:\Users\Nguyen\Desktop\RapidLogisticsAPI\Resolver\bin\Release\Microsoft.Practic
 C:\Users\Nguyen\Desktop\RapidLogisticsAPI\Resolver\bin\Release\Microsoft.Practices.Unity.Configuration.xml
 C:\Users\Nguyen\Desktop\RapidLogisticsAPI\Resolver\obj\Release\Resolver.dll
 C:\Users\Nguyen\Desktop\RapidLogisticsAPI\Resolver\obj\Release\Resolver.pdb
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\Resolver\bin\Release\Resolver.dll
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\Resolver\bin\Release\Resolver.pdb
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\Resolver\bin\Release\Microsoft.Practices.ServiceLocation.dll
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\Resolver\bin\Release\Microsoft.Practices.Unity.Configuration.dll
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\Resolver\bin\Release\Microsoft.Practices.Unity.dll
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\Resolver\bin\Release\Unity.Mvc3.dll
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\Resolver\bin\Release\Microsoft.Practices.ServiceLocation.pdb
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\Resolver\bin\Release\Microsoft.Practices.ServiceLocation.xml
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\Resolver\bin\Release\Microsoft.Practices.Unity.xml
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\Resolver\bin\Release\Microsoft.Practices.Unity.Configuration.xml
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\Resolver\obj\Release\Resolver.csprojResolveAssemblyReference.cache
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\Resolver\obj\Release\Resolver.dll
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\Resolver\obj\Release\Resolver.pdb

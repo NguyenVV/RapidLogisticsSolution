@@ -3,3 +3,18 @@ C:\Users\Nguyen\Desktop\RapidLogisticsAPI\BusinessEntities\bin\Release\BusinessE
 C:\Users\Nguyen\Desktop\RapidLogisticsAPI\BusinessEntities\obj\Release\BusinessEntities.csprojResolveAssemblyReference.cache
 C:\Users\Nguyen\Desktop\RapidLogisticsAPI\BusinessEntities\obj\Release\BusinessEntities.dll
 C:\Users\Nguyen\Desktop\RapidLogisticsAPI\BusinessEntities\obj\Release\BusinessEntities.pdb
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\bin\Release\BusinessEntities.dll.config
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\bin\Release\BusinessEntities.dll
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\bin\Release\BusinessEntities.pdb
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\bin\Release\AutoMapper.dll
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\bin\Release\System.IO.dll
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\bin\Release\System.Runtime.dll
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\bin\Release\System.Threading.Tasks.dll
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\bin\Release\AutoMapper.xml
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\bin\Release\System.IO.xml
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\bin\Release\System.Runtime.xml
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\bin\Release\System.Threading.Tasks.xml
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\obj\Release\BusinessEntities.csproj.App.config
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\obj\Release\BusinessEntities.csprojResolveAssemblyReference.cache
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\obj\Release\BusinessEntities.dll
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\obj\Release\BusinessEntities.pdb

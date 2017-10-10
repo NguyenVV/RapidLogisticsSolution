@@ -310,4 +310,14 @@ namespace BusinessEntities
         //    }
         //}
     }
+
+    public class ShipmentExport
+    {
+        public string ShipmentId { get; set; }
+        public int BoxIdRef { get; set; }
+        public string BoxIdString { get; set; }
+        public int MasterBillId { get; set; }
+        public string MasterBillIdString { get; set; }
+        public DateTime DateOut { get; set; }
+    }
 }

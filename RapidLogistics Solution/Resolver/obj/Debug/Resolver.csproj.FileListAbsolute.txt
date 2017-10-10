@@ -88,3 +88,16 @@ C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\Resolver\bin\Deb
 C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\Resolver\obj\Debug\Resolver.csprojResolveAssemblyReference.cache
 C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\Resolver\obj\Debug\Resolver.dll
 C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\Resolver\obj\Debug\Resolver.pdb
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\Resolver\bin\Debug\Resolver.dll
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\Resolver\bin\Debug\Resolver.pdb
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\Resolver\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\Resolver\bin\Debug\Microsoft.Practices.Unity.Configuration.dll
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\Resolver\bin\Debug\Microsoft.Practices.Unity.dll
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\Resolver\bin\Debug\Unity.Mvc3.dll
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\Resolver\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\Resolver\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\Resolver\bin\Debug\Microsoft.Practices.Unity.xml
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\Resolver\bin\Debug\Microsoft.Practices.Unity.Configuration.xml
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\Resolver\obj\Debug\Resolver.csprojResolveAssemblyReference.cache
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\Resolver\obj\Debug\Resolver.dll
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\Resolver\obj\Debug\Resolver.pdb

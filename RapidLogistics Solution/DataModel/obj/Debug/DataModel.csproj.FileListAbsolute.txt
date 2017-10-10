@@ -121,3 +121,20 @@ C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\DataModel\bin\De
 C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\DataModel\obj\Debug\DataModel.csprojResolveAssemblyReference.cache
 C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\DataModel\obj\Debug\DataModel.dll
 C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\DataModel\obj\Debug\DataModel.pdb
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\DataModel\bin\Debug\DataModel.dll.config
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\DataModel\bin\Debug\DataModel.dll
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\DataModel\bin\Debug\DataModel.pdb
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\DataModel\bin\Debug\EntityFramework.dll
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\DataModel\bin\Debug\Resolver.dll
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\DataModel\bin\Debug\Ultilities.dll
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\DataModel\bin\Debug\Microsoft.Practices.Unity.dll
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\DataModel\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\DataModel\bin\Debug\Resolver.pdb
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\DataModel\bin\Debug\Ultilities.pdb
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\DataModel\bin\Debug\EntityFramework.xml
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\DataModel\bin\Debug\Microsoft.Practices.Unity.xml
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\DataModel\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\DataModel\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\DataModel\obj\Debug\DataModel.csprojResolveAssemblyReference.cache
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\DataModel\obj\Debug\DataModel.dll
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\DataModel\obj\Debug\DataModel.pdb

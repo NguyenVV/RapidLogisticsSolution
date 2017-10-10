@@ -301,7 +301,8 @@ namespace BusinessServices
         {
             using (var scope = new TransactionScope())
             {
-                ShipmentInfor shipmentDataModel = _unitOfWork.ShipmentRepository.Get(t => t.ShipmentId.Equals(shipmentId, StringComparison.CurrentCultureIgnoreCase) && t.BoxId == boxId);
+                // ShipmentInfor shipmentDataModel = _unitOfWork.ShipmentRepository.Get(t => t.ShipmentId.Equals(shipmentId, StringComparison.CurrentCultureIgnoreCase) && t.BoxId == boxId);
+                ShipmentInfor shipmentDataModel = _unitOfWork.ShipmentRepository.Get(t => t.ShipmentId.Equals(shipmentId, StringComparison.CurrentCultureIgnoreCase));
                 if (shipmentDataModel == null)
                 {
                     scope.Complete();
