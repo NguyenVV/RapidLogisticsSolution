@@ -15,6 +15,6 @@ E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\bin
 E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\bin\Release\System.Runtime.xml
 E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\bin\Release\System.Threading.Tasks.xml
 E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\obj\Release\BusinessEntities.csproj.App.config
-E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\obj\Release\BusinessEntities.csprojResolveAssemblyReference.cache
 E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\obj\Release\BusinessEntities.dll
 E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\obj\Release\BusinessEntities.pdb
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\BusinessEntities\obj\Release\BusinessEntities.csprojResolveAssemblyReference.cache

@@ -36,5 +36,6 @@ namespace DataModel
         public DbSet<ShipmentInforTemp> ShipmentInforTemps { get; set; }
         public DbSet<ShipmentOutTemp> ShipmentOutTemps { get; set; }
         public DbSet<Warehouse> Warehouses { get; set; }
+        public DbSet<BoxOut> BoxOuts { get; set; }
     }
 }

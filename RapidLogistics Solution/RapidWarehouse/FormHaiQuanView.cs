@@ -3,14 +3,15 @@ using BusinessServices.Interfaces;
 using System;
 using System.Globalization;
 using System.Windows.Forms;
-
+using RapidWarehouse.Data;
 namespace RapidWarehouse
 {
     public partial class FormHaiQuanView : Form
     {
-
         private readonly IShipmentServices _shipmentServices;
         private readonly IShipmentOutServices _shipmentOutServices;
+        ShipmentRepository _repositoryShipment = new ShipmentRepository();
+        ShipmentOutEntity shipment = new ShipmentOutEntity();
         public FormHaiQuanView(IShipmentServices shipmentServices, IShipmentOutServices shipmentOutServices)
         {
             InitializeComponent();
@@ -22,17 +23,15 @@ namespace RapidWarehouse
         private void txtShipmentNo_KeyDown(object sender, KeyEventArgs e)
         {
             if (String.IsNullOrEmpty(txtShipmentNo.Text) || String.IsNullOrWhiteSpace(txtShipmentNo.Text))
-                return;
-
+                return;            
             if (e.KeyData == Keys.Tab || e.KeyData == Keys.Enter)
             {
-                lblShipmentNo.Text = txtShipmentNo.Text;
-                var shipment = _shipmentServices.GetByShipmentId(txtShipmentNo.Text);
-                var shipmentOut = _shipmentOutServices.GetByShipmentId(txtShipmentNo.Text);
+                lblShipmentNo.Text = txtShipmentNo.Text;                
+                shipment = _repositoryShipment.GetShipmentOut(txtShipmentNo.Text.Trim().ToUpper());
 
                 if (shipment != null)
                 {
-                    FillForm(shipment, shipmentOut);
+                    FillForm(shipment);
                 }
                 else
                 {
@@ -65,41 +64,36 @@ namespace RapidWarehouse
             txtWeight.Text = "";
             txtBoxIdString.Text = "";
         }
-
-        private void FillForm(ShipmentEntity shipment, ShipmentOutEntity shipmentOut)
+        private void FillForm(ShipmentOutEntity shipmentOut)
         {
             txtDateOut.Text = shipmentOut != null ? shipmentOut.DateOut.ToString("dd-MM-yyyy") : "";
             txtDateClearance.Text = shipmentOut != null ? shipmentOut.DateCreated.ToString("dd-MM-yyyy") : "";
-
             if (shipment != null)
             {
-                txtContent.Text = shipment.Content;
-                txtCountry.Text = shipment.Country;
-                txtPackage.Text = shipment.NumberPackage + "";
-                txtReceiveer.Text = shipment.Receiver;
-                txtSender.Text = shipment.Sender;
-                txtSoTk.Text = shipment.DeclarationNo;
-                txtWeight.Text = shipment.Weight + "";
-                txtAddressReceiver.Text = shipment.Address;
-                lblMawb.Text = shipment.Mawb;
-                txtDateIn.Text = shipment.DateCreated != null ? shipment.DateCreated.ToString("dd-MM-yyyy") : "";
-                txtBoxIdString.Text = shipment.BoxIdString;
-                txtDateClearance.Text = Convert.ToDateTime(shipment.DateOfCompletion) == new DateTime()?"": Convert.ToDateTime(shipment.DateOfCompletion).ToString("dd-MM-yyyy hh:mm");
+                txtContent.Text = shipmentOut.Content;
+                txtCountry.Text = shipmentOut.Country;
+                txtPackage.Text = shipmentOut.Quantity.ToString();
+                txtReceiveer.Text = shipmentOut.ContactName;
+                txtSender.Text = shipmentOut.CompanyName;
+                txtSoTk.Text = shipmentOut.DeclarationNo;
+                txtWeight.Text = shipmentOut.Weight + "";
+                txtAddressReceiver.Text = shipmentOut.Address;
+                lblMawb.Text = shipmentOut.MasterBillIdString;
+                txtDateIn.Text = shipmentOut.DateCreated != null ? shipment.DateCreated.ToString("dd-MM-yyyy") : "";
+                txtBoxIdString.Text = shipmentOut.BoxIdString;
+                txtDateClearance.Text = Convert.ToDateTime(shipmentOut.DateOfCompletion) == new DateTime()?"": Convert.ToDateTime(shipmentOut.DateOfCompletion).ToString("dd-MM-yyyy");
             }
         }
-
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            var shipment = _shipmentServices.SearchByConditions(txtShipmentNoSearch.Text, txtSoToKhaiSearch.Text, txtSenderSearch.Text, txtReceiverSearch.Text);
+            var shipment = _repositoryShipment.GetShipmentOutByParam(txtShipmentNoSearch.Text, txtSoToKhaiSearch.Text, txtSenderSearch.Text, txtReceiverSearch.Text);
             if(shipment == null)
             {
-                MessageBox.Show("Không tìm thấy đơn hàng nào! ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Không tìm thấy dữ liệu ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
-            }
-
-            var shipmentOut = _shipmentOutServices.GetByShipmentId(shipment.ShipmentId);
+            }          
             lblShipmentNo.Text = shipment.ShipmentId;
-            FillForm(shipment, shipmentOut);
+            FillForm(shipment);
         }
     }
 }

@@ -10,8 +10,9 @@ namespace RapidWarehouse
     public partial class FormCreateEditEmployee : Form
     {
         IEmployeeServices mEmployeeService;
-        EmployeeEntity employeeCreateOrUpdate;
+        EmployeeEntity employeeCreateOrUpdate = null;
         List<EmployeeEntity> listAllEmployee;
+        
         public FormCreateEditEmployee(IEmployeeServices employeeServices)
         {
             InitializeComponent();
@@ -45,64 +46,72 @@ namespace RapidWarehouse
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (ValidateDataInput())
+            try
             {
-                // Create new
-                if (employeeCreateOrUpdate == null)
+                if (ValidateDataInput())
                 {
-                    if (mEmployeeService.IsExist(txtUserName.Text))
+                    // Create new
+                    if (employeeCreateOrUpdate == null)
                     {
-                        MessageBox.Show("User Name này đã tồn tại, vui lòng chọn user name khác!");
-                        txtUserName.Focus();
-                        return;
+                        if (mEmployeeService.IsExist(txtUserName.Text))
+                        {
+                            MessageBox.Show("User Name này đã tồn tại, vui lòng chọn user name khác!");
+                            txtUserName.Focus();
+                            return;
+                        }
+                        employeeCreateOrUpdate = new EmployeeEntity();
+                        employeeCreateOrUpdate.Id = 0;
+                        employeeCreateOrUpdate = new EmployeeEntity();
+                        employeeCreateOrUpdate.Address = txtAddress.Text;
+                        employeeCreateOrUpdate.BirthDate = dtpBirthDate.Value;
+                        employeeCreateOrUpdate.DateCreated = DateTime.Now;
+                        employeeCreateOrUpdate.Email = txtEmail.Text;
+                        employeeCreateOrUpdate.FullName = txtFullName.Text;
+                        employeeCreateOrUpdate.Pasword = Security.Encrypt(txtPassword.Text);
+                        employeeCreateOrUpdate.Phone = txtPhone.Text;
+                        employeeCreateOrUpdate.Role = cbbRole.Text;
+                        employeeCreateOrUpdate.Status = true;
+                        employeeCreateOrUpdate.UserName = txtUserName.Text;
+                        employeeCreateOrUpdate.WarehouseId = FormLogin.mWarehouse.Id;
+
+                        if (mEmployeeService.CreateOrUpdateEmployee(employeeCreateOrUpdate) > 0)
+                            MessageBox.Show("Tạo " + txtUserName.Text + " với role " + cbbRole.Text + " thành công !");
+                        else
+                            MessageBox.Show("Tạo user name " + txtUserName.Text + " với role " + cbbRole.Text + " thất bại !");
+                    }
+                    else
+                    {
+                        // Update
+                        employeeCreateOrUpdate.Address = txtAddress.Text;
+                        employeeCreateOrUpdate.BirthDate = dtpBirthDate.Value;
+                        employeeCreateOrUpdate.DateCreated = DateTime.Now;
+                        employeeCreateOrUpdate.Email = txtEmail.Text;
+                        employeeCreateOrUpdate.FullName = txtFullName.Text;
+                        employeeCreateOrUpdate.Pasword = Security.Encrypt(txtPassword.Text);
+                        employeeCreateOrUpdate.Phone = txtPhone.Text;
+                        employeeCreateOrUpdate.Role = cbbRole.Text;
+                        employeeCreateOrUpdate.Status = true;
+                        employeeCreateOrUpdate.UserName = txtUserName.Text;
+                        employeeCreateOrUpdate.WarehouseId = FormLogin.mWarehouse.Id;
+                        mEmployeeService.CreateOrUpdateEmployee(employeeCreateOrUpdate);
+                        MessageBox.Show("Cập nhật " + cbbRole.Text + " thành công !");
                     }
 
-                    employeeCreateOrUpdate.Id = 0;
-                    employeeCreateOrUpdate = new EmployeeEntity();
-                    employeeCreateOrUpdate.Address = txtAddress.Text;
-                    employeeCreateOrUpdate.BirthDate = dtpBirthDate.Value;
-                    employeeCreateOrUpdate.DateCreated = DateTime.Now;
-                    employeeCreateOrUpdate.Email = txtEmail.Text;
-                    employeeCreateOrUpdate.FullName = txtFullName.Text;
-                    employeeCreateOrUpdate.Pasword = Security.Encrypt(txtPassword.Text);
-                    employeeCreateOrUpdate.Phone = txtPhone.Text;
-                    employeeCreateOrUpdate.Role = cbbRole.Text;
-                    employeeCreateOrUpdate.Status = true;
-                    employeeCreateOrUpdate.UserName = txtUserName.Text;
-                    employeeCreateOrUpdate.WarehouseId = FormLogin.mWarehouse.Id;
-
-                    if (mEmployeeService.CreateOrUpdateEmployee(employeeCreateOrUpdate) > 0)
-                        MessageBox.Show("Tạo " + txtUserName.Text + " với role " + cbbRole.Text + " thành công !");
-                    else
-                        MessageBox.Show("Tạo user name "+ txtUserName.Text + " với role " + cbbRole.Text + " thất bại !");
+                    employeeCreateOrUpdate = null;
+                    LoadAllEmployeeToListBox();
+                    txtUserName.Enabled = false;
                 }
-                else
-                {
-                    // Update
-                    employeeCreateOrUpdate.Address = txtAddress.Text;
-                    employeeCreateOrUpdate.BirthDate = dtpBirthDate.Value;
-                    employeeCreateOrUpdate.DateCreated = DateTime.Now;
-                    employeeCreateOrUpdate.Email = txtEmail.Text;
-                    employeeCreateOrUpdate.FullName = txtFullName.Text;
-                    employeeCreateOrUpdate.Pasword = Security.Encrypt(txtPassword.Text);
-                    employeeCreateOrUpdate.Phone = txtPhone.Text;
-                    employeeCreateOrUpdate.Role = cbbRole.Text;
-                    employeeCreateOrUpdate.Status = true;
-                    employeeCreateOrUpdate.UserName = txtUserName.Text;
-                    employeeCreateOrUpdate.WarehouseId = FormLogin.mWarehouse.Id;
-                    mEmployeeService.CreateOrUpdateEmployee(employeeCreateOrUpdate);
-                    MessageBox.Show("Cập nhật " + cbbRole.Text + " thành công !");
-                }
-                
-                employeeCreateOrUpdate = null;
-                LoadAllEmployeeToListBox();
-                txtUserName.Enabled = false;
             }
+            catch (Exception ex)
+            {
+
+            }
+
         }
 
         private bool ValidateDataInput()
         {
-            if(string.IsNullOrEmpty(txtUserName.Text) || txtUserName.Text.Length < 4)
+            if (string.IsNullOrEmpty(txtUserName.Text) || txtUserName.Text.Length < 4)
             {
                 MessageBox.Show("Vui lòng nhập User Name từ 4 ký tự trở lên!");
                 txtUserName.Focus();

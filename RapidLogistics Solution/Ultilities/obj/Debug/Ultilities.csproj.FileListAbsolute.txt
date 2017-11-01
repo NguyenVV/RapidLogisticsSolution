@@ -18,5 +18,6 @@ C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\Ultilities\obj\D
 C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\Ultilities\obj\Debug\Ultilities.pdb
 E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\Ultilities\bin\Debug\Ultilities.dll
 E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\Ultilities\bin\Debug\Ultilities.pdb
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\Ultilities\obj\Debug\Ultilities.csprojResolveAssemblyReference.cache
 E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\Ultilities\obj\Debug\Ultilities.dll
 E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\Ultilities\obj\Debug\Ultilities.pdb

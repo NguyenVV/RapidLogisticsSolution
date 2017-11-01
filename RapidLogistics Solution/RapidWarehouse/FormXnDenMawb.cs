@@ -5,37 +5,26 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
+using RapidWarehouse.Data;
+using System.Globalization;
 
 namespace RapidWarehouse
 {
     public partial class FormXnDenMawb : Form
     {
-        int numberShipment = 1;
+        int totalshipments = 0;
         string currentMasterBill = String.Empty;
         string currentBoxId = String.Empty;
         int currentMasterBillId, currentBoxIdInt;
         List<ManifestEntity> manifestList;
         EmployeeEntity currentEmployee;
+        ShipmentRepository repositoryShipment = new ShipmentRepository();
         private readonly IMasterBillServices _masterBillServices;
         private readonly IShipmentServices _shipmentServices;
         private readonly IShipmentOutServices _shipmentOutServices;
         private readonly IBoxInforServices _boxInforServices;
         private readonly IManifestServices _manifestServices;
-        private readonly string SHIPMENT_NO = "Shipment No";
-        private readonly string MAWB = "MAWB";
-        private readonly string STT = "STT";
-        private readonly string ID = "Id";
-        private readonly string DECLARATIONNO = "Số tờ khai";
-        private readonly string COMPANYNAME = "Người gửi";
-        private readonly string COUNTRY = "Nước gửi";
-        private readonly string CONTACTNAME = "Người nhận";
-        private readonly string ADDRESS = "Địa chỉ nhận";
-        private readonly string CONSIGNEE = "Consignee";
-        private readonly string CONTENT = "Nội dung hàng";
-        private readonly string PACKAGE = "Số kiện";
-        private readonly string WEIGHT = "Khối lượng";
-        private readonly string DATEOFCOMPLETION = "Ngày thông quan";
-
+        private readonly string SHIPMENT_NO = "Shipment No"; 
         public FormXnDenMawb(IMasterBillServices masterBillServices, IShipmentServices shipmentServices
             , IBoxInforServices boxInforServices, IShipmentOutServices shipmentOutServices
             , IManifestServices manifestServices)
@@ -47,145 +36,52 @@ namespace RapidWarehouse
             _boxInforServices = boxInforServices;
             _manifestServices = manifestServices;
             currentEmployee = FormLogin.mEmployee;
-            BuildingTheGridviewRowStrure();
 
-            //AddDeleteButtonToGridView(grvShipments);
-
-            dtpNgayDen.CustomFormat = "dd/MM/yyyy";
-            manifestList = (List<ManifestEntity>)_manifestServices.GetManifestByDateString(dtpNgayDen.Value.ToString("yyyy-MM-dd"));
-            LoadAllMasterBillByDateToComboboxXacNhanDen(dtpNgayDen.Value);
-            //LoadAllMasterBillByDateToCombobox(dtpNgayDen.Value, cbbMasterBill);
-
-            cbbMasterBill.SelectedText = "";
-            FillInforXacNhanDen();
+            txtMAWB.Text = "";
+            txtMAWB.Focus();
             CloseBox();
             ResetFormInfoNhap();
-            dtpNgayDen.Focus();
+            btnXNĐ.Enabled = false;
             this.Text = "Xác nhận đến theo MAWB- " + FormUltils.getInstance().GetVersionInfo();
         }
-
-        #region Xác nhận đến
-        
-        private void BuildingTheGridviewRowStrure()
-        {
-            grvShipments.ColumnCount = 14;
-            grvShipments.Columns[0].Name = STT;
-            grvShipments.Columns[0].ValueType = typeof(int);
-            grvShipments.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            grvShipments.Columns[0].ReadOnly = true;
-            grvShipments.Columns[1].Name = MAWB;
-            grvShipments.Columns[1].ValueType = typeof(string);
-            grvShipments.Columns[2].Name = ID;
-            grvShipments.Columns[2].ValueType = typeof(int);
-            grvShipments.Columns[2].Visible = false;
-            grvShipments.Columns[3].Name = SHIPMENT_NO;
-            grvShipments.Columns[3].ValueType = typeof(string);
-            grvShipments.Columns[4].Name = DECLARATIONNO;
-            grvShipments.Columns[4].ValueType = typeof(string);
-            grvShipments.Columns[5].Name = COMPANYNAME;
-            grvShipments.Columns[5].ValueType = typeof(string);
-            grvShipments.Columns[6].Name = COUNTRY;
-            grvShipments.Columns[6].ValueType = typeof(string);
-            grvShipments.Columns[7].Name = CONTACTNAME;
-            grvShipments.Columns[7].ValueType = typeof(string);
-            grvShipments.Columns[8].Name = ADDRESS;
-            grvShipments.Columns[8].ValueType = typeof(string);
-            grvShipments.Columns[9].Name = CONSIGNEE;
-            grvShipments.Columns[9].ValueType = typeof(string);
-            grvShipments.Columns[10].Name = CONTENT;
-            grvShipments.Columns[10].ValueType = typeof(string);
-            grvShipments.Columns[11].Name = PACKAGE;
-            grvShipments.Columns[11].ValueType = typeof(int);
-            grvShipments.Columns[12].Name = WEIGHT;
-            grvShipments.Columns[12].ValueType = typeof(float);
-            grvShipments.Columns[13].Name = DATEOFCOMPLETION;
-            grvShipments.Columns[13].ValueType = typeof(string);
-        }
+        #region Xác nhận đến      
         private void ResetFormInfoNhap()
         {
             lblShipmentScaned.Text = String.Empty;
             lblNgayDen.Text = String.Empty;
             lblMasterBill.Text = String.Empty;
         }
-        
         private bool ValidateInputDataConfirmArrived()
         {
-            if (String.IsNullOrWhiteSpace(cbbMasterBill.Text))
+            if (String.IsNullOrWhiteSpace(txtMAWB.Text))
             {
                 MessageBox.Show("Bạn cần phải nhập Master airway bill (MAWB) và Mã thùng trước", "Nhập thông tin", MessageBoxButtons.OK);
-                cbbMasterBill.Focus();
+                txtMAWB.Focus();
                 return false;
             }
-
-            if (!CheckIsMawbExistsInManifest(cbbMasterBill.Text))
-            {
-                MessageBox.Show("Mã MAWB không có trong manifest của ngày đã chọn " + dtpNgayDen.Value.ToString("dd/MM/yyyy"), "Nhập thông tin", MessageBoxButtons.OK);
-                cbbMasterBill.Focus();
-                return false;
-            }
-
             return true;
-        }
-        private void FillInforXacNhanDen()
-        {
-            lblMasterBill.Text = cbbMasterBill.Text;
-            lblNgayDen.Text = dtpNgayDen.Value.ToString("dd/MM/yyyy");
-        }
-
-        private ShipmentEntity convertFromManifest(ManifestEntity manifest)
-        {
-            ShipmentEntity shipment = new ShipmentEntity();
-            shipment.ShipmentId = manifest.ShipmentNo;
-            shipment.BoxId = currentBoxIdInt;
-            shipment.DateCreated = DateTime.Now;
-            shipment.WarehouseId = FormLogin.mWarehouse.Id;
-            shipment.EmployeeId = currentEmployee.Id;
-            shipment.NumberPackage = manifest.Quantity;
-
-            shipment.Sender = manifest.CompanyName;
-            shipment.DeclarationNo = manifest.DeclarationNo;
-            shipment.Address = manifest.Address;
-            shipment.Content = manifest.Content;
-            shipment.Destination = manifest.Destination;
-            shipment.Consignee = manifest.Destination;
-            shipment.Receiver = manifest.ContactName;
-            shipment.Weight = manifest.Weight;
-            shipment.Country = manifest.Country;
-            //shipment.DateOfCompletion = "";
-            //DateTime completed = Convert.ToDateTime(grvShipments[DATEOFCOMPLETION, i].Value);
-            //if (grvShipments[DATEOFCOMPLETION, i].Value != null && !string.IsNullOrEmpty(grvShipments[DATEOFCOMPLETION, i].Value.ToString()))
-            //    shipment.DateOfCompletion = Convert.ToDateTime(grvShipments[DATEOFCOMPLETION, i].Value);
-            //else
-            //    shipment.DateOfCompletion = null;
-            return shipment;
-        }
+        }  
         private void CloseBox()
         {
-            dtpNgayDen.Enabled = true;
-            cbbMasterBill.Enabled = true;
-            //grvShipments.Enabled = false;
-            grvShipments.Rows.Clear();
-        }
-        int count = 0;
-        private void LuuXacNhanDen(string masterBill)
+            txtMAWB.Enabled = true;
+        }        
+        private void SaveShipment(string masterBill)
         {
-            count = 0;
-            List<ManifestEntity> listBoxInfo = manifestList.Where(t => t.MasterAirWayBill == masterBill).GroupBy(t => t.BoxID).Select(p => p.First()).ToList();
-            if (listBoxInfo != null && listBoxInfo.Count > 0)
+           int countTotal = 0;            
+            List<BoxIdEntity> listBoxid = repositoryShipment.GetBoxIdByAirwaybill(masterBill);
+            if (listBoxid.Count > 0)
             {
-                //object result = Jacksonsoft.WaitWindow.Show(this.ProgressWorkerMethod, "Vui lòng chờ...   0%");
-                //MessageBox.Show(result.ToString());
-                
-                foreach (var itemBoxID in listBoxInfo)
+                foreach (var box in listBoxid)
                 {
-                    BoxInforEntity boxEntity = _boxInforServices.GetByBoxId(itemBoxID.BoxID);
+                    int countBox = 0;
+                    BoxInforEntity boxEntity = _boxInforServices.GetByBoxId(box.BoxId);
                     if (boxEntity == null)
                     {
                         boxEntity = new BoxInforEntity();
-                        boxEntity.BoxId = itemBoxID.BoxID;
+                        boxEntity.BoxId = box.BoxId;
                         boxEntity.DateCreated = DateTime.Now;
                         boxEntity.EmployeeId = currentEmployee.Id;
-                        boxEntity.ShipmentQuantity = manifestList.Where(t => t.BoxID == itemBoxID.BoxID).Count();
+                        boxEntity.ShipmentQuantity =0;
                         boxEntity.MasterBillId = currentMasterBillId;
                         currentBoxIdInt = _boxInforServices.CreateBoxInfor(boxEntity);
                         boxEntity.Id = currentBoxIdInt;
@@ -196,16 +92,16 @@ namespace RapidWarehouse
                         currentBoxIdInt = boxEntity.Id;
                         currentBoxId = boxEntity.BoxId;
                     }
-
-                    // Add shipment here
-                    List<ManifestEntity> listShipmentNo = manifestList.Where(t => t.BoxID == itemBoxID.BoxID).GroupBy(t => t.ShipmentNo).Select(p => p.First()).ToList();
-                    if (listShipmentNo != null && listShipmentNo.Count > 0)
+                    List<ManifestEntity> listManifest = new List<ManifestEntity>();
+                    listManifest = repositoryShipment.GetManifestByBoxId(box.BoxId);
+                    listManifest = listManifest.GroupBy(t => t.ShipmentNo).Select(p => p.First()).ToList();                  
+                    if (listManifest != null && listManifest.Count > 0)
                     {
                         List<ShipmentEntity> listShipment = new List<ShipmentEntity>();
-
-                        foreach (var item in listShipmentNo)
-                        {
+                        foreach (var item in listManifest)
+                        {                            
                             ShipmentEntity shipment = new ShipmentEntity();
+                            shipment.Mawb = item.MasterAirWayBill;
                             shipment.ShipmentId = item.ShipmentNo;
                             shipment.BoxId = currentBoxIdInt;
                             shipment.DateCreated = DateTime.Now;
@@ -213,35 +109,42 @@ namespace RapidWarehouse
                             shipment.WarehouseId = FormLogin.mWarehouse.Id;
                             shipment.Address = item.Address;
                             shipment.BoxIdString = item.BoxID;
+                            if (_shipmentOutServices.GetStatusCompletion(item.ShipmentNo))
+                                shipment.Status = "Clearance";
+                            else
+                                shipment.Status = "Check";
                             shipment.Content = item.Content;
                             shipment.Country = item.Country;
                             shipment.DeclarationNo = item.DeclarationNo;
                             shipment.Destination = item.Destination;
                             shipment.NumberPackage = 1;
+                            shipment.TotalValue = item.TotalValue;
                             shipment.Sender = item.CompanyName;
                             shipment.Consignee = item.Destination;
                             shipment.Receiver = item.ContactName;
-                            shipment.Weight = item.Weight;
-
+                            shipment.Weight = Math.Round(item.Weight, 3) ;
+                            shipment.ReceiverTel = item.Tel;                            
                             listShipment.Add(shipment);
-                        }
-
-                        count += _shipmentServices.CreateOrUpdate(listShipment);
+                        }                        
+                        countBox = repositoryShipment.CreateShipment(listShipment);                      
+                        if (countBox > 0)
+                        {
+                            countTotal += countBox;
+                            _boxInforServices.CreateOrUpdateByQuery(countBox, boxEntity.Id);
+                        }                      
                     }
                 }
-
-                MessageBox.Show("Đã lưu xác nhận đến thành công!\nTổng số đơn hàng là " + count, "Lưu xác nhận đến", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Đã xác nhận đến thành công!\nTổng số đơn hàng là " + countTotal, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
         private void WorkerMethod(object sender, Jacksonsoft.WaitWindowEventArgs e)
         {
-            LuuXacNhanDen(e.Arguments[0].ToString());
+            SaveShipment(e.Arguments[0].ToString());
             if (e.Arguments.Count > 0)
             {
                 e.Result = e.Arguments[0].ToString();
             }
         }
-
         private void ProgressWorkerMethod(object sender, Jacksonsoft.WaitWindowEventArgs e)
         {
             //	Do something
@@ -250,7 +153,6 @@ namespace RapidWarehouse
                 //	Update the wait window message
                 e.Window.Message = string.Format("Vui lòng chờ ... {0}%", progress.ToString().PadLeft(3));
             }
-
             //	Use the arguments sent in
             if (e.Arguments.Count > 0)
             {
@@ -263,31 +165,28 @@ namespace RapidWarehouse
                 e.Result = "Hello World";
             }
         }
-        private void LoadAllMasterBillByDateToComboboxXacNhanDen(DateTime date)
+        private int LoadAllMasterBillByDateToComboboxXacNhanDen(string airwaybill)
         {
-            manifestList = _manifestServices.GetManifestByDateString(dtpNgayDen.Value.ToString("yyyy-MM-dd"));
             List<MasterAirwayBillEntity> finalList = new List<MasterAirwayBillEntity>();
-            //finalList.Add(new ManifestEntity());
-
-            var masterBillList = manifestList.GroupBy(t => t.MasterAirWayBill).Select(p => p.First());
-            if (masterBillList != null && masterBillList.Any())
-            {
-                foreach (ManifestEntity manifest in masterBillList)
-                {
-                    MasterAirwayBillEntity entity = new MasterAirwayBillEntity();
-                    entity.MasterAirwayBill = manifest.MasterAirWayBill;
-                    finalList.Add(entity);
-                }
-
-                cbbMasterBill.DataSource = finalList;
-                cbbMasterBill.ValueMember = "MasterAirwayBill";
-                cbbMasterBill.DisplayMember = "MasterAirwayBill";
-            }
+            //manifestList = _manifestServices.GetManifestByDateString(dtpNgayDen.Value.ToString("yyyy-MM-dd"));
+            manifestList = repositoryShipment.GetManifestByAirwaybill(airwaybill);
+            if (manifestList.Count == 0)
+                return 0;
             else
             {
-                cbbMasterBill.DataSource = null;
-                cbbMasterBill.Items.Clear();
+                var masterBillList = manifestList.GroupBy(t => t.MasterAirWayBill).Select(p => p.First());
+                if (masterBillList != null && masterBillList.Any())
+                {
+                    foreach (ManifestEntity manifest in masterBillList)
+                    {
+                        MasterAirwayBillEntity entity = new MasterAirwayBillEntity();
+                        entity.MasterAirwayBill = manifest.MasterAirWayBill;
+                        finalList.Add(entity);
+                    }
+                }
+                return manifestList.Count;
             }
+
         }
         private bool CheckIsMawbExistsInManifest(string mawb)
         {
@@ -298,171 +197,9 @@ namespace RapidWarehouse
                     return true;
                 }
             }
-
             return false;
-        }
-
-        private void cbbMasterBill_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            lblMasterBill.Text = cbbMasterBill.Text;
-            //List<ManifestEntity> listBoxInfo = manifestList.Where(t => t.MasterAirWayBill == cbbMasterBill.Text).GroupBy(t => t.BoxID).Select(p => p.First()).ToList();
-            lblShipmentScaned.Text = "0";
-            if (manifestList != null)
-            {
-                lblShipmentScaned.Text = manifestList.Where(t => t.MasterAirWayBill == cbbMasterBill.Text).GroupBy(t => t.ShipmentNo).Select(p => p.First()).Count() + "";
-            }
-        }
-        //private void btnXacNhan_Click(object sender, EventArgs e)
-        //{
-        //    if (string.IsNullOrEmpty(cbbMasterBill.Text))
-        //    {
-        //        MessageBox.Show("Hãy chọn một mã MAWB để xác nhận");
-        //        return;
-        //    }
-
-        //    //LuuXacNhanDen();
-        //}
-        
-        private void AddShipmentListToGrid(IEnumerable<ManifestEntity> listShipment, DataGridView grv)
-        {
-            if (grv != null && listShipment != null)
-            {
-                int index = 1;
-                grv.Rows.Clear();
-                foreach (ManifestEntity item in listShipment)
-                {
-                    //if (string.IsNullOrEmpty(item.DeclarationNo))
-                    //{
-                    //    item.DeclarationNo = _shipmentServices.GetDeclarationNo(item.ShipmentNo);
-                    //}
-
-                    //string dateOfCreation = _shipmentServices.GetDateOfCompletion(item.ShipmentNo);
-
-                    grv.Rows.Add(index, item.MasterAirWayBill, 0, item.ShipmentNo, item.DeclarationNo, item.CompanyName
-                        , item.Country, item.ContactName, item.Address, item.Destination, item.Content, 1, String.Format("{0:0.000}", item.Weight), "");
-                    index++;
-                    //if(!isConfirmed)
-                    //    _shipmentServices.CreateOrUpdate(convertFromManifest(item));
-                }
-                // setting up value count on gridview
-                numberShipment = index;
-            }
-        }
-
-        private void AddShipmentListToGrid(IEnumerable<ShipmentEntity> listShipment, DataGridView grv)
-        {
-            if (grv != null && listShipment != null)
-            {
-                int index = 1;
-                grv.Rows.Clear();
-                foreach (ShipmentEntity item in listShipment)
-                {
-                    grv.Rows.Add(index, cbbMasterBill.Text, item.Id, item.ShipmentId, item.DeclarationNo, item.Sender
-                        , item.Country, item.Receiver, item.Address, item.Destination, item.Content, 1, String.Format("{0:0.000}", item.Weight), item.DateOfCompletion == new DateTime() ? null : item.DateOfCompletion);
-                    index++;
-                    //if (!isConfirmed)
-                    //    _shipmentServices.CreateOrUpdate(item);
-                }
-                // setting up value count on gridview
-                numberShipment = index;
-            }
-        }
-
-        private void dtpNgayDen_ValueChanged(object sender, EventArgs e)
-        {
-            manifestList = (List<ManifestEntity>)_manifestServices.GetManifestByDateString(dtpNgayDen.Value.ToString("yyyy-MM-dd"));
-            lblNgayDen.Text = dtpNgayDen.Value.ToString("dd/MM/yyyy");
-            LoadAllMasterBillByDateToComboboxXacNhanDen(dtpNgayDen.Value);
-            //LoadAllMasterBillByDateToCombobox(dtpNgayDen.Value, cbbMasterBill);
-        }
-        
-        #endregion
-
-        #region Dùng chung
-        private void LoadAllMasterBillByDateToCombobox(DateTime date, ComboBox cbbMaster)
-        {
-            List<MasterAirwayBillEntity> masterBillList = (List<MasterAirwayBillEntity>)_masterBillServices.GetByDateArrived(date);
-            if (masterBillList != null && masterBillList.Count > 0)
-            {
-                cbbMaster.DataSource = masterBillList;
-                cbbMaster.ValueMember = "Id";
-                cbbMaster.DisplayMember = "MasterAirwayBill";
-            }
-            else
-            {
-                cbbMaster.DataSource = null;
-                cbbMaster.Items.Clear();
-            }
-        }
-
-        /// <summary>
-        /// xóa trên form nhập kho
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void grvShipments_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            DeleteRowFromGridview(grvShipments, e, 1);
-            numberShipment--;
-            ReIndexingRow(grvShipments);
-        }
-
-        private void DeleteRowFromGridview(DataGridView grv, DataGridViewCellEventArgs e, int grvType)
-        {
-            //if click is on new row or header row
-            if (e.RowIndex == grv.NewRowIndex || e.RowIndex < 0)
-                return;
-
-            //Check if click is on specific column 
-            if (e.ColumnIndex == grv.Columns["dataGridViewDeleteButton"].Index)
-            {
-                DialogResult result = MessageBox.Show("Bạn muốn xóa đơn hàng : " + grv.Rows[e.RowIndex].Cells[SHIPMENT_NO].Value, "Xóa đơn hàng", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (result == DialogResult.No)
-                    return;
-
-                try
-                {
-                    if (grvType == 1)
-                    {
-                        int id = 0;
-                        try
-                        {
-                            id = Convert.ToInt32(grv.Rows[e.RowIndex].Cells["Id"].Value);
-                        }
-                        catch { }
-
-                        if (id > 0)
-                        {
-                            _shipmentServices.Delete(id);
-                        }
-                        else
-                        {
-                            _shipmentServices.Delete(grv.Rows[e.RowIndex].Cells[SHIPMENT_NO].Value.ToString());
-                        }
-                        lblShipmentScaned.Text = (grv.Rows.Count - 1) + "";
-                    }
-                }
-                catch (Exception ex) { Ultilities.FileHelper.WriteLog(Ultilities.ExceptionLevel.Function, "private void DeleteRowFromGridview(DataGridView grv, DataGridViewCellEventArgs e, int grvType)", ex); }
-
-                grv.Rows.RemoveAt(e.RowIndex);
-            }
-        }
-
-        private void ReIndexingRow(DataGridView grv)
-        {
-            if (grv != null)
-            {
-                int rowCount = grv.Rows.Count;
-                for (int i = 0; i < rowCount; i++)
-                {
-                    grv.Rows[i].Cells["STT"].Value = i + 1;
-                }
-            }
-        }
-
-        #endregion
-
-        #region Các báo cáo
+        }   
+        #endregion      
 
         private void btnExit_Click(object sender, EventArgs e)
         {
@@ -475,98 +212,84 @@ namespace RapidWarehouse
             Program.Container.GetInstance<FormHome>().Show();
             this.Dispose();
         }
-
-        private void cbbMasterBill_KeyDown(object sender, KeyEventArgs e)
-        {
-            ClickKeyTab(e);
-        }
-
-        private void ClickKeyTab(KeyEventArgs e)
-        {
-            if (e.KeyData == Keys.Enter)
-            {
-                SendKeys.Send("{TAB}");
-            }
-        }
-
-        private void cbbBoxId_KeyDown(object sender, KeyEventArgs e)
-        {
-            ClickKeyTab(e);
-        }
-
-        private void cbbMasterBillOut_KeyDown(object sender, KeyEventArgs e)
-        {
-            ClickKeyTab(e);
-        }
-
-        private void cbbBoxIdOut_KeyDown(object sender, KeyEventArgs e)
-        {
-            ClickKeyTab(e);
-        }
-
-        #endregion
-
-        #region Events buttons
-        private void cbbMasterBill_Leave(object sender, EventArgs e)
-        {
-            cbbMasterBill.Text = cbbMasterBill.Text.ToUpper();
-        }
+        #region Events buttons      
 
         private void FormNhap_FormClosed(object sender, FormClosedEventArgs e)
         {
             Program.Container.GetInstance<FormHome>().Show();
             this.Dispose();
         }
-        
         private void btnXNĐ_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrWhiteSpace(cbbMasterBill.Text))
+            try
             {
-                MessageBox.Show("Bạn cần phải nhập Master airway bill (MAWB) trước", "Nhập thông tin", MessageBoxButtons.OK);
-                cbbMasterBill.Focus();
-                return;
-            }
+                if (String.IsNullOrWhiteSpace(txtMAWB.Text))
+                {
+                    MessageBox.Show("Bạn cần phải nhập Master airway bill (MAWB) trước", "Nhập thông tin", MessageBoxButtons.OK);
+                    txtMAWB.Focus();
+                    return;
+                }
+                if (!CheckIsMawbExistsInManifest(txtMAWB.Text))
+                {
+                    MessageBox.Show(txtMAWB.Text + " không có thông tin manifest.", "Thông báo", MessageBoxButtons.OK);
+                    txtMAWB.Focus();
+                    return;
+                }
+                MasterAirwayBillEntity masterBill = _masterBillServices.GetByMasterBillId(txtMAWB.Text);
+                if (masterBill == null)
+                {
+                    //  DateTime dateconvert = DateTime.ParseExact(manifestList.First().FlightDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                    string iString = manifestList.First().FlightDate + " 00:00 AM";
+                    DateTime oDate = DateTime.ParseExact(iString, "yyyy-MM-dd HH:mm tt", null);
 
-            if (!CheckIsMawbExistsInManifest(cbbMasterBill.Text))
-            {
-                MessageBox.Show("Mã MAWB không có trong manifest của ngày đã chọn " + dtpNgayDen.Value.ToString("dd/MM/yyyy"), "Nhập thông tin", MessageBoxButtons.OK);
-                cbbMasterBill.Focus();
-                return;
+                    masterBill = new MasterAirwayBillEntity();
+                    masterBill.MasterAirwayBill = txtMAWB.Text;
+                    masterBill.DateArrived = oDate;
+                    masterBill.DateCreated = DateTime.Now;
+                    masterBill.DateInt = repositoryShipment.DateToInt(DateTime.Now);
+                    masterBill.EmployeeId = currentEmployee.Id;
+                    currentMasterBillId = _masterBillServices.CreateMasterAirwayBill(masterBill);
+                    currentMasterBill = masterBill.MasterAirwayBill;
+                    masterBill.Id = currentMasterBillId;
+                }
+                else
+                {
+                    currentMasterBillId = masterBill.Id;
+                    currentMasterBill = masterBill.MasterAirwayBill;
+                    //MessageBox.Show("Mã MAWB: " + masterBill.MasterAirwayBill + " này đã được xác nhận rồi", "Mã MAWB đã được xác nhận", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //return;
+                }
+                object result = Jacksonsoft.WaitWindow.Show(this.WorkerMethod, "Vui lòng chờ...", txtMAWB.Text);
             }
-
-            MasterAirwayBillEntity masterBill = _masterBillServices.GetByMasterBillId(cbbMasterBill.Text);
-            if (masterBill == null)
+            catch (Exception ex)
             {
-                masterBill = new MasterAirwayBillEntity();
-                masterBill.MasterAirwayBill = cbbMasterBill.Text;
-                masterBill.DateArrived = dtpNgayDen.Value;
-                masterBill.DateCreated = DateTime.Now;
-                masterBill.EmployeeId = currentEmployee.Id;
-                currentMasterBillId = _masterBillServices.CreateMasterAirwayBill(masterBill);
-                currentMasterBill = masterBill.MasterAirwayBill;
-                masterBill.Id = currentMasterBillId;
-                //cbbMasterBill.Items.Add(masterBill);
-                //LoadAllMasterBillByDateToCombobox(dtpNgayDen.Value, cbbMasterBill);
-                //cbbMasterBill.SelectedText = masterBill.MasterAirwayBill;
+            }
+        }
+        private void txtMAWB_TextChanged(object sender, EventArgs e)
+        {
+            lblMasterBill.Text = txtMAWB.Text;
+        }
+        private void btnCheck_Click(object sender, EventArgs e)
+        {
+            totalshipments = 0;
+            int returnvalue = LoadAllMasterBillByDateToComboboxXacNhanDen(txtMAWB.Text);
+            if (returnvalue > 0)
+            {
+                lblNgayDen.Text = "Chuyến bay: " + manifestList.First().FlightNumber;
+                txtTotal.Visible = true;
+                totalshipments = manifestList.Where(t => t.MasterAirWayBill == txtMAWB.Text).GroupBy(t => t.ShipmentNo).Select(p => p.First()).Count();
+                lblShipmentScaned.Text = totalshipments.ToString() + " Shipments";
+                
+                btnXNĐ.Enabled = true;
             }
             else
             {
-                currentMasterBillId = masterBill.Id;
-                currentMasterBill = masterBill.MasterAirwayBill;
-                MessageBox.Show("Mã MAWB: " + masterBill.MasterAirwayBill + " này đã được xác nhận rồi", "Mã MAWB đã được xác nhận", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
+                lblNgayDen.Text = "Không tồn tại dữ liệu.";
+                txtTotal.Visible = false;
+                lblShipmentScaned.Text = "";
+                txtMAWB.Text = "";
             }
-            object result = Jacksonsoft.WaitWindow.Show(this.WorkerMethod,"Vui lòng chờ...", cbbMasterBill.Text);
-            //MessageBox.Show(result.ToString());
-            //LuuXacNhanDen();
-            AddShipmentListToGrid(manifestList.Where(t => t.MasterAirWayBill == cbbMasterBill.Text).GroupBy(t => t.ShipmentNo).Select(p => p.First()).ToList(), grvShipments);
         }
-
-        private void dtpNgayDen_KeyDown(object sender, KeyEventArgs e)
-        {
-            ClickKeyTab(e);
-        }
-
         #endregion
     }
 }

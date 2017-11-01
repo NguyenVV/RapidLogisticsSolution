@@ -21,21 +21,19 @@ namespace BusinessServices
         }
         public int CreateOrUpdate(IEnumerable<ShipmentEntity> shipmentList)
         {
+            int count = 0;
             if (shipmentList != null && shipmentList.Any())
             {
                 using (var scope = new TransactionScope())
                 {
                     Mapper.CreateMap<ShipmentEntity, ShipmentInfor>();
                     var shipmentListModel = Mapper.Map<IEnumerable<ShipmentEntity>, IEnumerable<ShipmentInfor>>(shipmentList).ToList();
-                    int count = 0;
+
                     count = _unitOfWork.ShipmentRepository.Insert(shipmentListModel);
                     _unitOfWork.SaveWinform();
-                    scope.Complete();
-
-                    return count;
+                    scope.Complete(); return count;
                 }
             }
-
             return 0;
         }
 
@@ -93,10 +91,10 @@ namespace BusinessServices
 
         public int CreateOrUpdateByQuery(List<ShipmentEntity> shipmentList)
         {
-                StringBuilder data = new StringBuilder();
+            StringBuilder data = new StringBuilder();
             try
             {
-                foreach(ShipmentEntity shipmentEntity in shipmentList)
+                foreach (ShipmentEntity shipmentEntity in shipmentList)
                 {
                     data.Append(string.Format("INSERT [dbo].[ShipmentInfor] ([ShipmentId], [Sender], [Receiver], [TelReceiver], [TotalValue], [Descrition], [BoxId], [Status], [EmployeeId], [WarehouseId], [IsSyncOms], [Weight], [DeclarationNo], [Country], [Address], [Consignee], [Content], [NumberPackage], [DateOfCompletion]) VALUES (N'{0}', N'{1}', N'{2}', N'{3}', N'{4}', N'{5}', {6}, N'{7}', {8}, {9}, N'{10}', {11}, N'{12}', N'{13}',N'{14}', N'{15}', N'{16}', {17}, N'{18}')", shipmentEntity.ShipmentId, shipmentEntity.Sender, shipmentEntity.Receiver, shipmentEntity.ReceiverTel, null, shipmentEntity.Description, shipmentEntity.BoxId, null, shipmentEntity.EmployeeId, shipmentEntity.WarehouseId, null, shipmentEntity.Weight, shipmentEntity.DeclarationNo, shipmentEntity.Country, shipmentEntity.Address, shipmentEntity.Consignee, shipmentEntity.Content, shipmentEntity.NumberPackage, shipmentEntity.DateOfCompletion));
                 }
@@ -319,7 +317,7 @@ namespace BusinessServices
             using (var scope = new TransactionScope())
             {
                 bool shipmentDataModel = _unitOfWork.ShipmentRepository.Exists(t => t.ShipmentId.Equals(shipmentId, StringComparison.CurrentCultureIgnoreCase) && t.BoxId == boxId);
-                
+
                 scope.Complete();
                 return shipmentDataModel;
             }
@@ -350,5 +348,13 @@ namespace BusinessServices
             _unitOfWork.ShipmentRepository.Delete(t => t.ShipmentId == shipmentId);
             _unitOfWork.SaveWinform();
         }
+        //public string CreateOrUpdateByQuery(string status, string shipmentid)
+        //{
+        //    int i = _unitOfWork.ShipmentRepository.ExecuteUpdateQuery(string.Format("Update ShipmentInfor set Status=" + status + " Where ShipmentId =" + shipmentid));
+        //    if (i != 0)
+        //        return "Clearance";
+        //    else
+        //        return "Check";
+        //}
     }
 }

@@ -85,11 +85,9 @@ namespace RapidWarehouse
         public void Close()
         {
             if (_writer == null) throw new InvalidOperationException("Already closed.");
-
             _writer.Close();
             _writer = null;
         }
-
         public void WriteExcelColumnDefinition(int columnWidth)
         {
             if (_writer == null) throw new InvalidOperationException("Cannot write after closing.");

@@ -51,10 +51,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BoxInforServices.cs" />
+    <Compile Include="BoxOutServices.cs" />
     <Compile Include="BusinessProfileServices.cs" />
     <Compile Include="DependencyResolver.cs" />
     <Compile Include="EmployeeServices.cs" />
     <Compile Include="Interfaces\IBoxInforServices.cs" />
+    <Compile Include="Interfaces\IBoxOutServices.cs" />
     <Compile Include="Interfaces\IBusinessProfileServices.cs" />
     <Compile Include="Interfaces\IEmployeeServices.cs" />
     <Compile Include="Interfaces\IManifestServices.cs" />
@@ -63,7 +65,6 @@
     <Compile Include="Interfaces\IShipmentOutTempServices.cs" />
     <Compile Include="Interfaces\IShipmentServices.cs" />
     <Compile Include="Interfaces\IShipmentTempServices.cs" />
-    <Compile Include="Interfaces\IShipmentWaitToConfirmedServices.cs" />
     <Compile Include="Interfaces\ITokenServices.cs" />
     <Compile Include="Interfaces\IUserServices.cs" />
     <Compile Include="Interfaces\IWarehouseServices.cs" />
@@ -74,7 +75,6 @@
     <Compile Include="ShipmentOutTempServices.cs" />
     <Compile Include="ShipmentServices.cs" />
     <Compile Include="ShipmentTempServices.cs" />
-    <Compile Include="ShipmentWaitToConfirmedServices.cs" />
     <Compile Include="TokenServices.cs" />
     <Compile Include="UserServices.cs" />
     <Compile Include="WarehouseServices.cs" />

@@ -52,10 +52,10 @@ namespace RapidWarehouse
             //container.Register<IGenericRepository, DataModel.GenericRepository.GenericRepository>(Lifestyle.Singleton);
             container.Register<IMasterBillServices, MasterBillServices>();
             container.Register<IBoxInforServices, BoxInforServices>();
+            container.Register<IBoxOutServices, BoxOutServices>();
             container.Register<IShipmentServices, ShipmentServices>();
             container.Register<IShipmentOutServices, ShipmentOutServices>();
-            container.Register<IManifestServices, ManifestServices>();
-            container.Register<IShipmentWaitToConfirmedServices, ShipmentWaitToConfirmedServices>();
+            container.Register<IManifestServices, ManifestServices>();            
             container.Register<IEmployeeServices, EmployeeServices>();
             container.Register<IShipmentTempServices, ShipmentTempServices>();
             container.Register<IShipmentOutTempServices, ShipmentOutTempServices>();
@@ -66,10 +66,9 @@ namespace RapidWarehouse
             container.Register<FormCreateEditEmployee>();
             container.Register<FormChangePassword>();
             container.Register<FormConfigDB>();
-            container.Register<FormXuat>();
-            container.Register<FormChoThongQuan>();
+            container.Register<FormXuat>();            
             container.Register<FormBaoCao>();
-            container.Register<FormMangeWarehouses>();
+            container.Register<FormWarehouses>();
             container.Register<FormHaiQuanView>();
             container.Register<FormXnDenMawb>();
             container.Register<WaitWindowGUI>();

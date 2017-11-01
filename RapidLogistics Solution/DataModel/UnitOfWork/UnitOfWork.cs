@@ -1,5 +1,4 @@
 ﻿#region Using Namespaces...
-
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -27,6 +26,7 @@ namespace DataModel.UnitOfWork
         //private GenericRepository<Business_profile> _businessProfileRepository;
         private GenericRepository<MasterBill> _masterBillRepository;
         private GenericRepository<BoxInfo> _boxInforRepository;
+        private GenericRepository<BoxOut> _boxOutRepository;
         private GenericRepository<ShipmentInfor> _shipmentRepository; 
         private GenericRepository<ShipmentOut> _shipmentOutRepository;
         private GenericRepository<ShipmentInforTemp> _shipmentTempRepository;
@@ -133,6 +133,15 @@ namespace DataModel.UnitOfWork
                 if (this._boxInforRepository == null)
                     this._boxInforRepository = new GenericRepository<BoxInfo>(_contextWinform);
                 return _boxInforRepository;
+            }
+        }
+        public GenericRepository<BoxOut> BoxOutRepository
+        {
+            get
+            {
+                if (this._boxOutRepository == null)
+                    this._boxOutRepository = new GenericRepository<BoxOut>(_contextWinform);
+                return _boxOutRepository;
             }
         }
 

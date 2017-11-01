@@ -19,6 +19,7 @@ namespace DataModel
             this.BoxInfoes = new HashSet<BoxInfo>();
             this.ShipmentOuts = new HashSet<ShipmentOut>();
             this.ShipmentOutTemps = new HashSet<ShipmentOutTemp>();
+            this.BoxOuts = new HashSet<BoxOut>();
         }
     
         public int Id { get; set; }
@@ -26,10 +27,12 @@ namespace DataModel
         public Nullable<System.DateTime> DateCreated { get; set; }
         public Nullable<System.DateTime> DateArrived { get; set; }
         public Nullable<int> EmployeeId { get; set; }
+        public Nullable<int> DateInt { get; set; }
     
         public virtual ICollection<BoxInfo> BoxInfoes { get; set; }
         public virtual Employee Employee { get; set; }
         public virtual ICollection<ShipmentOut> ShipmentOuts { get; set; }
         public virtual ICollection<ShipmentOutTemp> ShipmentOutTemps { get; set; }
+        public virtual ICollection<BoxOut> BoxOuts { get; set; }
     }
 }

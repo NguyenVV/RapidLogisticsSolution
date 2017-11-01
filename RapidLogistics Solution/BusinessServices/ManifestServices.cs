@@ -6,7 +6,6 @@ using DataModel;
 using AutoMapper;
 using System.Transactions;
 using BusinessServices.Interfaces;
-
 namespace BusinessServices
 {
     public class ManifestServices : IManifestServices
@@ -20,7 +19,6 @@ namespace BusinessServices
         {
             _unitOfWork = unitOfWork;
         }
-
         public int CreateManifest(IEnumerable<ManifestEntity> manifestList)
         {
             using (var scope = new TransactionScope())
@@ -34,8 +32,7 @@ namespace BusinessServices
                     {
                         _unitOfWork.ManifestRepository.Insert(manifest);
                     }
-                }
-                
+                }                
                 _unitOfWork.Save();
                 scope.Complete();
                 return manifestList.Count();
@@ -54,7 +51,6 @@ namespace BusinessServices
                 return manifest.Id;
             }
         }
-
         public bool DeleteManifestEntity(int manifestId)
         {
             var success = false;
@@ -74,7 +70,6 @@ namespace BusinessServices
             }
             return success;
         }
-
         public IEnumerable<ManifestEntity> GetAllManifests()
         {
             var manifests = _unitOfWork.ManifestRepository.GetAll();
@@ -86,7 +81,6 @@ namespace BusinessServices
             }
             return null;
         }
-
         public ManifestEntity GetManifestById(int manifestId)
         {
             var manifest = _unitOfWork.ManifestRepository.GetByID(manifestId);
@@ -98,7 +92,6 @@ namespace BusinessServices
             }
             return null;
         }
-
         public ManifestEntity GetManifestByShipmentId(string shipmentId)
         {
             var manifest = _unitOfWork.ManifestRepository.GetFirst(t=>t.ShipmentNo.Equals(shipmentId,StringComparison.CurrentCultureIgnoreCase));
@@ -108,10 +101,8 @@ namespace BusinessServices
                 var manifestModel = Mapper.Map<Manifest, ManifestEntity>(manifest);
                 return manifestModel;
             }
-
             return null;
         }
-
         public bool UpdateManifestEntity(int manifestId, ManifestEntity manifestEntity)
         {
             var success = false;
@@ -134,8 +125,6 @@ namespace BusinessServices
             }
             return success;
         }
-        
-
         public List<ManifestEntity> GetManifestByDateString(string date)
         {
             List<Manifest> manifest = _unitOfWork.ManifestRepository.GetMany(t => t.FlightDate.Equals(date)).ToList();
@@ -145,7 +134,6 @@ namespace BusinessServices
                 var manifestModel = Mapper.Map<List<Manifest>, List<ManifestEntity>>(manifest);
                 return manifestModel;
             }
-
             return null;
         }
     }

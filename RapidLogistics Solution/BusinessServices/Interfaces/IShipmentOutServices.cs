@@ -16,7 +16,7 @@ namespace BusinessServices.Interfaces
         IEnumerable<ShipmentOutEntity> GetByMasterBillId(int masterBillId);
         IEnumerable<ShipmentEntity> GetByMasterBillIdForReport(int masterBillId);
         IEnumerable<MasterAirwayBillEntity> GetAllMasterBillByDate(DateTime value);
-        IEnumerable<BoxInforEntity> GetAllBoxByMasterBill(int masterBillId);
+        IEnumerable<BoxOutEntity> GetAllBoxByMasterBill(int masterBillId);
         void Delete(string shipmentId);
         int GetTotalByMasterBill(int id);
         IEnumerable<ShipmentOutEntity> GetByDate(DateTime value);
@@ -25,5 +25,8 @@ namespace BusinessServices.Interfaces
         IEnumerable<ShipmentEntity> GetListNotDeliveryByQuarter(DateTime start, DateTime end);
         ShipmentOutEntity GetByShipmentId(string shipId);
         bool GetStatusCompletion(string shipmentId);
+        string GetDeclarationNo(string shipmentId);
+        string GetDateOfCompletion(string shipmentId);
+      
     }
 }

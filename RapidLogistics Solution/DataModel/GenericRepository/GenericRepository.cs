@@ -120,7 +120,6 @@ namespace DataModel.GenericRepository
                 {
                     connection.Open();
                 }
-
                 using (var myAdapter = new SqlDataAdapter(_query, connection))
                 {
                     try
@@ -190,7 +189,9 @@ namespace DataModel.GenericRepository
                     {   
                         DbSet.Add(entity);
                         numberInsert++;
-                    }catch(Exception ex)
+                    }
+                    catch (Exception ex)
+
                     { Ultilities.FileHelper.WriteLog(Ultilities.ExceptionLevel.Function, "public virtual void Insert(List<TEntity> entityList)", ex); }
                 }
             }

@@ -32,7 +32,6 @@ namespace BusinessServices.Interfaces
                 return masterBillService.Id;
             }
         }
-
         public IEnumerable<MasterAirwayBillEntity> GetAll()
         {
             var masterBillList = _unitOfWork.MasterBillRepository.GetAll();
@@ -44,7 +43,6 @@ namespace BusinessServices.Interfaces
             }
             return null;
         }
-
         public IEnumerable<MasterAirwayBillEntity> GetByDateArrived(DateTime dateArrived)
         {
             var masterBillList = _unitOfWork.MasterBillRepository.GetMany(t => t.DateArrived.Value.ToString("yyyyMMdd").Equals(dateArrived.Date.ToString("yyyyMMdd"))).OrderByDescending(t=>t.DateArrived);
@@ -56,7 +54,17 @@ namespace BusinessServices.Interfaces
             }
             return null;
         }
-
+        public IEnumerable<MasterAirwayBillEntity> GetAllMasterBills()
+        {
+            var masterBillList = _unitOfWork.MasterBillRepository.GetAll().OrderByDescending(t => t.DateArrived);
+            if(masterBillList != null && masterBillList.Any())
+            {
+                Mapper.CreateMap<MasterBill, MasterAirwayBillEntity>();
+                var masterBillListModel = Mapper.Map<List<MasterBill>, List<MasterAirwayBillEntity>>(masterBillList.ToList());
+                return masterBillListModel;
+            }
+            return null;
+        }
         public IEnumerable<MasterAirwayBillEntity> SearchByMasterBillId(string masterId)
         {
             var masterBillList = _unitOfWork.MasterBillRepository.GetMany(t=>t.MasterAirWayBill.Contains(masterId));
@@ -68,7 +76,6 @@ namespace BusinessServices.Interfaces
             }
             return null;
         }
-
         public MasterAirwayBillEntity GetByMasterBillId(string masterId)
         {
             var masterBill = _unitOfWork.MasterBillRepository.Get(t => t.MasterAirWayBill == masterId);

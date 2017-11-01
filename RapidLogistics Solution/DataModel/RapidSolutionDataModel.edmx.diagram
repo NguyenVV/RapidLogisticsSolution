@@ -5,14 +5,14 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="8b74431edcea4b2facfb73821442aef2" Name="Diagram1">
-        <EntityTypeShape EntityType="RapidSolutionModel.ShipmentOut" Width="1.5" PointX="5.25" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RapidSolutionModel.ShipmentOut" Width="1.5" PointX="3.375" PointY="4.625" IsExpanded="true" />
         <EntityTypeShape EntityType="RapidSolutionModel.Manifest" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="false" />
         <EntityTypeShape EntityType="RapidSolutionModel.ShipmentWaitToConfirm" Width="1.75" PointX="7.375" PointY="0.75" />
         <EntityTypeShape EntityType="RapidSolutionModel.Employee" Width="1.5" PointX="5.25" PointY="7.75" IsExpanded="false" />
         <AssociationConnector Association="RapidSolutionModel.FK__ShipmentO__Emplo__4316F928" />
         <AssociationConnector Association="RapidSolutionModel.FK__ShipmentW__Emplo__440B1D61" />
-        <EntityTypeShape EntityType="RapidSolutionModel.BoxInfo" Width="1.5" PointX="3.125" PointY="1.375" />
-        <EntityTypeShape EntityType="RapidSolutionModel.ShipmentInfor" Width="1.5" PointX="5.25" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RapidSolutionModel.BoxInfo" Width="1.5" PointX="3.125" PointY="0.875" />
+        <EntityTypeShape EntityType="RapidSolutionModel.ShipmentInfor" Width="1.5" PointX="5.5" PointY="0.625" IsExpanded="true" />
         <AssociationConnector Association="RapidSolutionModel.FK__BoxInfo__Employe__45F365D3" />
         <AssociationConnector Association="RapidSolutionModel.FK__ShipmentI__BoxId__15502E78" />
         <AssociationConnector Association="RapidSolutionModel.FK__ShipmentO__BoxId__1B0907CE" />
@@ -29,12 +29,19 @@
         <AssociationConnector Association="RapidSolutionModel.FK__ShipmentI__Emplo__5629CD9C" />
         <AssociationConnector Association="RapidSolutionModel.FK__ShipmentO__Emplo__5CD6CB2B" />
         <AssociationConnector Association="RapidSolutionModel.FK__ShipmentO__Maste__5AEE82B9" />
-        <EntityTypeShape EntityType="RapidSolutionModel.Warehouse" Width="1.5" PointX="3" PointY="5.875" />
+        <EntityTypeShape EntityType="RapidSolutionModel.Warehouse" Width="1.5" PointX="0.75" PointY="5.625" />
         <AssociationConnector Association="RapidSolutionModel.FK__Employee__Wareho__628FA481" />
         <AssociationConnector Association="RapidSolutionModel.FK__ShipmentI__Wareh__5EBF139D" />
         <AssociationConnector Association="RapidSolutionModel.FK__ShipmentI__Wareh__60A75C0F" />
         <AssociationConnector Association="RapidSolutionModel.FK__ShipmentO__Wareh__5FB337D6" />
         <AssociationConnector Association="RapidSolutionModel.FK__ShipmentO__Wareh__619B8048" />
+        <EntityTypeShape EntityType="RapidSolutionModel.BoxOut" Width="1.5" PointX="10.5" PointY="7.875" />
+        <AssociationConnector Association="RapidSolutionModel.FK__BoxOut__Employee__76969D2E" />
+        <AssociationConnector Association="RapidSolutionModel.FK__BoxOut__MasterBi__778AC167" />
+        <AssociationConnector Association="RapidSolutionModel.FK__ShipmentO__BoxId__797309D9" />
+        <AssociationConnector Association="RapidSolutionModel.FK__ShipmentO__BoxId__7A672E12" />
+        <AssociationConnector Association="RapidSolutionModel.FK__ShipmentO__BoxId__7B5B524B" />
+        <AssociationConnector Association="RapidSolutionModel.FK__ShipmentO__BoxId__7C4F7684" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

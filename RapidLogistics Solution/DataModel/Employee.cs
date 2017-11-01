@@ -23,6 +23,7 @@ namespace DataModel
             this.MasterBills = new HashSet<MasterBill>();
             this.ShipmentInforTemps = new HashSet<ShipmentInforTemp>();
             this.ShipmentOutTemps = new HashSet<ShipmentOutTemp>();
+            this.BoxOuts = new HashSet<BoxOut>();
         }
     
         public int Id { get; set; }
@@ -46,5 +47,6 @@ namespace DataModel
         public virtual ICollection<ShipmentInforTemp> ShipmentInforTemps { get; set; }
         public virtual ICollection<ShipmentOutTemp> ShipmentOutTemps { get; set; }
         public virtual Warehouse Warehouse { get; set; }
+        public virtual ICollection<BoxOut> BoxOuts { get; set; }
     }
 }

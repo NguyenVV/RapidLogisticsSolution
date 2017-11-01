@@ -25,5 +25,6 @@ namespace BusinessServices.Interfaces
         string GetDeclarationNo(string shipmentId);
         string GetDateOfCompletion(string shipmentId);
         bool IsExistByShipmentIdAndBoxId(string shipmentId, int boxId);
+  
     }
 }

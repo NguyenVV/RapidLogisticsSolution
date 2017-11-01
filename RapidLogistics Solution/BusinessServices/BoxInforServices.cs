@@ -30,7 +30,6 @@ namespace BusinessServices
                 return boxInforService.Id;
             }
         }
-
         public BoxInforEntity GetByBoxId(string boxId)
         {
             var boxInforList = _unitOfWork.BoxInforRepository.Get(t => t.BoxId == boxId);
@@ -42,7 +41,6 @@ namespace BusinessServices
             }
             return null;
         }
-
         public BoxInforEntity GetByBoxId(int boxId)
         {
             var boxInforList = _unitOfWork.BoxInforRepository.Get(t => t.Id == boxId);
@@ -54,12 +52,10 @@ namespace BusinessServices
             }
             return null;
         }
-
         public int GetTotalByMasterBill(int masterBillId)
         {
-            return _unitOfWork.BoxInforRepository.GetMany(t => t.MasterBillId == masterBillId).GroupBy(b=>b.BoxId).Select(box=>box.First()).Count();
+            return _unitOfWork.BoxInforRepository.GetMany(t => t.MasterBillId == masterBillId).GroupBy(b => b.BoxId).Select(box => box.First()).Count();
         }
-
         public int GetTotalShipmentByMasterBill(int masterBillId)
         {
             int total = 0;
@@ -68,7 +64,7 @@ namespace BusinessServices
             {
                 foreach (var item in list)
                 {
-                    total += _unitOfWork.ShipmentRepository.GetMany(t => t.BoxId == item.Id).GroupBy(s=>s.ShipmentId).Select(sh=>sh.First()).Count();
+                    total += _unitOfWork.ShipmentRepository.GetMany(t => t.BoxId == item.Id).GroupBy(s => s.ShipmentId).Select(sh => sh.First()).Count();
                 }
             }
 
@@ -103,6 +99,15 @@ namespace BusinessServices
         public int GetTotalCountByMasterId(int masterId)
         {
             return _unitOfWork.BoxInforRepository.GetMany(t => t.MasterBillId == masterId).Count();
+        }
+        public int CreateOrUpdateByQuery(int total, int id)
+        {
+            return _unitOfWork.BoxInforRepository.ExecuteUpdateQuery(string.Format("Update BoxInfo set ShipmentQuantity=" + total + " Where Id =" + id));
+        }
+        public void Delete(int id)
+        {
+            _unitOfWork.BoxInforRepository.Delete(id);
+            _unitOfWork.SaveWinform();
         }
     }
 }

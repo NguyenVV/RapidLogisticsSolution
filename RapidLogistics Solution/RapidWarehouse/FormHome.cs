@@ -104,7 +104,7 @@ namespace RapidWarehouse
 
         private void btnWaitToConfirm_Click(object sender, EventArgs e)
         {
-            Program.Container.GetInstance<FormChoThongQuan>().Show();
+            Program.Container.GetInstance<FormHaiQuanView>().Show();
             this.Dispose();
         }
 
@@ -121,13 +121,18 @@ namespace RapidWarehouse
 
         private void btnManageWarehouse_Click(object sender, EventArgs e)
         {
-            Program.Container.GetInstance<FormMangeWarehouses>().Show();
+            Program.Container.GetInstance<FormWarehouses>().Show();
             this.Dispose();
         }
 
         private void btnXndTheoMawb_Click(object sender, EventArgs e)
         {
             Program.Container.GetInstance<FormXnDenMawb>().Show();
+            this.Dispose();
+        }
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            Program.Container.GetInstance<frmTrace>().Show();
             this.Dispose();
         }
     }

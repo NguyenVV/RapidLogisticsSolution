@@ -197,10 +197,9 @@ C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\o
 C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\obj\Debug\vi-VN\RapidWarehouse.resources.dll
 C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.exe
 C:\Projects Data\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.pdb
-E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\bin\Debug\EntityFramework.dll
 E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\bin\Debug\RapidWarehouse.exe
-E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\bin\Debug\RapidWarehouse.exe.config
 E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\bin\Debug\AutoMapper.dll
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\bin\Debug\RapidWarehouse.exe.config
 E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\bin\Debug\BusinessEntities.dll
 E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\bin\Debug\BusinessServices.dll
 E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\bin\Debug\DataModel.dll
@@ -215,6 +214,7 @@ E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\bin\D
 E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\bin\Debug\System.Runtime.dll
 E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\bin\Debug\System.Threading.Tasks.dll
 E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\bin\Debug\Ultilities.dll
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\bin\Debug\EntityFramework.dll
 E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\bin\Debug\Microsoft.Practices.Unity.dll
 E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\bin\Debug\Microsoft.Practices.ServiceLocation.dll
 E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\bin\Debug\BusinessEntities.pdb
@@ -237,15 +237,16 @@ E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\bin\D
 E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\bin\Debug\Microsoft.Practices.ServiceLocation.xml
 E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.csproj.App.config
 E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.csprojResolveAssemblyReference.cache
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\obj\Debug\Interop.InteropExtensionLib.dll
 E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.csproj.ResolveComReference.cache
 E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.FormBaoCao.resources
 E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.FormChangePassword.resources
-E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.FormChoThongQuan.resources
 E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.FormConfigDB.resources
 E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.FormCreateEditEmployee.resources
 E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.FormHaiQuanView.resources
 E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.FormHome.resources
-E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.FormMangeWarehouses.resources
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.FormWarehouses.resources
+E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.frmTrace.resources
 E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.FormXnDenMawb.resources
 E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.FormNhap.resources
 E:\MVC\Rapid\RapidLogisticsSolution\RapidLogistics Solution\RapidWarehouse\obj\Debug\RapidWarehouse.FormLogin.resources
