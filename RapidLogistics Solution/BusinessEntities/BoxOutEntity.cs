@@ -1,16 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace BusinessEntities
 {
-    public class MasterAirwayBillEntity
+    public class BoxOutEntity
     {
         int id;
-        string masterAirwayBill;
+        string boxId;
         DateTime dateCreated;
-        DateTime dateArrived;
+        int shipmentQuantity;
+        int masterBillId;
         int employeeId;
-        int dateInt;
-
+        int dateint;
         public int EmployeeId
         {
             get
@@ -36,6 +39,18 @@ namespace BusinessEntities
                 dateCreated = value;
             }
         }
+        public int  DateInt
+        {
+            get
+            {
+                return dateint;
+            }
+
+            set
+            {
+                dateint = value;
+            }
+        }
 
         public int Id
         {
@@ -50,41 +65,41 @@ namespace BusinessEntities
             }
         }
 
-        public int DateInt
+        public string BoxId
         {
             get
             {
-                return dateInt;
+                return boxId;
             }
 
             set
             {
-                dateInt = value;
+                boxId = value;
             }
         }
-        public string MasterAirwayBill
+        public int ShipmentQuantity
         {
             get
             {
-                return masterAirwayBill;
+                return shipmentQuantity;
             }
 
             set
             {
-                masterAirwayBill = value;
+                shipmentQuantity = value;
             }
-        }       
+        }
 
-        public DateTime DateArrived
+        public int MasterBillId
         {
             get
             {
-                return dateArrived;
+                return masterBillId;
             }
 
             set
             {
-                dateArrived = value;
+                masterBillId = value;
             }
         }
     }

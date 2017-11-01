@@ -2,7 +2,11 @@
 
 namespace BusinessEntities
 {
-    public class BoxInforEntity
+    public class BoxIdEntity
+    {
+        public string BoxId { get; set; }
+    }    
+        public class BoxInforEntity
     {
         int id;
         string boxId;
@@ -10,7 +14,6 @@ namespace BusinessEntities
         int shipmentQuantity;
         int masterBillId;
         int employeeId;
-
         public int EmployeeId
         {
             get
@@ -61,21 +64,7 @@ namespace BusinessEntities
             {
                 boxId = value;
             }
-        }
-
-        //public DateTime DateCreated
-        //{
-        //    get
-        //    {
-        //        return dateCreated;
-        //    }
-
-        //    set
-        //    {
-        //        dateCreated = value;
-        //    }
-        //}
-
+        }      
         public int ShipmentQuantity
         {
             get
@@ -102,4 +91,6 @@ namespace BusinessEntities
             }
         }
     }
+
+    
 }

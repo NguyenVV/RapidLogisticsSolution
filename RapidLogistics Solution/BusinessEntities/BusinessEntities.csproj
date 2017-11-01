@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BoxInforEntity.cs" />
+    <Compile Include="BoxOutEntity.cs" />
     <Compile Include="BusinessProfileEntity.cs" />
     <Compile Include="EmployeeEntity.cs" />
     <Compile Include="ManifestEntity.cs" />
@@ -66,7 +67,6 @@
     <Compile Include="ReportDetailEntity.cs" />
     <Compile Include="ShipmentEntity.cs" />
     <Compile Include="ShipmentOutEntity.cs" />
-    <Compile Include="ShipmentWaitConfirmedEntity.cs" />
     <Compile Include="TokenEntity.cs" />
     <Compile Include="UserEntity.cs" />
     <Compile Include="WarehouseEntity.cs" />

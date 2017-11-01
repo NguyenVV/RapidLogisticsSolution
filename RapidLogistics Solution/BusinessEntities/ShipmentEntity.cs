@@ -8,8 +8,7 @@ namespace BusinessEntities
         string shipmentId;
         string sender;
         string receiver;
-        string receiverTel;
-        //float totalValue;
+        string receiverTel;     
         string description;
         int boxId;
         DateTime dateCreated;
@@ -24,6 +23,7 @@ namespace BusinessEntities
         private string boxIdString;
         private DateTime? dateOfCompletion;
         private string consignee;
+        public string Status { get; set; }
         public string DeclarationNo
         {
             get
@@ -48,7 +48,9 @@ namespace BusinessEntities
                 warehouseId = value;
             }
         }
-        public double? Weight { get; set; }
+        public double Weight { get; set; }
+
+        public double TotalValue { get; set; }
 
         public int EmployeeId
         {
@@ -140,20 +142,6 @@ namespace BusinessEntities
                 receiverTel = value;
             }
         }
-
-        //public float TotalValue
-        //{
-        //    get
-        //    {
-        //        return totalValue;
-        //    }
-
-        //    set
-        //    {
-        //        totalValue = value;
-        //    }
-        //}
-
         public string Description
         {
             get
@@ -295,29 +283,8 @@ namespace BusinessEntities
             {
                 consignee = value;
             }
-        }
-
-        //public DateTime DateCreated
-        //{
-        //    get
-        //    {
-        //        return dateCreated;
-        //    }
-
-        //    set
-        //    {
-        //        dateCreated = value;
-        //    }
-        //}
+        }    
     }
 
-    public class ShipmentExport
-    {
-        public string ShipmentId { get; set; }
-        public int BoxIdRef { get; set; }
-        public string BoxIdString { get; set; }
-        public int MasterBillId { get; set; }
-        public string MasterBillIdString { get; set; }
-        public DateTime DateOut { get; set; }
-    }
+   
 }
